@@ -12,5 +12,10 @@
 			"R\\Plugin\\": "plugin/",
 			"R\\Util\\": "util/"
 		}
+	},
+	"config": {
+		"preferred-install": {
+			"rapp-lib/*": "source"
+		}
 	}
 }
