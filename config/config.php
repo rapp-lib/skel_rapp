@@ -1,9 +1,10 @@
 <?php
 	
-	ini_set("display_errors",false);
+	ini_set("display_errors",true);
 	error_reporting(E_ALL&~E_NOTICE);
 	
-	require_once(dirname(__FILE__).'/../../rlib.git/core.php');
+	require_once __DIR__."/../vendor/autoload.php";
+	require_once __DIR__."/../vendor/rapp-lib/rlib/core.php";
 	
 	//-------------------------------------
 	// システム動作基本設定
