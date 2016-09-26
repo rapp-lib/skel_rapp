@@ -4,7 +4,7 @@
 	"type": "project",
 	"license": "MIT",
 	"require": {
-        "rapp-lib/rlib": "*"
+        "rapp-lib/rlib": "dev-master"
 	},
 	"autoload": {
 		"psr-4": {
