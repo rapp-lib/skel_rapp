@@ -1,4 +1,5 @@
 <?php
+use R\Lib\Controller\Controller_Base;
 
 /**
  * IncludeController基本クラス

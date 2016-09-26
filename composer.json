@@ -13,9 +13,26 @@
 			"R\\Util\\": "util/"
 		}
 	},
+	"include-path":[
+		"app/",
+		"app/include/",
+		"app/context/",
+		"app/controller/",
+		"app/list/",
+		"app/model/"
+	],
+	"repositories":[
+		{"type": "vcs", "url": "https://bitbucket.org/rapp-lib/rlib.git"}
+	],
 	"config": {
 		"preferred-install": {
 			"rapp-lib/*": "source"
-		}
+		},
+	    "bitbucket-oauth": {
+	        "bitbucket.org": {
+	            "consumer-key": "JVg3Sjk5RD8bHseYKX",
+	            "consumer-secret": "s43nUUjZyYVPLegGrrsjqVG8wrmrY6TQ"
+	        }
+	    }
 	}
 }

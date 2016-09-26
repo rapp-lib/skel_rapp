@@ -4,7 +4,6 @@
 	error_reporting(E_ALL&~E_NOTICE);
 	
 	require_once __DIR__."/../vendor/autoload.php";
-	require_once __DIR__."/../vendor/rapp-lib/rlib/core.php";
 	
 	//-------------------------------------
 	// システム動作基本設定
