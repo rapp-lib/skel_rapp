@@ -1,0 +1,16 @@
+{
+	"name": "rapp-lib/skel_rapp",
+	"description": "Simple webapp skelton",
+	"type": "project",
+	"license": "MIT",
+	"require": {
+        "rapp-lib/rlib": "*"
+	},
+	"autoload": {
+		"psr-4": {
+			"R\\App\\": "app/",
+			"R\\Plugin\\": "plugin/",
+			"R\\Util\\": "util/"
+		}
+	}
+}

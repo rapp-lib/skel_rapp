@@ -1,0 +1,10 @@
+/vendor/*
+/composer.phar
+
+*_DELETE
+!empty
+
+/tmp/*
+/html/user_file/*
+/config/*.env-ident
+
