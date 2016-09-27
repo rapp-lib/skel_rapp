@@ -1,15 +1,12 @@
 {
 	"name": "rapp-lib/skel_rapp",
-	"description": "Simple webapp skelton",
 	"type": "project",
-	"license": "MIT",
 	"require": {
-        "rapp-lib/rlib": "dev-master"
+		"rapp-lib/rlib": "dev-master"
 	},
 	"autoload": {
 		"psr-4": {
 			"R\\App\\": "app/",
-			"R\\Plugin\\": "plugin/",
 			"R\\Util\\": "util/"
 		}
 	},
@@ -19,20 +16,16 @@
 		"app/context/",
 		"app/controller/",
 		"app/list/",
-		"app/model/"
-	],
-	"repositories":[
-		{"type": "vcs", "url": "https://bitbucket.org/rapp-lib/rlib.git"}
+		"app/model/",
+		
+		"vendor/pear/pear_exception",
+		"vendor/pear/net_url2",
+		"vendor/pear/http_request2",
+		"vendor/pear/mail"
 	],
 	"config": {
 		"preferred-install": {
 			"rapp-lib/*": "source"
-		},
-	    "bitbucket-oauth": {
-	        "bitbucket.org": {
-	            "consumer-key": "JVg3Sjk5RD8bHseYKX",
-	            "consumer-secret": "s43nUUjZyYVPLegGrrsjqVG8wrmrY6TQ"
-	        }
-	    }
+		}
 	}
 }

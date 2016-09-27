@@ -1,7 +1,7 @@
 <?php
 
 	//-------------------------------------
-	// DB接続
+	// DB$B@\B3(B
 	registry(array(
 		
 		"DBI.connection" =>array(

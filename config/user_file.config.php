@@ -1,7 +1,7 @@
 <?php
 
 	//-------------------------------------
-	// ファイルアップロード設定
+	// $B%U%!%$%k%"%C%W%m!<%I@_Dj(B
 	registry("UserFile.user_file_dir", registry("Path.html_dir")."/user_file");
 	registry("UserFile.group", array(
 	

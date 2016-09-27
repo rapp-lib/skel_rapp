@@ -1,13 +1,13 @@
 <?php
 
 	//-------------------------------------
-	// 入力チェック設定
+	// $BF~NO%A%'%C%/@_Dj(B
 	registry(array(
 		
 		"Validate.rules" =>array(
 			
-			// （例）array("target"=>"Product.tel", "type"=>"tel"),
-			// （例）array("target"=>"Product.mail", "type"=>"mail"),
+			// $B!JNc!K(Barray("target"=>"Product.tel", "type"=>"tel"),
+			// $B!JNc!K(Barray("target"=>"Product.mail", "type"=>"mail"),
 		),
 	));
 		

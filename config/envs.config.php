@@ -1,6 +1,6 @@
 <?php
 	
-	// 設置環境別設定
+	// $B@_CV4D6-JL@_Dj(B
 	/*
 	registry("Config.envs", array(
 		"dev" =>array(

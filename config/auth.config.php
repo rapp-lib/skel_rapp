@@ -1,10 +1,10 @@
 <?php
 	
 	//-------------------------------------
-	// 認証設定
+	// $BG'>Z@_Dj(B
 	registry(array(
 		
-		// （例）管理者認証
+		// $B!JNc!K4IM}<TG'>Z(B
 		// "Auth.admin" =>array(
 		// 	"context_name" =>"admin_auth",
 		// 	"force_login.redirect_to" =>"page:admin_login.index",

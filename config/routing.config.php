@@ -1,16 +1,16 @@
 <?php
 
 	//-------------------------------------
-	// ルーティング設定
+	// $B%k!<%F%#%s%0@_Dj(B
 	registry(array(
 	
 		"Routing.page_to_path" =>array(
 			
-			// TOPページ
+			// TOP$B%Z!<%8(B
 			"index.index" =>"/index.html",
 		),
 		
-		// HTTPアクセス制限
+		// HTTP$B%"%/%;%9@)8B(B
 		"Routing.force_https.zone" =>array(
 		),
 		"Routing.force_https.safe_zone" =>array(

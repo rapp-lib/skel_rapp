@@ -1,9 +1,9 @@
 <?php
 
-	// Fields拡張機能設定/外部テーブルとの関連性定義
+	// Fields$B3HD%5!G=@_Dj(B/$B30It%F!<%V%k$H$N4XO"@-Dj5A(B
 	registry("Model.extends.fields",array(
 	
-		// （例）Bridge関係のサンプル
+		// $B!JNc!K(BBridge$B4X78$N%5%s%W%k(B
 		/*
 		"Product.categories" =>array(
 			"auto_load" =>false,
@@ -17,7 +17,7 @@
 			"reduce_by" =>"ProductCategoryAssoc.category_id",
 		),
 	    */
-		// （例）Meta関係のサンプル
+		// $B!JNc!K(BMeta$B4X78$N%5%s%W%k(B
 		/*
 		"Product.imgs" =>array(
 			"auto_load" =>false,
