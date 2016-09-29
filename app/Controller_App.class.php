@@ -6,6 +6,9 @@ use R\Lib\Controller\Controller_Base;
  */
 class Controller_App extends Controller_Base
 {
+    protected $login_as = null;
+    protected $login_required = false;
+
     /**
      * メール送信
      */
@@ -96,45 +99,14 @@ class Controller_App extends Controller_Base
      */
     protected function before_act_auth ()
     {
-        $request_path =registry("Request.request_path");
-
-        foreach ((array)registry("Auth") as $account => $config) {
-
-            $context_name =$config["context_name"];
-            $zone =$config["force_login"]["zone"];
-            $redirect_to =$config["force_login"]["redirect_to"];
-
-            $var_name ="c_".$context_name;
-            $class_name =str_camelize($context_name)."Context";
-
-            // contextの関連付け
-            $this->context($var_name,$var_name,false,array(
-                "scope"=>"global",
-                "class"=>$class_name,
-            ));
+        if ($this->login_as) {
+            auth()->authenticate($this->login_as, $this->login_required);
 
             // model accessorの関連付け
-            model(null,$account)->init_accessor(array(
-                "account" =>$account,
-                "id" =>$this->$var_name->id(),
+            model(null,$this->login_as)->init_accessor(array(
+                "account" =>$this->login_as,
+                "id" =>auth($this->login_as)->getId(),
             ));
-
-            // ログインしていない場合
-            if ( ! $this->$var_name->id()) {
-
-                // ログインが必要な場合の転送処理
-                if ($zone && in_path($request_path,$zone)) {
-
-                    redirect($redirect_to,array(
-                        "redirect_to" =>registry("Request.request_uri")."?".http_build_query($_GET),
-                    ));
-                }
-
-            // 既にログインしている場合
-            } else {
-
-                $this->$var_name->refresh();
-            }
         }
     }
 
