@@ -18,7 +18,7 @@
 
         // 基本設定
         "Config.dync_key" =>"_",
-        "Config.auto_deploy" =>false,
+        "Config.auto_deploy" =>true,
         "Config.external_charset" =>"UTF-8",
         "Config.session_lifetime" =>86400,
         "Config.webapp_include_path" =>array(

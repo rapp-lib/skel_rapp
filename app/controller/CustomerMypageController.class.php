@@ -3,7 +3,7 @@
 /**
  * @controller
  */
-class IndexController extends Controller_App
+class CustomerMypageController extends Controller_App
 {
     /**
      * @page
