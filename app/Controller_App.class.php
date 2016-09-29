@@ -6,6 +6,9 @@ use R\Lib\Controller\Controller_Base;
  */
 class Controller_App extends Controller_Base
 {
+    protected $login_as = null;
+    protected $login_required = false;
+
     /**
      * メール送信
      */
@@ -39,17 +42,7 @@ class Controller_App extends Controller_Base
 
         $this->before_act_force_https();
         $this->before_act_protect_against_csrf();
-
-        // 認証処理
-        if ($this->login_as) {
-            auth()->authenticate($this->login_as, $this->login_required, $this->priv_required);
-
-            // model accessorの関連付け
-            model(null,$this->login_as)->init_accessor(array(
-                "account" =>$this->login_as,
-                "id" =>auth($this->login_as)->getId(),
-            ));
-        }
+        $this->before_act_auth();
 
         // リクエスト変換処理
         obj("LayoutRequestArray")->fetch_request_array();
@@ -96,6 +89,22 @@ class Controller_App extends Controller_Base
 
                 redirect($redirect_url);
             }
+        }
+    }
+
+    /**
+     * 認証処理
+     */
+    protected function before_act_auth ()
+    {
+        if ($this->login_as) {
+            auth()->authenticate($this->login_as, $this->login_required);
+
+            // model accessorの関連付け
+            model(null,$this->login_as)->init_accessor(array(
+                "account" =>$this->login_as,
+                "id" =>auth($this->login_as)->getId(),
+            ));
         }
     }
 
