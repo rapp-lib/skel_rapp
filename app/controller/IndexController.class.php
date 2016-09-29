@@ -6,8 +6,15 @@
 class IndexController extends Controller_App
 {
     /**
+     * 認証設定
+     */
+    protected $login_as = null;
+    protected $login_required = false;
+
+    /**
      * @page
-     * @title      */
+     * @title トップページ
+     */
     public function act_index ()
     {
     }

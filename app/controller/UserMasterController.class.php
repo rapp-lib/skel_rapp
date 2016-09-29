@@ -6,6 +6,12 @@
 class UserMasterController extends Controller_App
 {
     /**
+     * 認証設定
+     */
+    protected $login_as = admin;
+    protected $login_required = true;
+
+    /**
      * 検索フォーム設定
      */
     protected $list_setting =array(
@@ -54,7 +60,7 @@ class UserMasterController extends Controller_App
         }
 
         list($this->vars["ts"] ,$this->vars["p"]) =
-            model("Customer","admin")->get_by_search_form($this->list_setting, $this->c->input());
+            model("Customer")->get_by_search_form($this->list_setting, $this->c->input());
     }
 
     /**
@@ -78,7 +84,7 @@ class UserMasterController extends Controller_App
         // id指定があれば既存のデータを読み込む
         if ($_REQUEST["id"]) {
             $this->c->id($_REQUEST["id"]);
-            $t =model("Customer","admin")->get_by_id($this->c->id());
+            $t =model("Customer")->get_by_id($this->c->id());
 
             if ( ! $t) {
                 $this->c->id(false);
@@ -116,7 +122,7 @@ class UserMasterController extends Controller_App
                 "login_pw",
                 "favorite_producs",
             ));
-            model("Customer","admin")->save($fields,$this->c->id());
+            model("Customer")->save($fields,$this->c->id());
 
             $this->c->clear();
         }
@@ -136,14 +142,14 @@ class UserMasterController extends Controller_App
         $this->c->id($_REQUEST["id"]);
 
         // 既存のデータを確認
-        $t =model("Customer","admin")->get_by_id($this->c->id());
+        $t =model("Customer")->get_by_id($this->c->id());
 
         if ( ! $t) {
             redirect("page:.view_list");
         }
 
         // データの削除
-        model("Customer","admin")->drop($this->c->id());
+        model("Customer")->drop($this->c->id());
 
         redirect("page:.view_list");
     }

@@ -6,6 +6,12 @@
 class CustomerEntryController extends Controller_App
 {
     /**
+     * 認証設定
+     */
+    protected $login_as = null;
+    protected $login_required = false;
+
+    /**
      * @page
      * @title 会員登録フォーム TOP
      */

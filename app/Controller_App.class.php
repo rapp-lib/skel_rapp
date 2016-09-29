@@ -42,7 +42,9 @@ class Controller_App extends Controller_Base
 
         $this->before_act_force_https();
         $this->before_act_protect_against_csrf();
-        $this->before_act_auth();
+
+        // 認証処理
+        auth()->authenticate($this->login_as, $this->login_required);
 
         // リクエスト変換処理
         obj("LayoutRequestArray")->fetch_request_array();
@@ -89,22 +91,6 @@ class Controller_App extends Controller_Base
 
                 redirect($redirect_url);
             }
-        }
-    }
-
-    /**
-     * 認証処理
-     */
-    protected function before_act_auth ()
-    {
-        if ($this->login_as) {
-            auth()->authenticate($this->login_as, $this->login_required);
-
-            // model accessorの関連付け
-            model(null,$this->login_as)->init_accessor(array(
-                "account" =>$this->login_as,
-                "id" =>auth($this->login_as)->getId(),
-            ));
         }
     }
 

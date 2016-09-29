@@ -6,6 +6,12 @@
 class ProductMasterController extends Controller_App
 {
     /**
+     * 認証設定
+     */
+    protected $login_as = admin;
+    protected $login_required = true;
+
+    /**
      * 検索フォーム設定
      */
     protected $list_setting =array(
@@ -79,7 +85,7 @@ class ProductMasterController extends Controller_App
         }
 
         list($this->vars["ts"] ,$this->vars["p"]) =
-            model("Product","admin")->get_by_search_form($this->list_setting, $this->c->input());
+            model("Product")->get_by_search_form($this->list_setting, $this->c->input());
     }
 
     /**
@@ -103,7 +109,7 @@ class ProductMasterController extends Controller_App
         // id指定があれば既存のデータを読み込む
         if ($_REQUEST["id"]) {
             $this->c->id($_REQUEST["id"]);
-            $t =model("Product","admin")->get_by_id($this->c->id());
+            $t =model("Product")->get_by_id($this->c->id());
 
             if ( ! $t) {
                 $this->c->id(false);
@@ -141,7 +147,7 @@ class ProductMasterController extends Controller_App
                 "category",
                 "open_date",
             ));
-            model("Product","admin")->save($fields,$this->c->id());
+            model("Product")->save($fields,$this->c->id());
 
             $this->c->clear();
         }
@@ -161,14 +167,14 @@ class ProductMasterController extends Controller_App
         $this->c->id($_REQUEST["id"]);
 
         // 既存のデータを確認
-        $t =model("Product","admin")->get_by_id($this->c->id());
+        $t =model("Product")->get_by_id($this->c->id());
 
         if ( ! $t) {
             redirect("page:.view_list");
         }
 
         // データの削除
-        model("Product","admin")->drop($this->c->id());
+        model("Product")->drop($this->c->id());
 
         redirect("page:.view_list");
     }
@@ -184,7 +190,7 @@ class ProductMasterController extends Controller_App
 
         $this->context("c",1);
 
-        $res =model("Product","admin")                ->get_by_search_form($this->list_setting,$this->c->input(),true);
+        $res =model("Product")                ->get_by_search_form($this->list_setting,$this->c->input(),true);
 
         // CSVファイルの書き込み準備
         $csv_filename =registry("Path.tmp_dir")
@@ -275,7 +281,7 @@ class ProductMasterController extends Controller_App
             $keys =array_keys($this->csv_setting["rows"]);
             $fields =$c_import->get_fields($keys);
 
-            model("Product","admin")->save($fields,$c_import->id());
+            model("Product")->save($fields,$c_import->id());
         }
 
         dbi()->commit();
