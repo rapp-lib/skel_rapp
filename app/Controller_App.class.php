@@ -6,8 +6,8 @@ use R\Lib\Controller\Controller_Base;
  */
 class Controller_App extends Controller_Base
 {
-    protected $login_as = null;
-    protected $login_required = false;
+    protected $access_as = null;
+    protected $priv_required = false;
 
     /**
      * メール送信
@@ -44,7 +44,7 @@ class Controller_App extends Controller_Base
         $this->before_act_protect_against_csrf();
 
         // 認証処理
-        auth()->authenticate($this->login_as, $this->login_required);
+        auth()->authenticate($this->access_as, $this->priv_required);
 
         // リクエスト変換処理
         obj("LayoutRequestArray")->fetch_request_array();
