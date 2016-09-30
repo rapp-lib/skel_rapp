@@ -1,31 +1,25 @@
 {
-	"name": "rapp-lib/skel_rapp",
-	"type": "project",
-	"require": {
-		"rapp-lib/rlib": "dev-master"
-	},
-	"autoload": {
-		"psr-4": {
-			"R\\App\\": "app/",
-			"R\\Util\\": "util/"
-		}
-	},
-	"include-path":[
-		"app/",
-		"app/include/",
-		"app/context/",
-		"app/controller/",
-		"app/list/",
-		"app/model/",
-
-		"vendor/pear/pear_exception",
-		"vendor/pear/net_url2",
-		"vendor/pear/http_request2",
-		"vendor/pear/mail"
-	],
-	"config": {
-		"preferred-install": {
-			"rapp-lib/*": "source"
-		}
-	}
+    "name": "rapp-lib/skel_rapp",
+    "type": "project",
+    "require": {
+        "rapp-lib/rlib": "dev-master"
+    },
+    "autoload": {
+        "psr-4": {
+            "R\\App\\": "app/",
+            "R\\Plugin\\": "plugins/",
+            "R\\Util\\": "util/"
+        }
+    },
+    "include-path":[
+        "app/",
+        "app/include/",
+        "app/controller/",
+        "app/list/",
+    ],
+    "config": {
+        "preferred-install": {
+            "rapp-lib/*": "source"
+        }
+    }
 }
