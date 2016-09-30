@@ -13,15 +13,9 @@
 	"include-path":[
 		"app/",
 		"app/include/",
-		"app/context/",
 		"app/controller/",
 		"app/list/",
-		"app/model/",
-		
-		"vendor/pear/pear_exception",
-		"vendor/pear/net_url2",
-		"vendor/pear/http_request2",
-		"vendor/pear/mail"
+		"app/model/"
 	],
 	"config": {
 		"preferred-install": {
