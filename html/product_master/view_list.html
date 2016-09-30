@@ -18,7 +18,7 @@
 			</tr>
 			<tr>
 				<th>公開日時</th>
-				<td>{{input name="open_date" type="datetime" class="input-datetime"}}</td>
+				<td>{{input name="open_date" type="date" range="2010~+5" format="{%l}{%yp}{%mp}{%dp}{%datefix}" class="input-date"}}</td>
 			</tr>
 		</table>
 		<a href="javascript:void(0);" onclick="$(this).parents('form').trigger('submit');" id="search"><i class="fa fa-search"></i>検索</a>
@@ -59,7 +59,7 @@
 			{{$t.category|select:"product_category"}}
 		</td>
 		<td>
-			{{$t.open_date}}
+			{{$t.open_date|date:"Y/m/d"}}
 		</td>
 		<td>
 		

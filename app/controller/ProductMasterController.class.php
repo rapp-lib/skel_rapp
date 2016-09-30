@@ -55,6 +55,8 @@ class ProductMasterController extends Controller_App
             array("target" =>"category",
                     "filter" =>"list_select",
                     "list" =>"product_category"),
+            array("target" =>"open_date",
+                    "filter" =>"date"),
             array("filter" =>"validate",
                     "required" =>array(),
                     "rules" =>array()),

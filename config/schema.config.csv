@@ -4,7 +4,7 @@
 ,,name,名称,text,text,1,,,
 ,,img,写真,text,file,,,,
 ,,category,カテゴリ,text,select,1,,list=product_category,
-,,open_date,公開日時,text,datetime,,,,
+,,open_date,公開日時,datetime,date,,,,
 ,,id,ID,integer,,,,def.key=primary,
 ,,reg_date,登録日時,datetime,,,,,
 ,,update_date,最終更新日時,timestamp,,,,,

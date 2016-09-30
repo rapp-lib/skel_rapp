@@ -5,7 +5,7 @@ CREATE TABLE Product (
 	`name` text COMMENT '名称',
 	`img` text COMMENT '写真',
 	`category` text COMMENT 'カテゴリ',
-	`open_date` text COMMENT '公開日時',
+	`open_date` datetime COMMENT '公開日時',
 	`id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID',
 	`reg_date` datetime COMMENT '登録日時',
 	`update_date` timestamp COMMENT '最終更新日時',

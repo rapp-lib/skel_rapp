@@ -19,7 +19,7 @@
 				'required.default' =>1,
 				'list' =>'product_category',
 			),
-			'open_date' =>array('label' =>'公開日時', 'def.type' =>'text', 'type' =>'datetime'),
+			'open_date' =>array('label' =>'公開日時', 'def.type' =>'datetime', 'type' =>'date'),
 			'id' =>array('label' =>'ID', 'def.type' =>'integer', 'def.key' =>'primary'),
 			'reg_date' =>array('label' =>'登録日時', 'def.type' =>'datetime'),
 			'update_date' =>array('label' =>'最終更新日時', 'def.type' =>'timestamp'),
