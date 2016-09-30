@@ -15,7 +15,7 @@
         "app/",
         "app/include/",
         "app/controller/",
-        "app/list/",
+        "app/list/"
     ],
     "config": {
         "preferred-install": {
