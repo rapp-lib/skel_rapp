@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "28718614c3f67981323bf674131bf9e9",
+    "hash": "6284d483f100716d682934f4821af6f0",
     "content-hash": "0e0dffd6bd6f0a91adba60a287724530",
     "packages": [
         {
@@ -163,6 +163,52 @@
             "description": "Class that provides multiple interfaces for sending emails.",
             "homepage": "http://pear.php.net/package/Mail",
             "time": "2016-01-31 21:32:18"
+        },
+        {
+            "name": "pear/mail_mime",
+            "version": "1.10.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/pear/Mail_Mime.git",
+                "reference": "e071727cf41a4b85ecc1de210ed4fd7f4f8d1ec4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/pear/Mail_Mime/zipball/e071727cf41a4b85ecc1de210ed4fd7f4f8d1ec4",
+                "reference": "e071727cf41a4b85ecc1de210ed4fd7f4f8d1ec4",
+                "shasum": ""
+            },
+            "require": {
+                "pear/pear-core-minimal": "*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Mail": "./"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "include-path": [
+                "./"
+            ],
+            "license": [
+                "BSD Style"
+            ],
+            "authors": [
+                {
+                    "name": "Cipriano Groenendal",
+                    "email": "cipri@php.net",
+                    "role": "Lead"
+                },
+                {
+                    "name": "Aleksander Machniak",
+                    "email": "alec@php.net",
+                    "role": "Lead"
+                }
+            ],
+            "description": "Mail_Mime provides classes to create MIME messages",
+            "homepage": "http://pear.php.net/package/Mail_Mime",
+            "time": "2015-09-13 12:42:41"
         },
         {
             "name": "pear/net_url2",
@@ -330,17 +376,18 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/rapp-lib/rlib.git",
-                "reference": "b54c8e5e926cd5dd8c831ac6e4b51b08e22d9311"
+                "reference": "4658949c24e345790953b53f0d82dab48e7ff4e8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rapp-lib/rlib/zipball/b54c8e5e926cd5dd8c831ac6e4b51b08e22d9311",
-                "reference": "b54c8e5e926cd5dd8c831ac6e4b51b08e22d9311",
+                "url": "https://api.github.com/repos/rapp-lib/rlib/zipball/4658949c24e345790953b53f0d82dab48e7ff4e8",
+                "reference": "4658949c24e345790953b53f0d82dab48e7ff4e8",
                 "shasum": ""
             },
             "require": {
                 "pear/http_request2": "2.2.1",
                 "pear/mail": "1.3.0",
+                "pear/mail_mime": "1.10.0",
                 "smarty/smarty": "v3.*@stable",
                 "swiftmailer/swiftmailer": "v5.*@stable"
             },
@@ -350,10 +397,10 @@
                     "R\\Lib\\": "lib/",
                     "R\\Plugin\\": "plugins/",
                     "R\\Util\\": "util/",
+                    "\\": "ext/include/",
                     "R\\Lib\\Form\\Rule\\": "plugins/Form/Rule/",
                     "R\\Lib\\Form\\Input\\": "plugins/Smarty/InputType/",
-                    "R\\Lib\\Query\\Search\\": "plugins/DBI/SearchType/",
-                    "\\": "ext/include/"
+                    "R\\Lib\\Query\\Search\\": "plugins/DBI/SearchType/"
                 },
                 "files": [
                     "functions/array.php",
@@ -372,13 +419,17 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "include-path": [
-                "ext/include/"
+                "ext/include/",
+                "../../pear/pear_exception",
+                "../../pear/net_url2",
+                "../../pear/http_request2",
+                "../../pear/mail"
             ],
             "license": [
                 "MIT"
             ],
             "description": "Simple webapp library",
-            "time": "2016-09-27 16:12:54"
+            "time": "2016-09-30 13:55:03"
         },
         {
             "name": "smarty/smarty",

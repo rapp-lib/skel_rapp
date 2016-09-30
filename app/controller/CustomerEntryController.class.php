@@ -8,8 +8,8 @@ class CustomerEntryController extends Controller_App
     /**
      * 認証設定
      */
-    protected $login_as = null;
-    protected $login_required = false;
+    protected $access_as = null;
+    protected $priv_required = false;
 
     /**
      * @page
@@ -41,7 +41,7 @@ class CustomerEntryController extends Controller_App
         // id指定があれば既存のデータを読み込む
         if ($_REQUEST["id"]) {
             $this->c->id($_REQUEST["id"]);
-            $t =model("Customer")->get_by_id($this->c->id());
+            $t =table("Customer")->selectById($this->c->id());
 
             if ( ! $t) {
                 $this->c->id(false);
@@ -77,7 +77,7 @@ class CustomerEntryController extends Controller_App
                 "login_pw",
                 "favorite_producs",
             ));
-            model("Customer")->save($fields,$this->c->id());
+            table("Customer")->save($this->c->id(),$fields);
 
             $this->c->clear();
         }

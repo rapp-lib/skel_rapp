@@ -8,8 +8,8 @@ class CustomerMypageController extends Controller_App
     /**
      * 認証設定
      */
-    protected $login_as = customer;
-    protected $login_required = true;
+    protected $access_as = customer;
+    protected $priv_required = true;
 
     /**
      * @page

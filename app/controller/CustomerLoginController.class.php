@@ -8,8 +8,8 @@ class CustomerLoginController extends Controller_App
     /**
      * 認証設定
      */
-    protected $login_as = null;
-    protected $login_required = false;
+    protected $access_as = null;
+    protected $priv_required = false;
 
     /**
      * @page

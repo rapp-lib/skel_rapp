@@ -8,8 +8,8 @@ class UserMasterController extends Controller_App
     /**
      * 認証設定
      */
-    protected $login_as = admin;
-    protected $login_required = true;
+    protected $access_as = admin;
+    protected $priv_required = true;
 
     /**
      * 検索フォーム設定
@@ -59,8 +59,8 @@ class UserMasterController extends Controller_App
             $this->c->input($_REQUEST);
         }
 
-        list($this->vars["ts"] ,$this->vars["p"]) =
-            model("Customer")->get_by_search_form($this->list_setting, $this->c->input());
+        list($this->vars["ts"] ,$this->vars["p"]) = table("Customer")            ->findBySearchForm($this->list_setting, $this->c->input())
+            ->selectPagenate();
     }
 
     /**
@@ -84,7 +84,7 @@ class UserMasterController extends Controller_App
         // id指定があれば既存のデータを読み込む
         if ($_REQUEST["id"]) {
             $this->c->id($_REQUEST["id"]);
-            $t =model("Customer")->get_by_id($this->c->id());
+            $t =table("Customer")->selectById($this->c->id());
 
             if ( ! $t) {
                 $this->c->id(false);
@@ -122,7 +122,7 @@ class UserMasterController extends Controller_App
                 "login_pw",
                 "favorite_producs",
             ));
-            model("Customer")->save($fields,$this->c->id());
+            table("Customer")->save($this->c->id(),$fields);
 
             $this->c->clear();
         }
@@ -141,15 +141,8 @@ class UserMasterController extends Controller_App
         // idの指定
         $this->c->id($_REQUEST["id"]);
 
-        // 既存のデータを確認
-        $t =model("Customer")->get_by_id($this->c->id());
-
-        if ( ! $t) {
-            redirect("page:.view_list");
-        }
-
         // データの削除
-        model("Customer")->drop($this->c->id());
+        table("Customer")->deleteById($this->c->id());
 
         redirect("page:.view_list");
     }
