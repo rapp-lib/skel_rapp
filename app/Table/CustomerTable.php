@@ -10,6 +10,7 @@ class CustomerTable extends Table_App
         "name" => array("type"=>"text", "comment"=>"氏名"),
         "mail" => array("type"=>"text", "comment"=>"メールアドレス"),
         "login_pw" => array("type"=>"text", "comment"=>"パスワード"),
+        "favorite_producs" => array("comment"=>"お気に入り製品"),
         "imgs" => array("type"=>"text", "comment"=>"画像"),
         "id" => array("type"=>"integer", "key"=>"primary", "id"=>true, "comment"=>"ID"),
         "reg_date" => array("type"=>"datetime", "comment"=>"登録日時"),
