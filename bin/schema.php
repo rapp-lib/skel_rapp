@@ -1,3 +1,4 @@
+#!/usr/bin/php
 <?php
 
 use R\Util\Migration;
@@ -6,8 +7,7 @@ use R\Util\Migration;
 
     $params =get_cli_params();
     $ds_name = $params["ds"] ? $params["ds"] : "default";
-    $tables = Migration::searchTableInDir(__DIR__."/../app/Table");
-    $sql = Migration::getMigrateSQL($ds_name, $tables);
-    print $sql;
+    $sql = Migration::getMigrateSQL($ds_name);
+    print implode("\n",$sql)."\n";
 
     shutdown_webapp("normal");

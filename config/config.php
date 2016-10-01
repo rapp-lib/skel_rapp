@@ -3,7 +3,7 @@
     ini_set("display_errors",true);
     error_reporting(E_ALL&~E_NOTICE);
 
-    require_once __DIR__."/../vendor/autoload.php";
+    $GLOBALS["_composer_loader"] = require_once __DIR__."/../vendor/autoload.php";
 
     //-------------------------------------
     // システム動作基本設定
