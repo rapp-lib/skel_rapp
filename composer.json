@@ -2,7 +2,8 @@
     "name": "rapp-lib/skel_rapp",
     "type": "project",
     "require": {
-        "rapp-lib/rlib": "dev-master"
+        "rapp-lib/rlib": "dev-master",
+        "doctrine/orm": "v2.*@stable"
     },
     "autoload": {
         "psr-4": {

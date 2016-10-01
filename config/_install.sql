@@ -6,9 +6,8 @@ CREATE TABLE Product (
 	`img` text COMMENT '写真',
 	`category` text COMMENT 'カテゴリ',
 	`open_date` datetime COMMENT '公開日時',
-	`id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID',
+	`id` int(11) COMMENT 'ID',
 	`reg_date` datetime COMMENT '登録日時',
-	`update_date` timestamp COMMENT '最終更新日時',
 	`del_flg` int(11) DEFAULT 0 COMMENT '削除フラグ',	PRIMARY KEY  (`id`)) 	;
 
 -- 会員 
@@ -18,9 +17,8 @@ CREATE TABLE Customer (
 	`mail` text COMMENT 'メールアドレス',
 	`login_pw` text COMMENT 'パスワード',
 	`imgs` text COMMENT '画像',
-	`id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID',
+	`id` int(11) COMMENT 'ID',
 	`reg_date` datetime COMMENT '登録日時',
-	`update_date` timestamp COMMENT '最終更新日時',
 	`del_flg` int(11) DEFAULT 0 COMMENT '削除フラグ',	PRIMARY KEY  (`id`)) 	;
 
 -- お気に入り製品 
@@ -28,4 +26,4 @@ DROP TABLE IF EXISTS FavoliteProductAssoc;
 CREATE TABLE FavoliteProductAssoc (
 	`customer_id` int(11) COMMENT '会員ID',
 	`product_id` int(11) COMMENT '製品ID',
-	`id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID',	PRIMARY KEY  (`id`)) 	;
+	`id` int(11) COMMENT 'ID',	PRIMARY KEY  (`id`)) 	;
