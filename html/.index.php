@@ -76,6 +76,18 @@
         "Request.request_page" =>$request_page,
     ));
 
+    // 画像処理機能
+    if ( ! $request_page && $request_path=="/img/resize/index.html") {
+
+        $cache_file =obj("ResizeImage")->resize_by_request(array(
+            "file_url" =>$_REQUEST["f"],
+            "format" =>$_REQUEST["s"].($_REQUEST["t"] ? "-t" : ""),
+        ));
+        clean_output_shutdown(array("file"=>$cache_file));
+
+        shutdown_webapp("normal");
+    }
+
     // Routing設定もなくHTMLファイルもない場合は404エラー
     if ( ! $request_page && ! file_exists($request_file)) {
 
