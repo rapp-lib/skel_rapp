@@ -2,11 +2,9 @@
 
     require_once __DIR__."/../config/config.php";
 
-    // 終了処理
+    // 終了処理の登録
     register_shutdown_webapp_function(function($cause, $options){
-
         if ($cause == "error_report") {
-
             // 異常停止のログを記録
             // cat /var/log/httpd/error_log| grep "RAPP_ERROR" | less
             $msg ="";
@@ -33,7 +31,6 @@
 
     // Ajaxr応答への変換処理の登録
     if ($_SERVER["HTTP_X_AJAXR"] || $_REQUEST["__ajaxr"]) {
-
         register_shutdown_webapp_function("shutdown_webapp_for_ajaxr");
     }
 
@@ -45,7 +42,6 @@
     // 初期設定の適応
     start_webapp();
 
-    //-------------------------------------
     // リクエスト情報の解決
     $request_uri =registry("Request.request_uri");
     $document_root_dir =registry("Path.document_root_dir");
@@ -57,81 +53,65 @@
 
     // 静的ページのStaticControllerへの対応付け
     if ( ! $request_page && file_exists($request_file)) {
-
         $request_page ="static.index";
+    }
+
+    // Routing設定もなくHTMLファイルもない場合
+    if ( ! $request_page && ! file_exists($request_file)) {
+
+        // 画像処理機能
+        if ($request_path=="/img/resize/index.html") {
+            $cache_file =obj("ResizeImage")->resize_by_request(array(
+                "file_url" =>$_REQUEST["f"],
+                "format" =>$_REQUEST["s"].($_REQUEST["t"] ? "-t" : ""),
+            ));
+            clean_output_shutdown(array("file"=>$cache_file));
+            shutdown_webapp("normal");
+
+        // 404エラー
+        } else {
+            report_warning("Request Trouble: Route and File NotFound",registry("Request"));
+            set_response_code(404);
+            shutdown_webapp("notfound");
+        }
     }
 
     // 動的パス埋め込みパラメータの解決
     if ($request_path != $ext_path) {
-
         $request_file =path_to_file($ext_path);
         $request_path =$ext_path;
-
         array_registry($_REQUEST,$ext_params);
     }
 
+    list($controller_name, $action_name) =explode('.',$request_page,2);
     registry(array(
         "Request.request_file" =>$request_file,
         "Request.request_path" =>$request_path,
         "Request.request_page" =>$request_page,
+        "Request.controller_name" => $controller_name,
+        "Request.action_name" => $action_name,
     ));
-
-    // 画像処理機能
-    if ( ! $request_page && $request_path=="/img/resize/index.html") {
-
-        $cache_file =obj("ResizeImage")->resize_by_request(array(
-            "file_url" =>$_REQUEST["f"],
-            "format" =>$_REQUEST["s"].($_REQUEST["t"] ? "-t" : ""),
-        ));
-        clean_output_shutdown(array("file"=>$cache_file));
-
-        shutdown_webapp("normal");
-    }
-
-    // Routing設定もなくHTMLファイルもない場合は404エラー
-    if ( ! $request_page && ! file_exists($request_file)) {
-
-        report_warning("Request Trouble: Route and File NotFound",registry("Request"));
-
-        set_response_code(404);
-
-        shutdown_webapp("notfound");
-    }
 
     // レスポンスの設定
     $request_file =registry("Request.request_file");
-    registry("Response.template_file", $request_file);
-
     $response_charset =registry("Config.external_charset");
+    registry("Response.template_file", $request_file);
     registry("Response.content_type", 'text/html; charset='.$response_charset);
 
     elapse("webapp.setup",true);
     elapse("webapp.raise_action");
 
-    //-------------------------------------
-    // Controller/Actionの実行
-    $request_page =registry("Request.request_page");
-
-    list($controller_name, $action_name) =explode('.',$request_page,2);
-    registry(array(
-        "Request.controller_name" => $controller_name,
-        "Request.action_name" => $action_name,
-    ));
-
+    // ControllerActionの実行
     $controller_obj =raise_action($request_page);
+    registry("Response.controller_obj", $controller_obj);
 
-    // Controller/Action実行エラー
     if ( ! $controller_obj) {
-
         report_error("Request Routing Error: Controller/Action raise error",registry("Request"));
     }
 
     elapse("webapp.raise_action",true);
     elapse("webapp.fetch_template");
 
-    registry("Response.controller_obj", $controller_obj);
-
-    //-------------------------------------
     // テンプレートファイルの読み込み
     $template_file =registry("Response.template_file");
     $output =$controller_obj->fetch($template_file);
