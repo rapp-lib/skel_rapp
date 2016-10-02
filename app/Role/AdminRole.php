@@ -55,7 +55,7 @@ class AdminRole extends Role_App
      */
     public function onLoginRequired ()
     {
-        redirect("page:admin_login.login",array(
+        redirect("page:a_login.login",array(
             "redirect_to" => registry("Request.request_uri"),
         ));
     }

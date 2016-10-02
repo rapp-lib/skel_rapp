@@ -4,7 +4,7 @@ namespace R\App\Table;
 /**
  * @table
  */
-class CustomerTable extends Table_App
+class MemberTable extends Table_App
 {
     protected static $cols = array(
         "name" => array("type"=>"text", "comment"=>"氏名"),
@@ -19,7 +19,7 @@ class CustomerTable extends Table_App
     protected static $refs = array(
     );
     protected static $def = array(
-        "table_name" => "Customer",
+        "table_name" => "Member",
         "indexes" => array(),
     );
 }

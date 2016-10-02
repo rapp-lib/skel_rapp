@@ -11,8 +11,8 @@ CREATE TABLE Product (
 	`del_flg` int(11) DEFAULT 0 COMMENT '削除フラグ',	PRIMARY KEY  (`id`)) 	;
 
 -- 会員 
-DROP TABLE IF EXISTS Customer;
-CREATE TABLE Customer (
+DROP TABLE IF EXISTS Member;
+CREATE TABLE Member (
 	`name` text COMMENT '氏名',
 	`mail` text COMMENT 'メールアドレス',
 	`login_pw` text COMMENT 'パスワード',
@@ -22,8 +22,8 @@ CREATE TABLE Customer (
 	`del_flg` int(11) DEFAULT 0 COMMENT '削除フラグ',	PRIMARY KEY  (`id`)) 	;
 
 -- お気に入り製品 
-DROP TABLE IF EXISTS FavoliteProductAssoc;
-CREATE TABLE FavoliteProductAssoc (
-	`customer_id` int(11) COMMENT '会員ID',
+DROP TABLE IF EXISTS FavoliteProducts;
+CREATE TABLE FavoliteProducts (
+	`member_id` int(11) COMMENT '会員ID',
 	`product_id` int(11) COMMENT '製品ID',
 	`id` int(11) COMMENT 'ID',	PRIMARY KEY  (`id`)) 	;

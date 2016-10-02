@@ -15,7 +15,7 @@ class ProductTable extends Table_App
         "reg_date" => array("type"=>"datetime", "comment"=>"登録日時"),
         "del_flg" => array("type"=>"integer", "del_flg"=>true, "default"=>0, "comment"=>"削除フラグ"),
     );
-    protected static $fkeys = array(
+    protected static $refs = array(
     );
     protected static $def = array(
         "table_name" => "Product",

@@ -55,7 +55,7 @@ class CustomerRole extends Role_App
      */
     public function onLoginRequired ()
     {
-        redirect("page:customer_login.login",array(
+        redirect("page:m_login.login",array(
             "redirect_to" => registry("Request.request_uri"),
         ));
     }
