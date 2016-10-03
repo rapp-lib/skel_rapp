@@ -3,17 +3,17 @@
 /**
  * @controller
  */
-class ALoginController extends Controller_App
+class MemberLoginController extends Controller_App
 {
     /**
      * 認証設定
      */
-    protected $access_as = "admin";
+    protected $access_as = "member";
     protected $priv_required = false;
 
     /**
      * @page
-     * @title 管理者ログイン TOP
+     * @title 会員ログイン TOP
      */
     public function act_index ()
     {
@@ -22,7 +22,7 @@ class ALoginController extends Controller_App
 
     /**
      * @page
-     * @title 管理者ログイン ログイン
+     * @title 会員ログイン ログイン
      */
     public function act_login ()
     {
@@ -37,7 +37,7 @@ class ALoginController extends Controller_App
         // 入力値のチェック
         if ($_REQUEST["_i"]=="c") {
             $this->c->validate_input($_REQUEST,array());
-            $result = auth()->login("admin", $this->c->input());
+            $result = auth()->login("member", $this->c->input());
 
             if ($result) {
 
@@ -57,14 +57,14 @@ class ALoginController extends Controller_App
 
     /**
      * @page
-     * @title 管理者ログイン ログアウト
+     * @title 会員ログイン ログアウト
      */
     public function act_logout ()
     {
         $this->context("c");
 
         // ログアウト処理
-        auth()->logout("admin");
+        auth()->logout("member");
 
         redirect("page:index.index");
     }

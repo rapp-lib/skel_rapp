@@ -8,7 +8,7 @@ class MLoginController extends Controller_App
     /**
      * 認証設定
      */
-    protected $access_as = null;
+    protected $access_as = "member";
     protected $priv_required = false;
 
     /**
@@ -37,7 +37,7 @@ class MLoginController extends Controller_App
         // 入力値のチェック
         if ($_REQUEST["_i"]=="c") {
             $this->c->validate_input($_REQUEST,array());
-            $result = auth()->login("customer", $this->c->input());
+            $result = auth()->login("member", $this->c->input());
 
             if ($result) {
 
@@ -64,7 +64,7 @@ class MLoginController extends Controller_App
         $this->context("c");
 
         // ログアウト処理
-        auth()->logout("customer");
+        auth()->logout("member");
 
         redirect("page:index.index");
     }

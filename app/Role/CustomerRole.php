@@ -46,7 +46,7 @@ class CustomerRole extends Role_App
     /**
      * @override
      */
-    public function onBeforeAuthenticate ()
+    public function onAccess ()
     {
     }
 

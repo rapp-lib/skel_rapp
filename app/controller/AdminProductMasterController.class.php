@@ -3,12 +3,12 @@
 /**
  * @controller
  */
-class AMasterProductController extends Controller_App
+class AdminProductMasterController extends Controller_App
 {
     /**
      * 認証設定
      */
-    protected $access_as = admin;
+    protected $access_as = "admin";
     protected $priv_required = true;
 
     /**
@@ -90,7 +90,6 @@ class AMasterProductController extends Controller_App
             ->findBySearchForm($this->list_setting, $this->c->input())
             ->select();
         $this->vars["p"] = $this->vars["ts"]->getPager();
-        report($this->vars["ts"]);report($this->vars["p"]);
     }
 
     /**
@@ -141,6 +140,7 @@ class AMasterProductController extends Controller_App
     public function act_entry_exec ()
     {
         $this->context("c",1,true);
+
         if ($this->c->has_valid_input()) {
             // データの記録
             $fields =$this->c->get_fields(array(

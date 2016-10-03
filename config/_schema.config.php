@@ -31,29 +31,29 @@
 		),
 		'Schema.controller' =>array(
 			'index' =>array('type' =>'index', 'label' =>'トップページ', 'accessor' =>'member'),
-			'm_register' =>array(
+			'member_register' =>array(
 				'type' =>'master',
 				'label' =>'会員登録',
 				'table' =>'Member',
 				'accessor' =>'member',
 				'usage' =>'form',
 			),
-			'm_login' =>array(
+			'member_login' =>array(
 				'type' =>'login',
 				'label' =>'会員ログイン',
 				'table' =>'Member',
 				'accessor' =>'member',
-				'account' =>'customer',
+				'account' =>'member',
 			),
-			'm_index' =>array(
+			'member_index' =>array(
 				'type' =>'index',
 				'label' =>'会員トップ',
 				'table' =>'Member',
 				'accessor' =>'member',
 				'auth' =>'member',
 			),
-			'a_login' =>array('type' =>'login', 'label' =>'管理者ログイン', 'accessor' =>'admin', 'account' =>'admin'),
-			'a_master_product' =>array(
+			'admin_login' =>array('type' =>'login', 'label' =>'管理者ログイン', 'accessor' =>'admin', 'account' =>'admin'),
+			'admin_product_master' =>array(
 				'type' =>'master',
 				'label' =>'製品管理',
 				'table' =>'Product',
@@ -61,7 +61,7 @@
 				'auth' =>'admin',
 				'use_csv' =>1,
 			),
-			'a_master_member' =>array(
+			'admin_member_master' =>array(
 				'type' =>'master',
 				'label' =>'会員管理',
 				'table' =>'Member',

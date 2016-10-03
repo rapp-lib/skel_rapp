@@ -3,7 +3,7 @@
 /**
  * @controller
  */
-class AMasterMemberController extends Controller_App
+class AdminMemberMasterController extends Controller_App
 {
     /**
      * 認証設定
@@ -59,11 +59,10 @@ class AMasterMemberController extends Controller_App
             $this->c->input($_REQUEST);
         }
 
-        list($this->vars["ts"] ,$this->vars["p"]) = table("Member")
+        $this->vars["ts"] = table("Member")
             ->findBySearchForm($this->list_setting, $this->c->input())
-            ->findByRegDateSince(date("Y/m/d H:i"))
-            ->selectPagenate();
-        $this->vars["ts"]->report();
+            ->select();
+        $this->vars["p"] = $this->vars["ts"]->getPager();
     }
 
     /**
@@ -76,24 +75,21 @@ class AMasterMemberController extends Controller_App
 
         // 入力値のチェック
         if ($_REQUEST["_i"]=="c") {
-            $this->c->validate_input($_REQUEST,array(
+            $t = table("Member")->createRecord($_REQUEST);
+            $this->c->validate_input($t,array(
             ));
-
             if ($this->c->has_valid_input()) {
                 redirect("page:.entry_confirm");
             }
         }
 
         // id指定があれば既存のデータを読み込む
-        if ($_REQUEST["id"]) {
-            $this->c->id($_REQUEST["id"]);
-            $t =table("Member")->selectById($this->c->id());
-
+        if ($id = $_REQUEST["id"]) {
+            $t =table("Member")->selectById($id);
             if ( ! $t) {
-                $this->c->id(false);
                 redirect("page:.view_list");
             }
-
+            $this->c->id($id);
             $this->c->input($t);
         }
     }
@@ -117,6 +113,7 @@ class AMasterMemberController extends Controller_App
     public function act_entry_exec ()
     {
         $this->context("c",1,true);
+
         if ($this->c->has_valid_input()) {
             // データの記録
             $fields =$this->c->get_fields(array(

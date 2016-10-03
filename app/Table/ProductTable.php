@@ -6,6 +6,10 @@ namespace R\App\Table;
  */
 class ProductTable extends Table_App
 {
+    /**
+     * テーブル定義
+     */
+    protected static $table_name = "Product";
     protected static $cols = array(
         "name" => array("type"=>"text", "comment"=>"名称"),
         "img" => array("type"=>"text", "comment"=>"写真"),
@@ -18,7 +22,7 @@ class ProductTable extends Table_App
     protected static $refs = array(
     );
     protected static $def = array(
-        "table_name" => "Product",
         "indexes" => array(),
     );
+    protected static $ds_name = null;
 }

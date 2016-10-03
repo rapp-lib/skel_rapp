@@ -6,6 +6,10 @@ namespace R\App\Table;
  */
 class FavoliteProductsTable extends Table_App
 {
+    /**
+     * テーブル定義
+     */
+    protected static $table_name = "FavoliteProducts";
     protected static $cols = array(
         "member_id" => array("type"=>"integer", "comment"=>"会員ID"),
         "product_id" => array("type"=>"integer", "comment"=>"製品ID"),
@@ -14,7 +18,7 @@ class FavoliteProductsTable extends Table_App
     protected static $refs = array(
     );
     protected static $def = array(
-        "table_name" => "FavoliteProducts",
         "indexes" => array(),
     );
+    protected static $ds_name = null;
 }

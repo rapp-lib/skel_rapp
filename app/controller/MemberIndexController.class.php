@@ -3,17 +3,17 @@
 /**
  * @controller
  */
-class IndexController extends Controller_App
+class MemberIndexController extends Controller_App
 {
     /**
      * 認証設定
      */
     protected $access_as = "member";
-    protected $priv_required = false;
+    protected $priv_required = true;
 
     /**
      * @page
-     * @title トップページ
+     * @title 会員トップ
      */
     public function act_index ()
     {

@@ -6,6 +6,10 @@ namespace R\App\Table;
  */
 class MemberTable extends Table_App
 {
+    /**
+     * テーブル定義
+     */
+    protected static $table_name = "Member";
     protected static $cols = array(
         "name" => array("type"=>"text", "comment"=>"氏名"),
         "mail" => array("type"=>"text", "comment"=>"メールアドレス"),
@@ -19,7 +23,7 @@ class MemberTable extends Table_App
     protected static $refs = array(
     );
     protected static $def = array(
-        "table_name" => "Member",
         "indexes" => array(),
     );
+    protected static $ds_name = null;
 }

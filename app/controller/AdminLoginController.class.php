@@ -3,7 +3,7 @@
 /**
  * @controller
  */
-class ALoginController extends Controller_App
+class AdminLoginController extends Controller_App
 {
     /**
      * 認証設定
