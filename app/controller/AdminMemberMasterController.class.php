@@ -43,7 +43,7 @@ class AdminMemberMasterController extends Controller_App
      */
     public function act_index ()
     {
-        redirect("page:.view_list");
+        table("Member")->test();
     }
 
     /**
@@ -58,11 +58,6 @@ class AdminMemberMasterController extends Controller_App
             $this->c->clear();
             $this->c->input($_REQUEST);
         }
-
-        $this->vars["ts"] = table("Member")
-            ->findBySearchForm($this->list_setting, $this->c->input())
-            ->select();
-        $this->vars["p"] = $this->vars["ts"]->getPager();
     }
 
     /**

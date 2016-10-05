@@ -4,7 +4,7 @@ namespace R\App\Table;
 /**
  * @table
  */
-class ProductTable extends Table_App
+final class ProductTable extends Table_App
 {
     /**
      * テーブル定義
@@ -18,11 +18,9 @@ class ProductTable extends Table_App
         "id" => array("type"=>"integer", "id"=>true, "autoincrement"=>true, "comment"=>"ID"),
         "reg_date" => array("type"=>"datetime", "comment"=>"登録日時"),
         "del_flg" => array("type"=>"integer", "del_flg"=>true, "default"=>0, "comment"=>"削除フラグ"),
-    );
-    protected static $refs = array(
+        "owner_member_id" => array("type"=>"integer", "comment"=>"所有者会員ID"),
     );
     protected static $def = array(
         "indexes" => array(),
     );
-    protected static $ds_name = null;
 }
