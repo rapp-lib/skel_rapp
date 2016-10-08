@@ -1,11 +1,4 @@
-#-------------------------------------
-# Charset
-#
-AddDefaultCharset UTF-8
-
-#-------------------------------------
-# PHP
-#
+# -- PHP Config
 php_flag display_errors Off
 php_value error_reporting 6135
 php_value date.timezone Asia/Tokyo
@@ -15,28 +8,30 @@ php_flag auto_detect_line_endings On
 php_flag session.use_trans_sid Off
 #php_value session.save_handler memcache
 #php_value session.save_path tcp://localhost:11211
+# -- / PHP Config
 
-#-------------------------------------
-# Loader
-#
-#SetEnv LOADER_ID default
-
-#-------------------------------------
-# RewriteEngine
-#
+# -- HTTPD Config
+AddDefaultCharset UTF-8
 Options +FollowSymLinks
 RewriteEngine On
 RewriteBase /
+# -- / HTTPD Config
 
-# .index.phpへのルーティング
+# -- Webapp Routing
+#SetEnv LOADER_ID default
 RewriteCond %{REQUEST_URI} (\.html?|/|^)$
 RewriteRule ^(.*)$ /.index.php [L]
+# --
 
-#-------------------------------------
-# Basic認証
-#
-#AuthUserFile /HTML_DIR/.htpasswd
+# -- Access Deny
+RedirectMatch 404 /\.git
+RedirectMatch 404 /\.ht
+# -- / Access Deny
+
+# -- Basic Auth
+Require valid-user
+#AuthUserFile /PATH_TO/.htpasswd
 #AuthGroupFile /dev/null
 #AuthName "Please enter your ID and password"
 #AuthType Basic
-Require valid-user
+# -- / Basic Auth
