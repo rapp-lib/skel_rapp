@@ -9,25 +9,13 @@
 <meta name="keywords" content=""/>
 <meta name="description" content=""/>
 <!-- /seo-block -->
-	
-<!-- base-style-block -->
-<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"/>
-<link rel="stylesheet" href="{{'/css/default-admin.css'|path_to_url}}" type="text/css"/>
-<!-- /base-style-block -->
 
-<!-- base-script-block -->
-<script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js"></script>
-<!-- /base-script-block -->
-
-<!-- system-script-block -->
-<script charset="UTF-8" src="{{'/js/rui/rui.js'|path_to_url}}"></script>
-<script> rui.init("{{'/js/rui'|path_to_url}}"); </script>
-<script charset="UTF-8" src="{{'/js/sys-app.js'|path_to_url}}"></script>
-<!-- /system-script-block -->
-	
+{{asset required="app.common-script" buffer="script"}}
+{{asset required="app.common-css" buffer="css"}}
+{{asset flush=["css","script"] state="head.end"}}
 </head>
 <body>
+{{asset flush="html" state="body.start"}}
 
 <header class="mmb">
 <div class="con">
@@ -49,7 +37,7 @@
 <nav>
 	<h2>Menu</h2>
 	<dl>
-    
+
 	<dt class="toggle"><a href='{{"index.index"|page_to_url}}' class="button">トップページ</a></dt>
 	<dt class="toggle"><a href='{{"member_register.index"|page_to_url}}' class="button">会員登録</a></dt>
 	<dt class="toggle"><a href='{{"member_login.index"|page_to_url}}' class="button">会員ログイン</a></dt>

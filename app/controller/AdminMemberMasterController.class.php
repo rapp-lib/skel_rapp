@@ -43,7 +43,7 @@ class AdminMemberMasterController extends Controller_App
      */
     public function act_index ()
     {
-        table("Member")->test();
+        redirect("page:.view_list");
     }
 
     /**

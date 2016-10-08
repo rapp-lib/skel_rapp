@@ -36,8 +36,8 @@
 
         // エラー時転送先
         "Config.error_document" =>array(
-            "404" =>$html_dir."/errors/404.html",
-            "500" =>$html_dir."/errors/500.html",
+            "404" =>$html_dir."/.assets/error_doc/404.php",
+            "500" =>$html_dir."/.assets/error_doc/500.php",
         ),
 
         // 内部設定

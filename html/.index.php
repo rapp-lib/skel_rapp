@@ -42,6 +42,14 @@
     // 初期設定の適応
     start_webapp();
 
+    // アセットディレクトリの登録
+    $assets_path = "/.assets/lib";
+    asset()->registerAssetsDirUrl(path_to_file($assets_path), path_to_url($assets_path));
+    $assets_path = "/.assets/app";
+    asset()->registerAssetsDirUrl(path_to_file($assets_path), path_to_url($assets_path));
+    $assets_path = "/.assets/include";
+    asset()->registerAssetsDirUrl(path_to_file($assets_path), path_to_url($assets_path));
+
     // リクエスト情報の解決
     $request_uri =registry("Request.request_uri");
     $document_root_dir =registry("Path.document_root_dir");
