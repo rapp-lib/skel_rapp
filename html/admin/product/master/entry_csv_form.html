@@ -1,0 +1,38 @@
+{{inc path="/element/admin_header.html"}}
+<div class="right">
+	<h2 class="admin_h2" id="user">製品管理<span> - CSVインポート</span></h2>
+
+	<!--error module -->
+	{{if $c->get_errors()}}
+		<div class="errmsg">※入力エラーがあります</div>
+		{{code type="js" required=["jquery:*","app.show-errors"]}}
+			$(function(){
+				showErrors({
+					errors: {{$c->get_errors()|json_encode}},
+					$form: $("form.form-c")
+				});
+			});
+		{{/code}}
+	{{/if}}
+	<!--/error module -->
+
+	<!-- entry_module -->
+	{{form action="{{'.'|page_to_url}}" enctype="multipart/form-data" method="post" values=$c class="form-c"}}
+	<input type="hidden" name="_i" value="c"/>
+	<table class="tbl_admin detail">
+		<tr>
+  		<th>CSVファイル</th>
+  		<td class="inputBlock">{{input name="csv_file" type="file" group="private"}}</td>
+		</tr>
+	</table>
+
+	<div class="ad_btn">
+    <input type="submit" value="確認" class="sBtn"/>
+    <a href='{{".index"|page_to_url}}' class="button rBtn">戻る</a>
+	</div>
+	{{/form}}
+	<!-- /entry_module -->
+
+</div><!--right-->
+
+{{inc path="/element/admin_footer.html"}}

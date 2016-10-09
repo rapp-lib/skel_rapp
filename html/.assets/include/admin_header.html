@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8"/>
+
+<!-- page-id-block -->
+<title></title>
+<meta name="keywords" content=""/>
+<meta name="description" content=""/>
+<!-- /page-id-block -->
+
+{{asset required="app.adm.common-js" buffer="script"}}
+{{asset required="app.adm.base-css" buffer="css"}}
+
+{{asset flush=["css","script"] state="head.end"}}
+</head>
+<body>
+{{asset flush="html" state="body.start"}}
+
+<header class="mmb">
+	<div class="con">
+		<h1><a href="{{'/'|path_to_url}}" id="logo">&nbsp;</a></h1>
+		<!--
+		<span>&nbsp;</span>
+		<div class="btn">
+			<div id="btn_logout"><a href="#">ログアウト</a></div>
+		</div>
+		-->
+	</div>
+</header><!--/.mmb-->
+
+<div id="contents" class="clearfix">
+
+<div class="left">
+	<nav>
+		<h2>Menu</h2>
+		<dl>
+			<dt class="toggle"><a href='{{"index.index"|page_to_url}}' class="button">トップページ</a></dt>
+			<dt class="toggle"><a href='{{"member_register.index"|page_to_url}}' class="button">会員登録</a></dt>
+			<dt class="toggle"><a href='{{"member_login.index"|page_to_url}}' class="button">会員ログイン</a></dt>
+			<dt class="toggle"><a href='{{"member_index.index"|page_to_url}}' class="button">会員トップ</a></dt>
+			<dt class="toggle"><a href='{{"admin_login.index"|page_to_url}}' class="button">管理者ログイン</a></dt>
+			<dt class="toggle"><a href='{{"admin_product_master.index"|page_to_url}}' class="button">製品管理</a></dt>
+			<dt class="toggle"><a href='{{"admin_member_master.index"|page_to_url}}' class="button">会員管理</a></dt>
+			<!--<dd><ul><li class="current"></li></ul></dd>-->
+		</dl>
+	</nav>
+</div><!--/.left-->

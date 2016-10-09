@@ -42,7 +42,7 @@
         "Config.external_charset" =>"UTF-8",
         "Config.session_lifetime" =>86400,
         "Config.cake_lib" =>"rlib_cake2",
-        "Config.auto_deploy" =>false,
+        "Config.auto_deploy" =>true,
         "Config.dync_key" =>"_",
         "Config.webapp_include_path" =>array(
             "app",

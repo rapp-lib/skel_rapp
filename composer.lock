@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "21b2abcb9400c8cc1d1a9be568659d41",
+    "hash": "4f0a7c9194eee9a4fc347c2766898777",
     "content-hash": "0e0dffd6bd6f0a91adba60a287724530",
     "packages": [
         {
@@ -525,21 +525,21 @@
         },
         {
             "name": "pear/http_request2",
-            "version": "v2.2.1",
+            "version": "v2.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/pear/HTTP_Request2.git",
-                "reference": "d6c81670c504045248c1afdf896bb9a3288158de"
+                "reference": "3599cf0fe455a4e281da464f6510bfc5c2ce54c4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pear/HTTP_Request2/zipball/d6c81670c504045248c1afdf896bb9a3288158de",
-                "reference": "d6c81670c504045248c1afdf896bb9a3288158de",
+                "url": "https://api.github.com/repos/pear/HTTP_Request2/zipball/3599cf0fe455a4e281da464f6510bfc5c2ce54c4",
+                "reference": "3599cf0fe455a4e281da464f6510bfc5c2ce54c4",
                 "shasum": ""
             },
             "require": {
-                "pear/net_url2": ">=2.0.0",
-                "pear/pear_exception": "*",
+                "pear/net_url2": "^2.2.0",
+                "pear/pear_exception": "^1.0.0",
                 "php": ">=5.2.0"
             },
             "suggest": {
@@ -549,20 +549,27 @@
                 "lib-openssl": "Allows handling SSL requests when not using cURL."
             },
             "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-trunk": "2.2-dev"
+                }
+            },
             "autoload": {
                 "psr-0": {
                     "HTTP_Request2": ""
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
+            "include-path": [
+                "./"
+            ],
             "license": [
                 "BSD-3-Clause"
             ],
             "authors": [
                 {
                     "name": "Alexey Borzov",
-                    "email": "avb@php.net",
-                    "role": "Developer HTML_Common2"
+                    "email": "avb@php.net"
                 }
             ],
             "description": "Provides an easy way to perform HTTP requests.",
@@ -573,7 +580,7 @@
                 "http",
                 "request"
             ],
-            "time": "2014-01-16 17:27:21"
+            "time": "2016-02-13 20:20:39"
         },
         {
             "name": "pear/mail",
@@ -845,21 +852,20 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/rapp-lib/rlib.git",
-                "reference": "c0ab797aef7f16f642587d7692749b89a49f8b13"
+                "reference": "e824178100af3db23ec92cde47521256528b0abc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rapp-lib/rlib/zipball/c0ab797aef7f16f642587d7692749b89a49f8b13",
-                "reference": "c0ab797aef7f16f642587d7692749b89a49f8b13",
+                "url": "https://api.github.com/repos/rapp-lib/rlib/zipball/e824178100af3db23ec92cde47521256528b0abc",
+                "reference": "e824178100af3db23ec92cde47521256528b0abc",
                 "shasum": ""
             },
             "require": {
                 "doctrine/dbal": "2.*@stable",
-                "pear/http_request2": "v2.2.1",
-                "pear/mail": "v1.3.0",
-                "pear/mail_mime": "v1.10.0",
-                "smarty/smarty": "v3.*@stable",
-                "swiftmailer/swiftmailer": "v5.*@stable"
+                "pear/http_request2": "v2.*@stable",
+                "pear/mail": "v1.*@stable",
+                "pear/mail_mime": "v1.*@stable",
+                "smarty/smarty": "v3.*@stable"
             },
             "type": "library",
             "autoload": {
@@ -867,24 +873,11 @@
                     "R\\Lib\\": "lib/",
                     "R\\Plugin\\": "plugins/",
                     "R\\Util\\": "util/",
-                    "\\": "ext/include/",
                     "R\\Lib\\Form\\Rule\\": "plugins/Form/Rule/",
-                    "R\\Lib\\Form\\Input\\": "plugins/Smarty/InputType/",
-                    "R\\Lib\\Query\\Search\\": "plugins/DBI/SearchType/"
+                    "R\\Lib\\Form\\Input\\": "plugins/Smarty/InputType/"
                 },
                 "files": [
-                    "functions/array.php",
-                    "functions/html.php",
-                    "functions/path.php",
-                    "functions/webapp.php",
-                    "functions/date.php",
-                    "functions/string.php",
-                    "functions/file.php",
-                    "functions/modules.php",
-                    "functions/report.php",
-                    "functions/vars.php",
-                    "functions/lib_db.php",
-                    "functions/lib_smarty.php"
+                    "functions/required.php"
                 ]
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -893,13 +886,14 @@
                 "../../pear/pear_exception",
                 "../../pear/net_url2",
                 "../../pear/http_request2",
-                "../../pear/mail"
+                "../../pear/mail",
+                "../../pear/mail_mime"
             ],
             "license": [
                 "MIT"
             ],
             "description": "Simple webapp library",
-            "time": "2016-10-03 02:15:09"
+            "time": "2016-10-09 13:19:57"
         },
         {
             "name": "smarty/smarty",
@@ -955,59 +949,6 @@
                 "templating"
             ],
             "time": "2016-08-07 18:46:49"
-        },
-        {
-            "name": "swiftmailer/swiftmailer",
-            "version": "v5.4.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/swiftmailer/swiftmailer.git",
-                "reference": "4cc92842069c2bbc1f28daaaf1d2576ec4dfe153"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/swiftmailer/swiftmailer/zipball/4cc92842069c2bbc1f28daaaf1d2576ec4dfe153",
-                "reference": "4cc92842069c2bbc1f28daaaf1d2576ec4dfe153",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.3"
-            },
-            "require-dev": {
-                "mockery/mockery": "~0.9.1"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "5.4-dev"
-                }
-            },
-            "autoload": {
-                "files": [
-                    "lib/swift_required.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Chris Corbyn"
-                },
-                {
-                    "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
-                }
-            ],
-            "description": "Swiftmailer, free feature-rich PHP mailer",
-            "homepage": "http://swiftmailer.org",
-            "keywords": [
-                "email",
-                "mail",
-                "mailer"
-            ],
-            "time": "2016-07-08 11:51:25"
         }
     ],
     "packages-dev": [],

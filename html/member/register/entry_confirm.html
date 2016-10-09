@@ -1,0 +1,34 @@
+{{inc path="/element/member_header.html"}}  
+
+<div class="right">
+	<h2 class="admin_h2" id="user">会員登録<span> - 登録・編集</span></h2>
+	
+<!-- show_module -->
+	<h3>基本情報</h3>
+	<table class="tbl_admin detail">
+		<tr>
+			<th>氏名</th>
+			<td>{{$t.name}}</td>
+		</tr>
+		<tr>
+			<th>メールアドレス</th>
+			<td>{{$t.mail}}</td>
+		</tr>
+		<tr>
+			<th>パスワード</th>
+			<td>{{$t.login_pw|hidetext}}</td>
+		</tr>
+		<tr>
+			<th>お気に入り製品</th>
+			<td>{{$t.favorite_producs|select:"product"|@tostring:" "}}</td>
+		</tr>
+	</table>
+	<div class="ad_btn">
+		<a href='{{".entry_exec"|page_to_url}}' class="sBtn">登録</a>
+		<a href='{{".entry_form"|page_to_url}}' class="rBtn">戻る</a>
+	</div>
+<!-- /show_module -->
+
+</div><!--right-->
+
+{{inc path="/element/member_footer.html"}} 
