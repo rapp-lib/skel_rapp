@@ -8,6 +8,7 @@
 			'img' =>array('label' =>'写真', 'def.type' =>'text', 'type' =>'file'),
 			'category' =>array('label' =>'カテゴリ', 'def.type' =>'text', 'type' =>'select', 'list' =>'product_category'),
 			'open_date' =>array('label' =>'公開日時', 'def.type' =>'datetime', 'type' =>'date'),
+			'owner_member_id' =>array('label' =>'所有者会員ID', 'def.type' =>'integer'),
 			'id' =>array('label' =>'ID', 'def.type' =>'integer', 'def.id' =>true, 'def.autoincrement' =>true),
 			'reg_date' =>array('label' =>'登録日時', 'def.type' =>'datetime'),
 			'del_flg' =>array('label' =>'削除フラグ', 'def.type' =>'integer', 'def.del_flg' =>true, 'def.default' =>0),
@@ -38,7 +39,7 @@
 				'accessor' =>'member',
 				'usage' =>'form',
 			),
-			'member_login' =>array(
+			'member' =>array(
 				'type' =>'login',
 				'label' =>'会員ログイン',
 				'table' =>'Member',
@@ -52,13 +53,13 @@
 				'accessor' =>'member',
 				'auth' =>'member',
 			),
-			'admin_login' =>array('type' =>'login', 'label' =>'管理者ログイン', 'accessor' =>'admin', 'account' =>'admin'),
+			'admin' =>array('type' =>'login', 'label' =>'管理者ログイン', 'accessor' =>'admin', 'account' =>'admin'),
 			'admin_product_master' =>array(
 				'type' =>'master',
 				'label' =>'製品管理',
 				'table' =>'Product',
 				'accessor' =>'admin',
-				'auth' =>'admin',
+				'auth' =>'member',
 				'use_csv' =>1,
 			),
 			'admin_member_master' =>array(
@@ -66,7 +67,7 @@
 				'label' =>'会員管理',
 				'table' =>'Member',
 				'accessor' =>'admin',
-				'auth' =>'admin',
+				'auth' =>'member',
 			),
 		),
 	));

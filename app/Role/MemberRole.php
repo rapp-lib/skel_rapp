@@ -30,7 +30,7 @@ class MemberRole extends Role_App
      */
     public function onLoginRequired ($required)
     {
-        redirect("page:member_login.login",array(
+        redirect("page:member.login",array(
             "redirect_to" => $this->getAttr("login") ? "" : registry("Request.request_uri"),
         ));
     }

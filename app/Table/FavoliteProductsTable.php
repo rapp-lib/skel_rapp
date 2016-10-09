@@ -15,10 +15,7 @@ class FavoliteProductsTable extends Table_App
         "product_id" => array("type"=>"integer", "comment"=>"製品ID"),
         "id" => array("type"=>"integer", "id"=>true, "autoincrement"=>true, "comment"=>"ID"),
     );
-    protected static $refs = array(
-    );
     protected static $def = array(
         "indexes" => array(),
     );
-    protected static $ds_name = null;
 }

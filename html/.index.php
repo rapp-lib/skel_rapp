@@ -43,7 +43,7 @@
     start_webapp();
 
     // アセットディレクトリの登録
-    $assets_path = "/.assets/lib";
+    $assets_path = "/.assets/rui";
     asset()->registerAssetsDirUrl(path_to_file($assets_path), path_to_url($assets_path));
     $assets_path = "/.assets/app";
     asset()->registerAssetsDirUrl(path_to_file($assets_path), path_to_url($assets_path));

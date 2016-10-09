@@ -58,6 +58,11 @@ class AdminMemberMasterController extends Controller_App
             $this->c->clear();
             $this->c->input($_REQUEST);
         }
+
+        $this->vars["ts"] = table("Member")
+            ->findBySearchForm($this->list_setting, $this->c->input())
+            ->select();
+        $this->vars["p"] = $this->vars["ts"]->getPager();
     }
 
     /**

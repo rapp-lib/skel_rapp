@@ -30,7 +30,7 @@ class AdminRole extends Role_App
      */
     public function onLoginRequired ($required)
     {
-        redirect("page:admin_login.login",array(
+        redirect("page:admin.login",array(
             "redirect_to" => $this->getAttr("login") ? "" : registry("Request.request_uri"),
         ));
     }

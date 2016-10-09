@@ -185,7 +185,7 @@ class AdminProductMasterController extends Controller_App
 
         $this->context("c",1);
 
-        $res =table("Product")
+        $r =table("Product")
             ->findBySearchForm($this->list_setting,$this->c->input())
             ->removePagenation()
             ->selectNoFetch();
@@ -196,7 +196,7 @@ class AdminProductMasterController extends Controller_App
             .sprintf("%04d",rand(0,9999)).".csv";
         $csv =new CSVHandler($csv_filename,"w",$this->csv_setting);
 
-        while (($t =$res->fetch()) !== null) {
+        while ($t =$r->fetch()) {
             $csv->write_line($t);
         }
 

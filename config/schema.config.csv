@@ -29,8 +29,8 @@
 #,,,,,,,
 ,index,index,トップページ,,member,,
 ,member_register,master,会員登録,Member,member,,usage=form
-,member_login,login,会員ログイン,Member,member,,account=member
+,member,login,会員ログイン,Member,member,,account=member
 ,member_index,index,会員トップ,Member,member,member,
-,admin_login,login,管理者ログイン,,admin,,account=admin
+,admin,login,管理者ログイン,,admin,,account=admin
 ,admin_product_master,master,製品管理,Product,admin,member,use_csv=1
 ,admin_member_master,master,会員管理,Member,admin,member,

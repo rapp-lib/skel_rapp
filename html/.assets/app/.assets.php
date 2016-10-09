@@ -1,11 +1,18 @@
 <?php
     if ( ! $asset) { return; }
 
-    $asset->bufferJsCode('rui.init("'.$url.'");')
-        ->required("rui.require");
+    // adm - admテンプレート向けJS/CSS
+    $asset->registerJsUrl("app.adm.common-js", $url."/adm/js/common.js")
+        ->required("app.adm.base-css")
+        ->required("jquery:*");
+    $asset->registerCssUrl("app.adm.base-css", $url."/adm/css/base.css")
+        ->required("bs.font-awesome");
 
-    $asset->registerJsUrl("app.common-script", "1", $url."/js/sys-app.js");
-    $asset->registerCssUrl("app.common-css", "1", $url."/css/default-admin.css")
-        ->required("bs.font-awesome-css");
+    // show-errors - エラー表示
+    $asset->registerJsUrl("app.show-errors", $url."/show-errors/js/show-errors.js")
+        ->required("app.show-errors.css")
+        ->required("rui.show-errors");
+    $asset->registerCssUrl("app.show-errors.css", $url."/show-errors/css/show-errors.css");
 
-    $asset->registerCssUrl("bs.font-awesome-css", "4.3.0", "//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css");
+    // bs.font-awesome
+    $asset->registerCssUrl("bs.font-awesome:4.3.0", "//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css");

@@ -13,17 +13,17 @@
             "member_register.entry_exec" => "/member/register/entry_exec.html",
 
             // 会員ログイン
-            "member_login.index" => "/member/login/index.html",
-            "member_login.login" => "/member/login/login.html",
-            "member_login.logout" => "/member/login/logout.html",
+            "member.index" => "/member/index.html",
+            "member.login" => "/member/login.html",
+            "member.logout" => "/member/logout.html",
 
             // 会員トップ
             "member_index.index" => "/member/index.html",
 
             // 管理者ログイン
-            "admin_login.index" => "/admin/login/index.html",
-            "admin_login.login" => "/admin/login/login.html",
-            "admin_login.logout" => "/admin/login/logout.html",
+            "admin.index" => "/admin/index.html",
+            "admin.login" => "/admin/login.html",
+            "admin.logout" => "/admin/logout.html",
 
             // 製品管理
             "admin_product_master.index" => "/admin/product/master/index.html",
