@@ -1,5 +1,5 @@
 <?php
-use R\Lib\Controller\Controller_Base;
+use R\Lib\Smarty\SmartyController_Base;
 
 /**
  * IncludeController基本クラス
