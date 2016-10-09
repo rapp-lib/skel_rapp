@@ -1,0 +1,6 @@
+.errmsg {
+    color: #ff4422;
+}
+.inputBlock.inputError {
+    background-color: #ffeeee;
+}

@@ -31,8 +31,6 @@
                 'password' => 'pass',
             ),
         ),
-        "DBI.statement.default_join_type" =>"LEFT",
-        "DBI.fetch_col_name_include_table" =>false,
 
         // エラー時転送先
         "Config.error_document" =>array(
@@ -64,7 +62,7 @@
         // ファイルアップロード
         "UserFile.group" =>array(
             "public" =>array(
-                "upload_dir" =>$html_dir.'/user_file/uploaded',
+                "upload_dir" =>$html_dir.'/.assets/user_file/uploaded',
                 "allow_ext" =>array(
                     'jpg', 'jpeg', 'png', 'gif', 'pdf',
                 ),
