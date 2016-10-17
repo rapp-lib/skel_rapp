@@ -2,24 +2,23 @@
 <div class="right">
 	<h2 class="admin_h2" id="user">製品管理<span> - 登録編集</span></h2>
 
-	<!--error module -->
-	{{if $c->get_errors()}}
+	{{form action="{{'.'|page_to_url}}" enctype="multipart/form-data" method="post" form=$forms.entry class="form-entry"}}
+	{{input name="id" type="hidden"}}
+
+	{{if $forms.entry->getErrors()}}
 		<div class="errmsg">※入力エラーがあります</div>
 		{{code type="js" required=["jquery:*","app.show-errors"]}}
 			$(function(){
 				showErrors({
-					errors: {{$c->get_errors()|json_encode}},
-					$form: $("form.form-c")
+					errors: {{$forms.entry->getErrors()|json_encode}},
+					$form: $("form.form-entry")
 				});
 			});
 		{{/code}}
 	{{/if}}
-	<!--/error module -->
+
 
 	<h3>基本情報</h3>
-
-	{{form action="{{'.'|page_to_url}}" enctype="multipart/form-data" method="post" values=$c class="form-c"}}
-	<input type="hidden" name="_i" value="c"/>
 
 	<table class="tbl_admin detail">
 		<tr>

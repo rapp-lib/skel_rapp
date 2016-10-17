@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "4f0a7c9194eee9a4fc347c2766898777",
-    "content-hash": "0e0dffd6bd6f0a91adba60a287724530",
+    "hash": "8e3f129d38692e2dd6937a4a23a00246",
+    "content-hash": "ba57815c3b69c258136d96fe8204a3f9",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -477,6 +477,50 @@
             "time": "2014-09-09 13:34:57"
         },
         {
+            "name": "ezyang/htmlpurifier",
+            "version": "v4.8.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ezyang/htmlpurifier.git",
+                "reference": "d0c392f77d2f2a3dcf7fcb79e2a1e2b8804e75b2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ezyang/htmlpurifier/zipball/d0c392f77d2f2a3dcf7fcb79e2a1e2b8804e75b2",
+                "reference": "d0c392f77d2f2a3dcf7fcb79e2a1e2b8804e75b2",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.2"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "HTMLPurifier": "library/"
+                },
+                "files": [
+                    "library/HTMLPurifier.composer.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL"
+            ],
+            "authors": [
+                {
+                    "name": "Edward Z. Yang",
+                    "email": "admin@htmlpurifier.org",
+                    "homepage": "http://ezyang.com"
+                }
+            ],
+            "description": "Standards compliant HTML filter written in PHP",
+            "homepage": "http://htmlpurifier.org/",
+            "keywords": [
+                "html"
+            ],
+            "time": "2016-07-16 12:58:58"
+        },
+        {
             "name": "pear/console_getopt",
             "version": "v1.4.1",
             "source": {
@@ -848,20 +892,21 @@
         },
         {
             "name": "rapp-lib/rlib",
-            "version": "dev-master",
+            "version": "dev-tmp-20161017",
             "source": {
                 "type": "git",
                 "url": "https://github.com/rapp-lib/rlib.git",
-                "reference": "e824178100af3db23ec92cde47521256528b0abc"
+                "reference": "199782c29d250c16a61fa423f5c61aaa92500bc8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rapp-lib/rlib/zipball/e824178100af3db23ec92cde47521256528b0abc",
-                "reference": "e824178100af3db23ec92cde47521256528b0abc",
+                "url": "https://api.github.com/repos/rapp-lib/rlib/zipball/199782c29d250c16a61fa423f5c61aaa92500bc8",
+                "reference": "199782c29d250c16a61fa423f5c61aaa92500bc8",
                 "shasum": ""
             },
             "require": {
                 "doctrine/dbal": "2.*@stable",
+                "ezyang/htmlpurifier": "4.*@stable",
                 "pear/http_request2": "v2.*@stable",
                 "pear/mail": "v1.*@stable",
                 "pear/mail_mime": "v1.*@stable",
@@ -872,7 +917,6 @@
                 "psr-4": {
                     "R\\Lib\\": "lib/",
                     "R\\Plugin\\": "plugins/",
-                    "R\\Util\\": "util/",
                     "R\\Lib\\Form\\Rule\\": "plugins/Form/Rule/",
                     "R\\Lib\\Form\\Input\\": "plugins/Smarty/InputType/"
                 },
@@ -882,7 +926,7 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "include-path": [
-                "ext/include/",
+                "include/",
                 "../../pear/pear_exception",
                 "../../pear/net_url2",
                 "../../pear/http_request2",
@@ -893,7 +937,7 @@
                 "MIT"
             ],
             "description": "Simple webapp library",
-            "time": "2016-10-09 13:19:57"
+            "time": "2016-10-16 18:12:52"
         },
         {
             "name": "smarty/smarty",

@@ -2,14 +2,11 @@
     "name": "rapp-lib/skel_rapp",
     "type": "project",
     "require": {
-        "rapp-lib/rlib": "dev-master"
+        "rapp-lib/rlib": "dev-tmp-20161017"
     },
     "autoload": {
         "psr-4": {
-            "R\\App\\": "app/",
-            "R\\Lib\\": "lib/",
-            "R\\Plugin\\": "plugins/",
-            "R\\Util\\": "util/"
+            "R\\App\\": "app/"
         }
     },
     "include-path":[

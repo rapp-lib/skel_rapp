@@ -3,7 +3,7 @@
 	<h2 class="admin_h2" id="user">会員管理<span> - 登録編集</span></h2>
 
 	<!--error module -->
-	{{if $c->get_errors()}}
+	{{if $forms.entry->getErrors()}}
 		<div class="errmsg">※入力エラーがあります</div>
 		{{code type="js" required=["jquery:*","app.show-errors"]}}
 			$(function(){

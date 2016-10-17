@@ -11,57 +11,102 @@ class AdminProductMasterController extends Controller_App
     protected $access_as = "admin";
     protected $priv_required = true;
 
-    /**
-     * 検索フォーム設定
-     */
-    protected $list_setting =array(
-        "search" =>array(
-            "name" =>array(
-                    "type" =>'eq',
-                    "target" =>"name"),
-            "category" =>array(
-                    "type" =>'eq',
-                    "target" =>"category"),
-            "open_date" =>array(
-                    "type" =>'eq',
-                    "target" =>"open_date"),
+    //TODO: type=での形式変換はLRA/UserFile系の機能の集約←Request実装後
+    protected static $form_search = array(
+        "pages" => array(".view_list", ".view_csv"),
+        // 管理画面系の戻るリンクの動作のためにSessionを有効にすることも可能
+        "session" => false,
+        // pagesへのリンクにURL経由で全Valuesを渡すようにする指定
+        "values_over_request" => true,
+        // findBySearchFormができるようになる
+        "table" => "Product",
+        // 検索設定
+        "list_setting" => array(
+            "search" =>array(
+                "name" =>array("type"=>'eq', "target"=>"name"),
+                "category" =>array("type"=>'eq', "target"=>"category"),
+                "open_date" =>array("type"=>'eq', "target"=>"open_date"),
+            ),
+            "sort" =>array("sort_param_name"=>"sort", "default"=>"id@ASC"),
+            "paging" =>array("offset_param_name"=>"offset", "limit"=>20, "slider"=>10),
         ),
-        "sort" =>array(
-            "sort_param_name" =>"sort",
-            "default" =>"id@ASC",
+        /*
+        // 旧list_settingにかわる新しい検索システムの設定
+        "fields" => array(
+            "freeword" => array("search"=>"word", "col"=>array("name")),
+            "category" => array("search"=>"eq"),
+            "open_date_start" => array("search"=>"date_range_start", "type"=>"split_date", "col"=>"open_date"),
+            "open_date_end" => array("search"=>"date_range_end", "type"=>"split_date", "col"=>"open_date"),
+            "p" => array("search"=>"page", "col"=>false),
+            "order" => array("search"=>"sort", "col"=>false),
         ),
-        "paging" =>array(
-            "offset_param_name" =>"offset",
-            "limit" =>20,
-            "slider" =>10,
+        */
+    );
+    protected static $form_entry = array(
+        // 指定のページで自動的に読み込む
+        "auto_restore" => true,
+        "pages" => array(".entry_form", ".entry_confirm", ".entry_exec"),
+        // findById/saveができるようになる
+        "table" => "Product",
+        // 使用可能な項目
+        // Requestから値を取り込むとき、Inputに値を渡す時に変換をかける
+        "fields" => array(
+            "id",
+            "name",
+            "mail",
+            "tel",
+            "img",
+            "mail_confirm" => array("col"=>false),
+            "open_date",
+            "main_img_file",
+            "detail",
+            "detail.name",
+            "sub_img_files",
+            "sub_img_files.*.title",
+            "sub_img_files.*.img_file",
+            "category",
+        ),
+        // 入力チェックの記述
+        // 変換済みの値に対して入力チェック
+        "rules" => array(
+            "name",
+            "contact",
+            array("mail", "required", "if_target"=>"contact", "if_value"=>"mail"),
+            array("mail", "format", "format"=>"mail"),
+            array("mail_confirm", "required", "if_target"=>"mail"),
+            array("mail_confirm", "confirm", "target"=>"mail"),
+            "sub_img_files.*.title",
+        ),
+        // CSV入出力用の設定
+        // "csv" => array(
+        //     "file_charset" =>"SJIS-WIN",
+        //     "data_charset" =>"UTF-8",
+        //     "ignore_empty_line" =>true,
+        // ),
+    );
+    protected static $form_entry_csv = array(
+        "auto_restore" => true,
+        "fields" => array(
+            "csv_file",
+        ),
+        "rules" => array(
+            "csv_file",
         ),
     );
-
-    /**
-     * CSV設定
-     */
-    protected $csv_setting = array(
-        "file_charset" =>"SJIS-WIN",
-        "data_charset" =>"UTF-8",
-        "rows" =>array(
-            "id" =>"#ID",
-            "name" =>"名称",
-            "img" =>"写真",
-            "category" =>"カテゴリ",
-            "open_date" =>"公開日時",
+    protected static $form_csv_line = array(
+        // 暫定的に旧csv_setting同様の指定
+        "rows" => array(
+            "id" => "#ID",
+            "name" => "名称",
+            "img" => "写真",
+            "category" => "カテゴリ",
+            "open_date" => "公開日時",
         ),
-        "filters" =>array(
-            array("filter" =>"sanitize"),
-            array("target" =>"category",
-                    "filter" =>"list_select",
-                    "list" =>"product_category"),
-            array("target" =>"open_date",
-                    "filter" =>"date"),
-            array("filter" =>"validate",
-                    "required" =>array(),
-                    "rules" =>array()),
+        "filters" => array(
+            array("filter"=>"sanitize"),
+            array("target"=>"category", "filter"=>"list_select", "list"=>"product_category"),
+            array("target"=>"open_date", "filter"=>"date"),
         ),
-        "ignore_empty_line" =>true,
     );
 
     /**
@@ -79,16 +124,7 @@ class AdminProductMasterController extends Controller_App
      */
     public function act_view_list ()
     {
-        $this->context("c",1);
-
-        if ($_REQUEST["_i"]=="c") {
-            $this->c->clear();
-            $this->c->input($_REQUEST);
-        }
-
-        $this->vars["ts"] = table("Product")
-            ->findBySearchForm($this->list_setting, $this->c->input())
-            ->select();
+        $this->vars["ts"] = $this->forms["search"]->findBySearchForm()->select();
         $this->vars["p"] = $this->vars["ts"]->getPager();
     }
 
@@ -98,26 +134,15 @@ class AdminProductMasterController extends Controller_App
      */
     public function act_entry_form ()
     {
-        $this->context("c",1,true);
-
-        // 入力値のチェック
-        if ($_REQUEST["_i"]=="c") {
-            $t = table("Product")->createRecord($_REQUEST);
-            $this->c->validate_input($t,array(
-            ));
-            if ($this->c->has_valid_input()) {
-                redirect("page:.entry_confirm");
+        if ($this->forms["entry"]->receive()) {
+            $this->forms["entry"]->save();
+            if ($this->forms["entry"]->isValid()) {
+                redirect("page:.entry_exec");
             }
-        }
-
-        // id指定があれば既存のデータを読み込む
-        if ($id = $_REQUEST["id"]) {
-            $t =table("Product")->selectById($id);
-            if ( ! $t) {
-                redirect("page:.view_list");
-            }
-            $this->c->id($id);
-            $this->c->input($t);
+        } elseif ($id = $this->request["id"]) {
+            $this->forms["entry"]->init($id);
+        } elseif ( ! $this->request["back"]) {
+            $this->forms["entry"]->clear();
         }
     }
 
@@ -127,10 +152,6 @@ class AdminProductMasterController extends Controller_App
      */
     public function act_entry_confirm ()
     {
-        $this->context("c",1,true);
-        $this->vars["t"] =$this->c->get_valid_input();
-
-        redirect("page:.entry_exec");
     }
 
     /**
@@ -139,22 +160,11 @@ class AdminProductMasterController extends Controller_App
      */
     public function act_entry_exec ()
     {
-        $this->context("c",1,true);
-
-        if ($this->c->has_valid_input()) {
-            // データの記録
-            $fields =$this->c->get_fields(array(
-                "name",
-                "img",
-                "category",
-                "open_date",
-            ));
-            table("Product")->save($this->c->id(),$fields);
-
-            $this->c->clear();
+        if ($this->forms["entry"]->isValid()) {
+            $this->forms["entry"]->getRecord()->save();
+            $this->forms["entry"]->clear();
         }
-
-        redirect("page:.view_list");
+        redirect("page:.index");
     }
 
     /**
@@ -163,15 +173,12 @@ class AdminProductMasterController extends Controller_App
      */
     public function act_delete ()
     {
-        $this->context("c");
-
-        // idの指定
-        $this->c->id($_REQUEST["id"]);
-
-        // データの削除
-        table("Product")->deleteById($this->c->id());
-
-        redirect("page:.view_list");
+        if ($id = $this->request["id"]) {
+            if ($t = table("Product")->selectById($id)) {
+                $t->delete();
+            }
+        }
+        redirect("page:.index");
     }
 
     /**
@@ -182,13 +189,9 @@ class AdminProductMasterController extends Controller_App
     {
         set_time_limit(0);
         registry("Report.error_reporting",E_USER_ERROR|E_ERROR);
+        //report()->setLogErrorOnly(true);
 
-        $this->context("c",1);
-
-        $res =table("Product")
-            ->findBySearchForm($this->list_setting,$this->c->input())
-            ->removePagenation()
-            ->selectNoFetch();
+        $res =$this->forms["search"]->findBySearchForm()->selectNoFetch();
 
         // CSVファイルの書き込み準備
         $csv_filename =registry("Path.tmp_dir")
@@ -213,16 +216,9 @@ class AdminProductMasterController extends Controller_App
      */
     public function act_entry_csv_form ()
     {
-        $this->context("c",1,true);
-
-        // 入力値のチェック
-        if ($_REQUEST["_i"]=="c") {
-            $this->c->validate_input($_REQUEST,array(
-                "csv_file",
-            ));
-
-            if ($this->c->has_valid_input()) {
-                redirect("page:.entry_csv_confirm");
+        if ($this->forms["entry_csv"]->received()) {
+            if ($this->forms["entry_csv"]->hasValidValues()) {
+                redirect("page:.entry_csv_exec");
             }
         }
     }
@@ -233,10 +229,6 @@ class AdminProductMasterController extends Controller_App
      */
     public function act_entry_csv_confirm ()
     {
-        $this->context("c",1,true);
-        $this->vars["t"] =$this->c->get_valid_input();
-
-        redirect('page:.entry_csv_exec');
     }
 
     /**
@@ -245,37 +237,17 @@ class AdminProductMasterController extends Controller_App
      */
     public function act_entry_csv_exec ()
     {
-        $this->context("c",1,true);
-
-        $csv_filename =obj("UserFileManager")
-            ->get_uploaded_file($this->c->input("csv_file"), "private");
-
-        // CSVファイルの読み込み準備
-        $csv =new CSVHandler($csv_filename,"r",$this->csv_setting);
-
-        table("Product")->transactionBegin();
-
-        while (($t=$csv->read_line()) !== null) {
-
-            // CSVフォーマットエラー
-            if ($errors =$csv->get_errors()) {
-                table("Product")->transactionRollback();
-                $this->c->errors("Import.csv_file",$errors);
-                redirect("page:.entry_csv_form");
+        if ($this->forms["entry_csv"]->hasValidValues()) {
+            $csv_filename =obj("UserFileManager")
+                ->get_uploaded_file($this->forms["entry_csv"]["csv_file"], "private");
+            $csv =new CSVHandler($csv_filename,"r",$this->csv_setting);
+            // DBへの登録処理
+            table("Product")->transactionBegin();
+            while (($t=$csv->read_line()) !== null) {
+                table("Product")->save($t);
             }
-
-            // DBへの登録
-            $c_import =new Context_App;
-            $c_import->id($t["id"]);
-            $c_import->input($t);
-            $keys =array_keys($this->csv_setting["rows"]);
-            $fields =$c_import->get_fields($keys);
-
-            table("Product")->save($c_import->id(),$fields);
+            table("Product")->transactionCommit();
         }
-
-        table("Product")->transactionCommit();
-
         redirect("page:.view_list");
     }
 }
