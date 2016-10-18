@@ -13,68 +13,44 @@ class AdminProductMasterController extends Controller_App
 
     //TODO: type=での形式変換はLRA/UserFile系の機能の集約←Request実装後
     protected static $form_search = array(
+        "search_page" => ".view_list",
         "pages" => array(".view_list", ".view_csv"),
-        // 管理画面系の戻るリンクの動作のためにSessionを有効にすることも可能
-        "session" => false,
-        // pagesへのリンクにURL経由で全Valuesを渡すようにする指定
-        "values_over_request" => true,
-        // findBySearchFormができるようになる
-        "table" => "Product",
-        // 検索設定
-        "list_setting" => array(
-            "search" =>array(
-                "name" =>array("type"=>'eq', "target"=>"name"),
-                "category" =>array("type"=>'eq', "target"=>"category"),
-                "open_date" =>array("type"=>'eq', "target"=>"open_date"),
-            ),
-            "sort" =>array("sort_param_name"=>"sort", "default"=>"id@ASC"),
-            "paging" =>array("offset_param_name"=>"offset", "limit"=>20, "slider"=>10),
-        ),
-        /*
-        // 旧list_settingにかわる新しい検索システムの設定
+        "search_table" => "Product",
         "fields" => array(
-            "freeword" => array("search"=>"word", "col"=>array("name")),
-            "category" => array("search"=>"eq"),
-            "open_date_start" => array("search"=>"date_range_start", "type"=>"split_date", "col"=>"open_date"),
-            "open_date_end" => array("search"=>"date_range_end", "type"=>"split_date", "col"=>"open_date"),
-            "p" => array("search"=>"page", "col"=>false),
-            "order" => array("search"=>"sort", "col"=>false),
+            "freeword" => array("search"=>"word", "target_col"=>array("name")),
+            "category" => array("search"=>"where", "target_col"=>"category"),
+            "reg_date_start" => array("search"=>"where", "target_col"=>"reg_date <"),
+            "reg_date_end" => array("search"=>"where", "target_col"=>"reg_date >="),
+            "p" => array("search"=>"page", "volume"=>3),
+            "order" => array("search"=>"sort", "default"=>"id@ASC"),
         ),
-        */
     );
     protected static $form_entry = array(
-        // 指定のページで自動的に読み込む
         "auto_restore" => true,
         "pages" => array(".entry_form", ".entry_confirm", ".entry_exec"),
-        // findById/saveができるようになる
         "table" => "Product",
-        // 使用可能な項目
-        // Requestから値を取り込むとき、Inputに値を渡す時に変換をかける
         "fields" => array(
             "id",
             "name",
-            "mail",
-            "tel",
             "img",
+            "category",
             "mail_confirm" => array("col"=>false),
             "open_date",
-            "main_img_file",
+            /*
             "detail",
             "detail.name",
             "sub_img_files",
-            "sub_img_files.*.title",
             "sub_img_files.*.img_file",
-            "category",
+            */
         ),
         // 入力チェックの記述
         // 変換済みの値に対して入力チェック
         "rules" => array(
             "name",
-            "contact",
-            array("mail", "required", "if_target"=>"contact", "if_value"=>"mail"),
-            array("mail", "format", "format"=>"mail"),
-            array("mail_confirm", "required", "if_target"=>"mail"),
-            array("mail_confirm", "confirm", "target"=>"mail"),
+            array("category", "required", "if_target"=>"name"),
+            //array("mail", "format", "format"=>"mail"),
+            //array("mail_confirm", "required", "if_target"=>"mail"),
+            //array("mail_confirm", "confirm", "target"=>"mail"),
             "sub_img_files.*.title",
         ),
         // CSV入出力用の設定
@@ -124,8 +100,12 @@ class AdminProductMasterController extends Controller_App
      */
     public function act_view_list ()
     {
-        $this->vars["ts"] = $this->forms["search"]->findBySearchForm()->select();
-        $this->vars["p"] = $this->vars["ts"]->getPager();
+        if ($this->forms["search"]->receive()) {
+            $this->forms["search"]->save();
+        } elseif ($this->request["back"]) {
+            $this->forms["search"]->restore();
+        }
+        $this->vars["ts"] = $this->forms["search"]->search()->select();
     }
 
     /**
@@ -135,8 +115,8 @@ class AdminProductMasterController extends Controller_App
     public function act_entry_form ()
     {
         if ($this->forms["entry"]->receive()) {
-            $this->forms["entry"]->save();
             if ($this->forms["entry"]->isValid()) {
+                $this->forms["entry"]->save();
                 redirect("page:.entry_exec");
             }
         } elseif ($id = $this->request["id"]) {
@@ -160,11 +140,14 @@ class AdminProductMasterController extends Controller_App
      */
     public function act_entry_exec ()
     {
-        if ($this->forms["entry"]->isValid()) {
+        if ( ! $this->forms["entry"]->isEmpty()) {
+            if ( ! $this->forms["entry"]->isValid()) {
+                redirect("page:.entry_form");
+            }
             $this->forms["entry"]->getRecord()->save();
             $this->forms["entry"]->clear();
         }
-        redirect("page:.index");
+        redirect("page:.view_list",array("back"=>"1"));
     }
 
     /**
@@ -197,7 +180,7 @@ class AdminProductMasterController extends Controller_App
         $csv_filename =registry("Path.tmp_dir")
             ."/csv_output/Product-".date("Ymd-His")."-"
             .sprintf("%04d",rand(0,9999)).".csv";
-        $csv =new CSVHandler($csv_filename,"w",$this->csv_setting);
+        $csv =new CSVHandler($csv_filename,"w",static::$form_csv_line);
 
         while ($t =$res->fetch()) {
             $csv->write_line($t);
@@ -240,7 +223,7 @@ class AdminProductMasterController extends Controller_App
         if ($this->forms["entry_csv"]->hasValidValues()) {
             $csv_filename =obj("UserFileManager")
                 ->get_uploaded_file($this->forms["entry_csv"]["csv_file"], "private");
-            $csv =new CSVHandler($csv_filename,"r",$this->csv_setting);
+            $csv =new CSVHandler($csv_filename,"r",static::$form_csv_line);
             // DBへの登録処理
             table("Product")->transactionBegin();
             while (($t=$csv->read_line()) !== null) {
