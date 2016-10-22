@@ -6,10 +6,7 @@
     },
     "autoload": {
         "psr-4": {
-            "R\\App\\": "app/",
-            "R\\Lib\\": "lib/",
-            "R\\Plugin\\": "plugins/",
-            "R\\Util\\": "util/"
+            "R\\App\\": "app/"
         }
     },
     "include-path":[
