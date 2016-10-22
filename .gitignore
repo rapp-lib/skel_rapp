@@ -1,9 +1,7 @@
 /vendor/*
+/composer.lock
 
 *_DELETE
 !empty
-
 /tmp/*
-/html/user_file/*
 /config/*.env-ident
-
