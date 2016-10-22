@@ -109,12 +109,22 @@
     elapse("webapp.setup",true);
     elapse("webapp.raise_action");
 
-    // ControllerActionの実行
-    $controller_obj =raise_action($request_page);
-    registry("Response.controller_obj", $controller_obj);
-
-    if ( ! $controller_obj) {
+    // ControllerActionの取得
+    list($controller_name, $action_name) =explode('.',$request_page,2);
+    $controller_class_name =str_camelize($controller_name)."Controller";
+    $action_method_name ="act_".$action_name;
+    if ( ! class_exists($controller_class_name)) {
         report_error("Request Routing Error: Controller/Action raise error",registry("Request"));
+    }
+    $controller_obj =new $controller_class_name($controller_name,$action_name,$options);
+    registry("Response.controller_obj", $controller_obj);
+    // 認証
+    $controller_obj->authenticate();
+    // Action呼び出し
+    if (is_callable(array($controller_obj,$action_method_name))) {
+        $controller_obj->before_act();
+        $controller_obj->$action_method_name();
+        $controller_obj->after_act();
     }
 
     elapse("webapp.raise_action",true);
