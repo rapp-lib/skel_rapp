@@ -1,7 +1,6 @@
 <?php
     ini_set("display_errors",false);
     error_reporting(E_ALL&~E_NOTICE);
-
     $GLOBALS["_composer_loader"] = require_once __DIR__."/../vendor/autoload.php";
 
     // システム動作基本設定
@@ -34,8 +33,8 @@
 
         // エラー時転送先
         "Config.error_document" =>array(
-            "404" =>$html_dir."/.assets/error_doc/404.php",
-            "500" =>$html_dir."/.assets/error_doc/500.php",
+            "404" =>$html_dir."/.assets/errors/404.php",
+            "500" =>$html_dir."/.assets/errors/500.php",
         ),
 
         // 内部設定

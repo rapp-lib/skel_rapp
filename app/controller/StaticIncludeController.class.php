@@ -1,12 +1,13 @@
 <?php
 
-
-//-------------------------------------
-// Controller: static_include
-class StaticIncludeController extends IncludeController_App {
-
-    //-------------------------------------
-    // Action: index
+/**
+ *
+ */
+class StaticIncludeController extends Controller_App
+{
+    /**
+     *
+     */
     public function act_index () {
 
     }

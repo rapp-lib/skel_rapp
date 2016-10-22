@@ -1,5 +1,4 @@
 <?php
-use R\Lib\Context\Context_Base;
 
 /**
  * @context

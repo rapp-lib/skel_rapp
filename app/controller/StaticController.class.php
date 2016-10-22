@@ -1,12 +1,13 @@
 <?php
 
-
-//-------------------------------------
-// Controller: static
-class StaticController extends Controller_App {
-
-    //-------------------------------------
-    // Action: index
+/**
+ *
+ */
+class StaticController extends Controller_App
+{
+    /**
+     *
+     */
     public function act_index () {
     }
 }
