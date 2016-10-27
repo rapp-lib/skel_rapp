@@ -67,8 +67,22 @@
     // Routing設定もなくHTMLファイルもない場合
     if ( ! $request_page && ! file_exists($request_file)) {
 
+        // サービス起動
+        if (preg_match('!^/(\w+):/(.*)$!',$request_path,$match)) {
+            list(, $service_name, $service_arg) = $match;
+            // file: FileStorageに保存されたファイルのダウンロード
+            if ($service_name == "file") {
+                $stored_file = file_storage()->get($service_arg);
+                clean_output_shutdown($stored_file);
+            // file-img: FileStorageに保存されたファイルを画像として加工してダウンロード
+            } elseif ($service_name == "file-img") {
+            // upload: FileStorageへのファイルのアップロード
+            } elseif ($service_name == "upload") {
+            // enum: EnumデータをJSON形式で取得する
+            } elseif ($service_name == "enum") {
+            }
         // 画像処理機能
-        if ($request_path=="/img/resize/index.html") {
+        } elseif ($request_path=="/img/resize/index.html") {
             $cache_file =obj("ResizeImage")->resize_by_request(array(
                 "file_url" =>$_REQUEST["f"],
                 "format" =>$_REQUEST["s"].($_REQUEST["t"] ? "-t" : ""),
@@ -109,12 +123,22 @@
     elapse("webapp.setup",true);
     elapse("webapp.raise_action");
 
-    // ControllerActionの実行
-    $controller_obj =raise_action($request_page);
-    registry("Response.controller_obj", $controller_obj);
-
-    if ( ! $controller_obj) {
+    // ControllerActionの取得
+    list($controller_name, $action_name) =explode('.',$request_page,2);
+    $controller_class_name =str_camelize($controller_name)."Controller";
+    $action_method_name ="act_".$action_name;
+    if ( ! class_exists($controller_class_name)) {
         report_error("Request Routing Error: Controller/Action raise error",registry("Request"));
+    }
+    $controller_obj =new $controller_class_name($controller_name,$action_name,$options);
+    registry("Response.controller_obj", $controller_obj);
+    // 認証
+    $controller_obj->authenticate();
+    // Action呼び出し
+    if (is_callable(array($controller_obj,$action_method_name))) {
+        $controller_obj->before_act();
+        $controller_obj->$action_method_name();
+        $controller_obj->after_act();
     }
 
     elapse("webapp.raise_action",true);
