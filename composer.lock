@@ -896,12 +896,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/rapp-lib/rlib.git",
-                "reference": "a047f4aa815501ef3d5dde19bd5b61f62756fdb3"
+                "reference": "1035e921a68b6c823a0e4ff6fbc7fa6e1338892f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rapp-lib/rlib/zipball/a047f4aa815501ef3d5dde19bd5b61f62756fdb3",
-                "reference": "a047f4aa815501ef3d5dde19bd5b61f62756fdb3",
+                "url": "https://api.github.com/repos/rapp-lib/rlib/zipball/1035e921a68b6c823a0e4ff6fbc7fa6e1338892f",
+                "reference": "1035e921a68b6c823a0e4ff6fbc7fa6e1338892f",
                 "shasum": ""
             },
             "require": {
@@ -935,7 +935,7 @@
                 "MIT"
             ],
             "description": "Simple webapp library",
-            "time": "2016-10-27 10:26:56"
+            "time": "2016-10-27 16:29:53"
         },
         {
             "name": "smarty/smarty",
