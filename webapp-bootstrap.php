@@ -67,8 +67,22 @@
     // Routing設定もなくHTMLファイルもない場合
     if ( ! $request_page && ! file_exists($request_file)) {
 
+        // サービス起動
+        if (preg_match('!^/(\w+):/(.*)$!',$request_path,$match)) {
+            list(, $service_name, $service_arg) = $match;
+            // file: FileStorageに保存されたファイルのダウンロード
+            if ($service_name == "file") {
+                $stored_file = file_storage()->get($service_arg);
+                clean_output_shutdown($stored_file);
+            // file-img: FileStorageに保存されたファイルを画像として加工してダウンロード
+            } elseif ($service_name == "file-img") {
+            // upload: FileStorageへのファイルのアップロード
+            } elseif ($service_name == "upload") {
+            // enum: EnumデータをJSON形式で取得する
+            } elseif ($service_name == "enum") {
+            }
         // 画像処理機能
-        if ($request_path=="/img/resize/index.html") {
+        } elseif ($request_path=="/img/resize/index.html") {
             $cache_file =obj("ResizeImage")->resize_by_request(array(
                 "file_url" =>$_REQUEST["f"],
                 "format" =>$_REQUEST["s"].($_REQUEST["t"] ? "-t" : ""),
