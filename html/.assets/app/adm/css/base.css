@@ -102,12 +102,9 @@ nav { background:#ebe9e8; }
 .forget { font-size:12px; }
 .forget a { color:#666666; }
 
-input[type="text"], input[type="password"], button, textarea {
+input[type="text"], input[type="date"], input[type="password"], button, textarea, select {
     margin: 0; padding: 3px;
     background:#fff; border:1px solid #b3b3b3; outline: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
     font-size:15px;
     border-radius:3px; }
 textarea { width:100%; box-sizing:border-box; height:10em; }
