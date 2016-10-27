@@ -11,7 +11,7 @@ class Controller_App extends Controller_Base
     /**
      * 認証処理
      */
-    protected function authenticate ()
+    public function authenticate ()
     {
         auth()->authenticate(static::$access_as, static::$priv_required);
     }
