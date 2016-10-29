@@ -106,27 +106,30 @@
     registry("Response.content_type", 'text/html; charset='.$response_charset);
 
     elapse("webapp.setup",true);
-    elapse("webapp.raise_action");
 
-    // ControllerActionの取得
-    list($controller_name, $action_name) =explode('.',$request_page,2);
-    $controller_class_name =str_camelize($controller_name)."Controller";
-    $action_method_name ="act_".$action_name;
-    if ( ! class_exists($controller_class_name)) {
-        report_error("Request Routing Error: Controller/Action raise error",registry("Request"));
-    }
-    $controller_obj =new $controller_class_name($controller_name,$action_name,$options);
-    registry("Response.controller_obj", $controller_obj);
-    // 認証
-    $controller_obj->authenticate();
-    // Action呼び出し
-    if (is_callable(array($controller_obj,$action_method_name))) {
-        $controller_obj->before_act();
-        $controller_obj->$action_method_name();
-        $controller_obj->after_act();
+    // ControllerActionの処理
+    $controller_class_name = null;
+    if ($request_page) {
+        elapse("webapp.raise_action");
+        list($controller_name, $action_name) = explode('.',$request_page,2);
+        $controller_class_name = str_camelize($controller_name)."Controller";
+        $action_method_name = "act_".$action_name;
+        if ( ! class_exists($controller_class_name)) {
+            report_error("Request Routing Error: Controller/Action raise error",registry("Request"));
+        }
+        $controller_obj = new $controller_class_name($controller_name,$action_name,$options);
+        registry("Response.controller_obj", $controller_obj);
+        // 認証
+        $controller_obj->authenticate();
+        // Action呼び出し
+        if (is_callable(array($controller_obj,$action_method_name))) {
+            $controller_obj->before_act();
+            $controller_obj->$action_method_name();
+            $controller_obj->after_act();
+        }
+        elapse("webapp.raise_action",true);
     }
 
-    elapse("webapp.raise_action",true);
     elapse("webapp.fetch_template");
 
     // テンプレートファイルの読み込み
@@ -137,7 +140,12 @@
         set_response_code(404);
         shutdown_webapp("notfound");
     }
-    $output = $controller_obj->fetch($template_file);
+    $smarty = new R\Lib\Smarty\SmartyExtended();
+    $smarty->assign((array)request()->response());
+    $smarty->assign("request", request());
+    $smarty->assign("forms", form()->getRepositry($controller_class_name));
+    $output = $smarty->fetch($template_file);
+    //$output = $controller_obj->fetch($template_file);
 
     // 出力
     $content_type =registry("Response.content_type");
