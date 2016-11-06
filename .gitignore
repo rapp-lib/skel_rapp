@@ -1,6 +1,6 @@
 /vendor/*
+/tmp/*
+/config/env.config.php
 
 *_DELETE
 !empty
-/tmp/*
-/config/*.env-ident

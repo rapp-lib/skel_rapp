@@ -1,21 +1,13 @@
 <?php
+namespace R\App\Controller;
+
+use R\Lib\Webapp\Controller_Base;
 
 /**
  * 親Controller
  */
 class Controller_App extends Controller_Base
 {
-    protected static $access_as = null;
-    protected static $priv_required = false;
-
-    /**
-     * 認証処理
-     */
-    public function authenticate ()
-    {
-        auth()->authenticate(static::$access_as, static::$priv_required);
-    }
-
     /**
      * メール送信
      */

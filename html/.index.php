@@ -1,8 +1,19 @@
 <?php
-    $GLOBAS["__BOOTSTRAP_CONFIG__"] =array(
-        "WEBAPP" => "1",
-        "DOCUMENT_ROOT_DIR" => realpath("./"),
-        "RELATIVE_HTML_DIR" => "",
-        "REQUEST_URI" => $_SERVER['REQUEST_URI'],
-    );
-    require_once __DIR__."/../webapp-bootstrap.php";
+    require_once __DIR__."/../bootstrap.php";
+    // Webroot設定
+    webroot("www")->setAttrs(array(
+        "domain_name" => $_SERVER["SERVER_NAME"],
+        "docroot_dir" => realpath(__DIR__),
+        "webroot_url" => "",
+    ));
+    // リクエストURL設定
+    route()->setCurrentRoute(webroot("www")->getRoute("url:".$_SERVER['REQUEST_URI']));
+    // Assetの設定
+    asset()->registerAssetsRoute(route("/.assets/lib/.assets.php"));
+    asset()->registerAssetsRoute(route("/.assets/app/.assets.php"));
+    // エラー時表示ファイルの設定
+    config(array("Config.error_document" =>array(
+        "404" =>route("/.assets/errors/404.php")->getFile(),
+        "500" =>route("/.assets/errors/500.php")->getFile(),
+    )));
+    app()->start("startWebapp","endWebapp");

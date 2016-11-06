@@ -19,7 +19,7 @@ RewriteBase /
 
 # -- Webapp Routing
 #SetEnv LOADER_ID default
-RewriteCond %{REQUEST_URI} (\.html?|/|^|^/[^:/]+:/.*)$
+RewriteCond %{REQUEST_URI} (\.html?|\.json|/|^|^/[^:/]+:/.*)$
 RewriteRule ^(.*)$ /.index.php [L]
 # --
 
