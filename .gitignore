@@ -1,6 +1,14 @@
-/vendor/*
+# キャッシュやアップロードデータなど
 /tmp/*
+
+# 環境別設定
 /config/env.config.php
 
+# Composerの展開先
+/vendor/*
+
+# 削除予定ファイル
 *_DELETE
-!empty
+
+# フォルダ保持用ファイル
+!.gitkeep

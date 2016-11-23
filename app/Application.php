@@ -91,17 +91,16 @@ class Application extends Application_Base
             // エラー応答
             if ($output["mode"] == "error") {
                 header("HTTP/1.1 ".$output["response_code"]." ".$output["response_code_msg"]);
-                if ($error_php = app()->config("Config.error_document.".$response_code)) {
+                if ($error_php = app()->config("Config.error_document.".$output["response_code"])) {
                     include($error_php);
                 }
             // 転送応答
             } elseif ($output["mode"] == "redirect") {
                 $url = $output["url"];
                 if (app()->getDebugLevel()) {
-                    $redirect_link_html ='<div style="padding:20px;'
+                    print tag("a",array("href"=>$url),'<div style="padding:20px;'
                         .'background-color:#f8f8f8;border:solid 1px #aaaaaa;">'
-                        .'Redirect ... '.$url.'</div>';
-                    print tag("a",array("href"=>$url),$redirect_link_html);
+                        .'Redirect ... '.$url.'</div>');
                 } else {
                     header("Location: ".$url);
                 }
@@ -161,7 +160,7 @@ class Application extends Application_Base
             session_start();
             // HTTPパラメータ構築
             $request_values = array_merge($_GET, $_POST);
-            mb_convert_variables("UTF-8","UTF-8",$request_values);
+            //mb_convert_variables("UTF-8","UTF-8",$request_values);
             $request_values = sanitize($request_values);
             $_REQUEST = $request_values;
             // 出力バッファの設定
@@ -182,7 +181,7 @@ class Application extends Application_Base
                 "errfile" =>$errfile,
                 "errline" =>$errline,
             ));
-        },E_ALL);
+        },error_reporting());
         set_exception_handler(function($e) {
             app()->ending();
             report("[Uncaught ".get_class($e)."] ".$e->getMessage(),array(
