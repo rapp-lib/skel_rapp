@@ -90,8 +90,9 @@ class Application extends Application_Base
         if ($output) {
             // エラー応答
             if ($output["mode"] == "error") {
-                header("HTTP/1.1 ".$output["response_code"]." ".$output["response_code_msg"]);
-                if ($error_php = app()->config("Config.error_document.".$output["response_code"])) {
+                $response_code = isset($output["response_code"]) ? $output["response_code"] : 500;
+                header("HTTP", true, $response_code);
+                if ($error_php = app()->config("Config.error_document.".$response_code)) {
                     include($error_php);
                 }
             // 転送応答
