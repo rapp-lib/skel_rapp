@@ -8,6 +8,8 @@ use R\Lib\Core\Application as Application_Base;
  */
 class Application extends Application_Base
 {
+    private $cancelEnding = false;
+    private $cancelEndingDone = false;
     /**
      * Webアプリケーションの開始処理
      */
@@ -55,23 +57,46 @@ class Application extends Application_Base
                 ), 404);
                 return;
             }
+            $html = "";
+            $smarty = new \R\Lib\Smarty\SmartyExtended();
+            $smarty->assign((array)response());
+            $smarty->assign("forms", form()->getRepositry($controller_class_name));
+            $this->cancelEnding = true;
             try {
-                $smarty = new \R\Lib\Smarty\SmartyExtended();
-                $smarty->assign((array)response());
-                $smarty->assign("forms", form()->getRepositry($controller_class_name));
-                response()->output(array(
-                    "data" => $smarty->fetch($request_file),
-                    "content_type" => "text/html; charset=utf-8",
-                ));
-            } catch (\SmartyException $e) {
-                report_error("[SmartyError] ".$e->getMessage(),array(
+                $html = $smarty->fetch($request_file);
+            } catch (\Exception $e) {
+                report_error("[SmartyError ".get_class($e)."] ".$e->getMessage(),array(
                     "request_file" => $request_file,
                     "route" => $route,
                 ),array(
                     "exception" =>$e,
                 ));
             }
+            // Smartyテンプレートのreder処理上で発生した終了処理は遅延処理
+            $this->cancelEnding = false;
+            if ($this->cancelEndingDone) {
+                if ($this->getDebugLevel()) {
+                    print $html;
+                }
+                $this->end();
+            }
+            response()->output(array(
+                "data" => $html,
+                "content_type" => "text/html; charset=utf-8",
+            ));
         }
+    }
+    /**
+     * @override
+     */
+    public function end ()
+    {
+        // Smartyのエラー処理対策の終了キャンセル
+        if ($this->cancelEnding) {
+            $this->cancelEndingDone = true;
+            return;
+        }
+        parent::end();
     }
     /**
      * Webアプリケーションの終了処理
@@ -83,9 +108,6 @@ class Application extends Application_Base
             "route" => route()->getCurrentRoute(),
             "output_mode" => ! $output ? "void" : ( ! $output["mode"] ? "normal" : $output["mode"]),
         ));
-        if (app()->getDebugLevel()) {
-            print response()->getCleanReportBuffer();
-        }
         // 出力処理
         if ($output) {
             // エラー応答
