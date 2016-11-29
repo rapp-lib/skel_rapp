@@ -1,0 +1,45 @@
+{{inc route="/include/member_header.html"}}
+<div class="right">
+
+<h2 class="admin_h2" id="user">問い合わせフォーム<span> - 入力</span></h2>
+
+{{if $forms.entry->getErrors()}}
+    <div class="errmsg">※入力エラーがあります</div>
+    {{code type="js" required=["jquery:*","app.show-errors"]}}
+        $(function(){
+            showErrors({
+                errors: {{$forms.entry->getErrors()|json_encode}},
+                $form: $("form.form-entry")
+            });
+        });
+    {{/code}}
+{{/if}}
+
+{{form action="{{'.'|page_to_url}}" enctype="multipart/form-data" method="post" form=$forms.entry class="form-entry"}}
+<table class="tbl_admin detail">
+    <tr>
+        <th>問い合わせ種別</th>
+        <td class="inputBlock">{{input name="category" type="radioselect" enum="Contact.category"}}</td>
+    </tr>
+    <tr>
+        <th>本文</th>
+        <td class="inputBlock">{{input name="content" type="textarea"}}</td>
+    </tr>
+    <tr>
+        <th>氏名</th>
+        <td class="inputBlock">{{input name="name" type="text"}}</td>
+    </tr>
+    <tr>
+        <th>メールアドレス</th>
+        <td class="inputBlock">{{input name="mail" type="text"}}</td>
+    </tr>
+</table>
+<div class="ad_btn">
+    <a href='{{".view_list"|page_to_url|url:["back"=>1]}}' class="rBtn">戻る</a>
+    <a href="javascript:void(0);" onclick="$(this).parents('form').trigger('submit');" class="sBtn">確認</a>
+</div>
+{{/form}}
+
+</div><!--right-->
+
+{{inc route="/include/member_footer.html"}}

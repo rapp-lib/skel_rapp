@@ -1,0 +1,66 @@
+{{inc route="/include/member_header.html"}}
+<div class="right">
+
+<h2 class="admin_h2" id="user">会員登録<span> - 入力</span></h2>
+
+{{if $forms.entry->getErrors()}}
+    <div class="errmsg">※入力エラーがあります</div>
+    {{code type="js" required=["jquery:*","app.show-errors"]}}
+        $(function(){
+            showErrors({
+                errors: {{$forms.entry->getErrors()|json_encode}},
+                $form: $("form.form-entry")
+            });
+        });
+    {{/code}}
+{{/if}}
+
+{{form action="{{'.'|page_to_url}}" enctype="multipart/form-data" method="post" form=$forms.entry class="form-entry"}}
+{{input name="id" type="hidden"}}
+<table class="tbl_admin detail">
+    <tr>
+        <th>氏名</th>
+        <td class="inputBlock">{{input name="name" type="text"}}</td>
+    </tr>
+    <tr>
+        <th>ニックネーム</th>
+        <td class="inputBlock">{{input name="nickname" type="text"}}</td>
+    </tr>
+    <tr>
+        <th>メールアドレス</th>
+        <td class="inputBlock">{{input name="mail" type="text"}}</td>
+    </tr>
+    <tr>
+        <th>性別</th>
+        <td class="inputBlock">{{input name="gender" type="radioselect" enum="Member.gender"}}</td>
+    </tr>
+    <tr>
+        <th>生年月日</th>
+        <td class="inputBlock">{{input name="birthday" type="date"}}</td>
+    </tr>
+    <tr>
+        <th>職業</th>
+        <td class="inputBlock">{{input name="job" type="checklist" enum="Member.job"}}</td>
+    </tr>
+    <tr>
+        <th>興味関心</th>
+        <td class="inputBlock">{{input name="interest" type="checklist" enum="Member.interest"}}</td>
+    </tr>
+    <tr>
+        <th>ログインID</th>
+        <td class="inputBlock">{{input name="login_id" type="text"}}</td>
+    </tr>
+    <tr>
+        <th>パスワード</th>
+        <td class="inputBlock">{{input name="login_pw" type="password"}}</td>
+    </tr>
+</table>
+<div class="ad_btn">
+    <a href='{{".view_list"|page_to_url|url:["back"=>1]}}' class="rBtn">戻る</a>
+    <a href="javascript:void(0);" onclick="$(this).parents('form').trigger('submit');" class="sBtn">確認</a>
+</div>
+{{/form}}
+
+</div><!--right-->
+
+{{inc route="/include/member_footer.html"}}

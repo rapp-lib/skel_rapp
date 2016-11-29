@@ -3,7 +3,7 @@
         "Path.webapp_dir" =>realpath(__DIR__."/.."),
         "Path.tmp_dir" =>realpath(__DIR__."/../tmp"),
         "Report.force_reporting" =>false,
-        "Config.auto_deploy" =>false,
+        "Config.auto_deploy" =>true,
         "Config.dync_key" =>"_",
         // DB接続
         "DBI.connection" =>array(
@@ -13,7 +13,7 @@
                 'persistent' => true,
                 'prefix' => '',
                 'host' => 'localhost',
-                'database' => 'test',
+                'database' => 'common_cms',
                 'login' => 'dev',
                 'password' => 'pass',
             ),

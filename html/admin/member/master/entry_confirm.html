@@ -1,0 +1,53 @@
+{{inc route="/include/admin_header.html"}}
+<div class="right">
+
+<h2 class="admin_h2" id="user">会員管理<span> - 確認</span></h2>
+
+<table class="tbl_admin detail">
+    <tr>
+        <th>氏名</th>
+        <td>{{$forms.entry.name}}</td>
+    </tr>
+    <tr>
+        <th>ニックネーム</th>
+        <td>{{$forms.entry.nickname}}</td>
+    </tr>
+    <tr>
+        <th>メールアドレス</th>
+        <td>{{$forms.entry.mail}}</td>
+    </tr>
+    <tr>
+        <th>性別</th>
+        <td>{{$forms.entry.gender|enum:"Member.gender"}}</td>
+    </tr>
+    <tr>
+        <th>生年月日</th>
+        <td>{{$forms.entry.birthday}}</td>
+    </tr>
+    <tr>
+        <th>職業</th>
+        <td>{{$forms.entry.job|enumeach:"Member.job"|tostring:" "}}</td>
+    </tr>
+    <tr>
+        <th>興味関心</th>
+        <td>{{$forms.entry.interest|enumeach:"Member.interest"|tostring:" "}}</td>
+    </tr>
+    <tr>
+        <th>ログインID</th>
+        <td>{{$forms.entry.login_id}}</td>
+    </tr>
+    <tr>
+        <th>パスワード</th>
+        <td>{{$forms.entry.login_pw|hidetext}}</td>
+    </tr>
+</table>
+
+<div class="ad_btn">
+    <a href='{{".entry_form"|page_to_url|url:["back"=>1]}}' class="rBtn">戻る</a>
+    <a href='{{".entry_exec"|page_to_url}}' class="sBtn">登録</a>
+</div>
+<!-- /show_module -->
+
+</div><!--right-->
+
+{{inc route="/include/admin_footer.html"}}

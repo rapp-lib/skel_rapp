@@ -477,50 +477,6 @@
             "time": "2014-09-09 13:34:57"
         },
         {
-            "name": "ezyang/htmlpurifier",
-            "version": "v4.8.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/ezyang/htmlpurifier.git",
-                "reference": "d0c392f77d2f2a3dcf7fcb79e2a1e2b8804e75b2"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/ezyang/htmlpurifier/zipball/d0c392f77d2f2a3dcf7fcb79e2a1e2b8804e75b2",
-                "reference": "d0c392f77d2f2a3dcf7fcb79e2a1e2b8804e75b2",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.2"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "HTMLPurifier": "library/"
-                },
-                "files": [
-                    "library/HTMLPurifier.composer.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "LGPL"
-            ],
-            "authors": [
-                {
-                    "name": "Edward Z. Yang",
-                    "email": "admin@htmlpurifier.org",
-                    "homepage": "http://ezyang.com"
-                }
-            ],
-            "description": "Standards compliant HTML filter written in PHP",
-            "homepage": "http://htmlpurifier.org/",
-            "keywords": [
-                "html"
-            ],
-            "time": "2016-07-16 12:58:58"
-        },
-        {
             "name": "pear/console_getopt",
             "version": "v1.4.1",
             "source": {
@@ -896,27 +852,28 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/rapp-lib/rlib.git",
-                "reference": "1035e921a68b6c823a0e4ff6fbc7fa6e1338892f"
+                "reference": "1dc2c8d6ea910cff88166b71a91fb45ebce94cf5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rapp-lib/rlib/zipball/1035e921a68b6c823a0e4ff6fbc7fa6e1338892f",
-                "reference": "1035e921a68b6c823a0e4ff6fbc7fa6e1338892f",
+                "url": "https://api.github.com/repos/rapp-lib/rlib/zipball/1dc2c8d6ea910cff88166b71a91fb45ebce94cf5",
+                "reference": "1dc2c8d6ea910cff88166b71a91fb45ebce94cf5",
                 "shasum": ""
             },
             "require": {
                 "doctrine/dbal": "2.*@stable",
-                "ezyang/htmlpurifier": "4.*@stable",
                 "pear/http_request2": "v2.*@stable",
                 "pear/mail": "v1.*@stable",
                 "pear/mail_mime": "v1.*@stable",
                 "smarty/smarty": "v3.*@stable"
             },
+            "suggest": {
+                "ezyang/htmlpurifier": "Install optionally via your project's composer.json"
+            },
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "R\\Lib\\": "lib/",
-                    "R\\Lib\\Form\\Rule\\": "lib/Extention/ValidateRule/Regacy/"
+                    "R\\Lib\\": "lib/"
                 },
                 "files": [
                     "functions/required.php"
@@ -924,18 +881,13 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "include-path": [
-                "include/",
-                "../../pear/pear_exception",
-                "../../pear/net_url2",
-                "../../pear/http_request2",
-                "../../pear/mail",
-                "../../pear/mail_mime"
+                "include/"
             ],
             "license": [
                 "MIT"
             ],
             "description": "Simple webapp library",
-            "time": "2016-10-27 16:29:53"
+            "time": "2016-11-21 18:11:47"
         },
         {
             "name": "smarty/smarty",

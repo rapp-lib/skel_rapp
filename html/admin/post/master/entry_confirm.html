@@ -1,0 +1,57 @@
+{{inc route="/include/admin_header.html"}}
+<div class="right">
+
+<h2 class="admin_h2" id="user">記事管理<span> - 確認</span></h2>
+
+<table class="tbl_admin detail">
+    <tr>
+        <th>タイトル</th>
+        <td>{{$forms.entry.title}}</td>
+    </tr>
+    <tr>
+        <th>本文</th>
+        <td>{{$forms.entry.content|nl2br}}</td>
+    </tr>
+    <tr>
+        <th>youtubeID</th>
+        <td>{{$forms.entry.youtube_id}}</td>
+    </tr>
+    <tr>
+        <th>DISCOVERY枠順位</th>
+        <td>{{$forms.entry.discovery_rank}}</td>
+    </tr>
+    <tr>
+        <th>META KEYWORD</th>
+        <td>{{$forms.entry.keyword}}</td>
+    </tr>
+    <tr>
+        <th>META DESCRIPTION</th>
+        <td>{{$forms.entry.description}}</td>
+    </tr>
+    <tr>
+        <th>カテゴリー</th>
+        <td>{{$forms.entry.category|enum:"Post.category"}}</td>
+    </tr>
+    <tr>
+        <th>サムネイル画像</th>
+        <td>{{$forms.entry.thumbnail_img}}</td>
+    </tr>
+    <tr>
+        <th>掲載日付</th>
+        <td>{{$forms.entry.display_date}}</td>
+    </tr>
+    <tr>
+        <th>掲載終了日付</th>
+        <td>{{$forms.entry.display_end_date}}</td>
+    </tr>
+</table>
+
+<div class="ad_btn">
+    <a href='{{".entry_form"|page_to_url|url:["back"=>1]}}' class="rBtn">戻る</a>
+    <a href='{{".entry_exec"|page_to_url}}' class="sBtn">登録</a>
+</div>
+<!-- /show_module -->
+
+</div><!--right-->
+
+{{inc route="/include/admin_footer.html"}}

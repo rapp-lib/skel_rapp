@@ -17,8 +17,18 @@ RewriteEngine On
 RewriteBase /
 # -- / HTTPD Config
 
+# -- HTTPSのドメイン転送
+#RewriteCond %{SERVER_PORT} ^80$
+#RewriteCond %{REQUEST_URI} (\.html?|\.json|/|^|^/[^:/]+:/.*)$
+#RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [L,R=301]
+# --
+
+# -- /index.html→/の統一
+#RewriteCond %{THE_REQUEST} ^.*/index.html
+#RewriteRule ^(.*)index.html$ /$1 [L,R=301]
+# --
+
 # -- Webapp Routing
-#SetEnv LOADER_ID default
 RewriteCond %{REQUEST_URI} (\.html?|\.json|/|^|^/[^:/]+:/.*)$
 RewriteRule ^(.*)$ /.index.php [L]
 # --

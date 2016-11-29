@@ -1,0 +1,33 @@
+{{inc route="/include/member_header.html"}}
+<div class="right">
+
+<h2 class="admin_h2" id="user">問い合わせフォーム<span> - 確認</span></h2>
+
+<table class="tbl_admin detail">
+    <tr>
+        <th>問い合わせ種別</th>
+        <td>{{$forms.entry.category|enum:"Contact.category"}}</td>
+    </tr>
+    <tr>
+        <th>本文</th>
+        <td>{{$forms.entry.content|nl2br}}</td>
+    </tr>
+    <tr>
+        <th>氏名</th>
+        <td>{{$forms.entry.name}}</td>
+    </tr>
+    <tr>
+        <th>メールアドレス</th>
+        <td>{{$forms.entry.mail}}</td>
+    </tr>
+</table>
+
+<div class="ad_btn">
+    <a href='{{".entry_form"|page_to_url|url:["back"=>1]}}' class="rBtn">戻る</a>
+    <a href='{{".entry_exec"|page_to_url}}' class="sBtn">登録</a>
+</div>
+<!-- /show_module -->
+
+</div><!--right-->
+
+{{inc route="/include/member_footer.html"}}

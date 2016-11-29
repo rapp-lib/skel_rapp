@@ -1,0 +1,70 @@
+{{inc route="/include/admin_header.html"}}
+<div class="right">
+
+<h2 class="admin_h2" id="user">記事管理<span> - 入力</span></h2>
+
+{{if $forms.entry->getErrors()}}
+    <div class="errmsg">※入力エラーがあります</div>
+    {{code type="js" required=["jquery:*","app.show-errors"]}}
+        $(function(){
+            showErrors({
+                errors: {{$forms.entry->getErrors()|json_encode}},
+                $form: $("form.form-entry")
+            });
+        });
+    {{/code}}
+{{/if}}
+
+{{form action="{{'.'|page_to_url}}" enctype="multipart/form-data" method="post" form=$forms.entry class="form-entry"}}
+{{input name="id" type="hidden"}}
+<table class="tbl_admin detail">
+    <tr>
+        <th>タイトル</th>
+        <td class="inputBlock">{{input name="title" type="text"}}</td>
+    </tr>
+    <tr>
+        <th>本文</th>
+        <td class="inputBlock">{{input name="content" type="textarea"}}</td>
+    </tr>
+    <tr>
+        <th>youtubeID</th>
+        <td class="inputBlock">{{input name="youtube_id" type="text"}}</td>
+    </tr>
+    <tr>
+        <th>DISCOVERY枠順位</th>
+        <td class="inputBlock">{{input name="discovery_rank" type="text"}}</td>
+    </tr>
+    <tr>
+        <th>META KEYWORD</th>
+        <td class="inputBlock">{{input name="keyword" type="text"}}</td>
+    </tr>
+    <tr>
+        <th>META DESCRIPTION</th>
+        <td class="inputBlock">{{input name="description" type="text"}}</td>
+    </tr>
+    <tr>
+        <th>カテゴリー</th>
+        <td class="inputBlock">{{input name="category" type="select" enum="Post.category"}}</td>
+    </tr>
+    <tr>
+        <th>サムネイル画像</th>
+        <td class="inputBlock">{{input name="thumbnail_img" type="file"}}</td>
+    </tr>
+    <tr>
+        <th>掲載日付</th>
+        <td class="inputBlock">{{input name="display_date" type="date"}}</td>
+    </tr>
+    <tr>
+        <th>掲載終了日付</th>
+        <td class="inputBlock">{{input name="display_end_date" type="date"}}</td>
+    </tr>
+</table>
+<div class="ad_btn">
+    <a href='{{".view_list"|page_to_url|url:["back"=>1]}}' class="rBtn">戻る</a>
+    <a href="javascript:void(0);" onclick="$(this).parents('form').trigger('submit');" class="sBtn">確認</a>
+</div>
+{{/form}}
+
+</div><!--right-->
+
+{{inc route="/include/admin_footer.html"}}

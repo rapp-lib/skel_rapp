@@ -1,0 +1,37 @@
+{{inc route="/include/member_header.html"}}
+<div class="right">
+
+<h2 class="admin_h2" id="user">トップページ<span></span></h2>
+
+{{foreach $cates as $cate}}
+        {{$cate}}
+<table class="tbl_admin list">
+    <tr>
+        <th></th>
+        <th>タイトル</th>
+        <th>掲載日付</th>
+        <th>掲載終了日付</th>
+    </tr>
+    {{foreach $ts[$cate] as $t}}
+    <tr>
+        <td>
+            {{* <img src="{{$t.thumbnail_img|userfile:'public'}}" alt=""> *}}
+            <img src="{{$t.thumbnail_img|userfile:'public'}}" alt="">
+        </td>
+        <td>
+            {{$t.title}}
+        </td>
+        <td>
+            {{$t.display_date|date:"Y/n/j（W）"}}
+        </td>
+        <td>
+            {{$t.display_end_date|date:"Y/n/j（W）"}}
+        </td>
+    </tr>
+    {{/foreach}}
+</table>
+{{/foreach}}
+
+</div><!--right-->
+
+{{inc route="/include/member_footer.html"}}
