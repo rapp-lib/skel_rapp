@@ -11,13 +11,13 @@ class MemberRole extends Role_App
      */
     public function loginTrial ($params)
     {
-        $result = false;
         if ($params["login_id"]) {
-            if ($params["login_id"]=="test" && $params["login_pass"]=="cftyuhbvg") {
-                $result = array("id"=>1, "privs"=>array());
+            // ログインIDとログインPWを引数に取得
+            if ($t = table("Member")->findByLoginIdPw($params["login_id"], $params["login_pass"])->selectOne()) {
+                return array("id"=>$t["id"], "privs"=>array());
             }
         }
-        return $result;
+        return false;
     }
 
     /**

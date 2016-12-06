@@ -1,0 +1,64 @@
+{{inc route="/include/member_header.html"}}
+<div class="right">
+
+<h2 class="admin_h2" id="user">記事表示<span></span></h2>
+
+<div class="ad_btn clearfix">
+</div>
+
+{{if count($ts)>0}}
+
+<table class="tbl_admin list">
+    <tr>
+        <th>順位</th>
+        <th>id</th>
+        <th>タイトル</th>
+        <th>閲覧数</th>
+        <th>DISCOVERY枠順位</th>
+        <th>META KEYWORD</th>
+        <th>META DESCRIPTION</th>
+        <th>カテゴリー</th>
+        <th>&nbsp;</th>
+    </tr>
+    {{foreach $ts as $t}}
+    <tr>
+        <td>
+            {{$t.rank}}
+        </td>
+         <td>
+            {{$t.Post.id}}
+        </td>
+        <td>
+            {{$t.Post.title}}
+        </td>
+        <td>
+            {{$t.Post.pv_count}}
+        </td>
+        <td>
+            {{$t.Post.discovery_rank}}
+        </td>
+        <td>
+            {{$t.Post.keyword}}
+        </td>
+        <td>
+            {{$t.Post.description}}
+        </td>
+        <td>
+            {{$t.Post.category|enum:"Post.category"}}
+        </td>
+        <td>
+        </td>
+    </tr>
+    {{/foreach}}
+</table>
+
+{{else}}
+
+<p>該当する情報がありません</p>
+
+{{/if}}{{*count($ts)>0*}}
+
+
+</div><!--right-->
+
+{{inc route="/include/member_footer.html"}}

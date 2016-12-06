@@ -45,8 +45,14 @@ class AdminPostMasterController extends Controller_App
             "thumbnail_img" => array("input_convert"=>"file_upload", "storage"=>"public"),
             "display_date",
             "display_end_date",
+            "draft_flg",
         ),
         "rules" => array(
+            array("title", "required"),
+            array("content", "required"),
+            array("display_date", "required"),
+            array("display_end_date", "required"),
+            array("draft_flg", "required"),
         ),
     );
 
@@ -115,6 +121,7 @@ class AdminPostMasterController extends Controller_App
         } elseif ($this->request["back"]) {
             $this->forms["search"]->restore();
         }
+        report($this->forms["search"]);
         $this->vars["ts"] = $this->forms["search"]->search()->select();
     }
 
@@ -131,6 +138,8 @@ class AdminPostMasterController extends Controller_App
             }
         } elseif ($id = $this->request["id"]) {
             $this->forms["entry"]->init($id);
+
+            report($this->forms["entry"]);
         } elseif ( ! $this->request["back"]) {
             $this->forms["entry"]->clear();
         }
@@ -155,7 +164,9 @@ class AdminPostMasterController extends Controller_App
             if ( ! $this->forms["entry"]->isValid()) {
                 redirect("page:.entry_form", array("back"=>"1"));
             }
-            $this->forms["entry"]->getRecord()->save();
+            $t = $this->forms["entry"]->getRecord();
+            //$t["count"] = 0;
+            $t->save();
             $this->forms["entry"]->clear();
         }
         redirect("page:.view_list", array("back"=>"1"));

@@ -19,7 +19,7 @@
 <div class="ad_btn clearfix">
     <a href='{{".entry_form"|page_to_url}}' class="create">新規登録</a>
     <a href='{{".view_csv"|page_to_url}}' class="export">CSV一括ダウンロード</a>
-    <a href='{{".entry_csv_form"|page_to_url}}' class="import">CSVインポート</a>
+    {{* <a href='{{".entry_csv_form"|page_to_url}}' class="import">CSVインポート</a> *}}
 </div>
 
 {{if count($ts)>0}}
@@ -30,7 +30,7 @@
         <th>ニックネーム</th>
         <th>メールアドレス</th>
         <th>性別</th>
-        <th>生年月日</th>
+        <th>ID</th>
         <th>職業</th>
         <th>&nbsp;</th>
     </tr>
@@ -49,7 +49,7 @@
             {{$t.gender|enum:"Member.gender"}}
         </td>
         <td>
-            {{$t.birthday}}
+            {{$t.gender|enum:"Member.job"}}
         </td>
         <td>
             {{$t.job|enumeach:"Member.job"|tostring:" "}}

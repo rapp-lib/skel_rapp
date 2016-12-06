@@ -19,4 +19,8 @@ class PostEnum extends Enum_App
         "7" =>"WORLD",
         "8" =>"COLMUN",
     );
+    protected static $values_draft = array(
+        "1" =>"公開",
+        "2" =>"下書き",
+    );
 }

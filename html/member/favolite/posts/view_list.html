@@ -1,0 +1,62 @@
+{{inc route="/include/member_header.html"}}
+<div class="right">
+
+<h2 class="admin_h2" id="user">お気に入り記事表示<span></span></h2>
+
+<div class="ad_btn clearfix">
+</div>
+
+{{if count($ts)>0}}
+
+<table class="tbl_admin list">
+    <tr>
+        <th>タイトル</th>
+        <th>カテゴリー</th>
+        <th>&nbsp;</th>
+    </tr>
+    {{foreach $ts as $t}}
+    <tr>
+        <td>
+            {{$t.Post.title}}
+        </td>
+        <td>
+            {{$t.Post.category|enum:"Post.category"}}
+        </td>
+        <td>
+            <a href='{{".delete"|page_to_url|url:["id"=>$t.id]}}' class="delete" onclick="return confirm('削除します');">削除</a>
+        </td>
+    </tr>
+    {{/foreach}}
+</table>
+
+{{if $p = $ts->getPager()}}
+    <div class="pager">
+    <p>全{{$p->get("count")}}件中 {{$p->get("current_volume")}}件を表示</p>
+    <ul class="clearfix">
+    {{if $p->getPage('prev')}}
+        <li class="prev"><a href="{{$forms.search->getSearchPageUrl(['p'=>$p->getPage('prev')])}}">&lt;</a></li>
+    {{/if}}
+    {{foreach $p->getPages(5) as $page}}
+        {{if $page == "last"}}<li>...</li>{{/if}}
+        {{if $page == $p->getPage("current")}}<li class="current">{{else}}<li>{{/if}}
+        <a href="{{$forms.search->getSearchPageUrl(['p'=>$p->getPage($page)])}}">{{$p->getPage($page)}}</a>
+        </li>
+        {{if $page == "first"}}<li>...</li>{{/if}}
+    {{/foreach}}
+    {{if $p->getPage("next")}}
+        <li class="next"><a href="{{$forms.search->getSearchPageUrl(['p'=>$p->getPage('next')])}}">&gt;</a></li>
+    {{/if}}
+    </ul>
+    </div>
+{{/if}}
+
+{{else}}
+
+<p>該当する情報がありません</p>
+
+{{/if}}{{*count($ts)>0*}}
+
+
+</div><!--right-->
+
+{{inc route="/include/member_footer.html"}}

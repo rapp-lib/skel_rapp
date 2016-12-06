@@ -74,13 +74,28 @@ class ContactController extends Controller_App
             if ( ! $this->forms["entry"]->isValid()) {
                 redirect("page:.entry_form", array("back"=>"1"));
             }
-            // メールの送信
+
+            // カテゴリーリストの取得
+            $cates =enum("Contact.category");
+
+            //メールの送信(管理者宛)
             $this->send_mail(array(
-                "template" => "sample",
+                "template" => "contact_to_admin",
                 "vars" => array(
                     "form" => $this->forms["entry"],
+                    "cate" => $cates[$this->forms["entry"]["category"]],
                 ),
             ));
+
+            // メールの送信(顧客宛)
+            $this->send_mail(array(
+                "template" => "contact_to_customer",
+                "vars" => array(
+                    "form" => $this->forms["entry"],
+                    "cate" => $cates[$this->forms["entry"]["category"]],
+                ),
+            ));
+
             $this->forms["entry"]->clear();
         }
     }

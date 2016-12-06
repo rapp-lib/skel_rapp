@@ -214,3 +214,8 @@ header.mmb .m-con { width:1000px; margin:auto; position:relative; }
     background: #405094 none repeat scroll 0% 0%;
     cursor:pointer;
 }
+
+table .required {
+    color:#ff0000;
+    padding-left: 5px;
+}

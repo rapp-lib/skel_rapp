@@ -51,7 +51,7 @@ class MemberLoginController extends Controller_App
                     if ($redirect = $this->forms["login"]["redirect"]) {
                         response()->redirectUrl($redirect);
                     } else {
-                        response()->redirect("index.index");
+                        response()->redirect("member_index.index");
                     }
                 } else {
                     $this->vars["login_error"] = true;

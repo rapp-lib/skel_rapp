@@ -2,6 +2,77 @@
 <div class="right">
 
 <h2 class="admin_h2" id="user">トップページ<span></span></h2>
+{{foreach $cates as $k =>$v}}
+ <a href='{{".view_list"|page_to_url|url:["category"=>$k]}}'>{{$v}}</a>&nbsp;&nbsp;&nbsp;
+{{/foreach}}
+<br/>
+NEW
+<table class="tbl_admin list">
+    <tr>
+        <th>タイトル</th>
+        <th>掲載日付</th>
+        <th>掲載終了日付</th>
+        <th>カテゴリー</th>
+        <th>&nbsp;</th>
+    </tr>
+    {{foreach $new_ts as $t}}
+    <tr>
+        <td>
+            {{$t.title}}
+        </td>
+        <td>
+            {{$t.display_date|date:"Y/n/j（W）"}}
+        </td>
+        <td>
+            {{$t.display_end_date|date:"Y/n/j（W）"}}
+        </td>
+        <td>
+            {{$t.category|enum:"Post.category"}}
+        </td>
+        <td>
+        </td>
+    </tr>
+    {{/foreach}}
+</table>
+
+
+ランキング
+<table class="tbl_admin list">
+    <tr>
+        <th>順位</th>
+        <th>タイトル</th>
+        <th>閲覧数</th>
+        <th>掲載日付</th>
+        <th>掲載終了日付</th>
+        <th>カテゴリー</th>
+        <th>&nbsp;</th>
+    </tr>
+    {{foreach $rank_ts as $t}}
+    <tr>
+        <td>
+            {{$t.rank}}
+        </td>
+        <td>
+            {{$t.Post.title}}
+        </td>
+        <td>
+            {{$t.Post.pv_count}}
+        </td>
+        <td>
+            {{$t.Post.display_date|date:"Y/n/j（W）"}}
+        </td>
+        <td>
+            {{$t.Post.display_end_date|date:"Y/n/j（W）"}}
+        </td>
+        <td>
+            {{$t.Post.category|enum:"Post.category"}}
+        </td>
+        <td>
+        </td>
+    </tr>
+    {{/foreach}}
+</table>
+
 
 {{foreach $cates as $cate}}
         {{$cate}}
@@ -16,10 +87,10 @@
     <tr>
         <td>
             {{* <img src="{{$t.thumbnail_img|userfile:'public'}}" alt=""> *}}
-            <img src="{{$t.thumbnail_img|userfile:'public'}}" alt="">
+            {{$t.thumbnail_img}}
         </td>
         <td>
-            {{$t.title}}
+            <a href='{{".view_detail"|page_to_url|url:["id"=>$t.id]}}'>{{$t.title}}</a>
         </td>
         <td>
             {{$t.display_date|date:"Y/n/j（W）"}}

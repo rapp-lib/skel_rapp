@@ -22,7 +22,7 @@ class PostTable extends Table_App
         "display_date" => array("type"=>"datetime", "comment"=>"掲載日付"),
         "display_end_date" => array("type"=>"datetime", "comment"=>"掲載終了日付"),
         "draft_flg" => array("type"=>"integer", "comment"=>"下書きフラグ"),
-        "pv_count" => array("type"=>"integer", "comment"=>"閲覧数"),
+        "pv_count" => array("type"=>"integer", "default"=>0, "comment"=>"閲覧数"),
         "id" => array("type"=>"integer", "id"=>true, "autoincrement"=>true, "comment"=>"ID"),
         "reg_date" => array("type"=>"datetime", "reg_date"=>true, "comment"=>"登録日時"),
         "del_flg" => array("type"=>"integer", "del_flg"=>true, "default"=>0, "comment"=>"削除フラグ"),

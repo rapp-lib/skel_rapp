@@ -1,0 +1,91 @@
+{{inc route="/include/member_header.html"}}
+<div class="right">
+
+<h2 class="admin_h2" id="user">記事管理<span> - 確認</span></h2>
+{{if $a_text}}
+    <a href='{{"member_favolite_posts.add_favolite"|page_to_url|url:["id"=>$t.id]}}' class="ajax_action">{{$a_text}}</a>
+{{/if}}
+<table class="tbl_admin detail">
+    <tr>
+        <th>タイトル</th>
+        <td>{{$t.title}}</td>
+    </tr>
+    <tr>
+        <th>本文</th>
+        <td>{{$t.content|htmlspecialchars_decode}}</td>
+    </tr>
+    <tr>
+        <th>youtubeID</th>
+        <td>{{$t.youtube_id}}</td>
+    </tr>
+    <tr>
+        <th>DISCOVERY枠順位</th>
+        <td>{{$t.discovery_rank}}</td>
+    </tr>
+    <tr>
+        <th>META KEYWORD</th>
+        <td>{{$t.keyword}}</td>
+    </tr>
+    <tr>
+        <th>META DESCRIPTION</th>
+        <td>{{$t.description}}</td>
+    </tr>
+    <tr>
+        <th>カテゴリー</th>
+        <td>{{$t.category|enum:"Post.category"}}</td>
+    </tr>
+    <tr>
+        <th>サムネイル画像</th>
+        <td>{{$t.thumbnail_img}}</td>
+    </tr>
+    <tr>
+        <th>掲載日付</th>
+        <td>{{$t.display_date}}</td>
+    </tr>
+    <tr>
+        <th>掲載終了日付</th>
+        <td>{{$t.display_end_date}}</td>
+    </tr>
+</table>
+
+<div class="ad_btn">
+    <a href='{{".index"|page_to_url}}' class="rBtn">戻る</a>
+</div>
+<!-- /show_module -->
+
+</div><!--right-->
+<script>
+
+
+// ajax通信
+function ajax_request(url) {
+
+    // ajax通信でAPIのパラメータを取得
+    $.ajax({
+        type: "GET",
+        scriptCharset: 'utf-8',
+        url: url,
+        success: function(res){
+
+            alert(res["msg"]);
+
+            $('.ajax_action').text(res["a_text"]);
+        },
+        error:function(e1,e2){
+            // ajax通信エラーの際にコンソール出力
+            console.log(["err",e1,e2]);
+        }
+    });
+
+    return false;
+}
+$(function(){
+    $('.ajax_action').click(function(){
+        url =$(this).attr('href');
+        console.log(url);
+        ajax_request(url);
+        return false;
+    })
+});
+</script>
+{{inc route="/include/member_footer.html"}}

@@ -1,4 +1,13 @@
 {{inc route="/include/admin_header.html"}}
+
+{{code type="js" required=["jquery:*", "ckeditor:*"]}}
+    $(function(){
+        var editor = CKEDITOR.replace('content-input',{
+            //filebrowserUploadUrl: '{{'.'|page_to_url}}'
+        });
+    });
+{{/code}}
+
 <div class="right">
 
 <h2 class="admin_h2" id="user">記事管理<span> - 入力</span></h2>
@@ -20,11 +29,12 @@
 <table class="tbl_admin detail">
     <tr>
         <th>タイトル</th>
-        <td class="inputBlock">{{input name="title" type="text"}}</td>
+        <td class="inputBlock">{{input name="title" type="text" size=70}}</td>
     </tr>
     <tr>
         <th>本文</th>
-        <td class="inputBlock">{{input name="content" type="textarea"}}</td>
+
+        <td class="inputBlock">{{input name="content" type="textarea" class="" cols="80" id="content-input" rows="10"}}</td>
     </tr>
     <tr>
         <th>youtubeID</th>
@@ -57,6 +67,10 @@
     <tr>
         <th>掲載終了日付</th>
         <td class="inputBlock">{{input name="display_end_date" type="date"}}</td>
+    </tr>
+     <tr>
+        <th>掲載状態</th>
+        <td class="inputBlock">{{input name="draft_flg" type="select" enum="Post.draft"}}</td>
     </tr>
 </table>
 <div class="ad_btn">

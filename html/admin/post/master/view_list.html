@@ -26,11 +26,10 @@
 <table class="tbl_admin list">
     <tr>
         <th>タイトル</th>
-        <th>youtubeID</th>
-        <th>DISCOVERY枠順位</th>
-        <th>META KEYWORD</th>
-        <th>META DESCRIPTION</th>
         <th>カテゴリー</th>
+        <th>掲載日付</th>
+        <th>掲載終了日付</th>
+        <th>掲載状態</th>
         <th>&nbsp;</th>
     </tr>
     {{foreach $ts as $t}}
@@ -39,19 +38,16 @@
             {{$t.title}}
         </td>
         <td>
-            {{$t.youtube_id}}
-        </td>
-        <td>
-            {{$t.discovery_rank}}
-        </td>
-        <td>
-            {{$t.keyword}}
-        </td>
-        <td>
-            {{$t.description}}
-        </td>
-        <td>
             {{$t.category|enum:"Post.category"}}
+        </td>
+        <td>
+            {{$t.display_date|date:"Y/n/j"}}
+        </td>
+        <td>
+            {{$t.display_end_date|date:"Y/n/j"}}
+        </td>
+        <td>
+            {{$t.draft_flg|enum:"Post.draft"}}
         </td>
         <td>
             <a href='{{".entry_form"|page_to_url|url:["id"=>$t.id]}}' class="edit">編集</a>

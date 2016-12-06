@@ -10,6 +10,8 @@
         // 記事表示
         "posts.index" => "/posts/index.html",
         "posts.view_list" => "/posts/view_list.html",
+        "posts.view_detail" => "/posts/view_detail.html",
+        "posts.rank_view_list" => "/posts/rank_view_list.html",
 
         // 問い合わせフォーム
         "contact.index" => "/contact/index.html",
@@ -40,9 +42,12 @@
 
         // お気に入り変更
         "member_favolite_posts.index" => "/member/favolite/posts/index.html",
-        "member_favolite_posts.entry_form" => "/member/favolite/posts/entry_form.html",
-        "member_favolite_posts.entry_confirm" => "/member/favolite/posts/entry_confirm.html",
-        "member_favolite_posts.entry_exec" => "/member/favolite/posts/entry_exec.html",
+        // "member_favolite_posts.entry_form" => "/member/favolite/posts/entry_form.html",
+        // "member_favolite_posts.entry_confirm" => "/member/favolite/posts/entry_confirm.html",
+        // "member_favolite_posts.entry_exec" => "/member/favolite/posts/entry_exec.html",
+        "member_favolite_posts.view_list" => "/member/favolite/posts/view_list.html",
+        "member_favolite_posts.add_favolite" => "/member/favolite/posts/add_favolite.json",
+        "member_favolite_posts.delete" => "/member/favolite/posts/delete.html",
 
         // 管理者ログイン
         "admin_login.index" => "/admin/login/index.html",

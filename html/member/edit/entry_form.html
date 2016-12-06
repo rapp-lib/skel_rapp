@@ -19,19 +19,19 @@
 {{input name="id" type="hidden"}}
 <table class="tbl_admin detail">
     <tr>
-        <th>氏名</th>
+        <th>氏名<span class="required">※</span></th>
         <td class="inputBlock">{{input name="name" type="text"}}</td>
     </tr>
     <tr>
-        <th>ニックネーム</th>
+        <th>ニックネーム<span class="required">※</span></th>
         <td class="inputBlock">{{input name="nickname" type="text"}}</td>
     </tr>
     <tr>
-        <th>メールアドレス</th>
+        <th>メールアドレス<span class="required">※</span></th>
         <td class="inputBlock">{{input name="mail" type="text"}}</td>
     </tr>
     <tr>
-        <th>性別</th>
+        <th>性別<span class="required">※</span></th>
         <td class="inputBlock">{{input name="gender" type="radioselect" enum="Member.gender"}}</td>
     </tr>
     <tr>
@@ -40,18 +40,18 @@
     </tr>
     <tr>
         <th>職業</th>
-        <td class="inputBlock">{{input name="job" type="checklist" enum="Member.job"}}</td>
+        <td class="inputBlock">{{input name="job" type="radioselect" enum="Member.job"}}</td>
     </tr>
     <tr>
         <th>興味関心</th>
         <td class="inputBlock">{{input name="interest" type="checklist" enum="Member.interest"}}</td>
     </tr>
     <tr>
-        <th>ログインID</th>
+        <th>ログインID<span class="required">※</span></th>
         <td class="inputBlock">{{input name="login_id" type="text"}}</td>
     </tr>
     <tr>
-        <th>パスワード</th>
+        <th>パスワード<br/><span class="required">※6文字以上12文字以内</span></th>
         <td class="inputBlock">{{input name="login_pw" type="password"}}</td>
     </tr>
 </table>

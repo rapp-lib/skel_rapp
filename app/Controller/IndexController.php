@@ -19,6 +19,7 @@ class IndexController extends Controller_App
      */
     public function act_index ()
     {
+        redirect("page:posts.view_list");
     }
     /**
      * @page

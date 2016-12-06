@@ -33,6 +33,9 @@ class MemberEditController extends Controller_App
             "login_pw",
         ),
         "rules" => array(
+            "name", "nickname", "mail", "gender", "login_id",
+            array("mail", "format", "format"=>"mail"),
+            array("login_pw", "length", "min"=>6, "max"=>12),
         ),
     );
 
@@ -56,7 +59,9 @@ class MemberEditController extends Controller_App
                 $this->forms["entry"]->save();
                 redirect("page:.entry_confirm");
             }
-        } elseif ($id = $this->request["id"]) {
+
+        // 認証成功したメンバーのIDから、会員情報を引き継ぐ
+        } elseif ($id = auth("member")->getId()) {
             $this->forms["entry"]->init($id);
         } elseif ( ! $this->request["back"]) {
             $this->forms["entry"]->clear();

@@ -46,6 +46,9 @@ class AdminMemberMasterController extends Controller_App
             "login_pw",
         ),
         "rules" => array(
+            "name", "nickname", "mail", "gender", "login_id",
+            array("mail", "format", "format"=>"mail"),
+            array("login_pw", "length", "min"=>6, "max"=>12),
         ),
     );
 
