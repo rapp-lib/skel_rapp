@@ -2,10 +2,8 @@
 <div class="right">
 
 <h2 class="admin_h2" id="user">トップページ<span></span></h2>
-{{foreach $cates as $k =>$v}}
- <a href='{{".view_list"|page_to_url|url:["category"=>$k]}}'>{{$v}}</a>&nbsp;&nbsp;&nbsp;
-{{/foreach}}
-<br/>
+
+{{inc route="/include/navi.html"}}
 NEW
 <table class="tbl_admin list">
     <tr>
@@ -36,7 +34,7 @@ NEW
 </table>
 
 
-ランキング
+<a href='{{".rank_view_list"|page_to_url}}'>ランキング</a>
 <table class="tbl_admin list">
     <tr>
         <th>順位</th>

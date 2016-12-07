@@ -20,7 +20,7 @@ class AdminPostMasterController extends Controller_App
         "search_page" => ".view_list",
         "search_table" => "Post",
         "fields" => array(
-            "freeword" => array("search"=>"word", "target_col"=>array("title","content","youtube_id",)),
+            "freeword" => array("search"=>"word", "target_col"=>array("title","content","description",)),
             "p" => array("search"=>"page", "volume"=>20),
             "order" => array("search"=>"sort", "default"=>"id@ASC"),
         ),

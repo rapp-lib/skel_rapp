@@ -3,17 +3,7 @@
 
 <h2 class="admin_h2" id="user">記事表示<span></span></h2>
 
-{{form action="."|page_to_url form=$forms.search}}
-    <div class="ad_btn clearfix">
-        <table class="tbl_admin search">
-            <tr>
-                <th>フリーワード検索</th>
-                <td>{{input name="freeword" type="text" size="40" class="input-text"}}</td>
-            </tr>
-        </table>
-        <a href="javascript:void(0);" onclick="$(this).parents('form').trigger('submit');" class="search"><i class="fa fa-search"></i>検索</a>
-    </div>
-{{/form}}
+{{inc route="/include/navi.html"}}
 
 <div class="ad_btn clearfix">
 </div>

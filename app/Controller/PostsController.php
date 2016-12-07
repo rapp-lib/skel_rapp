@@ -20,7 +20,7 @@ class PostsController extends Controller_App
         "search_page" => ".view_list",
         "search_table" => "Post",
         "fields" => array(
-            "freeword" => array("search"=>"word", "target_col"=>array("title","content","youtube_id",)),
+            "freeword" => array("search"=>"word", "target_col"=>array("title","content","description",)),
             "category" => array("search"=>"where", "target_col"=>"category"),
             "p" => array("search"=>"page", "volume"=>20),
             "order" => array("search"=>"sort", "default"=>"id@ASC"),
@@ -103,8 +103,18 @@ class PostsController extends Controller_App
         } elseif ($this->request["back"]) {
             $this->forms["search"]->restore();
         }
-        //report($this->request["cate_id"]);
-        $this->vars["ts"] = $this->forms["search"]->search()->select();
+
+        // GET値にカテゴリーIDが存在した場合
+        if ($this->request["category"]){
+
+            // カテゴリーを検索条件に追加
+            $this->forms["search"]["category"] =$this->request["category"];
+        }
+
+        $this->vars["ts"] = $this->forms["search"]
+            ->search()
+            ->findBy(array("draft_flg" =>1, "NOW() BETWEEN display_date AND display_end_date"))
+            ->select();
         report($this->vars["ts"]);
     }
 
