@@ -3,6 +3,7 @@
     // Webroot設定
     webroot("www")->setAttrs(array(
         "domain_name" => $_SERVER["SERVER_NAME"],
+        "is_secure" => false,
         "docroot_dir" => realpath(__DIR__),
         "webroot_url" => "",
     ));
