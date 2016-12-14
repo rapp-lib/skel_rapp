@@ -172,7 +172,6 @@ class Application extends Application_Base
             // Composer未対応クラスの互換読み込み処理
             spl_autoload_register("load_class");
             start_dync();
-            obj("Rdoc")->check();
         }
         // 終了処理
         set_error_handler(function($errno, $errstr, $errfile=null, $errline=null, $errcontext=null) {
