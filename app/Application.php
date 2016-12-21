@@ -60,8 +60,8 @@ class Application extends Application_Base
                 return;
             }
             $smarty = new \R\Lib\Smarty\SmartyExtended();
-            $smarty->assign($vars);
-            $html = $smarty->fetch((array)$this->response());
+            $smarty->assign((array)$this->response());
+            $html = $smarty->fetch($request_file);
             $this->response()->output(array(
                 "data" => $html,
                 "content_type" => "text/html; charset=utf-8",
