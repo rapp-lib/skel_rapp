@@ -13,7 +13,7 @@
     asset()->registerAssetsRoute(route("/.assets/lib/.assets.php"));
     asset()->registerAssetsRoute(route("/.assets/app/.assets.php"));
     // エラー時表示ファイルの設定
-    config(array("Config.error_document" =>array(
+    app()->config(array("Config.error_document" =>array(
         "404" =>route("/.assets/errors/404.php")->getFile(),
         "500" =>route("/.assets/errors/500.php")->getFile(),
     )));
