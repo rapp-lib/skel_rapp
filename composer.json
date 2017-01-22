@@ -2,22 +2,13 @@
     "name": "rapp-lib/skel_rapp",
     "type": "project",
     "require": {
-        "rapp-lib/rlib": "dev-master",
-        "monolog/monolog": "^1.22",
-        "phpmailer/phpmailer": "^5.2",
-        "vlucas/phpdotenv": "^2.4"
+        "rapp-lib/rlib": "dev-master-3.0"
     },
     "autoload": {
         "psr-4": {
             "R\\App\\": "app/"
         }
     },
-    "include-path":[
-        "app/",
-        "app/include/",
-        "app/controller/",
-        "app/list/"
-    ],
     "config": {
         "preferred-install": {
             "rapp-lib/*": "source"
