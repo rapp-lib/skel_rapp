@@ -1,17 +1,15 @@
 <?php
     require_once __DIR__."/../bootstrap.php";
-    app()->router()->getWebroot("www")->setConfig(array(
-        "domain_name" => $_SERVER["SERVER_NAME"],
-        "is_secure" => false,
-        "docroot_dir" => realpath(__DIR__),
-        "webroot_url" => "",
-    ));
-    app()->router()->setCurrent("www", "url:".$_SERVER['REQUEST_URI']);
-    app()->asset()->loadAssetCatalog(route("/.assets/lib/.assets.php"));
-    app()->asset()->loadAssetCatalog(route("/.assets/app/.assets.php"));
-    app()->config(array("Config.error_document" =>array(
-        "404" => route("/.assets/errors/404.php")->getFile(),
-        "500" => route("/.assets/errors/500.php")->getFile(),
-    )));
-    $response = app()->router()->invokeCurrentRoute();
-    $response->raise();
+    try {
+        ob_start();
+        $_SERVER["DOCUMENT_ROOT"] = realpath(__DIR__);
+        app_init('R\Lib\Core\Container\ConfigBasedApplication', array(
+            "config" => include(constant("R_APP_ROOT_DIR")."/config/config.php"),
+            "tags" => array("http","http-www"),
+        ));
+        $response = app()->exec();
+        $response->render();
+    } catch (R\Lib\Core\Exception\ResponseException $e) {
+        $response = $e->getResponse();
+        $response->render();
+    }

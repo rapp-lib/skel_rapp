@@ -1,5 +1,5 @@
 <?php
-    app()->config(array("DBI.connection.default" =>array(
+    return array("DBI.connection.default" =>array(
         'driver' => 'mysql',
         'encoding' => 'utf8',
         'persistent' => true,
@@ -8,4 +8,4 @@
         'database' => 'test',
         'login' => 'dev',
         'password' => 'pass',
-    )));
+    ));
