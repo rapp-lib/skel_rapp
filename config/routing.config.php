@@ -1,4 +1,3 @@
 <?php
-    app()->router->getWebroot("www")->addRouting(array(
-        "service.file" => "/file:/*",
+    return array("router.webroot.www.routing"=>array(
     ));

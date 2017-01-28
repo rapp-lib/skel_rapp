@@ -1,11 +1,11 @@
 <?php
 namespace R\App\Controller;
 
-use R\Lib\Webapp\Controller_Base;
+use R\Lib\Controller\HttpController;
 
 /**
  * 親Controller
  */
-class Controller_App extends Controller_Base
+class Controller_App extends HttpController
 {
 }
