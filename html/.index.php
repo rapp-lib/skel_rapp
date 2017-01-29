@@ -7,7 +7,7 @@
             "config" => include(constant("R_APP_ROOT_DIR")."/config/config.php"),
             "tags" => array("http","http-www"),
         ));
-        $response = app()->exec();
+        $response = app()->router->execCurrentRoute();
         $response->render();
     } catch (R\Lib\Core\Exception\ResponseException $e) {
         $response = $e->getResponse();
