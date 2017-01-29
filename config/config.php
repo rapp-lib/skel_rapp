@@ -31,7 +31,7 @@
                         "domain_name" => app()->env("WEBROOT_WWW_DOMAIN", $_SERVER["SERVER_NAME"]),
                         "is_secure" => app()->env("WEBROOT_WWW_SECURE", $_SERVER["HTTPS"]),
                         "docroot_dir" => app()->env("WEBROOT_WWW_DOCROOT_DIR", $_SERVER["DOCUMENT_ROOT"]),
-                        "webroot_url" => app()->env("WEBROOT_WWW_WEBROOT_URL", ""),
+                        "webroot_url" => app()->env("WEBROOT_WWW_WEBROOT_URL", "/blog"),
                     ),
                     "router.webroot.www.routing" => array(),
                 );
