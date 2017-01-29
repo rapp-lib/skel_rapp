@@ -9,37 +9,38 @@
             ),
         ),
         "config" => array(
-            array(
-                "debug.dev_cidr" => "0.0.0.0/0",
-                "debug.level" => 1,
-                "builder.overwrite" => false,
-            ),
-            array(
-                "router.webroot.www.config" => array(
-                    "domain_name" => $_SERVER["SERVER_NAME"],
-                    "is_secure" => $_SERVER["HTTPS"],
-                    "docroot_dir" => $_SERVER["DOCUMENT_ROOT"],
-                    "webroot_url" => "",
-                ),
-                "router.webroot.www.routing" => array(),
-            ),
+            function () {
+                return array(
+                    // Debug
+                    "debug.dev_cidr" => app()->env("DEBUG_DEV_CIDR", "0.0.0.0/0"),
+                    "debug.level" => app()->env("DEBUG_LEVEL", false),
+                    "builder.overwrite" =>  app()->env("BUILDER_OVERWRITE", false),
+                    // DB
+                    'db.connection.default' => array(
+                        'driver' => 'mysql',
+                        'encoding' => 'utf8',
+                        'persistent' => false,
+                        'prefix' => '',
+                        'host' => app()->env("DB_DEFAULT_HOST", "localhost"),
+                        'database' => app()->env("DB_DEFAULT_DBNAME", "test"),
+                        'login' => app()->env("DB_DEFAULT_USER", "dev"),
+                        'password' => app()->env("DB_DEFAULT_PASS", "pass"),
+                    ),
+                    // Webroot
+                    "router.webroot.www.config" => array(
+                        "domain_name" => app()->env("WEBROOT_WWW_DOMAIN", $_SERVER["SERVER_NAME"]),
+                        "is_secure" => app()->env("WEBROOT_WWW_SECURE", $_SERVER["HTTPS"]),
+                        "docroot_dir" => app()->env("WEBROOT_WWW_DOCROOT_DIR", $_SERVER["DOCUMENT_ROOT"]),
+                        "webroot_url" => app()->env("WEBROOT_WWW_WEBROOT_URL", ""),
+                    ),
+                    "router.webroot.www.routing" => array(),
+                );
+            },
             include(__DIR__."/routing.config.php"),
-            include(__DIR__."/db.config.php"),
-            include(__DIR__."/env.config.php"),
-        ),
-        "config:http-www" => array(
-            array(
-                "router.current_webroot" => "www",
-                "router.current_url" => $_SERVER['REQUEST_URI'],
-                "asset.catalogs" => array(
-                    "/.assets/lib/.assets.php",
-                    "/.assets/app/.assets.php",
-                ),
-            ),
         ),
         "config:http" => array(
             array(
-                "controller.middleware" => array(
+                "router.middleware" => array(
                     "auth" => function () {
                         return true;
                     },
@@ -56,11 +57,16 @@
                         return preg_match('!(\.html|/)$!',$file);
                     },
                 ),
-                "app.exec" => function () {
-                    $route = app()->router->getCurrentRoute();
-                    $response = $route->getController()->exec();
-                    return $response;
-                },
+            ),
+        ),
+        "config:http-www" => array(
+            array(
+                "router.current_webroot" => "www",
+                "router.current_url" => $_SERVER['REQUEST_URI'],
+                "asset.catalogs" => array(
+                    "/.assets/lib/.assets.php",
+                    "/.assets/app/.assets.php",
+                ),
             ),
         ),
     );
