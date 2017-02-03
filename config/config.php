@@ -69,4 +69,13 @@
                 ),
             ),
         ),
+        "config:console-rexe" => array(
+            array(
+                "debug.level" => true,
+                "console.command" => array(
+                    "schema" => 'R\Lib\Console\Command\SchemaCommand',
+                    "build" => 'R\Lib\Console\Command\BuildCommand',
+                ),
+            ),
+        ),
     );
