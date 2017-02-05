@@ -14,7 +14,6 @@
                     // Debug
                     "debug.dev_cidr" => app()->env("DEBUG_DEV_CIDR", "0.0.0.0/0"),
                     "debug.level" => app()->env("DEBUG_LEVEL", false),
-                    "builder.overwrite" =>  app()->env("BUILDER_OVERWRITE", false),
                     // DB
                     'db.connection.default' => array(
                         'driver' => 'mysql',

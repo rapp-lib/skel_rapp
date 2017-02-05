@@ -1,11 +1,11 @@
 # -- キャッシュやアップロードデータなど
-/tmp/*
+/tmp/
 
 # -- 環境別設定
 /.env
 
 # -- Composerの展開先
-/vendor/*
+/vendor/
 
 # -- 削除予定ファイル
 *_DELETE
