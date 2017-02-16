@@ -286,16 +286,16 @@
         },
         {
             "name": "doctrine/dbal",
-            "version": "v2.5.11",
+            "version": "v2.5.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/dbal.git",
-                "reference": "1b1effbddbdc0f40d1c8f849f44bcddac4f52a48"
+                "reference": "7b9e911f9d8b30d43b96853dab26898c710d8f44"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/dbal/zipball/1b1effbddbdc0f40d1c8f849f44bcddac4f52a48",
-                "reference": "1b1effbddbdc0f40d1c8f849f44bcddac4f52a48",
+                "url": "https://api.github.com/repos/doctrine/dbal/zipball/7b9e911f9d8b30d43b96853dab26898c710d8f44",
+                "reference": "7b9e911f9d8b30d43b96853dab26898c710d8f44",
                 "shasum": ""
             },
             "require": {
@@ -353,7 +353,7 @@
                 "persistence",
                 "queryobject"
             ],
-            "time": "2017-02-04 21:20:13"
+            "time": "2017-02-08 12:53:47"
         },
         {
             "name": "doctrine/inflector",
@@ -667,12 +667,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/rapp-lib/rlib.git",
-                "reference": "c6d3fcd8034f9a859ca11c74fe4800edb91ce17e"
+                "reference": "1b5e6fc02e0c0a03fbea3c983c3d3e95ee649e85"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rapp-lib/rlib/zipball/c6d3fcd8034f9a859ca11c74fe4800edb91ce17e",
-                "reference": "c6d3fcd8034f9a859ca11c74fe4800edb91ce17e",
+                "url": "https://api.github.com/repos/rapp-lib/rlib/zipball/1b5e6fc02e0c0a03fbea3c983c3d3e95ee649e85",
+                "reference": "1b5e6fc02e0c0a03fbea3c983c3d3e95ee649e85",
                 "shasum": ""
             },
             "require": {
@@ -696,7 +696,7 @@
                 "MIT"
             ],
             "description": "Simple webapp library",
-            "time": "2017-02-06 13:25:59"
+            "time": "2017-02-16 17:18:54"
         },
         {
             "name": "smarty/smarty",
