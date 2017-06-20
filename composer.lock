@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "1e83ba2f7d5011b5aaa6ba8e704453f0",
-    "content-hash": "bfbff01e990c5d3f50aaebae99045506",
+    "hash": "c13354c933ce7f4de38dac266ab61ca6",
+    "content-hash": "afa64932fed3b03e89348e76f23b485d",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -478,16 +478,16 @@
         },
         {
             "name": "monolog/monolog",
-            "version": "1.22.1",
+            "version": "1.23.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Seldaek/monolog.git",
-                "reference": "1e044bc4b34e91743943479f1be7a1d5eb93add0"
+                "reference": "fd8c787753b3a2ad11bc60c063cff1358a32a3b4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/1e044bc4b34e91743943479f1be7a1d5eb93add0",
-                "reference": "1e044bc4b34e91743943479f1be7a1d5eb93add0",
+                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/fd8c787753b3a2ad11bc60c063cff1358a32a3b4",
+                "reference": "fd8c787753b3a2ad11bc60c063cff1358a32a3b4",
                 "shasum": ""
             },
             "require": {
@@ -508,7 +508,7 @@
                 "phpunit/phpunit-mock-objects": "2.3.0",
                 "ruflin/elastica": ">=0.90 <3.0",
                 "sentry/sentry": "^0.13",
-                "swiftmailer/swiftmailer": "~5.3"
+                "swiftmailer/swiftmailer": "^5.3|^6.0"
             },
             "suggest": {
                 "aws/aws-sdk-php": "Allow sending log messages to AWS services like DynamoDB",
@@ -552,7 +552,7 @@
                 "logging",
                 "psr-3"
             ],
-            "time": "2017-03-13 07:08:03"
+            "time": "2017-06-19 01:22:40"
         },
         {
             "name": "phpmailer/phpmailer",
@@ -679,16 +679,16 @@
         },
         {
             "name": "rapp-lib/rlib",
-            "version": "dev-master-3.0",
+            "version": "dev-master-3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/rapp-lib/rlib.git",
-                "reference": "fd066c76082d2a6adf735d78080f21e419cbf981"
+                "reference": "fd53bff0bd593f0df040dcbb1d45f8acfb4ce8e4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rapp-lib/rlib/zipball/fd066c76082d2a6adf735d78080f21e419cbf981",
-                "reference": "fd066c76082d2a6adf735d78080f21e419cbf981",
+                "url": "https://api.github.com/repos/rapp-lib/rlib/zipball/fd53bff0bd593f0df040dcbb1d45f8acfb4ce8e4",
+                "reference": "fd53bff0bd593f0df040dcbb1d45f8acfb4ce8e4",
                 "shasum": ""
             },
             "require": {
@@ -712,7 +712,7 @@
                 "MIT"
             ],
             "description": "Simple webapp library",
-            "time": "2017-03-30 03:28:19"
+            "time": "2017-06-19 10:45:55"
         },
         {
             "name": "smarty/smarty",

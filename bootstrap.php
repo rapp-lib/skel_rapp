@@ -1,6 +1,21 @@
 <?php
     require_once __DIR__."/vendor/autoload.php";
-    define("R_APP_ROOT_DIR", __DIR__);
-    define("R_APP_ENV_FILE", __DIR__."/.env");
+
+    ob_start();
+
     ini_set("display_errors", false);
-    error_reporting(E_ALL&~E_NOTICE&~E_STRICT&~E_DEPRECATED);
+    ini_set("error_reporting", E_ALL&~E_NOTICE&~E_STRICT&~E_DEPRECATED);
+    ini_set("date.timezone", "Asia/Tokyo");
+    ini_set("mbstring.encoding_translation", false);
+    ini_set("auto_detect_line_endings", true);
+    ini_set("session.use_trans_sid", false);
+    ini_set("session.gc_maxlifetime", 86400);
+    ini_set("session.cookie_lifetime", 86400);
+
+    define("R_APP_ROOT_DIR", __DIR__);
+
+    if (isset($_SERVER)) {
+        if (substr($_SERVER['SCRIPT_FILENAME'], -strlen($_SERVER['SCRIPT_NAME'])) === $_SERVER['SCRIPT_NAME']) {
+            $_SERVER["DOCUMENT_ROOT"] = substr($_SERVER['SCRIPT_FILENAME'], 0, -strlen($_SERVER['SCRIPT_NAME']));
+        }
+    }
