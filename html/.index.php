@@ -8,8 +8,9 @@
         $app->log->registerReportHandler();
     }
     $app->error->onError(function($message, $params, $error_options)use($app){
-        $app->response->error("", 500)->render();
+        $response = $app->response->error("", 500);
+        $app->response->respond($response);
     });
     $app->router->setCurrentRoute("www", $_SERVER['REQUEST_URI']);
     $response = $app->router->execCurrentRoute();
-    $response->render();
+    $app->response->respond($response);
