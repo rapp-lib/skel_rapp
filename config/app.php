@@ -1,12 +1,5 @@
 <?php
-    $app = new R\Lib\Core\Container\ConfigBasedApplication(array(
-        "provider" => array(
-        ),
-        "contract" => array(
-        ),
-        "middleware" => array(
-        ),
-    ));
+    $app = new R\Lib\Core\Container\ConfigBasedApplication();
     $app->config(array(
         // Debug
         "debug.dev_cidr" => $app->env("DEBUG_DEV_CIDR", "0.0.0.0/0"),
@@ -22,41 +15,38 @@
             'login' => $app->env("DB_DEFAULT_USER", "dev"),
             'password' => $app->env("DB_DEFAULT_PASS", "pass"),
         ),
-        // Webroot
-        "router.webroot.www.config" => array(
-            "domain_name" => $app->env("WEBROOT_WWW_DOMAIN", $_SERVER["SERVER_NAME"]),
-            "is_secure" => $app->env("WEBROOT_WWW_SECURE", $_SERVER["HTTPS"]),
-            "docroot_dir" => $app->env("WEBROOT_WWW_DOCROOT_DIR", $_SERVER["DOCUMENT_ROOT"]),
-            "webroot_url" => $app->env("WEBROOT_WWW_WEBROOT_URL", ""),
-        ),
-        "router.webroot.www.routing" => array(),
-        "router.webroot.www.asset" => array(
-            "catalogs" => array(
-                "/.assets/lib/.assets.php",
-                "/.assets/app/.assets.php",
-            ),
-        ),
-        "router.webroot.www.middleware" => array(
-            "auth" => function ($app) {
-                return true;
-            },
-            "stored_file_service" => function ($app) {
-                $path = $app->router->getCurrentRoute()->getPath();
-                return preg_match('!^/file:!',$path);
-            },
-            "json_response_fallback" => function ($app) {
-                $file = $app->router->getCurrentRoute()->getFile();
-                return preg_match('!\.json$!',$file);
-            },
-            "view_response_fallback" => function ($app) {
-                $file = $app->router->getCurrentRoute()->getFile();
-                return preg_match('!(\.html|/)$!',$file);
-            },
-        ),
         // Console
         "console.rexe.command" => array(
             "schema" => 'R\Lib\Console\Command\SchemaCommand',
             "build" => 'R\Lib\Console\Command\BuildCommand',
+        ),
+    ));
+    $app->config(array(
+        "http.webroots.www" => array(
+            "base_uri"=>"",
+            "middlewares"=>array(
+                351 => function($request, $next) {
+                    // StoredFileRequestIntercepter
+                    $path = $request->getUri()->getPagePath();
+                    if (preg_match('!^/file:!',$path)) {
+                        $code = preg_replace('!^/file:/!','',$path);
+                        return app()->response->downloadStoredFile(file_storage()->get($code));
+                    }
+                    return $next($request);
+                },
+                550 => function($request, $next) {
+                    // PrivRequiredFirewall
+                    $priv_required = $request->getUri()->getPageAction()->getController()->getPrivRequired();
+                    if ($response = app()->auth()->requirePriv($priv_required)) {
+                        return $response;
+                    }
+                    return $next($request);
+                },
+            ),
+            "assets_catalog_uris"=>array(
+                "path://.assets/lib/.assets.php",
+                "path://.assets/app/.assets.php",
+            ),
         ),
     ));
     $app->config(include(__DIR__."/routing.config.php"));
