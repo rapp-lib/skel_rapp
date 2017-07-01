@@ -6,8 +6,9 @@ RewriteBase /
 # -- / HTTPD Config
 
 # -- Webapp Routing
-RewriteCond %{REQUEST_URI} (\.html?|\.json|/|^|^/[^:/]+:/.*)$
-RewriteRule ^(.*)$ /.index.php [L]
+RewriteCond %{REQUEST_FILENAME} !-f [OR]
+RewriteCond %{REQUEST_URI} \.html$
+RewriteRule .* /.index.php [L]
 # --
 
 # -- Access Deny

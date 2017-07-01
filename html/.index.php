@@ -1,11 +1,12 @@
 <?php
+    ini_set("display_errors", false);
+    ob_start();
     require_once __DIR__."/../bootstrap.php";
 
     $app = include(constant("R_APP_ROOT_DIR")."/config/app.php");
-    $app->log->listenPhpError();
-    $app->error->listenPhpError();
+    $app->report->listenPhpError();
     if ($app->debug()) {
-        $app->log->registerReportHandler();
+        $app->report->enableDebugReport();
     }
     try {
         $request = $app->http->serve("www");
