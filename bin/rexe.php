@@ -4,5 +4,5 @@
 
     $app = include(constant("R_APP_ROOT_DIR")."/config/app.php");
     $app->report->listenPhpError();
-    $app->report->enableDebugReport();
+    $app->debug->setDebugLevel(1);
     $app->console->execCurrentCommand("rexe");

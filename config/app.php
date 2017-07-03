@@ -1,21 +1,18 @@
 <?php
     $app = new R\Lib\Core\Container\ConfigBasedApplication();
     $app->config(array(
-        // Debug
-        "debug.dev_cidr" => $app->env("DEBUG_DEV_CIDR", "0.0.0.0/0"),
-        "debug.level" => $app->env("DEBUG_LEVEL", false),
-        // DB
         'db.connection.default' => array(
             'driver' => 'mysql',
             'encoding' => 'utf8',
             'persistent' => false,
             'prefix' => '',
-            'host' => $app->env("DB_DEFAULT_HOST", "127.0.0.1"),
-            'database' => $app->env("DB_DEFAULT_DBNAME", "test"),
-            'login' => $app->env("DB_DEFAULT_USER", "dev"),
-            'password' => $app->env("DB_DEFAULT_PASS", "pass"),
+            'host' => "127.0.0.1",
+            'database' => "test",
+            'login' => "dev",
+            'password' => "pass",
         ),
-        // Console
+    ));
+    $app->config(array(
         "console.rexe.command" => array(
             "schema" => 'R\Lib\Console\Command\SchemaCommand',
             "build" => 'R\Lib\Console\Command\BuildCommand',
@@ -23,14 +20,21 @@
     ));
     $app->config(array(
         "http.webroots.www" => array(
-            "base_uri"=>"",
-            "middlewares"=>array(
-                351 => function($request, $next) {
-                    // StoredFileRequestIntercepter
+            "base_uri" => "",
+            "middlewares" => array(
+                150 => function($request, $next) {
+                    // PhpSessionStart
+                    app()->session->start();
+                    $response = $next($request);
+                    app()->session->end();
+                    return $response;
+                },
+                250 => function($request, $next) {
+                    // StoredFileRequestInterceptor
                     $path = $request->getUri()->getPagePath();
                     if (preg_match('!^/file:!',$path)) {
                         $code = preg_replace('!^/file:/!','',$path);
-                        return app()->response->downloadStoredFile(file_storage()->get($code));
+                        return app()->file_storage->get($code)->getResponse();
                     }
                     return $next($request);
                 },
@@ -50,5 +54,9 @@
         ),
     ));
     $app->config(include(__DIR__."/routing.config.php"));
+    if ($app->env("APP_ENV")==="develop") {
+        //$app->debug->setDebugLevel(1);
+        //$app->config->set('db.connection.default.database', "test_dev");
+    }
     app_set($app);
     return $app;

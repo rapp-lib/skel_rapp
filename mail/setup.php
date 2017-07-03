@@ -1,5 +1,5 @@
 <?php
-    $mail->assign("admin_mail","ikezawa@sharingseed.co.jp");
+    $mail->assign("admin_mail","info@example.com");
     /*
     $mail->smtp(array(
         "auth" => true,
