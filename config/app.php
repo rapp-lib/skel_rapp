@@ -11,11 +11,20 @@
             'login' => "dev",
             'password' => "pass",
         ),
-    ));
-    $app->config(array(
-        "console.rexe.command" => array(
-            "schema" => 'R\Lib\Console\Command\SchemaCommand',
-            "build" => 'R\Lib\Console\Command\BuildCommand',
+        'cache.connection.default' => array(
+            'adapter' => array(
+                'name'    => 'apc',
+                'options' => array('ttl' => 3600),
+            ),
+            'plugins' => array(
+                'exception_handler' => array('throw_exceptions' => false),
+            ),
+        ),
+        'session.manager.default' => array(
+            'storage.class' => 'Zend\Session\Storage\SessionArrayStorage',
+            'config.class' => 'Zend\Session\Config\SessionConfig',
+            'config.options' => array(
+            ),
         ),
     ));
     $app->config(array(
@@ -23,11 +32,9 @@
             "base_uri" => "",
             "middlewares" => array(
                 150 => function($request, $next) {
-                    // PhpSessionStart
+                    // SessionStart
                     app()->session->start();
-                    $response = $next($request);
-                    app()->session->end();
-                    return $response;
+                    return $next($request);
                 },
                 250 => function($request, $next) {
                     // StoredFileRequestInterceptor
