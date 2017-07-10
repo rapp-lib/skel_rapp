@@ -41,4 +41,39 @@
             'config.options' => array(
             ),
         ),
+        "file.storages" => array(
+            "public" => array(
+                "uri_parser" => function($storage, $uri) {
+                    $params = app()->http->webroot("www")->uri($uri)->getEmbedParams();
+                    return $params["storage"] == $storage->getName() ? $params : false;
+                },
+                "params_filter" => function($storage, $params) {
+                    $params["tmp_dir"] = constant("R_APP_ROOT_DIR")."/tmp";
+                    $params["base_uri"] = app()->http->webroot("www")->getBaseUri();
+                    $params["rand"] = md5(mt_rand());
+                    $params["date"] = date("Y/m/d");
+                    return $params;
+                },
+                "id" => "{date}/{rand}/{filename}",
+                "source" => "{tmp_dir}/file/{storage}/{id}",
+                "uri" => "{base_uri}/.file/{storage}/{id}",
+            ),
+            "tmp" => array(
+                "uri_parser" => function($storage, $uri) {
+                    if (preg_match('!^file://([^/]+)/(.+)$!', $uri, $_) && $_[1]===$storage->getName()) {
+                        return array("id"=>$_[2]);
+                    }
+                    return false;
+                },
+                "params_filter" => function($storage, $params) {
+                    $params["tmp_dir"] = constant("R_APP_ROOT_DIR")."/tmp";
+                    $params["rand"] = md5(mt_rand());
+                    $params["session_id"] = app()->session->getId();
+                    return $params;
+                },
+                "id" => "{rand}/{filename}",
+                "source" => "{tmp_dir}/file/{storage}/{session_id}/{id}",
+                "uri" => "file://{storage}/{id}",
+            ),
+        ),
     );

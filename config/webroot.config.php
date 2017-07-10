@@ -2,6 +2,9 @@
     return array(
         "http.webroots.www" => array(
             "base_uri" => "",
+            "routes" => array(
+                array("file.index", "/.file/{storage}/{id:.+}"),
+            ),
             "middlewares" => array(
                 150 => function($request, $next) {
                     // SessionStart
