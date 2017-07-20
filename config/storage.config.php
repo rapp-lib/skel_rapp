@@ -1,13 +1,12 @@
 <?php
     return array(
         'db.connection.default' => array(
-            'driver' => 'mysql',
+            'driver' => 'pdo_mysql',
             'encoding' => 'utf8',
             'persistent' => false,
-            'prefix' => '',
             'host' => "127.0.0.1",
-            'database' => "test",
-            'login' => "dev",
+            'dbname' => "test",
+            'user' => "dev",
             'password' => "pass",
         ),
         'cache.connection.default' => array(
@@ -49,7 +48,7 @@
                 },
                 "params_filter" => function($storage, $params) {
                     $params["tmp_dir"] = constant("R_APP_ROOT_DIR")."/tmp";
-                    $params["base_uri"] = app()->http->webroot("www")->getBaseUri();
+                    $params["base_uri"] = app()->http->webroot("www")->getBaseUri()->withoutAuthority();
                     $params["rand"] = md5(mt_rand());
                     $params["date"] = date("Y/m/d");
                     return $params;
