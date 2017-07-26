@@ -3,7 +3,8 @@
     "type": "project",
     "require": {
         "rapp-lib/rlib": "dev-master-4.x",
-        "rapp-lib/middleman": "dev-master"
+        "rapp-lib/middleman": "@dev",
+        "rapp-lib/zend-diactoros": "@dev"
     },
     "autoload": {
         "psr-4": {
@@ -13,6 +14,9 @@
     "config": {
         "preferred-install": {
             "rapp-lib/*": "source"
+        },
+        "platform": {
+            "php": "5.3.23"
         }
     }
 }
