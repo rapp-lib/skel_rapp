@@ -120,7 +120,7 @@ h3 { margin-bottom:10px; font-size:16px; }
 .ad_btn a.create        { float:left; margin-right:10px; }
 .ad_btn a.export        { float:right; }
 .ad_btn a.import        { float:right; margin-right:10px; }
-.ad_btn a.search        { float:right; margin-top:10px; }
+.ad_btn a.search        { float:right; margin-top:10px; margin-left: 10px; }
 .ad_btn a.create:hover        { background:#d6674d; }
 .ad_btn a.export:hover        { background:#52834e; }
 .ad_btn a.import:hover        { background:#588faf; }
