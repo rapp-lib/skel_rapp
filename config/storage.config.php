@@ -43,8 +43,12 @@
         "file.storages" => array(
             "public" => array(
                 "uri_parser" => function($storage, $uri) {
-                    $params = app()->http->webroot("www")->uri($uri)->getEmbedParams();
-                    return $params["storage"] == $storage->getName() ? $params : false;
+                    try {
+                        $params = app()->http->webroot("www")->uri($uri)->getEmbedParams();
+                        return $params["storage"] == $storage->getName() ? $params : false;
+                    } catch (\InvalidArgumentException $e) {
+                        return false;
+                    }
                 },
                 "params_filter" => function($storage, $params) {
                     $params["tmp_dir"] = constant("R_APP_ROOT_DIR")."/tmp";
