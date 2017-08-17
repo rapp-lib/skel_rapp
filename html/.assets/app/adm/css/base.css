@@ -214,3 +214,13 @@ header.mmb .m-con { width:1000px; margin:auto; position:relative; }
     background: #405094 none repeat scroll 0% 0%;
     cursor:pointer;
 }
+
+.sort-not-selected:after {
+    content: "▽";
+}
+.sort-selected:after {
+    content: "▼";
+}
+.sort-reverse-selected:after {
+    content: "▲";
+}
