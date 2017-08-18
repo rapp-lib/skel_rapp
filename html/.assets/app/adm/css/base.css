@@ -215,12 +215,8 @@ header.mmb .m-con { width:1000px; margin:auto; position:relative; }
     cursor:pointer;
 }
 
-.sort-not-selected:after {
-    content: "▽";
-}
-.sort-selected:after {
-    content: "▼";
-}
-.sort-reverse-selected:after {
-    content: "▲";
-}
+.sort { cursor: hand; }
+.sort.selected.asc:after { content: "▼"; }
+.sort.selected.desc:after { content: "▲"; }
+.sort.not-selected.asc:after { content: "▽"; }
+.sort.not-selected.desc:after { content: "△"; }
