@@ -2,7 +2,7 @@
     return array(
         'db.connection.default' => array(
             'driver' => 'pdo_mysql',
-            'encoding' => 'utf8',
+            'charset' => 'utf8',
             'persistent' => false,
             'host' => "127.0.0.1",
             'dbname' => "test",
