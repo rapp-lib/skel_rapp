@@ -115,18 +115,18 @@ h3 { margin-bottom:10px; font-size:16px; }
     -- .ad_btn
 */
 .ad_btn { margin-bottom:20px; }
-.ad_btn a { display:inline-block; padding:5px 20px; border-radius:20px; background:#C8B380; color:#fff; text-decoration:none; }
-.ad_btn a:hover { color:#fff; }
-.ad_btn a.create        { float:left; margin-right:10px; }
-.ad_btn a.export        { float:right; }
-.ad_btn a.import        { float:right; margin-right:10px; }
-.ad_btn a.search        { float:right; margin-top:10px; margin-left: 10px; }
-.ad_btn a.create:hover        { background:#d6674d; }
-.ad_btn a.export:hover        { background:#52834e; }
-.ad_btn a.import:hover        { background:#588faf; }
-.ad_btn a.search:hover        { background:#588faf; }
-.ad_btn #login,.ad_btn #submit { background:#006eb9; }
-.ad_btn #login:hover,.ad_btn #submit:hover { background:#405094; }
+.ad_btn a, .ad_btn button { display:inline-block; padding:5px 20px; border-radius:20px; background:#C8B380; color:#fff; text-decoration:none; }
+.ad_btn a:hover, .ad_btn button:hover { color:#fff; }
+.ad_btn .login         { background:#006eb9; }
+.ad_btn .create        { float:left; margin-right:10px; }
+.ad_btn .export        { float:right; }
+.ad_btn .import        { float:right; margin-right:10px; }
+.ad_btn .search        { float:right; margin-top:10px; margin-left: 10px; }
+.ad_btn .create:hover        { background:#d6674d; }
+.ad_btn .export:hover        { background:#52834e; }
+.ad_btn .import:hover        { background:#588faf; }
+.ad_btn .search:hover        { background:#588faf; }
+.ad_btn .login:hover         { background:#405094; }
 .ad_btn i { vertical-align:1px; margin-right:10px; }
 
 /*
