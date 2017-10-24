@@ -1,5 +1,5 @@
 <?php
-    $app = new R\Lib\Core\Container\ConfigBasedApplication();
+    $app = new R\Lib\Core\AppContainer();
     $app->config(include(__DIR__."/storage.config.php"));
     $app->config(include(__DIR__."/webroot.config.php"));
     $app->config(include(__DIR__."/routing.config.php"));
