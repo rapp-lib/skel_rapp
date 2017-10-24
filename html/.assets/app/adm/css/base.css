@@ -116,6 +116,7 @@ h3 { margin-bottom:10px; font-size:16px; }
 */
 .ad_btn { margin-bottom:20px; }
 .ad_btn a, .ad_btn button { display:inline-block; padding:5px 20px; border-radius:20px; background:#C8B380; color:#fff; text-decoration:none; }
+.ad_btn a, .ad_btn button { line-height: normal; border: 1px none #b3b3b3; }
 .ad_btn a:hover, .ad_btn button:hover { color:#fff; }
 .ad_btn .login         { background:#006eb9; }
 .ad_btn .create        { float:left; margin-right:10px; }
