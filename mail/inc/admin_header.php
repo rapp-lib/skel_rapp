@@ -1,2 +1,2 @@
 <?php
-    $mail->load("common.php");
+    $mail->load("inc/common.php");
