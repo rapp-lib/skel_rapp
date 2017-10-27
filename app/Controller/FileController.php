@@ -4,7 +4,7 @@ namespace R\App\Controller;
 /**
  * @controller
  */
-class FileController extends Controller_Guest
+class FileController extends Controller_App
 {
     private $mimes = array(
         "pdf" => "application/pdf",
@@ -23,9 +23,7 @@ class FileController extends Controller_Guest
         $file = app()->file->getFileByUri($uri);
         $stream = $file ? $file->getSource() : null;
         $stream = file_exists($stream) ? $stream : null;
-        if ( ! $stream) {
-            return app()->http->response("notfound");
-        }
+        if ( ! $stream) return app()->http->response("notfound");
         $headers = array();
         $ext = preg_match('!\.([^\.]+)$!', $stream, $m) ? strtolower($m[1]) : "";
         $headers["content-type"] = $this->mimes[$ext] ?: "application/octet-stream";
