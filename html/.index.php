@@ -7,7 +7,7 @@
     $app->report->listenPhpError();
     try {
         $response = $app->http->serve("www", function($request){
-            return $request->getUri()->getPageAction()->run($request);
+            return $request->getUri()->getPageController()->run($request);
         });
     } catch (\Exception $e) {
         $app->report->logException($e);
