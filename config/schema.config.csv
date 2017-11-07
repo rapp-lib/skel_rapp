@@ -2,7 +2,7 @@
 ,Staff,,スタッフ,,,,,,,,,def.table_name=StaffMaster
 ,,name,氏名,text,text,TRUE,,,,,,
 ,,mail,メール,text,text,TRUE,mail,,,,,def.login_id=true | def.mail=true
-,,login_pw,パスワード,text,password,TRUE,,,,,,def.login_pw=true | def.hash_pw=true
+,,login_pw,パスワード,text,password,,,,,,,"def.login_pw=true | def.hash_pw=true | rules.required={""if"":{""id"":false}}"
 ,,sex,性別,integer,,,,,,,,"enum_values={""1"":""男性"",""2"":""女性""}"
 ,,tel,電話番号,,text,,,20,,,,"def.assoc.table=StaffTel | def.assoc.extra_values={""type"":1} | def.assoc.single=true | def.assoc.value_col=tel"
 ,,photos,写真,,assoc,,,,,,,def.assoc.table=StaffPhoto
@@ -10,14 +10,14 @@
 ,,reg_date,登録日時,datetime,,,,,,,,def.reg_date=true
 ,,del_flg,削除フラグ,integer,,,,,,0,visible,def.del_flg=true
 ,StaffTel,,スタッフ電話番号,,,,,,,,,
-,,staff_id,スタッフID,integer,select,TRUE,,,Staff,,staff,
+,,staff_id,スタッフID,integer,,,,,Staff,,staff,
 ,,type,区分,integer,select,TRUE,,,,,,"enum_values={""1"":""通常"",""2"":""予備""}"
 ,,tel,電話番号,text,text,TRUE,,,,,,
 ,,id,ID,integer,,,,,,,,def.id=true | def.autoincrement=true
 ,,reg_date,登録日時,datetime,,,,,,,,def.reg_date=true
 ,,del_flg,削除フラグ,integer,,,,,,0,visible,def.del_flg=true
 ,StaffPhoto,,スタッフ写真,,,,,,,,,
-,,staff_id,スタッフID,integer,select,TRUE,,,Staff,,staff,
+,,staff_id,スタッフID,integer,,,,,Staff,,staff,
 ,,photo_img,写真画像,text,file,TRUE,,,,,,
 ,,comment,コメント,text,textarea,,,,,,,
 ,,id,ID,integer,,,,,,,,def.id=true | def.autoincrement=true
