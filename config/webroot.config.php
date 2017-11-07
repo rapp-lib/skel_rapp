@@ -23,6 +23,16 @@
                     $role = $request->getUri()->getPageAuth()->getRole();
                     return app()->user->firewall($role, $request, $next);
                 },
+                360 => function($request, $next) {
+                    // CsrfTokenCheck
+                    if ($request->getUri()->getRouteParam("csrf_check")) {
+                        $input = $request->getAttribute(R\Lib\Http\InputValues::ATTRIBUTE_INDEX);
+                        if ($input[app()->security->getCsrfTokenName()] != app()->security->getCsrfToken()) {
+                            return app()->http->response("forbidden");
+                        }
+                    }
+                    return $next($request);
+                },
             ),
             "assets_catalog_uris"=>array(
                 "path://.assets/lib/.assets.php",
