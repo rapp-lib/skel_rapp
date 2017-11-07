@@ -91,9 +91,6 @@ textarea { width:100%; box-sizing:border-box; height:10em; }
 .tbl th,.tbl td { padding:3px 5px; }
 .tbl th { border:1px solid #ad9864; background:#c8b380; font-weight:normal; }
 .tbl td { border:1px solid #cacaca; }
-.tbl i { line-height:25px; }
-.tbl i.fa-check-circle { color:#049708; }
-.tbl i.fa-minus-circle { color:#999; }
 /* 一覧テーブル */
 .tbl.list { text-align:center; }
 .tbl.list tr:nth-child(even) { background-color:#ebe9e8; }
@@ -113,9 +110,8 @@ textarea { width:100%; box-sizing:border-box; height:10em; }
 .pager ul { height:32px; margin:0; padding:0; }
 .pager li { display:inline-block; width:33px; height:30px; margin:0 8px; }
 .pager a { display:block; line-height:30px; font-size:16px; text-decoration:none;
-    background:#eb29e8; border:1px solid #ccc; }
-.pager .prev a, .pager .next a { color:#666; }
-.pager .current a, .pager a:hover { background:#006eb9; color:#fff; border-color:#006eb9; }
+    background:#ebe9e8 ; border:1px solid #ccc; color:#666; }
+.pager .current a, .pager a:hover { background:#006eb9 ; color:#fff; border-color:#006eb9 ; }
 
 /**
  * 共通パーツ ソート
@@ -134,3 +130,10 @@ textarea { width:100%; box-sizing:border-box; height:10em; }
 .mini-form dd { margin-bottom:20px; }
 .mini-form input { width:100%; font-size:24px; box-sizing:border-box; }
 .mini-form .btn-area { margin:40px 0 0; text-align:center; }
+
+/**
+ * 共通パーツ FontAwesomeアイコン
+ */
+.tbl i.fa { line-height:25px; }
+i.fa.green { color:#049708; }
+i.fa.glay { color:#999; }
