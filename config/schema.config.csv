@@ -3,10 +3,11 @@
 ,,name,氏名,text,text,TRUE,,,,,,
 ,,mail,メール,text,text,TRUE,mail,,,,,"def.login_id=true | def.mail=true | rules.duplicate={""table"":""Staff"",""col_name"":""mail"", ""id_field"":""id""}"
 ,,login_pw,パスワード,text,password,"{""if"":{""id"":false}}",,,,,,def.login_pw=true | def.hash_pw=true
-,,login_pw_confirm,パスワード確認,,password,"{""if"":{""login_pw"":true}}",,,,,,"rules.confirm={""target_field"":""login_pw""}"
+,,login_pw_confirm,パスワード確認,,password,"{""if"":{""login_pw"":true}}",,,,,,"nodef=true | rules.confirm={""target_field"":""login_pw""}"
 ,,sex,性別,integer,select,,,,,,,"enum_values={""1"":""男性"",""2"":""女性""}"
 ,,tel,電話番号,,text,,,20,,,,"def.assoc={""table"":""StaffTel"", ""extra_values"":{""type"":1}, ""single"":true, ""value_col"":""tel""}"
 ,,photos,写真,,assoc,,,,,,,"def.assoc={""table"":""StaffPhoto""}"
+,,login_date,最終ログイン日時,datetime,,,,,,,,def.login_date=true
 ,,id,ID,integer,,,,,,,,def.id=true | def.autoincrement=true
 ,,reg_date,登録日時,datetime,,,,,,,,def.reg_date=true
 ,,del_flg,削除フラグ,integer,,,,,,0,visible,def.del_flg=true

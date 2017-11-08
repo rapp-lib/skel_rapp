@@ -93,7 +93,7 @@ textarea { width:100%; box-sizing:border-box; height:10em; }
 .tbl td { border:1px solid #cacaca; }
 /* 一覧テーブル */
 .tbl.list { text-align:center; }
-.tbl.list tr:nth-child(even) { background-color:#ebe9e8; }
+.tbl.list tr:nth-child(even) { background-color:#fafafa; }
 .tbl.list tr:nth-child(odd) { background-color:#fff; }
 .tbl.list tr:hover { background:#f5eba9; }
 /* 単票テーブル */
