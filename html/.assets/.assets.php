@@ -6,7 +6,7 @@
         "ext" => array(
         ),
         "local" => array(
-            "app.common" => array("js/common.js"),
-            "app.observe-form" => array("js/observe-form.js", array("jquery" ,"util.FormObserver")),
+            "app.common" => array("app/common.js"),
+            "app.observeForm" => array("app/observeForm.js", array("jquery","util.appendStyle","util.FormObserver")),
         ),
     );
