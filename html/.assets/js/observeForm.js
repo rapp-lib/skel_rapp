@@ -7,7 +7,6 @@ window.observeForm = function($form, state, mode){
         ' .rule-required > :first-child:after { content:" ※"; color:#f00 ; } ');
     return new FormObserver($form, state, {
         refresh_callback: function(self, $input, rules, errors){
-            console.log([$input.attr("name"),rules, errors]);
             var $block = $input.closest("tr");
             for (var i in rules) {
                 var rule = rules[i];
