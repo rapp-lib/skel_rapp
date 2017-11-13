@@ -1,12 +1,13 @@
 <?php
     return array(
-        "inc" => array(
+        "import" => array(
             "lib"
         ),
         "ext" => array(
         ),
         "local" => array(
             "app.common" => array("app/common.js"),
-            "app.observeForm" => array("app/observeForm.js", array("jquery","util.appendStyle","util.FormObserver")),
+            "app.observeForm" => array("app/observeForm.js",
+                array("jquery", "util.appendStyle", "util.FormObserver")),
         ),
     );
