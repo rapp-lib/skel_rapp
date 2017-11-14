@@ -34,9 +34,5 @@
                     return $next($request);
                 },
             ),
-            "assets_catalog_uris"=>array(
-                "path://.assets/lib/.assets.php",
-                "path://.assets/app/.assets.php",
-            ),
         ),
     );
