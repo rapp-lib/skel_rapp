@@ -18,7 +18,9 @@ textarea { width:100%; box-sizing:border-box; height:10em; }
 * html .clearfix { zoom:1; } /* IE6 */
 *:first-child+html .clearfix { zoom:1; } /* IE7 */
 .errmsg { color:#ff4422; }
-.wmax { width:100%; }
+.w-full { width:100%; }
+.w-half { width:50%; }
+.w-quoter { width:25%; }
 
 /**
  * ブロック構成class
