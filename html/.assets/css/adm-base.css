@@ -18,7 +18,7 @@ textarea { width:100%; box-sizing:border-box; height:10em; }
 * html .clearfix { zoom:1; } /* IE6 */
 *:first-child+html .clearfix { zoom:1; } /* IE7 */
 .errmsg { color:#ff4422; }
-.wfluid { width:100%; }
+.wmax { width:100%; }
 
 /**
  * ブロック構成class
