@@ -18,20 +18,20 @@
                 'exception_handler' => array('throw_exceptions' => false),
             ),
         ),
-        'cache.connection.tmpfile' => array(
+        'cache.connection.cred' => array(
             'adapter' => array(
                 'name'    => 'filesystem',
                 'options' => array(
-                    'namespace' => 'tmpfile',
-                    'cache_dir' => constant("R_APP_ROOT_DIR")."/tmp/cache/tmpfile",
+                    'cache_dir' => constant("R_APP_ROOT_DIR")."/tmp/cred",
                     'dir_level' => 3,
                     'dir_permission' => 0775,
                     'file_permission' => 0664,
+                    'ttl' => 30*24*3600,
                 ),
             ),
             'plugins' => array(
-                'exception_handler' => array('throw_exceptions' => false),
                 'Serializer',
+                'exception_handler' => array('throw_exceptions' => false),
             ),
         ),
         'session.manager.default' => array(
