@@ -18,6 +18,12 @@
                     app()->user->switchRole($role);
                     return $next($request);
                 },
+                152 => function($request, $next) {
+                    // SwitchLocale
+                    $locale = $request->getUri()->getRouteParam("locale");
+                    if ($locale) app()->i18n->setLocale($locale);
+                    return $next($request);
+                },
                 350 => function($request, $next) {
                     // AuthenticateFirewall
                     $role = $request->getUri()->getPageAuth()->getRole();
