@@ -26,7 +26,7 @@
                     'dir_level' => 3,
                     'dir_permission' => 0775,
                     'file_permission' => 0664,
-                    'ttl' => 30*24*3600,
+                    'ttl' => 7200,
                 ),
             ),
             'plugins' => array(
