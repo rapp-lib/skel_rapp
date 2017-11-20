@@ -2,7 +2,7 @@
 ,Staff,,スタッフ,,,,,,,,,def.table_name=StaffMaster,,,,,,
 ,,name,氏名,text,text,TRUE,,,,,,,admin_staffs,,,register,,
 ,,mail,メール,text,text,TRUE,mail,,,,,"def.login_id=true | def.mail=true | rules.duplicate={""table"":""Staff"",""col_name"":""mail"", ""id_field"":""id""}",admin_staffs,,,register,staff_pw_reminder,
-,,login_pw,パスワード,text,password,"{""if"":{""id"":false}}",,,,,,def.login_pw=true | def.hash_pw=true,admin_staffs,,staff_edit_password,register,,staff_pw_reset
+,,login_pw,パスワード,text,password,"{""if_register"":true}",,,,,,def.login_pw=true | def.hash_pw=true,admin_staffs,,staff_edit_password,register,,staff_pw_reset
 ,,login_pw_confirm,パスワード確認,,password,"{""if"":{""login_pw"":true}}",,,,,,"nodef=true | rules.confirm={""target_field"":""login_pw""}",,,staff_edit_password,register,,staff_pw_reset
 ,,sex,性別,integer,select,,,,,,,"enum_values={""1"":""男性"",""2"":""女性""}",admin_staffs,staff_edit,,,,
 ,,tel,電話番号,,text,,,20,,,,"def.assoc={""table"":""StaffTel"", ""extra_values"":{""type"":1}, ""single"":true, ""value_col"":""tel""}",admin_staffs,staff_edit,,,,
@@ -27,6 +27,7 @@
 ,Project,,案件,,,,,,,,,,,,,,,
 ,,staff_id,スタッフID,integer,select,TRUE,,,Staff,,staff,,,,,,,
 ,,name,案件名,text,text,TRUE,,,,,,,,,,,,
+,,ord,表示順,integer,text,TRUE,number,,,,,def.ord=true,,,,,,
 ,,id,ID,integer,,,,,,,,def.id=true | def.autoincrement=true,,,,,,
 ,,reg_date,登録日時,datetime,,,,,,,,def.reg_date=true,,,,,,
 ,,del_flg,削除フラグ,integer,,,,,,0,visible,def.del_flg=true,,,,,,
@@ -55,7 +56,7 @@
 ,staff_reports,master,スタッフ日報管理,Report,staff,TRUE,TRUE,,,,,use_csv=true | use_import=true,,,,,,
 ,admin_index,index,管理者マイページ,,admin,TRUE,,,,,,,,,,,,
 ,admin_login,login,管理者ログイン,,admin,,,,,,,,,,,,,
-,admin_staffs,master,スタッフ管理,Staff,admin,TRUE,,,,,,,admin_staffs_reports,,,,,
+,admin_staffs,master,スタッフ管理,Staff,admin,TRUE,,,,,,"search_fields=[""name"", ""sex""] | sort_fields=[""name""]",admin_staffs_reports,,,,,
 ,admin_staffs_reports,list,スタッフ別日報一覧,Report,admin,TRUE,,,,,,param_fields.staff_id.required=true | archive_field=project_id,admin_staffs_reports_detail,,,,,
 ,admin_staffs_reports_detail,detail,スタッフ別日報詳細,Report,admin,TRUE,,,,,,,,,,,,
 ,admin_projects,master,案件管理,Project,admin,TRUE,,,,,,,admin_projects_reports,,,,,
