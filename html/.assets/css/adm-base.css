@@ -116,7 +116,7 @@ textarea { width:100%; box-sizing:border-box; height:10em; }
 .pager ul { height:32px; margin:0; padding:0; }
 .pager li { display:inline-block; width:33px; height:30px; margin:0 8px; }
 .pager a { display:block; line-height:30px; font-size:16px; text-decoration:none;
-    background:#eb29e8; border:1px solid #ccc; }
+    background:#ebe9e8; border:1px solid #ccc; }
 .pager .prev a, .pager .next a { color:#666; }
 .pager .current a, .pager a:hover { background:#006eb9; color:#fff; border-color:#006eb9; }
 
