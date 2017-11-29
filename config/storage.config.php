@@ -15,6 +15,7 @@
                 'options' => array('ttl' => 3600),
             ),
             'plugins' => array(
+                'Serializer',
                 'exception_handler' => array('throw_exceptions' => false),
             ),
         ),
@@ -34,11 +35,9 @@
                 'exception_handler' => array('throw_exceptions' => false),
             ),
         ),
-        'session.manager.default' => array(
-            'storage.class' => 'Zend\Session\Storage\SessionArrayStorage',
-            'config.class' => 'Zend\Session\Config\SessionConfig',
-            'config.options' => array(
-            ),
+        'session' => array(
+            'config.options' => array(),
+            //'save_handler.cache' => "session",
         ),
         "file.storages" => array(
             "public" => array(
