@@ -102,6 +102,7 @@ textarea { width:100%; box-sizing:border-box; height:10em; }
 .tbl.list tr:nth-child(even) { background-color:#fafafa; }
 .tbl.list tr:nth-child(odd) { background-color:#fff; }
 .tbl.list tr:hover { background:#f5eba9; }
+.tbl.list input { height:21px; }
 /* 単票テーブル */
 .tbl.detail { margin-bottom:10px; }
 .tbl.detail th { line-height:2em; }
