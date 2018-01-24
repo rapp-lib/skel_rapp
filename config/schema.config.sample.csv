@@ -59,6 +59,7 @@
 #,,,,,,,,,,,,,,,,,,
 #pages,controller,type,label,table,access_as,priv_required,is_mypage,param_fields,,,,other,link_to.0.to,link_to.0.label,link_to.1.to,link_to.1.label,,
 ,index,index,トップ,,,,,,,,,,,,,,,
+,dashboard,blank,ダッシュボード,,,,,,,,,"sub_page=[{""name"":""rss"", ""label"":""RSS配信"", ""has_html"":false}]",,,,,,
 ,contact,form,お問い合わせフォーム,Contact,,,,,,,,use_mail=true,,,,,,
 ,register,form,スタッフ登録,Staff,,,,,,,,use_mail=true,,,,,,
 ,projects,list,案件一覧,Project,,,,,,,,,projects_cart,カートに入れる,,,,
