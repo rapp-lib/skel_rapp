@@ -55,6 +55,7 @@
 ,,id,ID,integer,,,,,,,,def.id=true | def.autoincrement=true,,,,,,
 ,OrderDetail,,’•¶–¾×,,,,,,,,,,,,,,,
 ,,order_id,’•¶,integer,select,TRUE,,,Order,,,,,,,,,
+,,project_id,ˆÄŒ,integer,select,TRUE,,,Project,,,,,,,,,
 ,,amount,“_”,integer,text,,number,,,1,,def.amount=true,,,,,,
 ,,id,ID,integer,,,,,,,,def.id=true | def.autoincrement=true,,,,,,
 #,,,,,,,,,,,,,,,,,,
