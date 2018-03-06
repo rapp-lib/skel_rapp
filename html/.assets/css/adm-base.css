@@ -123,6 +123,12 @@ input[type=radio], input[type=checkbox] { margin:2px; vertical-align:middle; }
 .pager .current a, .pager a:hover { background:#006eb9; color:#fff; border-color:#006eb9; }
 
 /**
+ * 共通パーツ 列挙型リンク
+ */
+ a.enum { line-height:30px; text-decoration:none; border:1px solid #ccc; padding: 5px; }
+ a.enum.current, a.enum:hover  { background:#006eb9; color:#fff; border-color:#006eb9; }
+ 
+/**
  * 共通パーツ ソート
  */
 .sort { cursor:pointer; }
