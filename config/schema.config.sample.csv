@@ -19,7 +19,7 @@
 ,,del_flg,削除フラグ,integer,,,,,,0,visible,def.del_flg=true,,,,,,
 ,StaffPhoto,,スタッフ写真,,,,,,,,,,,,,,,
 ,,staff_id,スタッフ,integer,,,,,Staff,,staff,,,,,,,
-,,photo_img,写真画像,text,file,TRUE,,,,,,,,,,,,
+,,photo_img,写真画像,text,file,TRUE,,,,,,,,staff_edit,,,,
 ,,comment,コメント,text,textarea,,,,,,,,,staff_edit,,,,
 ,,id,ID,integer,,,,,,,,def.id=true | def.autoincrement=true,,,,,,
 ,,reg_date,登録日時,datetime,,,,,,,,def.reg_date=true,,,,,,
