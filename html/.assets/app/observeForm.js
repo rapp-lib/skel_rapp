@@ -16,10 +16,10 @@ window.observeForm = function($form, state, mode){
                         self.getValidator().applyRule(rule, $input);
                         $input.removeClass("changed");
                     }
-                    if (rule.type=="required") $input.attr("required", true);
+                    // if (rule.type=="required") $input.attr("required", true);
                 } else {
                     $block.removeClass("rule-"+self.className(rule.type));
-                    if (rule.type=="required") $input.removeAttr("required");
+                    // if (rule.type=="required") $input.removeAttr("required");
                 }
             }
             var $block = $input.closest("td");
