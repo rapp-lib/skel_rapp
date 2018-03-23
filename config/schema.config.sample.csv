@@ -5,7 +5,7 @@
 ,,login_pw,パスワード,text,password,"{""if_register"":true}",,,,,,def.login_pw=true | def.hash_pw=true,admin_staffs,,staff_edit_password,register,,staff_pw_reset
 ,,login_pw_confirm,パスワード確認,,password,"{""if"":{""login_pw"":true}}",,,,,,"nodef=true | rules.confirm={""target_field"":""login_pw""}",,,staff_edit_password,register,,staff_pw_reset
 ,,sex,性別,integer,select,,,,,,,"enum_values={""1"":""男性"",""2"":""女性""}",admin_staffs,staff_edit,,,,
-,,tel,電話番号,,text,,,20,,,,"def.assoc={""table"":""StaffTel"", ""extra_values"":{""type"":1}, ""single"":true, ""value_col"":""tel""}",admin_staffs,staff_edit,,,,
+,,tel,電話番号,,text,,,20,,,,"def.assoc={""table"":""StaffTel"", ""extra_values"":{""type"":1}, ""single"":true, ""value_col"":""tel""} | input.plugins.split_text={""delim"":""-"",""num"":3}",admin_staffs,staff_edit,,,,
 ,,photos,写真,,assoc,,,,,,,"def.assoc={""table"":""StaffPhoto""}",admin_staffs,staff_edit,,register,,
 ,,id,ID,integer,,,,,,,,def.id=true | def.autoincrement=true,,,,,,
 ,,reg_date,登録日時,datetime,,,,,,,,def.reg_date=true,,,,,,
