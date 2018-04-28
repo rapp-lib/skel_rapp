@@ -9,8 +9,8 @@
                 150 => function($request, $next) {
                     // SessionStart
                     app()->session->start();
-                    $response = $next($request);
-                    return $response;
+                    app()->debug->getDebugLevel();
+                    return $next($request);
                 },
                 151 => function($request, $next) {
                     // SwitchRole
