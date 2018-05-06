@@ -1,14 +1,20 @@
 # -- キャッシュやアップロードデータなど
-/tmp/
+/tmp/*
 
 # -- 環境別設定
 /.env
 
 # -- Composerの展開先
-/vendor/
+/vendor/*
 
 # -- 削除予定ファイル
 *_DELETE
 
 # -- フォルダ保持用ファイル
 !.gitkeep
+
+# -- テスト用一時ファイル
+/tests/tmp/*
+
+# -- 出力済み文書ファイル
+/docs/output/*
