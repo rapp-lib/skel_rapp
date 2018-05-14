@@ -2,9 +2,11 @@
     "name": "rapp-lib/skel_rapp",
     "type": "project",
     "require": {
-        "rapp-lib/rlib": "dev-master-4.x",
-        "rapp-lib/middleman": "@dev",
-        "rapp-lib/zend-diactoros": "@dev"
+        "rapp-lib/rlib": "dev-master-4.x"
+    },
+    "require-dev": {
+        "rapp-lib/rlib-devel": "dev-master-4.x",
+        "hirak/prestissimo": "^0.3.7"
     },
     "autoload": {
         "psr-4": {
