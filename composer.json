@@ -5,8 +5,7 @@
         "rapp-lib/rlib": "dev-master-4.x"
     },
     "require-dev": {
-        "rapp-lib/rlib-devel": "dev-master-4.x",
-        "hirak/prestissimo": "^0.3.7"
+        "rapp-lib/rlib-devel": "dev-master-4.x"
     },
     "autoload": {
         "psr-4": {
