@@ -1,3 +1,3 @@
 <?php
-    return array("router.webroot.www.routing"=>array(
+    return array("http.webroots.www.routes"=>array(
     ));
