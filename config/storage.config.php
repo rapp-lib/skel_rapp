@@ -5,7 +5,7 @@
             'charset' => 'utf8',
             'persistent' => false,
             'host' => "127.0.0.1",
-            'dbname' => "test",
+            'dbname' => "unitt_form",
             'user' => "dev",
             'password' => "pass",
         ),

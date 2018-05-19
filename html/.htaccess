@@ -23,3 +23,7 @@ Require valid-user
 #AuthName "Please enter your ID and password"
 #AuthType Basic
 # -- / Basic Auth
+
+# -- PHP as CGI
+FCGIWrapper /usr/lib/anyenv/envs/phpenv/versions/5.6.34/bin/php-cgi .php
+# -- / PHP as CGI

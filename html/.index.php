@@ -1,6 +1,6 @@
 <?php
     ob_start();
-    ini_set("display_errors", false);
+    ini_set("display_errors", 1);
     require_once __DIR__."/../bootstrap.php";
 
     $app = include(constant("R_APP_ROOT_DIR")."/config/app.php");

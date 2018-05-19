@@ -1,0 +1,12 @@
+#!/usr/bin/env php
+<?php
+ini_set("display_errors", false);
+require_once __DIR__."/bootstrap.php";
+$app = include(constant("R_APP_ROOT_DIR")."/config/app.php");
+$app->report->listenPhpError();
+$app->debug->setDebugLevel(1);
+$app->setRequestForConsoleEnvironment();
+$artisan = Illuminate\Console\Application::start($app);
+$status = $artisan->run();
+$app->shutdown();
+exit($status);

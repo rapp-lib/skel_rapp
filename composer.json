@@ -2,11 +2,16 @@
     "name": "rapp-lib/skel_rapp",
     "type": "project",
     "require": {
-        "rapp-lib/rlib": "dev-master-4.x"
+        "rapp-lib/rlib": "dev-master-4.x",
+        "setasign/fpdf": "^1.8",
+        "setasign/fpdi": "^2.0",
+        "setasign/fpdi-tcpdf": "^2.0",
+        "setasign/fpdi-fpdf": "^2.0",
+        "tecnickcom/tcpdf": "^6.2",
+        "facebook/webdriver": "0.6"
     },
     "require-dev": {
-        "rapp-lib/rlib-devel": "dev-master-4.x",
-        "hirak/prestissimo": "^0.3.7"
+        "rapp-lib/rlib-devel": "dev-master-4.x"
     },
     "autoload": {
         "psr-4": {
@@ -18,7 +23,7 @@
             "rapp-lib/*": "source"
         },
         "platform": {
-            "php": "5.3.23"
+            "php": "5.6"
         }
     }
 }
