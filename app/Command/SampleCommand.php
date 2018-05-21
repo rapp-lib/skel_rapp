@@ -4,12 +4,11 @@ use R\Lib\Console\Command;
 
 class SampleCommand extends Command
 {
-    protected function init ()
+    protected $name = 'app:sample';
+    protected $description = 'Sample';
+    public function fire()
     {
-    }
-    public function act_test ()
-    {
-        // bin/rexe sample test
-        print "OK sample.test\n";
+        // php artisan app:sample
+        print "OK sample\n";
     }
 }

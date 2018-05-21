@@ -7,6 +7,9 @@
 # -- Composerの展開先
 /vendor/*
 
+# -- NPMの展開先
+/node_modules/*
+
 # -- 削除予定ファイル
 *_DELETE
 

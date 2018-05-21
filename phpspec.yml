@@ -1,0 +1,5 @@
+suites:
+    main:
+        namespace: R\App
+        psr4_prefix: R\App
+        src_path: app
