@@ -6,11 +6,18 @@
                 array("file.index", "/.file/{storage}/{id:.+}"),
             ),
             "middlewares" => array(
+                100 => function($request, $next) {
+                    // ErrorFallback
+                    try {
+                        return $next($request);
+                    } catch (\Exception $e) {
+                        $app->report->logException($e);
+                    }
+                    return $app->http->response("error");
+                },
                 150 => function($request, $next) {
-                    // SessionStart
-                    app()->session->start();
-                    app()->debug->getDebugLevel();
-                    return $next($request);
+                    // SessionHandle
+                    return app()->session->handle($request, $next);
                 },
                 151 => function($request, $next) {
                     // SwitchRole
