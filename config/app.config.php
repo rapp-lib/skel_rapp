@@ -1,15 +1,15 @@
 <?php
     return array(
         "app"=>array(
-            'env' => app()->env('APP_ENV'),
-            'debug' => app()->env('APP_DEBUG', false),
+            'env' => $_ENV['APP_ENV'],
+            'debug' => $_ENV['APP_DEBUG'],
             'key' => "dgu5ruehtipk4jpr",
-            'timezone' => 'Asia/Tokyo',
-            'cipher' => constant("MCRYPT_RIJNDAEL_128"),
-            'log' => 'daily',
+            'default_webroot' => 'www',
             'providers' => array(
             ),
             'aliases' => array(
+            ),
+            'class_aliases' => array(
             ),
             'commands' => array(
             ),

@@ -2,13 +2,7 @@
     "name": "rapp-lib/skel_rapp",
     "type": "project",
     "require": {
-        "rapp-lib/rlib": "dev-master-5.x",
-        "setasign/fpdf": "^1.8",
-        "setasign/fpdi": "^2.0",
-        "setasign/fpdi-tcpdf": "^2.0",
-        "setasign/fpdi-fpdf": "^2.0",
-        "tecnickcom/tcpdf": "^6.2",
-        "facebook/webdriver": "0.6"
+        "rapp-lib/rlib": "dev-master-5.x"
     },
     "require-dev": {
         "rapp-lib/rlib-devel": "dev-master-5.x"

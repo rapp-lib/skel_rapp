@@ -3,9 +3,7 @@
     ini_set("display_errors", false);
     require_once __DIR__."/bootstrap/autoload.php";
     $app = include(constant("R_APP_ROOT_DIR")."/bootstrap/app.php");
-    $app->debug->setDebugLevel(1);
-    $app->setRequestForConsoleEnvironment();
-    $artisan = Illuminate\Console\Application::start($app);
+    $artisan = R\Lib\Console\ConsoleApplication::start($app);
     $status = $artisan->run();
     $app->shutdown();
     exit($status);
