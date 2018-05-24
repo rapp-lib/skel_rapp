@@ -6,15 +6,6 @@
                 array("file.index", "/.file/{storage}/{id:.+}"),
             ),
             "middlewares" => array(
-                100 => function($request, $next) {
-                    // ErrorFallback
-                    try {
-                        return $next($request);
-                    } catch (\Exception $e) {
-                        $app->report->logException($e);
-                    }
-                    return $app->http->response("error");
-                },
                 150 => function($request, $next) {
                     // SessionHandle
                     return app()->session->handle($request, $next);
