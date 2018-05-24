@@ -36,6 +36,7 @@
             ),
         ),
         'session' => array(
+            'auto_start' => true,
             'config.options' => array(),
             //'save_handler.cache' => "session",
         ),
