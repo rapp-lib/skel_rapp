@@ -1,6 +1,7 @@
 {
     "name": "rapp-lib/skel_rapp",
     "type": "project",
+    "license": "MIT",
     "require": {
         "rapp-lib/rlib": "dev-master-4.x"
     },
@@ -17,7 +18,7 @@
             "rapp-lib/*": "source"
         },
         "platform": {
-            "php": "5.3.23"
+            "php": "5.4.16"
         }
     }
 }
