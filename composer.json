@@ -15,9 +15,6 @@
     "config": {
         "preferred-install": {
             "rapp-lib/*": "source"
-        },
-        "platform": {
-            "php": "5.3.23"
         }
     }
 }
