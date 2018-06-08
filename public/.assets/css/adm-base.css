@@ -48,6 +48,8 @@ input[type=radio], input[type=checkbox] { margin:2px; vertical-align:middle; }
 .main-menu dt { font-size:14px; text-indent:1em; list-style-type:none; font-weight: 400 }
 .main-menu a { display:block; text-decoration:none; padding:4px 15px; color:#000; }
 .main-menu .current a, .main-menu a:hover { text-decoration:none; background:#006eb9; color:#fff; }
+.main-menu dt dl { padding:0 0 0 20px; }
+.main-menu dt dt { font-size:12px; }
 
 /**
  * 共通パーツ ページタイトル
