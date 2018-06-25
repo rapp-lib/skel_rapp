@@ -2,7 +2,10 @@
     return array(
         "http.webroots.www" => array(
             "base_uri" => "",
+        ),
+        "http.global" => array(
             "routes" => array(
+                array("enum.json", "/.enum/{enum}.json"),
                 array("file.index", "/.file/{storage}/{id:.+}"),
             ),
             "middlewares" => array(
@@ -37,6 +40,10 @@
                     }
                     return $next($request);
                 },
+            ),
+            "controller_class" => array(
+            ),
+            "response_filters" => array(
             ),
         ),
     );
