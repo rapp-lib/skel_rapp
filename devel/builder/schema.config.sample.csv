@@ -78,7 +78,7 @@
 ,staff_project_attend,fav,スタッフ参加案件管理,StaffProject,staff,TRUE,TRUE,append=project_id,,,,use_delete=true | use_apply=true,,,,,,
 ,admin_index,index,管理者マイページ,,admin,TRUE,,,,,,,,,,,,
 ,admin_login,login,管理者ログイン,,admin,,,,,,,,,,,,,
-,admin_staff,master,スタッフ管理,Staff,admin,TRUE,,,,,,"search_fields=[""name"", ""sex"",""reg_date""] | sort_fields=[""name""] | bulk_actions=[""delete""]",admin_staffs_reports,レポート,,,,
+,admin_staff,master,スタッフ管理,Staff,admin,TRUE,,,,,,"search_fields=[""name"", ""sex"",""reg_date""] | sort_fields=[""name""] | bulk_actions=[""delete""]",admin_staff_report,レポート,,,,
 ,admin_staff_report,list,スタッフ別日報一覧,Report,admin,TRUE,,depend=staff_id,,,,,admin_staff_report_detail,詳細,,,,
 ,admin_staff_report_detail,detail,スタッフ別日報詳細,Report,admin,TRUE,,,,,,,,,,,,
 ,admin_project,master,案件管理,Project,admin,TRUE,,,,,,,admin_project_report,レポート,,,,
