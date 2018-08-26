@@ -27,6 +27,6 @@ class FileController extends Controller_App
         $headers = array();
         $ext = preg_match('!\.([^\.]+)$!', $stream, $m) ? strtolower($m[1]) : "";
         $headers["content-type"] = $this->mimes[$ext] ?: "application/octet-stream";
-        return app()->http->response("stream", $stream, array("headers"=>$headers));
+        return app()->http->response("stream", $stream, array("headers"=>$headers, "range"=>$_SERVER["HTTP_RANGE"]));
     }
 }
