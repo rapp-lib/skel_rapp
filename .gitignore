@@ -7,14 +7,13 @@
 # -- Composerの展開先
 /vendor/*
 
-# -- NPMの展開先
+# -- Mix関係
+*.map
 /node_modules/*
+/public/mix-manifest.json
 
 # -- 削除予定ファイル
 *_DELETE
 
 # -- フォルダ保持用ファイル
 !.gitkeep
-
-# -- 一時テスト用ファイル
-/tests/sandbox/*
