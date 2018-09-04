@@ -5,7 +5,7 @@
             'charset' => 'utf8',
             'persistent' => false,
             'host' => "127.0.0.1",
-            'dbname' => "timer",
+            'dbname' => "test",
             'user' => "dev",
             'password' => "pass",
         ),
