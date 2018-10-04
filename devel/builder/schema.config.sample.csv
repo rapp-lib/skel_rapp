@@ -44,7 +44,7 @@
 ,,id,ID,integer,,,,,,,,def.id=true | def.autoincrement=true,,,,,,
 ,,reg_date,登録日時,datetime,,,,,,,,def.reg_date=true,,,,,,
 ,,del_flg,削除フラグ,integer,,,,,,0,visible,def.del_flg=true,,,,,,
-,Contact,,お問い合わせ,,,,,,,,,nodef=true,,,,,,
+,Contact,,お問い合わせ,,,,,,,,,def.table_name=false,,,,,,
 ,,title,件名,,text,TRUE,,,,,,,,,,,,
 ,,mail,メール,,text,TRUE,mail,,,,,,,,,,,
 ,,message,本文,,textarea,TRUE,,,,,,,,,,,,
