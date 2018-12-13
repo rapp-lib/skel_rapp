@@ -1,0 +1,88 @@
+{{assign "page_title" "製品管理 入力 確認"}}
+{{inc path="/include/admin_header.html"}}
+
+<h1 class="page-title">{{$page_title}}</h1>
+
+<table class="tbl detail">
+    <tr>
+        <th>大分類ID</th>
+        <td>{{$t.parent_category_id_label}}</td>
+    </tr>
+    <tr>
+        <th>中分類ID</th>
+        <td>{{$t.child_category_id_label}}</td>
+    </tr>
+    <tr>
+        <th>製品名</th>
+        <td>{{$t.name}}</td>
+    </tr>
+    <tr>
+        <th>型名</th>
+        <td>{{$t.model}}</td>
+    </tr>
+    <tr>
+        <th>画像</th>
+        <td>{{if $t.image}}<a href="{{$t.image}}" target="_blank">ファイル</a>{{/if}}</td>
+    </tr>
+    <tr>
+        <th>取扱説明書</th>
+        <td>{{if $t.manual}}<a href="{{$t.manual}}" target="_blank">ファイル</a>{{/if}}</td>
+    </tr>
+    <tr>
+        <th>公開日</th>
+        <td>{{$t.release_date}}</td>
+    </tr>
+    <tr>
+        <th>説明</th>
+        <td>{{{{$t.description}}|nl2br nofilter}}</td>
+    </tr>
+    <tr>
+        <th>ステータス</th>
+        <td>{{$t.status}}</td>
+    </tr>
+    <tr>
+        <th>関連ファイル</th>
+        <td>
+            {{foreach $t.relation_products as $key=>$item}}
+                <table class="tbl detail">
+                <tr>
+                    <th>ファイル種別</th>
+                    <td>{{$t.relation_products[$key].class_label}}</td>
+                </tr>
+                <tr>
+                    <th>ファイル属性</th>
+                    <td>{{$t.relation_products[$key].common_information_id_label}}</td>
+                </tr>
+                <tr>
+                    <th>ファイル</th>
+                    <td>{{if $t.relation_products[$key].file}}<a href="{{$t.relation_products[$key].file}}" target="_blank">ファイル</a>{{/if}}</td>
+                </tr>
+                <tr>
+                    <th>リンク</th>
+                    <td>{{$t.relation_products[$key].link}}</td>
+                </tr>
+                <tr>
+                    <th>公開日</th>
+                    <td>{{$t.relation_products[$key].release_date}}</td>
+                </tr>
+                <tr>
+                    <th>説明</th>
+                    <td>{{{{$t.relation_products[$key].description}}|nl2br nofilter}}</td>
+                </tr>
+                <tr>
+                    <th>ステータス</th>
+                    <td>{{$t.relation_products[$key].status}}</td>
+                </tr>
+                </table>
+            {{/foreach}}
+        </td>
+    </tr>
+</table>
+<div class="btn-area">
+    <a href='{{".form"|page_to_url|url:["back"=>1]}}' class="back-btn">戻る</a>
+    <div class="right clearfix">
+        <a href='{{".form_complete"|page_to_url}}' class="primary-btn">登録</a>
+    </div>
+</div>
+
+{{inc path="/include/admin_footer.html"}}

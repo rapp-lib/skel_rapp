@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8"/>
+    <title>{{$page_title}}</title>
+    <meta name="keywords" content="{{$page_keywords}}"/>
+    <meta name="description" content="{{$page_description}}"/>
+    {{script require=["app.common"]}}{{/script}}
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="{{'/.assets/css/adm-base.css'|path_to_url}}" rel="stylesheet"/>
+</head>
+<body>
+
+{{if $flash = []|flash}}
+    {{script require=["app.showFlash"]}}showFlash({{$flash|json_encode nofilter}}){{/script}}
+{{/if}}
+
+<header class="header-block">
+    <div>
+        <div class="logo"><a href="{{'/'|path_to_url}}"></a></div>
+    </div>
+</header>
+
+<div class="main-block clearfix">
+<div class="left-col">
+<nav class="main-menu">
+    <h2>Menu</h2>
+    <dl>
+        {{if "index.index"|is_accessible}}
+            <dt><a href='{{"index.index"|page_to_url}}'>トップ</a></dt>
+        {{/if}}
+        {{if "product.list"|is_accessible}}
+            <dt><a href='{{"product.list"|page_to_url}}'>対象製品一覧</a></dt>
+        {{/if}}
+        {{if "user_register.form"|is_accessible}}
+            <dt><a href='{{"user_register.form"|page_to_url}}'>ユーザー登録</a></dt>
+        {{/if}}
+    </dl>
+    <dl>
+        <dt><a href='{{"user_index.index"|page_to_url}}'>ユーザーマイページ</a></dt>
+        <dt><a href='{{"admin_index.index"|page_to_url}}'>管理者マイページ</a></dt>
+    </dl>
+</nav><!--/.main-menu-->
+</div><!--/.left-col-->
+<div class="right-col">

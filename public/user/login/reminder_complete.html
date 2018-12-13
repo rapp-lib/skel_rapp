@@ -1,0 +1,12 @@
+{{assign "page_title" "ユーザーログイン リマインダー パスワード更新完了"}}
+{{inc path="/include/user_header.html"}}
+
+<h1 class="page-title">{{$page_title}}</h1>
+
+<p>パスワードの更新が完了しました。</p>
+
+<div class="btn-area">
+    <a href='{{"user_login.login"|page_to_url:["back"=>1]}}' class="back-btn">戻る</a>
+</div>
+
+{{inc path="/include/user_footer.html"}}

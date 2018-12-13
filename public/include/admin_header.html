@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8"/>
+    <title>{{$page_title}}</title>
+    <meta name="keywords" content="{{$page_keywords}}"/>
+    <meta name="description" content="{{$page_description}}"/>
+    {{script require=["app.common"]}}{{/script}}
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="{{'/.assets/css/adm-base.css'|path_to_url}}" rel="stylesheet"/>
+</head>
+<body>
+
+{{if $flash = []|flash}}
+    {{script require=["app.showFlash"]}}showFlash({{$flash|json_encode nofilter}}){{/script}}
+{{/if}}
+
+<header class="header-block">
+    <div>
+        <div class="logo"><a href="{{'/'|path_to_url}}"></a></div>
+    </div>
+</header>
+
+<div class="main-block clearfix">
+<div class="left-col">
+<nav class="main-menu">
+    <h2>Menu</h2>
+    <dl>
+        {{if "id"|get_priv:"admin"}}
+            <dt><a href='{{"admin_login.login_exit"|page_to_url}}'>ログアウト</a></dt>
+        {{else}}
+            <dt><a href='{{"admin_login.login"|page_to_url}}'>ログイン</a></dt>
+        {{/if}}
+        {{if "admin_index.index"|is_accessible}}
+            <dt><a href='{{"admin_index.index"|page_to_url}}'>管理者マイページ</a></dt>
+        {{/if}}
+        {{if "admin_accept_user.list"|is_accessible}}
+            <dt><a href='{{"admin_accept_user.list"|page_to_url}}'>承認待ちユーザー管理</a></dt>
+        {{/if}}
+        {{if "admin_user.list"|is_accessible}}
+            <dt><a href='{{"admin_user.list"|page_to_url}}'>ユーザー管理</a></dt>
+        {{/if}}
+        {{if "admin_user_product.list"|is_accessible}}
+            <dt><a href='{{"admin_user_product.list"|page_to_url}}'>ユーザー製品管理</a></dt>
+        {{/if}}
+        {{if "admin_product.list"|is_accessible}}
+            <dt><a href='{{"admin_product.list"|page_to_url}}'>製品管理</a></dt>
+        {{/if}}
+        {{if "admin_draft_product.list"|is_accessible}}
+            <dt><a href='{{"admin_draft_product.list"|page_to_url}}'>下書き製品管理</a></dt>
+        {{/if}}
+        {{if "admin_relation_product.list"|is_accessible}}
+            <dt><a href='{{"admin_relation_product.list"|page_to_url}}'>関連ファイル管理</a></dt>
+        {{/if}}
+        {{if "admin_product_category.list"|is_accessible}}
+            <dt><a href='{{"admin_product_category.list"|page_to_url}}'>分類管理</a></dt>
+        {{/if}}
+        {{if "admin_common_information.list"|is_accessible}}
+            <dt><a href='{{"admin_common_information.list"|page_to_url}}'>共通関連情報管理</a></dt>
+        {{/if}}
+        {{if "admin_news.list"|is_accessible}}
+            <dt><a href='{{"admin_news.list"|page_to_url}}'>更新情報管理</a></dt>
+        {{/if}}
+        {{if "admin_notes.list"|is_accessible}}
+            <dt><a href='{{"admin_notes.list"|page_to_url}}'>ご注意事項管理</a></dt>
+        {{/if}}
+    </dl>
+    <dl>
+        <dt><a href='{{"index.index"|page_to_url}}'>トップ</a></dt>
+        <dt><a href='{{"user_index.index"|page_to_url}}'>ユーザーマイページ</a></dt>
+    </dl>
+</nav><!--/.main-menu-->
+</div><!--/.left-col-->
+<div class="right-col">

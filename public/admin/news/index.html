@@ -1,0 +1,68 @@
+{{assign "page_title" "更新情報管理"}}
+{{inc path="/include/admin_header.html"}}
+
+<h1 class="page-title">{{$page_title}}</h1>
+
+
+<div class="btn-area">
+    <a href='{{"admin_news.form"|page_to_url}}' class="create-btn">新規登録</a>
+    &nbsp;
+    <div class="right clearfix">
+    </div>
+</div>
+
+{{if count($ts)==0}}
+
+<p>該当する情報がありません</p>
+
+{{else}}{{* 0件ではない場合 *}}
+
+<a id="table-sort" data-sort-base-url='{{$forms.search->getSearchPageUrl(["p"=>0, "sort"=>""])}}' data-sort-current="{{$forms.search.sort}}" data-sort-param-name="sort" data-sort-default="id"></a>
+{{script require=["rui.sort"]}}{{/script}}
+
+<table class="tbl list">
+    <tr>
+        <th>ID</th>
+        <th>日付</th>
+        <th>&nbsp;</th>
+    </tr>
+    {{foreach $ts as $i => $t}}
+    <tr>
+        <td>{{$t.id}}</td>
+        <td>{{$t.date}}</td>
+        <td>
+            <a href='{{"admin_news.form"|page_to_url:["id"=>$t.id]}}' class="list-btn">編集</a>
+            <a href='{{"admin_news.delete"|page_to_url:["id"=>$t.id]}}' class="list-btn" onclick="return confirm('削除します');">削除</a>
+        </td>
+    </tr>
+    {{/foreach}}
+</table>
+
+{{if $p = $ts->getPagerIfHasRecord()}}
+<div class="pager">
+    <p>全{{$p->get("count")}}件中 {{$p->get("current_volume")}}件を表示</p>
+    <ul class="clearfix">
+    {{if $p->getPage('prev')}}
+        <li class="prev"><a href="{{$forms.search->getSearchPageUrl(['p'=>$p->getPage('prev')])}}">&lt;</a></li>
+    {{/if}}
+    {{foreach $p->getPages(5) as $page}}
+        {{if $page == "last"}}<li>...</li>{{/if}}
+        {{if $page == $p->getPage("current")}}<li class="current">{{else}}<li>{{/if}}
+        <a href="{{$forms.search->getSearchPageUrl(['p'=>$p->getPage($page)])}}">{{$p->getPage($page)}}</a>
+        </li>
+        {{if $page == "first"}}<li>...</li>{{/if}}
+    {{/foreach}}
+    {{if $p->getPage("next")}}
+        <li class="next"><a href="{{$forms.search->getSearchPageUrl(['p'=>$p->getPage('next')])}}">&gt;</a></li>
+    {{/if}}
+    </ul>
+</div>
+{{/if}}
+
+{{/if}}{{* /0件ではない場合 *}}
+
+<div class="btn-area" style="margin-top: 10px;">
+    <a href='{{"admin_index.index"|page_to_url|url:["back"=>1]}}' class="back-btn">戻る</a>
+</div>
+
+{{inc path="/include/admin_footer.html"}}
