@@ -53,6 +53,7 @@
             array("admin_user.form_confirm", "/admin/user/form_confirm.html"),
             array("admin_user.form_complete", "/admin/user/form_complete.html"),
             array("admin_user.delete", "/admin/user/delete.html", array("csrf_check"=>true)),
+            array("admin_user.csv", "/admin/user/csv.html"),
             // ユーザー製品管理
             array("admin_user_product.list", "/admin/user/product/"),
             array("admin_user_product.form", "/admin/user/product/form.html"),

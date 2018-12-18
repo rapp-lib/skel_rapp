@@ -86,6 +86,14 @@ class UserTable extends Table_App
             "type"=>"text",
             "comment"=>"備考",
         ),
+        "deliv_flg"=>array(
+            "type"=>"text",
+            "comment"=>"配信",
+        ),
+        "admin_memo"=>array(
+            "type"=>"text",
+            "comment"=>"管理者備考",
+        ),
         "accept_flg"=>array(
             "type"=>"integer",
             "default"=>2,
