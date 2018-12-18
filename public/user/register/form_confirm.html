@@ -101,6 +101,10 @@
                     <th>購入理由</th>
                     <td>{{{{$t.products[$key].purchase_reason}}|nl2br nofilter}}</td>
                 </tr>
+                <tr>
+                    <th>承認フラグ</th>
+                    <td>{{$t.products[$key].accept_flg_label}}</td>
+                </tr>
                 </table>
             {{/foreach}}
         </td>
@@ -112,10 +116,6 @@
     <tr>
         <th>配信</th>
         <td>{{$t.deliv_flg}}</td>
-    </tr>
-    <tr>
-        <th>管理者備考</th>
-        <td>{{{{$t.admin_memo}}|nl2br nofilter}}</td>
     </tr>
 </table>
 <div class="btn-area">

@@ -117,6 +117,10 @@
                             <td class="input-block">{{input name="products[$key][purchase_reason]" type="textarea"}}</td>
                         </tr>
                         <tr>
+                            <th>承認フラグ</th>
+                            <td class="input-block">{{input name="products[$key][accept_flg]" type="radioselect" values=$enum["UserProduct.accept_flg"]}}</td>
+                        </tr>
+                        <tr>
                             <th></th>
                             <td><a href="javascript:void(0);" class="mi-item-remove">削除</a></td>
                         </tr>
@@ -137,10 +141,6 @@
     <tr>
         <th>配信</th>
         <td>{{input name="deliv_flg" type="checkbox"}}</td>
-    </tr>
-    <tr>
-        <th>管理者備考</th>
-        <td>{{input name="admin_memo" type="textarea"}}</td>
     </tr>
 </table>
 <div class="btn-area">

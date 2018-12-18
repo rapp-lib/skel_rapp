@@ -149,10 +149,14 @@ class UserTable extends Table_App
         array("pref", "enum", "enum"=>"User.pref"),
         array("tel", "length", "max"=>20),
         array("fax", "length", "max"=>20),
+        array("accept_flg", "enum", "enum"=>"User.accept_flg"),
     );
     protected static $aliases = array(
         "pref"=>array(
             "pref_label"=>array("enum"=>"User.pref"),
+        ),
+        "accept_flg"=>array(
+            "accept_flg_label"=>array("enum"=>"User.accept_flg"),
         ),
         "id"=>array(
             "user_products"=>array("type"=>"has_many", "table"=>"UserProduct"),

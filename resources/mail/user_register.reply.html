@@ -41,9 +41,12 @@ FAX番号 : {{$t.fax}}<br/>
                     <th>購入理由</th>
                     <td>{{{{$t.products[$key].purchase_reason}}|nl2br nofilter}}</td>
                 </tr>
+                <tr>
+                    <th>承認フラグ</th>
+                    <td>{{$t.products[$key].accept_flg_label}}</td>
+                </tr>
                 </table>
             {{/foreach}}
         <br/>
 備考 : {{{{$t.memo}}|nl2br nofilter}}<br/>
 配信 : {{$t.deliv_flg}}<br/>
-管理者備考 : {{{{$t.admin_memo}}|nl2br nofilter}}<br/>

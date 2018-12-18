@@ -58,6 +58,7 @@ class AdminAcceptUserController extends Controller_Admin
             "login_pw_confirm"=>array("label"=>"パスワード確認", "col"=>false),
             "memo"=>array("label"=>"備考"),
             "admin_memo"=>array("label"=>"管理者備考"),
+            "accept_flg"=>array("label"=>"承認フラグ"),
         ),
         "rules" => array(
             "company_name",
