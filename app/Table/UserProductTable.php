@@ -19,7 +19,6 @@ class UserProductTable extends Table_App
             "comment"=>"製品ID",
         ),
         "model"=>array(
-            "type"=>"text",
             "comment"=>"型名（製造名）",
         ),
         "serial_number"=>array(

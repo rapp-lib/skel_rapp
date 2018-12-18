@@ -49,10 +49,6 @@
         <td>{{input name="mail" type="text" class="w-full"}}</td>
     </tr>
     <tr>
-        <th>メール</th>
-        <td>{{input name="mail_confirm" type="text" class="w-full"}}</td>
-    </tr>
-    <tr>
         <th>郵便番号</th>
         <td>{{input name="zip" type="text" class="w-full"}}</td>
     </tr>
@@ -89,52 +85,12 @@
         <td>{{input name="login_pw_confirm" type="password" autocomplete="new-password" class="w-full"}}</td>
     </tr>
     <tr>
-        <th>ユーザー製品</th>
-        <td>
-            <div class="mi" data-minItems="0" data-maxItems="1000">
-                <input type="hidden" name="products"/>
-                {{input_fieldset name="products" tmpl="${id}" key="key" assign="fieldset"}}
-                    <div class="mi-item" data-itemId="{{$key}}">
-                        {{input type="hidden" name="products[$key][id]"}}
-                        {{input type="hidden" name="products[$key][ord_seq]" class="mi-item-seq"}}
-                        <table class="tbl detail">
-                        <tr>
-                            <th>製品ID</th>
-                            <td class="input-block">{{input name="products[$key][product_id]" type="select" values=$enum["UserProduct.product"]}}</td>
-                        </tr>
-                        <tr>
-                            <th>型名（製造名）</th>
-                            <td class="input-block">{{input name="products[$key][model]" type="text" class="w-full"}}</td>
-                        </tr>
-                        <tr>
-                            <th>シリアルNo</th>
-                            <td class="input-block">{{input name="products[$key][serial_number]" type="text" class="w-full"}}</td>
-                        </tr>
-                        <tr>
-                            <th>購入元</th>
-                            <td class="input-block">{{input name="products[$key][purchase_source]" type="text" class="w-full"}}</td>
-                        </tr>
-                        <tr>
-                            <th>購入理由</th>
-                            <td class="input-block">{{input name="products[$key][purchase_reason]" type="textarea"}}</td>
-                        </tr>
-                        <tr>
-                            <th></th>
-                            <td><a href="javascript:void(0);" class="mi-item-remove">削除</a></td>
-                        </tr>
-                        </table>
-                    </div>
-                {{/input_fieldset}}
-                {{foreach $fieldset.items as $item}}{{$item nofilter}}{{/foreach}}
-                <script type="text/template" class="mi-tmpl mi-anchor">{{$fieldset.tmpl nofilter}}</script>
-                <a href="javascript:void(0);" class="mi-append">追加</a>
-            </div>
-            {{script require="rui.mi"}}{{/script}}
-        </td>
-    </tr>
-    <tr>
         <th>備考</th>
         <td>{{input name="memo" type="textarea"}}</td>
+    </tr>
+    <tr>
+        <th>管理者備考</th>
+        <td>{{input name="admin_memo" type="textarea"}}</td>
     </tr>
 </table>
 <div class="btn-area">

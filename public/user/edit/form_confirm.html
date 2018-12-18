@@ -37,10 +37,6 @@
         <td>{{$t.mail}}</td>
     </tr>
     <tr>
-        <th>メール</th>
-        <td>{{$t.mail_confirm}}</td>
-    </tr>
-    <tr>
         <th>郵便番号</th>
         <td>{{$t.zip}}</td>
     </tr>
@@ -79,6 +75,10 @@
     <tr>
         <th>備考</th>
         <td>{{{{$t.memo}}|nl2br nofilter}}</td>
+    </tr>
+    <tr>
+        <th>管理者備考</th>
+        <td>{{{{$t.admin_memo}}|nl2br nofilter}}</td>
     </tr>
 </table>
 <div class="btn-area">

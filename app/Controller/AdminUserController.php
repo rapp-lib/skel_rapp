@@ -47,7 +47,6 @@ class AdminUserController extends Controller_Admin
             "last_name_kana"=>array("label"=>"氏名(セイ)"),
             "first_name_kana"=>array("label"=>"氏名(メイ)"),
             "mail"=>array("label"=>"メール"),
-            "mail_confirm"=>array("label"=>"メール", "col"=>false),
             "zip"=>array("label"=>"郵便番号"),
             "pref"=>array("label"=>"都道府県"),
             "city"=>array("label"=>"市区郡町村"),
@@ -57,15 +56,8 @@ class AdminUserController extends Controller_Admin
             "fax"=>array("label"=>"FAX番号"),
             "login_pw"=>array("label"=>"パスワード"),
             "login_pw_confirm"=>array("label"=>"パスワード確認", "col"=>false),
-            "products"=>array("label"=>"ユーザー製品"),
-            "products.*.id",
-            "products.*.ord_seq"=>array("col"=>false),
-            "products.*.product_id"=>array("label"=>"製品ID"),
-            "products.*.model"=>array("label"=>"型名（製造名）"),
-            "products.*.serial_number"=>array("label"=>"シリアルNo"),
-            "products.*.purchase_source"=>array("label"=>"購入元"),
-            "products.*.purchase_reason"=>array("label"=>"購入理由"),
             "memo"=>array("label"=>"備考"),
+            "admin_memo"=>array("label"=>"管理者備考"),
         ),
         "rules" => array(
             "company_name",
@@ -76,9 +68,6 @@ class AdminUserController extends Controller_Admin
             "last_name_kana",
             "first_name_kana",
             array("mail", "required", "if"=>array("id"=>false)),
-            array("mail_confirm", "required", "if"=>array("mail"=>true)),
-            array("mail_confirm", "format", "format"=>"mail"),
-            array("mail_confirm", "confirm", "target_field"=>"mail"),
             "zip",
             "pref",
             "city",
@@ -86,7 +75,6 @@ class AdminUserController extends Controller_Admin
             array("login_pw", "required", "if"=>array("id"=>false)),
             array("login_pw_confirm", "required", "if"=>array("login_pw"=>true)),
             array("login_pw_confirm", "confirm", "target_field"=>"login_pw"),
-            "products.*.serial_number",
         ),
     );
     /**
@@ -139,5 +127,71 @@ class AdminUserController extends Controller_Admin
             table("User")->deleteById($id);
         }
         return $this->redirect("id://admin_user.list", array("back"=>"1"));
+    }
+    /**
+     * CSV設定
+     */
+    protected static $form_csv = array(
+        "table" => "User",
+        "fields" => array(
+            "id"=>array("label"=>"#ID"),
+            "company_name"=>array("label"=>"会社名"),
+            "department"=>array("label"=>"部署"),
+            "position"=>array("label"=>"役職"),
+            "last_name"=>array("label"=>"氏名(姓)"),
+            "first_name"=>array("label"=>"氏名(名)"),
+            "last_name_kana"=>array("label"=>"氏名(セイ)"),
+            "first_name_kana"=>array("label"=>"氏名(メイ)"),
+            "mail"=>array("label"=>"メール"),
+            "zip"=>array("label"=>"郵便番号"),
+            "pref"=>array("label"=>"都道府県"),
+            "city"=>array("label"=>"市区郡町村"),
+            "address"=>array("label"=>"番地"),
+            "buildings"=>array("label"=>"建物名"),
+            "tel"=>array("label"=>"電話番号"),
+            "fax"=>array("label"=>"FAX番号"),
+            "login_pw"=>array("label"=>"パスワード"),
+            "memo"=>array("label"=>"備考"),
+            "admin_memo"=>array("label"=>"管理者備考"),
+        ),
+        "rules" => array(
+            "company_name",
+            "department",
+            "position",
+            "last_name",
+            "first_name",
+            "last_name_kana",
+            "first_name_kana",
+            array("mail", "required"),
+            "zip",
+            "pref",
+            "city",
+            "tel",
+            array("login_pw", "required"),
+        ),
+        "csv_setting" => array(
+            "ignore_empty_line" => true,
+            "rows" => array(),
+            "filters" => array(
+                array("pref", "enum_value", "enum"=>"User.pref"),
+            ),
+        ),
+    );
+    /**
+     * @page
+     */
+    public function act_csv ()
+    {
+        // 検索結果の取得
+        $this->forms["search"]->restore();
+        $ts = $this->forms["search"]->search()->removePagenation()->select();
+        // CSVファイルの書き込み
+        $csv = $this->forms["csv"]->openCsvFile("php://temp", "w");
+        foreach ($ts as $t) $csv->writeRecord($t);
+        // データ出力
+        return app()->http->response("stream", $csv->getHandle(), array("headers"=>array(
+            'content-type' => 'application/octet-stream',
+            'content-disposition' => 'attachment; filename='.'User.csv'
+        )));
     }
 }

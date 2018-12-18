@@ -95,4 +95,15 @@ class ProductTable extends Table_App
             array("name"=>"visible", "cols"=>array("del_flg")),
         ),
     );
+
+    /**
+     * @hook on_read
+     * ユーザ表示項目を関連付ける
+     */
+    protected function on_read_userStatus ()
+    {
+        if (app()->user->getCurrentPriv("user") && $col_name = $this->getColNameByAttr("status")) {
+            $this->query->where($this->getAppTableName().".".$col_name,1);
+         }
+     }
 }

@@ -10,7 +10,6 @@
 氏名(セイ) : {{$t.last_name_kana}}<br/>
 氏名(メイ) : {{$t.first_name_kana}}<br/>
 メール : {{$t.mail}}<br/>
-メール : {{$t.mail_confirm}}<br/>
 郵便番号 : {{$t.zip}}<br/>
 都道府県 : {{$t.pref_label}}<br/>
 市区郡町村 : {{$t.city}}<br/>
@@ -18,30 +17,5 @@
 建物名 : {{$t.buildings}}<br/>
 電話番号 : {{$t.tel}}<br/>
 FAX番号 : {{$t.fax}}<br/>
-ユーザー製品 : 
-            {{foreach $t.products as $key=>$item}}
-                <table class="tbl detail">
-                <tr>
-                    <th>製品ID</th>
-                    <td>{{$t.products[$key].product_id_label}}</td>
-                </tr>
-                <tr>
-                    <th>型名（製造名）</th>
-                    <td>{{$t.products[$key].model}}</td>
-                </tr>
-                <tr>
-                    <th>シリアルNo</th>
-                    <td>{{$t.products[$key].serial_number}}</td>
-                </tr>
-                <tr>
-                    <th>購入元</th>
-                    <td>{{$t.products[$key].purchase_source}}</td>
-                </tr>
-                <tr>
-                    <th>購入理由</th>
-                    <td>{{{{$t.products[$key].purchase_reason}}|nl2br nofilter}}</td>
-                </tr>
-                </table>
-            {{/foreach}}
-        <br/>
 備考 : {{{{$t.memo}}|nl2br nofilter}}<br/>
+管理者備考 : {{{{$t.admin_memo}}|nl2br nofilter}}<br/>
