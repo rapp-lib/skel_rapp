@@ -108,7 +108,7 @@
 ,admin_index,index,管理者マイページ,,admin,TRUE,,,,,,,,,,,,
 ,admin_accept_user,master,承認待ちユーザー管理,User,admin,TRUE,,,,,,use_mail=true,,,,,,
 ,admin_user,master,ユーザー管理,User,admin,TRUE,,,,,,use_csv=true,,,,,,
-,admin_user_product,master,ユーザー製品管理,UserProduct,admin,TRUE,,,,,,,,,,,,
+,admin_user_product,master,ユーザー製品管理,UserProduct,admin,TRUE,,,,,,use_csv=true,,,,,,
 ,admin_product,master,製品管理,Product,admin,TRUE,,,,,,,,,,,,
 ,admin_draft_product,master,下書き製品管理,Product,admin,TRUE,,,,,,use_detail=true,,,,,,
 ,admin_relation_product,master,関連ファイル管理,RelationProduct,admin,TRUE,,,,,,,,,,,,

@@ -64,6 +64,7 @@ class RelationProductTable extends Table_App
     protected static $rules = array(
         array("class", "enum", "enum"=>"RelationProduct.class"),
         array("common_information_id", "enum", "enum"=>"RelationProduct.common_information"),
+        array("status", "enum", "enum"=>"RelationProduct.status"),
     );
     protected static $aliases = array(
         "product_id"=>array(
@@ -75,6 +76,9 @@ class RelationProductTable extends Table_App
         "common_information_id"=>array(
             "common_information_id_label"=>array("enum"=>"RelationProduct.common_information"),
             "common_information"=>array("type"=>"belongs_to", "table"=>"CommonInformation"),
+        ),
+        "status"=>array(
+            "status_label"=>array("enum"=>"RelationProduct.status"),
         ),
     );
     protected static $def = array(

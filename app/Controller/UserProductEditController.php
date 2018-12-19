@@ -19,6 +19,7 @@ class UserProductEditController extends Controller_User
             "serial_number"=>array("label"=>"シリアルNo"),
             "purchase_source"=>array("label"=>"購入元"),
             "purchase_reason"=>array("label"=>"購入理由"),
+            "accept_flg"=>array("label"=>"承認フラグ"),
         ),
         "rules" => array(
             "serial_number",

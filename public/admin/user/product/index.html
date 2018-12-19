@@ -27,6 +27,7 @@
         <th>型名（製造名）</th>
         <th>シリアルNo</th>
         <th>購入元</th>
+        <th>承認フラグ</th>
         <th>&nbsp;</th>
     </tr>
     {{foreach $ts as $i => $t}}
@@ -36,6 +37,7 @@
         <td>{{$t.model}}</td>
         <td>{{$t.serial_number}}</td>
         <td>{{$t.purchase_source}}</td>
+        <td>{{$t.accept_flg_label}}</td>
         <td>
             <a href='{{"admin_user_product.form"|page_to_url:["id"=>$t.id]}}' class="list-btn">編集</a>
             <a href='{{"admin_user_product.delete"|page_to_url:["id"=>$t.id]}}' class="list-btn" onclick="return confirm('削除します');">削除</a>

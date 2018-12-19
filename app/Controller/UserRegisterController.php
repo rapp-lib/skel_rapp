@@ -39,9 +39,9 @@ class UserRegisterController extends Controller_Guest
             "products.*.serial_number"=>array("label"=>"シリアルNo"),
             "products.*.purchase_source"=>array("label"=>"購入元"),
             "products.*.purchase_reason"=>array("label"=>"購入理由"),
+            "products.*.accept_flg"=>array("label"=>"承認フラグ"),
             "memo"=>array("label"=>"備考"),
             "deliv_flg"=>array("label"=>"配信"),
-            "admin_memo"=>array("label"=>"管理者備考"),
         ),
         "rules" => array(
             "company_name",

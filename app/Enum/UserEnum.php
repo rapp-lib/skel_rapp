@@ -55,4 +55,9 @@ class UserEnum extends Enum_App
         "46" => "鹿児島県",
         "47" => "沖縄県",
     );
+    protected static $values_accept_flg = array(
+        "1" => "承認",
+        "2" => "承認待ち",
+        "3" => "削除",
+    );
 }

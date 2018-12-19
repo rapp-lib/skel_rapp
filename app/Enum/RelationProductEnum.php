@@ -17,4 +17,8 @@ class RelationProductEnum extends Enum_App
         if ($keys) $query->findById($keys);
         return $query->select()->getHashedBy("id", "title");
     }
+    protected static $values_status = array(
+        "1" => "公開",
+        "2" => "下書き",
+    );
 }

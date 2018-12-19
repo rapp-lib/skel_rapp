@@ -32,7 +32,6 @@ class UserEditController extends Controller_User
             "login_pw"=>array("label"=>"パスワード"),
             "login_pw_confirm"=>array("label"=>"パスワード確認", "col"=>false),
             "memo"=>array("label"=>"備考"),
-            "admin_memo"=>array("label"=>"管理者備考"),
         ),
         "rules" => array(
             "company_name",

@@ -102,8 +102,13 @@ class ProductTable extends Table_App
      */
     protected function on_read_userStatus ()
     {
-        if (app()->user->getCurrentPriv("user") && $col_name = $this->getColNameByAttr("status")) {
-            $this->query->where($this->getAppTableName().".".$col_name,1);
-         }
-     }
+        if (app()->user->getCurrentPriv("user")) {
+            if ($col_name = $this->getColNameByAttr("status")) {
+                $this->query->where($this->getAppTableName().".".$col_name,1);
+            }
+            if ($col_name = $this->getColNameByAttr("release_date")) {
+                $this->query->where($this->getAppTableName().".".$col_name." < CURRENT_DATE");
+            }
+        }
+    }
 }

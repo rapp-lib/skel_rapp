@@ -28,7 +28,7 @@ class AdminAcceptUserController extends Controller_Admin
         } elseif ($this->forms["search"]->receive($this->input)) {
             $this->forms["search"]->save();
         }
-        $this->vars["ts"] = $this->forms["search"]->search()->select();
+        $this->vars["ts"] = $this->forms["search"]->search()->acceptFlg()->select();
     }
     /**
      * 入力フォーム
@@ -58,6 +58,7 @@ class AdminAcceptUserController extends Controller_Admin
             "login_pw_confirm"=>array("label"=>"パスワード確認", "col"=>false),
             "memo"=>array("label"=>"備考"),
             "admin_memo"=>array("label"=>"管理者備考"),
+            "accept_flg"=>array("label"=>"承認フラグ"),
         ),
         "rules" => array(
             "company_name",
@@ -92,7 +93,7 @@ class AdminAcceptUserController extends Controller_Admin
         } else {
             $this->forms["entry"]->clear();
             if ($id = $this->input["id"]) {
-                $t = $this->forms["entry"]->getTable()->selectById($id);
+                $t = $this->forms["entry"]->getTable()->acceptFlg()->selectById($id);
                 if ( ! $t) return $this->response("notfound");
                 $this->forms["entry"]->setRecord($t);
             }

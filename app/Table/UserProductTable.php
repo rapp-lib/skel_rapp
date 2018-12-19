@@ -71,6 +71,7 @@ class UserProductTable extends Table_App
             "col_name"=>"serial_number",
             "id_field"=>"id",
         ),
+        array("accept_flg", "enum", "enum"=>"UserProduct.accept_flg"),
     );
     protected static $aliases = array(
         "user_id"=>array(
@@ -79,6 +80,9 @@ class UserProductTable extends Table_App
         "product_id"=>array(
             "product_id_label"=>array("enum"=>"UserProduct.product"),
             "product"=>array("type"=>"belongs_to", "table"=>"Product"),
+        ),
+        "accept_flg"=>array(
+            "accept_flg_label"=>array("enum"=>"UserProduct.accept_flg"),
         ),
     );
     protected static $def = array(
@@ -89,4 +93,13 @@ class UserProductTable extends Table_App
             array("name"=>"visible", "cols"=>array("del_flg")),
         ),
     );
+
+    /**
+     * @hook chain
+     * 未承認のみを対象とする
+     */
+    public function chain_acceptFlg ($query, $col_name, $value=false)
+    {
+        $query->where($this->getQueryTableName().".".$this->getIdColName("accept_flg"), "2");
+    }
 }
