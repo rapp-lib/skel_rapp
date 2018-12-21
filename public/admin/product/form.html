@@ -52,58 +52,6 @@
         <th>ステータス</th>
         <td>{{input name="status" type="hidden"}}</td>
     </tr>
-    <tr>
-        <th>関連ファイル</th>
-        <td>
-            <div class="mi" data-minItems="0" data-maxItems="1000">
-                <input type="hidden" name="relation_products"/>
-                {{input_fieldset name="relation_products" tmpl="${id}" key="key" assign="fieldset"}}
-                    <div class="mi-item" data-itemId="{{$key}}">
-                        {{input type="hidden" name="relation_products[$key][id]"}}
-                        {{input type="hidden" name="relation_products[$key][ord_seq]" class="mi-item-seq"}}
-                        <table class="tbl detail">
-                        <tr>
-                            <th>ファイル種別</th>
-                            <td class="input-block">{{input name="relation_products[$key][class]" type="select" values=$enum["RelationProduct.class"]}}</td>
-                        </tr>
-                        <tr>
-                            <th>ファイル属性</th>
-                            <td class="input-block">{{input name="relation_products[$key][common_information_id]" type="select" values=$enum["RelationProduct.common_information"]}}</td>
-                        </tr>
-                        <tr>
-                            <th>ファイル</th>
-                            <td class="input-block">{{input name="relation_products[$key][file]" type="file"}}{{if $forms.entry.relation_products[$key].file}}<span> <a href="{{$forms.entry.relation_products[$key].file}}" target="_blank" class="uploaded">ファイル</a> <a href="javascript:void(0);" onclick="$(this).parent().parent().find('input.uploaded').val('').change();$(this).parent().hide();">削除</a></span>{{/if}}</td>
-                        </tr>
-                        <tr>
-                            <th>リンク</th>
-                            <td class="input-block">{{input name="relation_products[$key][link]" type="text" class="w-full"}}</td>
-                        </tr>
-                        <tr>
-                            <th>公開日</th>
-                            <td class="input-block">{{input name="relation_products[$key][release_date]" type="text" class="w-full"}}</td>
-                        </tr>
-                        <tr>
-                            <th>説明</th>
-                            <td class="input-block">{{input name="relation_products[$key][description]" type="textarea"}}</td>
-                        </tr>
-                        <tr>
-                            <th>ステータス</th>
-                            <td class="input-block">{{input name="relation_products[$key][status]" type="radioselect" values=$enum["RelationProduct.status"]}}</td>
-                        </tr>
-                        <tr>
-                            <th></th>
-                            <td><a href="javascript:void(0);" class="mi-item-remove">削除</a></td>
-                        </tr>
-                        </table>
-                    </div>
-                {{/input_fieldset}}
-                {{foreach $fieldset.items as $item}}{{$item nofilter}}{{/foreach}}
-                <script type="text/template" class="mi-tmpl mi-anchor">{{$fieldset.tmpl nofilter}}</script>
-                <a href="javascript:void(0);" class="mi-append">追加</a>
-            </div>
-            {{script require="rui.mi"}}{{/script}}
-        </td>
-    </tr>
 </table>
 <div class="btn-area">
     <a href='{{"admin_product.list"|page_to_url:["back"=>1]}}' class="back-btn">戻る</a>
