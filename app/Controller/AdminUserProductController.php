@@ -101,4 +101,47 @@ class AdminUserProductController extends Controller_Admin
         }
         return $this->redirect("id://admin_user_product.list", array("back"=>"1"));
     }
+    /**
+     * CSV設定
+     */
+    protected static $form_csv = array(
+        "table" => "UserProduct",
+        "fields" => array(
+            "id"=>array("label"=>"#ID"),
+            "product_id"=>array("label"=>"製品ID"),
+            "model"=>array("label"=>"型名（製造名）"),
+            "serial_number"=>array("label"=>"シリアルNo"),
+            "purchase_source"=>array("label"=>"購入元"),
+            "purchase_reason"=>array("label"=>"購入理由"),
+            "accept_flg"=>array("label"=>"承認フラグ"),
+        ),
+        "rules" => array(
+            "serial_number",
+        ),
+        "csv_setting" => array(
+            "ignore_empty_line" => true,
+            "rows" => array(),
+            "filters" => array(
+                array("product_id", "enum_value", "enum"=>"UserProduct.product"),
+                array("accept_flg", "enum_value", "enum"=>"UserProduct.accept_flg"),
+            ),
+        ),
+    );
+    /**
+     * @page
+     */
+    public function act_csv ()
+    {
+        // 検索結果の取得
+        $this->forms["search"]->restore();
+        $ts = $this->forms["search"]->search()->removePagenation()->select();
+        // CSVファイルの書き込み
+        $csv = $this->forms["csv"]->openCsvFile("php://temp", "w");
+        foreach ($ts as $t) $csv->writeRecord($t);
+        // データ出力
+        return app()->http->response("stream", $csv->getHandle(), array("headers"=>array(
+            'content-type' => 'application/octet-stream',
+            'content-disposition' => 'attachment; filename='.'UserProduct.csv'
+        )));
+    }
 }

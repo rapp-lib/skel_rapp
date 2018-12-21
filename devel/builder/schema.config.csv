@@ -52,7 +52,7 @@
 ,,release_date,公開日,datetime,text,,,,,,,,admin_product,admin_draft_product,,,,
 ,,description,説明,text,textarea,,,,,,,,admin_product,admin_draft_product,,,,
 ,,status,ステータス,integer,hidden,TRUE,,,,1,,"enum_values={""1"":""公開"", ""2"":""下書き""} ",admin_product,admin_draft_product,,,,
-,,relation_products,関連ファイル,,assoc,,,,,,,"def.assoc={""table"":""RelationProduct""}",admin_product,admin_draft_product,,,,
+,,relation_products,関連ファイル,,assoc,,,,,,,"def.assoc={""table"":""RelationProduct""}",admin_relation_product,,,,,
 ,,id,ID,integer,,,,,,,,def.id=true | def.autoincrement=true,,,,,,
 ,,reg_date,登録日時,datetime,,,,,,,,def.reg_date=true,,,,,,
 ,,del_flg,削除フラグ,integer,,,,,,0,visible,def.del_flg=true,,,,,,

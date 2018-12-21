@@ -36,6 +36,7 @@ class ProductTable extends Table_App
         ),
         "release_date"=>array(
             "type"=>"datetime",
+            "release_date"=>true,
             "comment"=>"公開日",
         ),
         "description"=>array(
@@ -45,6 +46,7 @@ class ProductTable extends Table_App
         "status"=>array(
             "type"=>"integer",
             "default"=>1,
+            "status"=>true,
             "comment"=>"ステータス",
         ),
         "relation_products"=>array(
@@ -102,13 +104,23 @@ class ProductTable extends Table_App
      */
     protected function on_read_userStatus ()
     {
-        if (app()->user->getCurrentPriv("user")) {
-            if ($col_name = $this->getColNameByAttr("status")) {
-                $this->query->where($this->getAppTableName().".".$col_name,1);
-            }
-            if ($col_name = $this->getColNameByAttr("release_date")) {
-                $this->query->where($this->getAppTableName().".".$col_name." < CURRENT_DATE");
-            }
+        if (! app()->user->getCurrentPriv("admin") && $col_name = $this->getColNameByAttr("status")) {
+            $this->query->where($this->getAppTableName().".".$col_name,1);
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * @hook on_read
+     * ユーザ表示項目を関連付ける
+     */
+    protected function on_read_userReleaseDate ()
+    {
+        if (! app()->user->getCurrentPriv("admin") && $col_name = $this->getColNameByAttr("release_date")) {
+            $this->query->where($this->getAppTableName().".".$col_name." <= CURRENT_DATE");
+        } else {
+            return false;
         }
     }
 }

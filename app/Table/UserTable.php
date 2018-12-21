@@ -168,13 +168,4 @@ class UserTable extends Table_App
             array("name"=>"visible", "cols"=>array("del_flg")),
         ),
     );
-
-    /**
-     * @hook chain
-     * 未承認のみを対象とする
-     */
-    public function chain_acceptFlg ($query, $col_name, $value=false)
-    {
-        $query->where($this->getQueryTableName().".".$this->getIdColName("accept_flg"), "2");
-    }
 }

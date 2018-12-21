@@ -98,8 +98,8 @@ class UserProductTable extends Table_App
      * @hook chain
      * 未承認のみを対象とする
      */
-    public function chain_acceptFlg ($query, $col_name, $value=false)
+    /*public function chain_findByAcceptFlg ()
     {
-        $query->where($this->getQueryTableName().".".$this->getIdColName("accept_flg"), "2");
-    }
+        $this->query->where($this->getQueryTableName().".".$this->getColNameByAttr("accept_flg"), "2");
+    }*/
 }
