@@ -56,22 +56,10 @@ class AdminDraftProductController extends Controller_Admin
             "release_date"=>array("label"=>"公開日"),
             "description"=>array("label"=>"説明"),
             "status"=>array("label"=>"ステータス"),
-            "relation_products"=>array("label"=>"関連ファイル"),
-            "relation_products.*.id",
-            "relation_products.*.ord_seq"=>array("col"=>false),
-            "relation_products.*.class"=>array("label"=>"ファイル種別"),
-            "relation_products.*.common_information_id"=>array("label"=>"ファイル属性"),
-            "relation_products.*.file"=>array("label"=>"ファイル", "storage"=>"public"),
-            "relation_products.*.link"=>array("label"=>"リンク"),
-            "relation_products.*.release_date"=>array("label"=>"公開日"),
-            "relation_products.*.description"=>array("label"=>"説明"),
-            "relation_products.*.status"=>array("label"=>"ステータス"),
         ),
         "rules" => array(
             "name",
             "status",
-            "relation_products.*.class",
-            "relation_products.*.status",
         ),
     );
     /**
