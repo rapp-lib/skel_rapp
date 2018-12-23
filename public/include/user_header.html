@@ -32,13 +32,22 @@
             <dt><a href='{{"user_login.login"|page_to_url}}'>ログイン</a></dt>
         {{/if}}
         {{if "user_index.index"|is_accessible}}
-            <dt><a href='{{"user_index.index"|page_to_url}}'>ユーザーマイページ</a></dt>
+            <dt><a href='{{"user_index.index"|page_to_url}}'>ユーザートップ</a></dt>
+        {{/if}}
+        {{if "user_news.list"|is_accessible}}
+            <dt><a href='{{"user_news.list"|page_to_url}}'>更新情報一覧</a></dt>
+        {{/if}}
+        {{if "user_notices.list"|is_accessible}}
+            <dt><a href='{{"user_notices.list"|page_to_url}}'>ご注意事項一覧</a></dt>
+        {{/if}}
+        {{if "user_products.list"|is_accessible}}
+            <dt><a href='{{"user_products.list"|page_to_url}}'>マイページ</a></dt>
+        {{/if}}
+        {{if "user_products_files.list"|is_accessible}}
+            <dt><a href='{{"user_products_files.list"|page_to_url}}'>関連ファイルダウンロード</a></dt>
         {{/if}}
         {{if "user_edit.form"|is_accessible}}
-            <dt><a href='{{"user_edit.form"|page_to_url}}'>ユーザー編集</a></dt>
-        {{/if}}
-        {{if "user_product_edit.form"|is_accessible}}
-            <dt><a href='{{"user_product_edit.form"|page_to_url}}'>ユーザー製品追加</a></dt>
+            <dt><a href='{{"user_edit.form"|page_to_url}}'>登録情報編集</a></dt>
         {{/if}}
     </dl>
     <dl>

@@ -1,0 +1,36 @@
+{{assign "page_title" "ご注意事項管理 入力"}}
+{{inc path="/include/admin_header.html"}}
+
+<h1 class="page-title">{{$page_title}}</h1>
+
+{{if $forms.entry->getErrors()}}
+    <p class="errmsg">※入力エラーがあります</p>
+{{/if}}
+{{script require=["app.observeForm"]}}
+    $(function(){
+        var state = {{$forms.entry->exportState()|json_encode nofilter}};
+        var form = observeForm($("form.form-entry"), state, "admin");
+    });
+{{/script}}
+
+{{form action='.'|page_to_url enctype="multipart/form-data" method="post" form=$forms.entry class="form-entry"}}
+{{input name="id" type="hidden"}}
+<table class="tbl detail">
+    <tr>
+        <th>項番</th>
+        <td>{{input name="number" type="text" class="w-full"}}</td>
+    </tr>
+    <tr>
+        <th>内容</th>
+        <td>{{input name="contents" type="textarea"}}</td>
+    </tr>
+</table>
+<div class="btn-area">
+    <a href='{{"admin_notices.list"|page_to_url:["back"=>1]}}' class="back-btn">戻る</a>
+    <div class="right clearfix">
+        <button type="submit" class="primary-btn">確認</button>
+    </div>
+</div>
+{{/form}}
+
+{{inc path="/include/admin_footer.html"}}

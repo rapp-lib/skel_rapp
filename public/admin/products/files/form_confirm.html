@@ -1,0 +1,43 @@
+{{assign "page_title" "関連ファイル管理 入力 確認"}}
+{{inc path="/include/admin_header.html"}}
+
+<h1 class="page-title">{{$page_title}}</h1>
+
+<table class="tbl detail">
+    <tr>
+        <th>ファイル種別</th>
+        <td>{{$t.file_type_label}}</td>
+    </tr>
+    <tr>
+        <th>共通ファイルID</th>
+        <td>{{$t.common_file_id_label}}</td>
+    </tr>
+    <tr>
+        <th>ファイル</th>
+        <td>{{if $t.file}}<a href="{{$t.file}}" target="_blank">ファイル</a>{{/if}}</td>
+    </tr>
+    <tr>
+        <th>リンク</th>
+        <td>{{$t.link}}</td>
+    </tr>
+    <tr>
+        <th>公開日</th>
+        <td>{{$t.release_date|date:"Y/m/d"}}</td>
+    </tr>
+    <tr>
+        <th>説明</th>
+        <td>{{{{$t.description}}|nl2br nofilter}}</td>
+    </tr>
+    <tr>
+        <th>公開ステータス</th>
+        <td>{{$t.display_status_label}}</td>
+    </tr>
+</table>
+<div class="btn-area">
+    <a href='{{".form"|page_to_url|url:["back"=>1]}}' class="back-btn">戻る</a>
+    <div class="right clearfix">
+        <a href='{{".form_complete"|page_to_url}}' class="primary-btn">登録</a>
+    </div>
+</div>
+
+{{inc path="/include/admin_footer.html"}}

@@ -86,10 +86,6 @@
                     <td>{{$t.products[$key].product_id_label}}</td>
                 </tr>
                 <tr>
-                    <th>型名（製造名）</th>
-                    <td>{{$t.products[$key].model}}</td>
-                </tr>
-                <tr>
                     <th>シリアルNo</th>
                     <td>{{$t.products[$key].serial_number}}</td>
                 </tr>
@@ -105,6 +101,10 @@
                     <th>承認フラグ</th>
                     <td>{{$t.products[$key].accept_flg_label}}</td>
                 </tr>
+                <tr>
+                    <th>承認通過日付</th>
+                    <td>{{$t.products[$key].accept_date|date:"Y/m/d"}}</td>
+                </tr>
                 </table>
             {{/foreach}}
         </td>
@@ -115,7 +115,7 @@
     </tr>
     <tr>
         <th>配信</th>
-        <td>{{$t.deliv_flg}}</td>
+        <td>{{$t.deliv_flg_label}}</td>
     </tr>
 </table>
 <div class="btn-area">

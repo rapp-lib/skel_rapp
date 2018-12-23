@@ -18,9 +18,6 @@ class UserProductTable extends Table_App
             "fkey_for"=>"Product",
             "comment"=>"製品ID",
         ),
-        "model"=>array(
-            "comment"=>"型名（製造名）",
-        ),
         "serial_number"=>array(
             "type"=>"text",
             "serial_number"=>true,
@@ -36,12 +33,13 @@ class UserProductTable extends Table_App
         ),
         "accept_flg"=>array(
             "type"=>"integer",
-            "default"=>2,
+            "default"=>1,
             "accept_flg"=>true,
             "comment"=>"承認フラグ",
         ),
-        "accepted_date"=>array(
+        "accept_date"=>array(
             "type"=>"datetime",
+            "accept_date"=>true,
             "comment"=>"承認通過日付",
         ),
         "id"=>array(
@@ -63,6 +61,7 @@ class UserProductTable extends Table_App
         ),
     );
     protected static $rules = array(
+        array("user_id", "enum", "enum"=>"UserProduct.user"),
         array("product_id", "enum", "enum"=>"UserProduct.product"),
         array(
             "serial_number",
@@ -75,6 +74,7 @@ class UserProductTable extends Table_App
     );
     protected static $aliases = array(
         "user_id"=>array(
+            "user_id_label"=>array("enum"=>"UserProduct.user"),
             "user"=>array("type"=>"belongs_to", "table"=>"User"),
         ),
         "product_id"=>array(

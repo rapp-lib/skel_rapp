@@ -101,10 +101,6 @@
                             <td class="input-block">{{input name="products[$key][product_id]" type="select" values=$enum["UserProduct.product"]}}</td>
                         </tr>
                         <tr>
-                            <th>型名（製造名）</th>
-                            <td class="input-block">{{input name="products[$key][model]" type="text" class="w-full"}}</td>
-                        </tr>
-                        <tr>
                             <th>シリアルNo</th>
                             <td class="input-block">{{input name="products[$key][serial_number]" type="text" class="w-full"}}</td>
                         </tr>
@@ -119,6 +115,10 @@
                         <tr>
                             <th>承認フラグ</th>
                             <td class="input-block">{{input name="products[$key][accept_flg]" type="radioselect" values=$enum["UserProduct.accept_flg"]}}</td>
+                        </tr>
+                        <tr>
+                            <th>承認通過日付</th>
+                            <td class="input-block">{{input name="products[$key][accept_date]" type="date"}}</td>
                         </tr>
                         <tr>
                             <th></th>
@@ -140,7 +140,7 @@
     </tr>
     <tr>
         <th>配信</th>
-        <td>{{input name="deliv_flg" type="checkbox"}}</td>
+        <td>{{input name="deliv_flg" type="radioselect" values=$enum["User.deliv_flg"]}}</td>
     </tr>
 </table>
 <div class="btn-area">
