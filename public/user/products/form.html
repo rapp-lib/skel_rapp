@@ -1,0 +1,44 @@
+{{assign "page_title" "マイページ 入力"}}
+{{inc path="/include/user_header.html"}}
+
+<h1 class="page-title">{{$page_title}}</h1>
+
+{{if $forms.entry->getErrors()}}
+    <p class="errmsg">※入力エラーがあります</p>
+{{/if}}
+{{script require=["app.observeForm"]}}
+    $(function(){
+        var state = {{$forms.entry->exportState()|json_encode nofilter}};
+        var form = observeForm($("form.form-entry"), state, "admin");
+    });
+{{/script}}
+
+{{form action='.'|page_to_url enctype="multipart/form-data" method="post" form=$forms.entry class="form-entry"}}
+{{input name="id" type="hidden"}}
+<table class="tbl detail">
+    <tr>
+        <th>製品ID</th>
+        <td>{{input name="product_id" type="select" values=$enum["UserProduct.product"]}}</td>
+    </tr>
+    <tr>
+        <th>シリアルNo</th>
+        <td>{{input name="serial_number" type="text" class="w-full"}}</td>
+    </tr>
+    <tr>
+        <th>購入元</th>
+        <td>{{input name="purchase_source" type="text" class="w-full"}}</td>
+    </tr>
+    <tr>
+        <th>購入理由</th>
+        <td>{{input name="purchase_reason" type="textarea"}}</td>
+    </tr>
+</table>
+<div class="btn-area">
+    <a href='{{"user_products.list"|page_to_url:["back"=>1]}}' class="back-btn">戻る</a>
+    <div class="right clearfix">
+        <button type="submit" class="primary-btn">確認</button>
+    </div>
+</div>
+{{/form}}
+
+{{inc path="/include/user_footer.html"}}

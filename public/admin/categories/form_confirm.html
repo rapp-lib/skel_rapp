@@ -1,0 +1,27 @@
+{{assign "page_title" "分類管理 入力 確認"}}
+{{inc path="/include/admin_header.html"}}
+
+<h1 class="page-title">{{$page_title}}</h1>
+
+<table class="tbl detail">
+    <tr>
+        <th>種類</th>
+        <td>{{$t.category_type_label}}</td>
+    </tr>
+    <tr>
+        <th>大分類ID</th>
+        <td>{{$t.parent_category_id_label}}</td>
+    </tr>
+    <tr>
+        <th>分類名</th>
+        <td>{{$t.name}}</td>
+    </tr>
+</table>
+<div class="btn-area">
+    <a href='{{".form"|page_to_url|url:["back"=>1]}}' class="back-btn">戻る</a>
+    <div class="right clearfix">
+        <a href='{{".form_complete"|page_to_url}}' class="primary-btn">登録</a>
+    </div>
+</div>
+
+{{inc path="/include/admin_footer.html"}}

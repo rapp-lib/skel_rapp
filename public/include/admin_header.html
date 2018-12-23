@@ -34,40 +34,34 @@
         {{if "admin_index.index"|is_accessible}}
             <dt><a href='{{"admin_index.index"|page_to_url}}'>管理者マイページ</a></dt>
         {{/if}}
-        {{if "admin_accept_user.list"|is_accessible}}
-            <dt><a href='{{"admin_accept_user.list"|page_to_url}}'>承認待ちユーザー管理</a></dt>
+        {{if "admin_users.list"|is_accessible}}
+            <dt><a href='{{"admin_users.list"|page_to_url}}'>ユーザー管理</a></dt>
         {{/if}}
-        {{if "admin_user.list"|is_accessible}}
-            <dt><a href='{{"admin_user.list"|page_to_url}}'>ユーザー管理</a></dt>
+        {{if "admin_users_products.list"|is_accessible}}
+            <dt><a href='{{"admin_users_products.list"|page_to_url}}'>ユーザー製品管理</a></dt>
         {{/if}}
-        {{if "admin_user_product.list"|is_accessible}}
-            <dt><a href='{{"admin_user_product.list"|page_to_url}}'>ユーザー製品管理</a></dt>
+        {{if "admin_products.list"|is_accessible}}
+            <dt><a href='{{"admin_products.list"|page_to_url}}'>製品管理</a></dt>
         {{/if}}
-        {{if "admin_product.list"|is_accessible}}
-            <dt><a href='{{"admin_product.list"|page_to_url}}'>製品管理</a></dt>
+        {{if "admin_products_files.list"|is_accessible}}
+            <dt><a href='{{"admin_products_files.list"|page_to_url}}'>関連ファイル管理</a></dt>
         {{/if}}
-        {{if "admin_draft_product.list"|is_accessible}}
-            <dt><a href='{{"admin_draft_product.list"|page_to_url}}'>下書き製品管理</a></dt>
+        {{if "admin_categories.list"|is_accessible}}
+            <dt><a href='{{"admin_categories.list"|page_to_url}}'>分類管理</a></dt>
         {{/if}}
-        {{if "admin_relation_product.list"|is_accessible}}
-            <dt><a href='{{"admin_relation_product.list"|page_to_url}}'>関連ファイル管理</a></dt>
-        {{/if}}
-        {{if "admin_product_category.list"|is_accessible}}
-            <dt><a href='{{"admin_product_category.list"|page_to_url}}'>分類管理</a></dt>
-        {{/if}}
-        {{if "admin_common_information.list"|is_accessible}}
-            <dt><a href='{{"admin_common_information.list"|page_to_url}}'>共通関連情報管理</a></dt>
+        {{if "admin_common_files.list"|is_accessible}}
+            <dt><a href='{{"admin_common_files.list"|page_to_url}}'>共通関連情報管理</a></dt>
         {{/if}}
         {{if "admin_news.list"|is_accessible}}
             <dt><a href='{{"admin_news.list"|page_to_url}}'>更新情報管理</a></dt>
         {{/if}}
-        {{if "admin_notes.list"|is_accessible}}
-            <dt><a href='{{"admin_notes.list"|page_to_url}}'>ご注意事項管理</a></dt>
+        {{if "admin_notices.list"|is_accessible}}
+            <dt><a href='{{"admin_notices.list"|page_to_url}}'>ご注意事項管理</a></dt>
         {{/if}}
     </dl>
     <dl>
         <dt><a href='{{"index.index"|page_to_url}}'>トップ</a></dt>
-        <dt><a href='{{"user_index.index"|page_to_url}}'>ユーザーマイページ</a></dt>
+        <dt><a href='{{"user_index.index"|page_to_url}}'>ユーザートップ</a></dt>
     </dl>
 </nav><!--/.main-menu-->
 </div><!--/.left-col-->

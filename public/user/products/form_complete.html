@@ -1,0 +1,11 @@
+{{assign "page_title" "マイページ 入力 完了"}}
+{{inc path="/include/user_header.html"}}
+
+<h1 class="page-title">{{$page_title}}</h1>
+
+<div class="btn-area">
+    <a href='{{"user_products.list"|page_to_url:["back"=>1]}}' class="back-btn">戻る</a>
+</div>
+
+
+{{inc path="/include/user_footer.html"}}

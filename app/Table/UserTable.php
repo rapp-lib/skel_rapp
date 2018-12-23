@@ -87,7 +87,7 @@ class UserTable extends Table_App
             "comment"=>"備考",
         ),
         "deliv_flg"=>array(
-            "type"=>"text",
+            "type"=>"integer",
             "comment"=>"配信",
         ),
         "admin_memo"=>array(
@@ -96,26 +96,30 @@ class UserTable extends Table_App
         ),
         "accept_flg"=>array(
             "type"=>"integer",
-            "default"=>2,
+            "default"=>1,
             "accept_flg"=>true,
             "comment"=>"承認フラグ",
         ),
-        "accepted_date"=>array(
+        "accept_date"=>array(
             "type"=>"datetime",
+            "accept_date"=>true,
             "comment"=>"承認通過日付",
         ),
-        "downloaded_flg"=>array(
+        "download_flg"=>array(
             "type"=>"integer",
-            "default"=>2,
-            "comment"=>"ダウンロードフラグ",
+            "default"=>1,
+            "download_flg"=>true,
+            "comment"=>"DL済みフラグ",
         ),
-        "erasured_flg"=>array(
+        "erase_flg"=>array(
             "type"=>"integer",
-            "default"=>2,
+            "default"=>1,
+            "erase_flg"=>true,
             "comment"=>"抹消済みフラグ",
         ),
         "last_login_date"=>array(
             "type"=>"datetime",
+            "last_login_date"=>true,
             "comment"=>"最終ログイン日時",
         ),
         "id"=>array(
@@ -149,14 +153,26 @@ class UserTable extends Table_App
         array("pref", "enum", "enum"=>"User.pref"),
         array("tel", "length", "max"=>20),
         array("fax", "length", "max"=>20),
+        array("deliv_flg", "enum", "enum"=>"User.deliv_flg"),
         array("accept_flg", "enum", "enum"=>"User.accept_flg"),
+        array("download_flg", "enum", "enum"=>"User.download_flg"),
+        array("erase_flg", "enum", "enum"=>"User.erase_flg"),
     );
     protected static $aliases = array(
         "pref"=>array(
             "pref_label"=>array("enum"=>"User.pref"),
         ),
+        "deliv_flg"=>array(
+            "deliv_flg_label"=>array("enum"=>"User.deliv_flg"),
+        ),
         "accept_flg"=>array(
             "accept_flg_label"=>array("enum"=>"User.accept_flg"),
+        ),
+        "download_flg"=>array(
+            "download_flg_label"=>array("enum"=>"User.download_flg"),
+        ),
+        "erase_flg"=>array(
+            "erase_flg_label"=>array("enum"=>"User.erase_flg"),
         ),
         "id"=>array(
             "user_products"=>array("type"=>"has_many", "table"=>"UserProduct"),
