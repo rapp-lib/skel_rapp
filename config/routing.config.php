@@ -84,6 +84,7 @@
             array("admin_products_files.delete", "/admin/products/files/delete.html", array("csrf_check"=>true)),
             // 分類管理
             array("admin_categories.list", "/admin/categories/"),
+            array("admin_categories.detail", "/admin/categories/detail.html"),
             array("admin_categories.form", "/admin/categories/form.html"),
             array("admin_categories.form_confirm", "/admin/categories/form_confirm.html"),
             array("admin_categories.form_complete", "/admin/categories/form_complete.html"),
