@@ -8,7 +8,6 @@
     <a href='{{"admin_products.form"|page_to_url}}' class="create-btn">新規登録</a>
     &nbsp;
     <div class="right clearfix">
-        <a href='{{"admin_products_files.list"|page_to_url}}' class="link-btn">関連ファイル管理</a>
     </div>
 </div>
 
@@ -43,6 +42,7 @@
             <a href='{{"admin_products.detail"|page_to_url:["id"=>$t.id]}}' class="list-btn">詳細</a>
             <a href='{{"admin_products.form"|page_to_url:["id"=>$t.id]}}' class="list-btn">編集</a>
             <a href='{{"admin_products.delete"|page_to_url:["id"=>$t.id]}}' class="list-btn" onclick="return confirm('削除します');">削除</a>
+            <a href='{{"admin_products_files.list"|page_to_url:["product_id"=>$t.id]}}' class="list-btn">関連ファイル管理</a>
         </td>
     </tr>
     {{/foreach}}

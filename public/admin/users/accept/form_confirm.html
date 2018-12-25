@@ -1,5 +1,5 @@
-{{assign "page_title" "ユーザー登録 確認"}}
-{{inc path="/include/guest_header.html"}}
+{{assign "page_title" "ユーザー承認管理 入力 確認"}}
+{{inc path="/include/admin_header.html"}}
 
 <h1 class="page-title">{{$page_title}}</h1>
 
@@ -35,10 +35,6 @@
     <tr>
         <th>メール</th>
         <td>{{$t.mail}}</td>
-    </tr>
-    <tr>
-        <th>メール確認入力</th>
-        <td>{{$t.mail_confirm}}</td>
     </tr>
     <tr>
         <th>郵便番号</th>
@@ -77,45 +73,16 @@
         <td>********</td>
     </tr>
     <tr>
-        <th>ユーザー製品</th>
-        <td>
-            {{foreach $t.products as $key=>$item}}
-                <table class="tbl detail">
-                <tr>
-                    <th>製品ID</th>
-                    <td>{{$t.products[$key].product_id_label}}</td>
-                </tr>
-                <tr>
-                    <th>シリアルNo</th>
-                    <td>{{$t.products[$key].serial_number}}</td>
-                </tr>
-                <tr>
-                    <th>購入元</th>
-                    <td>{{$t.products[$key].purchase_source}}</td>
-                </tr>
-                <tr>
-                    <th>購入理由</th>
-                    <td>{{{{$t.products[$key].purchase_reason}}|nl2br nofilter}}</td>
-                </tr>
-                <tr>
-                    <th>承認フラグ</th>
-                    <td>{{$t.products[$key].accept_flg_label}}</td>
-                </tr>
-                <tr>
-                    <th>承認通過日付</th>
-                    <td>{{$t.products[$key].accept_date|date:"Y/m/d"}}</td>
-                </tr>
-                </table>
-            {{/foreach}}
-        </td>
-    </tr>
-    <tr>
         <th>備考</th>
         <td>{{{{$t.memo}}|nl2br nofilter}}</td>
     </tr>
     <tr>
-        <th>配信</th>
-        <td>{{$t.deliv_flg_label}}</td>
+        <th>管理者備考</th>
+        <td>{{{{$t.admin_memo}}|nl2br nofilter}}</td>
+    </tr>
+    <tr>
+        <th>承認フラグ</th>
+        <td>{{$t.accept_flg_label}}</td>
     </tr>
 </table>
 <div class="btn-area">
@@ -125,4 +92,4 @@
     </div>
 </div>
 
-{{inc path="/include/guest_footer.html"}}
+{{inc path="/include/admin_footer.html"}}

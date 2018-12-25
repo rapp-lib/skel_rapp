@@ -37,14 +37,11 @@
         {{if "admin_users.list"|is_accessible}}
             <dt><a href='{{"admin_users.list"|page_to_url}}'>ユーザー管理</a></dt>
         {{/if}}
-        {{if "admin_users_products.list"|is_accessible}}
-            <dt><a href='{{"admin_users_products.list"|page_to_url}}'>ユーザー製品管理</a></dt>
+        {{if "admin_users_accept.list"|is_accessible}}
+            <dt><a href='{{"admin_users_accept.list"|page_to_url}}'>ユーザー承認管理</a></dt>
         {{/if}}
         {{if "admin_products.list"|is_accessible}}
             <dt><a href='{{"admin_products.list"|page_to_url}}'>製品管理</a></dt>
-        {{/if}}
-        {{if "admin_products_files.list"|is_accessible}}
-            <dt><a href='{{"admin_products_files.list"|page_to_url}}'>関連ファイル管理</a></dt>
         {{/if}}
         {{if "admin_categories.list"|is_accessible}}
             <dt><a href='{{"admin_categories.list"|page_to_url}}'>分類管理</a></dt>
