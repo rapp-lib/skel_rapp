@@ -111,11 +111,21 @@ class UserTable extends Table_App
             "download_flg"=>true,
             "comment"=>"DL済みフラグ",
         ),
+        "download_date"=>array(
+            "type"=>"datetime",
+            "download_date"=>true,
+            "comment"=>"DL済み日付",
+        ),
         "erase_flg"=>array(
             "type"=>"integer",
             "default"=>1,
             "erase_flg"=>true,
             "comment"=>"抹消済みフラグ",
+        ),
+        "erase_date"=>array(
+            "type"=>"datetime",
+            "erase_date"=>true,
+            "comment"=>"抹消済みフラグ日付",
         ),
         "last_login_date"=>array(
             "type"=>"datetime",

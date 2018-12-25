@@ -29,5 +29,6 @@ class UserProductsFilesController extends Controller_User
             $this->forms["search"]->save();
         }
         $this->vars["ts"] = $this->forms["search"]->search()->select();
+        if ( ! $this->forms["search"]["product_id"]) return $this->response("badrequest");
     }
 }

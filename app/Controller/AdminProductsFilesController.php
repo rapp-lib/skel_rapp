@@ -29,6 +29,7 @@ class AdminProductsFilesController extends Controller_Admin
             $this->forms["search"]->save();
         }
         $this->vars["ts"] = $this->forms["search"]->search()->select();
+        if ( ! $this->forms["search"]["product_id"]) return $this->response("badrequest");
     }
     /**
      * 入力フォーム
@@ -71,7 +72,11 @@ class AdminProductsFilesController extends Controller_Admin
                 if ( ! $t) return $this->response("notfound");
                 $this->forms["entry"]->setRecord($t);
             }
+            if ( ! $this->forms["entry"]["product_id"]) {
+                $this->forms["entry"]["product_id"] = $this->input["product_id"];
+            }
         }
+        if ( ! $this->forms["entry"]["product_id"]) return $this->response("badrequest");
     }
     /**
      * @page

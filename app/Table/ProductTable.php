@@ -75,11 +75,11 @@ class ProductTable extends Table_App
     protected static $aliases = array(
         "parent_category_id"=>array(
             "parent_category_id_label"=>array("enum"=>"Product.category"),
-            "category"=>array("type"=>"belongs_to", "table"=>"Category"),
+            "parent_category"=>array("type"=>"belongs_to", "table"=>"Category"),
         ),
         "child_category_id"=>array(
             "child_category_id_label"=>array("enum"=>"Product.category"),
-            "category"=>array("type"=>"belongs_to", "table"=>"Category"),
+            "child_category"=>array("type"=>"belongs_to", "table"=>"Category"),
         ),
         "display_status"=>array(
             "display_status_label"=>array("enum"=>"Product.display_status"),

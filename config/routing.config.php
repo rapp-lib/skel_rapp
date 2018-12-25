@@ -56,6 +56,12 @@
             array("admin_users.form_complete", "/admin/users/form_complete.html"),
             array("admin_users.delete", "/admin/users/delete.html", array("csrf_check"=>true)),
             array("admin_users.csv", "/admin/users/csv.html"),
+            // ユーザー承認管理
+            array("admin_users_accept.list", "/admin/users/accept/"),
+            array("admin_users_accept.form", "/admin/users/accept/form.html"),
+            array("admin_users_accept.form_confirm", "/admin/users/accept/form_confirm.html"),
+            array("admin_users_accept.form_complete", "/admin/users/accept/form_complete.html"),
+            array("admin_users_accept.delete", "/admin/users/accept/delete.html", array("csrf_check"=>true)),
             // ユーザー製品管理
             array("admin_users_products.list", "/admin/users/products/"),
             array("admin_users_products.form", "/admin/users/products/form.html"),
