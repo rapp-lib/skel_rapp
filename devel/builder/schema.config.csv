@@ -114,7 +114,7 @@
 ,admin_users_products,master,ユーザー製品管理,UserProduct,admin,TRUE,,depend=user_id,,,,use_csv=true,,,,,,
 ,admin_products,master,製品管理,Product,admin,TRUE,,,,,,use_detail=true,admin_products_files,,,,,
 ,admin_products_files,master,関連ファイル管理,ProductFile,admin,TRUE,,depend=product_id,,,,,,,,,,
-,admin_categories,master,分類管理,Category,admin,TRUE,,,,,,,,,,,,
+,admin_categories,master,分類管理,Category,admin,TRUE,,,,,,use_detail=true,,,,,,
 ,admin_common_files,master,共通関連情報管理,CommonFile,admin,TRUE,,,,,,,,,,,,
 ,admin_news,master,更新情報管理,News,admin,TRUE,,,,,,,,,,,,
 ,admin_notices,master,ご注意事項管理,Notice,admin,TRUE,,,,,,use_detail=true,,,,,,

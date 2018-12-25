@@ -20,7 +20,7 @@ class AppTableFeatureProvider extends BaseFeatureProvider
      * @hook on_read
      * ユーザ表示項目を関連付ける
      */
-    protected function on_read_colStatus ($query, $col_name)
+    protected function on_read_colAcceptStatus ($query, $col_name)
     {
         if (! app()->user->getCurrentPriv("admin")) {
             $query->where($query->getTableName().".".$col_name, 1);

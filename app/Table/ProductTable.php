@@ -100,9 +100,9 @@ class ProductTable extends Table_App
      * @hook on_read
      * ユーザ表示項目を関連付ける
      */
-    protected function on_read_userStatus ()
+    protected function on_read_userAcceptStatus ()
     {
-        if (! app()->user->getCurrentPriv("admin") && $col_name = $this->getColNameByAttr("status")) {
+        if (! app()->user->getCurrentPriv("admin") && $col_name = $this->getColNameByAttr("accept_status")) {
             $this->query->where($this->getAppTableName().".".$col_name,1);
         } else {
             return false;

@@ -71,6 +71,7 @@
             array("admin_users_products.csv", "/admin/users/products/csv.html"),
             // 製品管理
             array("admin_products.list", "/admin/products/"),
+            array("admin_products.draft_list", "/admin/products/draft_list.html"),
             array("admin_products.detail", "/admin/products/detail.html"),
             array("admin_products.form", "/admin/products/form.html"),
             array("admin_products.form_confirm", "/admin/products/form_confirm.html"),

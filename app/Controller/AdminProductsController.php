@@ -28,7 +28,19 @@ class AdminProductsController extends Controller_Admin
         } elseif ($this->forms["search"]->receive($this->input)) {
             $this->forms["search"]->save();
         }
-        $this->vars["ts"] = $this->forms["search"]->search()->findBy("status","2")->select();
+        $this->vars["ts"] = $this->forms["search"]->search()->findBy("display_status","1")->select();
+    }
+    /**
+     * @page
+     */
+    public function act_draft_list ()
+    {
+        if ($this->input["back"]) {
+            $this->forms["search"]->restore();
+        } elseif ($this->forms["search"]->receive($this->input)) {
+            $this->forms["search"]->save();
+        }
+        $this->vars["ts"] = $this->forms["search"]->search()->findBy("display_status","2")->select();
     }
     /**
      * @page

@@ -43,6 +43,9 @@
         {{if "admin_products.list"|is_accessible}}
             <dt><a href='{{"admin_products.list"|page_to_url}}'>製品管理</a></dt>
         {{/if}}
+        {{if "admin_products.list"|is_accessible}}
+            <dt><a href='{{"admin_products.draft_list"|page_to_url}}'>製品下書き管理</a></dt>
+        {{/if}}
         {{if "admin_categories.list"|is_accessible}}
             <dt><a href='{{"admin_categories.list"|page_to_url}}'>分類管理</a></dt>
         {{/if}}

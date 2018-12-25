@@ -93,13 +93,4 @@ class UserProductTable extends Table_App
             array("name"=>"visible", "cols"=>array("del_flg")),
         ),
     );
-
-    /**
-     * @hook chain
-     * 未承認のみを対象とする
-     */
-    /*public function chain_findByAcceptFlg ()
-    {
-        $this->query->where($this->getQueryTableName().".".$this->getColNameByAttr("accept_flg"), "2");
-    }*/
 }

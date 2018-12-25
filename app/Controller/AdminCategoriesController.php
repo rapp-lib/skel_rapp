@@ -14,7 +14,6 @@ class AdminCategoriesController extends Controller_Admin
         "search_page" => "admin_categories.list",
         "search_table" => "Category",
         "fields" => array(
-            "p" => array("search"=>"page", "volume"=>20),
             "sort" => array("search"=>"sort", "cols"=>array("id")),
         ),
     );

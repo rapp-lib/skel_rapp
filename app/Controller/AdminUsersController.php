@@ -28,7 +28,7 @@ class AdminUsersController extends Controller_Admin
         } elseif ($this->forms["search"]->receive($this->input)) {
             $this->forms["search"]->save();
         }
-        $this->vars["ts"] = $this->forms["search"]->search()->select();
+        $this->vars["ts"] = $this->forms["search"]->search()->findBy("accept_flg","2")->select();
     }
     /**
      * 入力フォーム

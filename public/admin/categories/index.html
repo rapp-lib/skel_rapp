@@ -20,48 +20,49 @@
 <a id="table-sort" data-sort-base-url='{{$forms.search->getSearchPageUrl(["p"=>0, "sort"=>""])}}' data-sort-current="{{$forms.search.sort}}" data-sort-param-name="sort" data-sort-default="id"></a>
 {{script require=["rui.sort"]}}{{/script}}
 
+大分類<br />
 <table class="tbl list">
     <tr>
-        <th>ID</th>
-        <th>種類</th>
-        <th>大分類ID</th>
+        <th>登録日</th>
         <th>分類名</th>
         <th>&nbsp;</th>
     </tr>
     {{foreach $ts as $i => $t}}
+        {{if $t.category_type_label == "大分類"}}
     <tr>
-        <td>{{$t.id}}</td>
-        <td>{{$t.category_type_label}}</td>
-        <td>{{$t.parent_category_id_label}}</td>
+        <td>{{$t.reg_date|date:"Y-m-d"}}</td>
         <td>{{$t.name}}</td>
         <td>
             <a href='{{"admin_categories.form"|page_to_url:["id"=>$t.id]}}' class="list-btn">編集</a>
             <a href='{{"admin_categories.delete"|page_to_url:["id"=>$t.id]}}' class="list-btn" onclick="return confirm('削除します');">削除</a>
         </td>
     </tr>
+        {{/if}}
     {{/foreach}}
 </table>
-
-{{if $p = $ts->getPagerIfHasRecord()}}
-<div class="pager">
-    <p>全{{$p->get("count")}}件中 {{$p->get("current_volume")}}件を表示</p>
-    <ul class="clearfix">
-    {{if $p->getPage('prev')}}
-        <li class="prev"><a href="{{$forms.search->getSearchPageUrl(['p'=>$p->getPage('prev')])}}">&lt;</a></li>
-    {{/if}}
-    {{foreach $p->getPages(5) as $page}}
-        {{if $page == "last"}}<li>...</li>{{/if}}
-        {{if $page == $p->getPage("current")}}<li class="current">{{else}}<li>{{/if}}
-        <a href="{{$forms.search->getSearchPageUrl(['p'=>$p->getPage($page)])}}">{{$p->getPage($page)}}</a>
-        </li>
-        {{if $page == "first"}}<li>...</li>{{/if}}
+<br />
+中分類<br />
+<table class="tbl list">
+    <tr>
+        <th>登録日</th>
+        <th>分類名</th>
+        <th>親</th>
+        <th>&nbsp;</th>
+    </tr>
+    {{foreach $ts as $i => $t}}
+        {{if $t.category_type_label == "中分類"}}
+    <tr>
+        <td>{{$t.reg_date|date:"Y-m-d"}}</td>
+        <td>{{$t.name}}</td>
+        <td>{{$t.parent_category_id_label}}</td>
+        <td>
+            <a href='{{"admin_categories.form"|page_to_url:["id"=>$t.id]}}' class="list-btn">編集</a>
+            <a href='{{"admin_categories.delete"|page_to_url:["id"=>$t.id]}}' class="list-btn" onclick="return confirm('削除します');">削除</a>
+        </td>
+    </tr>
+        {{/if}}
     {{/foreach}}
-    {{if $p->getPage("next")}}
-        <li class="next"><a href="{{$forms.search->getSearchPageUrl(['p'=>$p->getPage('next')])}}">&gt;</a></li>
-    {{/if}}
-    </ul>
-</div>
-{{/if}}
+</table>
 
 {{/if}}{{* /0件ではない場合 *}}
 

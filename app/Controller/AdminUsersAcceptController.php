@@ -28,7 +28,7 @@ class AdminUsersAcceptController extends Controller_Admin
         } elseif ($this->forms["search"]->receive($this->input)) {
             $this->forms["search"]->save();
         }
-        $this->vars["ts"] = $this->forms["search"]->search()->select();
+        $this->vars["ts"] = $this->forms["search"]->search()->findBy("accept_flg","1")->select();
     }
     /**
      * 入力フォーム
@@ -93,7 +93,7 @@ class AdminUsersAcceptController extends Controller_Admin
         } else {
             $this->forms["entry"]->clear();
             if ($id = $this->input["id"]) {
-                $t = $this->forms["entry"]->getTable()->selectById($id);
+                $t = $this->forms["entry"]->getTable()->findBy("accept_flg","1")->selectById($id);
                 if ( ! $t) return $this->response("notfound");
                 $this->forms["entry"]->setRecord($t);
             }
