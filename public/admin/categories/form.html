@@ -12,7 +12,7 @@
         var form = observeForm($("form.form-entry"), state, "admin");
     });
 {{/script}}
-
+{{if ! $forms.entry.category_type || $forms.entry.category_type == "1"}}
 大分類新規登録
 {{form action='.'|page_to_url enctype="multipart/form-data" method="post" form=$forms.entry class="form-entry"}}
 {{input name="id" type="hidden"}}
@@ -30,7 +30,9 @@
     </div>
 </div>
 {{/form}}
+{{/if}}
 
+{{if ! $forms.entry.category_type || $forms.entry.category_type == "2"}}
 中分類新規登録
 {{form action='.'|page_to_url enctype="multipart/form-data" method="post" form=$forms.entry class="form-entry"}}
 {{input name="id" type="hidden"}}
@@ -52,5 +54,6 @@
     </div>
 </div>
 {{/form}}
+{{/if}}
 
 {{inc path="/include/admin_footer.html"}}

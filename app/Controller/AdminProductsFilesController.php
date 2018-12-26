@@ -40,6 +40,7 @@ class AdminProductsFilesController extends Controller_Admin
         "table" => "ProductFile",
         "fields" => array(
             "id"=>array("label"=>"ID"),
+            "product_id"=>array("label"=>"製品ID"),
             "file_type"=>array("label"=>"ファイル種別"),
             "common_file_id"=>array("label"=>"共通ファイルID"),
             "file"=>array("label"=>"ファイル", "storage"=>"public"),

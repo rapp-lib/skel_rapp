@@ -16,4 +16,10 @@ class ProductEnum extends Enum_App
         "1" => "公開",
         "2" => "下書き",
     );
+    protected static function values_product_files ($keys)
+    {
+        $query = table("ProductFile");
+        if ($keys) $query->findById($keys);
+        return $query->select()->getHashedBy("id", "name");
+    }
 }

@@ -27,5 +27,4 @@ class Table_App
         $table_def["rules"] = (array)static::$rules;
         return $table_def;
     }
-
 }

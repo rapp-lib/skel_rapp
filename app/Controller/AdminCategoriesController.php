@@ -30,6 +30,14 @@ class AdminCategoriesController extends Controller_Admin
         $this->vars["ts"] = $this->forms["search"]->search()->select();
     }
     /**
+     * @page
+     */
+    public function act_detail ()
+    {
+        $this->vars["t"] = table("Category")->selectById($this->input["id"]);
+        if ( ! $this->vars["t"]) return $this->response("notfound");
+    }
+    /**
      * 入力フォーム
      */
     protected static $form_entry = array(
@@ -54,7 +62,7 @@ class AdminCategoriesController extends Controller_Admin
         if ($this->forms["entry"]->receive($this->input)) {
             if ($this->forms["entry"]->isValid()) {
                 $this->forms["entry"]->save();
-                return $this->redirect("id://.form_complete");
+                return $this->redirect("id://.form_confirm");
             }
         } elseif ($this->input["back"]) {
             $this->forms["entry"]->restore();

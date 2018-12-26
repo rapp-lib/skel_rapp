@@ -86,7 +86,7 @@ class ProductTable extends Table_App
         ),
         "id"=>array(
             "user_products"=>array("type"=>"has_many", "table"=>"UserProduct"),
-            "product_files"=>array("type"=>"has_many", "table"=>"ProductFile"),
+            "product_files"=>array("type"=>"product_files"),
         ),
     );
     protected static $def = array(
