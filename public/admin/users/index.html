@@ -3,6 +3,20 @@
 
 <h1 class="page-title">{{$page_title}}</h1>
 
+{{form form=$forms.search}}
+<table class="tbl detail">
+    <tr>
+        <th>メール</th>
+        <td>{{input name="mail" type="text" class="w-full"}}</td>
+    </tr>
+</table>
+<div class="btn-area clearfix">
+    <div class="right clearfix">
+        <a href="{{$forms.search->getSearchPageUrl()}}" class="reset-btn">リセット</a>
+        <button type="submit" class="search-btn">検索</button>
+    </div>
+</div>
+{{/form}}
 
 <div class="btn-area">
     <a href='{{"admin_users.form"|page_to_url}}' class="create-btn">新規登録</a>
