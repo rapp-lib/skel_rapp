@@ -54,6 +54,7 @@
         <td>{{$t.last_name}}</td>
         <td>{{$t.first_name}}</td>
         <td>
+            <a href='{{"admin_users.detail"|page_to_url:["id"=>$t.id]}}' class="list-btn">詳細</a>
             <a href='{{"admin_users.form"|page_to_url:["id"=>$t.id]}}' class="list-btn">編集</a>
             <a href='{{"admin_users.delete"|page_to_url:["id"=>$t.id]}}' class="list-btn" onclick="return confirm('削除します');">削除</a>
             <a href='{{"admin_users_products.list"|page_to_url:["user_id"=>$t.id]}}' class="list-btn">ユーザー製品管理</a>

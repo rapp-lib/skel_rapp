@@ -1,0 +1,88 @@
+{{assign "page_title" "ユーザー管理 詳細"}}
+{{inc path="/include/admin_header.html"}}
+
+<h1 class="page-title">{{$page_title}}</h1>
+
+<table class="tbl detail">
+    <tr>
+        <th>会社名</th>
+        <td>{{$t.company_name}}</td>
+    </tr>
+    <tr>
+        <th>部署</th>
+        <td>{{$t.department}}</td>
+    </tr>
+    <tr>
+        <th>役職</th>
+        <td>{{$t.position}}</td>
+    </tr>
+    <tr>
+        <th>氏名(姓)</th>
+        <td>{{$t.last_name}}</td>
+    </tr>
+    <tr>
+        <th>氏名(名)</th>
+        <td>{{$t.first_name}}</td>
+    </tr>
+    <tr>
+        <th>氏名(セイ)</th>
+        <td>{{$t.last_name_kana}}</td>
+    </tr>
+    <tr>
+        <th>氏名(メイ)</th>
+        <td>{{$t.first_name_kana}}</td>
+    </tr>
+    <tr>
+        <th>メール</th>
+        <td>{{$t.mail}}</td>
+    </tr>
+    <tr>
+        <th>郵便番号</th>
+        <td>{{$t.zip}}</td>
+    </tr>
+    <tr>
+        <th>都道府県</th>
+        <td>{{$t.pref_label}}</td>
+    </tr>
+    <tr>
+        <th>市区郡町村</th>
+        <td>{{$t.city}}</td>
+    </tr>
+    <tr>
+        <th>番地</th>
+        <td>{{$t.address}}</td>
+    </tr>
+    <tr>
+        <th>建物名</th>
+        <td>{{$t.buildings}}</td>
+    </tr>
+    <tr>
+        <th>電話番号</th>
+        <td>{{$t.tel}}</td>
+    </tr>
+    <tr>
+        <th>FAX番号</th>
+        <td>{{$t.fax}}</td>
+    </tr>
+    <tr>
+        <th>パスワード</th>
+        <td>********</td>
+    </tr>
+    <tr>
+        <th>パスワード確認</th>
+        <td>********</td>
+    </tr>
+    <tr>
+        <th>備考</th>
+        <td>{{{{$t.memo}}|nl2br nofilter}}</td>
+    </tr>
+    <tr>
+        <th>管理者備考</th>
+        <td>{{{{$t.admin_memo}}|nl2br nofilter}}</td>
+    </tr>
+</table>
+<div class="btn-area">
+    <a href='{{"admin_users.list"|page_to_url:["back"=>1]}}' class="back-btn">戻る</a>
+</div>
+
+{{inc path="/include/admin_footer.html"}}
