@@ -28,8 +28,7 @@ class AdminUsersProductsController extends Controller_Admin
         } elseif ($this->forms["search"]->receive($this->input)) {
             $this->forms["search"]->save();
         }
-        $this->vars["ts"] = $this->forms["search"]->search()->select();
-        if ( ! $this->forms["search"]["user_id"]) return $this->response("badrequest");
+        $this->vars["ts"] = $this->forms["search"]->search()->findBy("accept_flg", "1")->select();
     }
     /**
      * 入力フォーム
@@ -45,6 +44,7 @@ class AdminUsersProductsController extends Controller_Admin
             "purchase_source"=>array("label"=>"購入元"),
             "purchase_reason"=>array("label"=>"購入理由"),
             "accept_flg"=>array("label"=>"承認フラグ"),
+            "mail" =>array("label"=>"追加希望ユーザー", "col_values_clause"=>false),
         ),
         "rules" => array(
             "serial_number",
@@ -58,7 +58,7 @@ class AdminUsersProductsController extends Controller_Admin
         if ($this->forms["entry"]->receive($this->input)) {
             if ($this->forms["entry"]->isValid()) {
                 $this->forms["entry"]->save();
-                return $this->redirect("id://.form_complete");
+                return $this->redirect("id://.form_confirm");
             }
         } elseif ($this->input["back"]) {
             $this->forms["entry"]->restore();
@@ -68,12 +68,12 @@ class AdminUsersProductsController extends Controller_Admin
                 $t = $this->forms["entry"]->getTable()->selectById($id);
                 if ( ! $t) return $this->response("notfound");
                 $this->forms["entry"]->setRecord($t);
+                $this->forms["entry"]["mail"] = $t["user"]["mail"];
             }
             if ( ! $this->forms["entry"]["user_id"]) {
                 $this->forms["entry"]["user_id"] = $this->input["user_id"];
             }
         }
-        if ( ! $this->forms["entry"]["user_id"]) return $this->response("badrequest");
     }
     /**
      * @page

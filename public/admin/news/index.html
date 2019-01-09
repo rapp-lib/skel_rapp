@@ -33,8 +33,7 @@
         <td>{{$t.date}}</td>
         <td>{{$t.contents}}</td>
         <td>
-            <a href='{{"admin_news.form"|page_to_url:["id"=>$t.id]}}' class="list-btn">編集</a>
-            <a href='{{"admin_news.delete"|page_to_url:["id"=>$t.id]}}' class="list-btn" onclick="return confirm('削除します');">削除</a>
+            <a href='{{"admin_news.detail"|page_to_url:["id"=>$t.id]}}' class="list-btn">詳細</a>
         </td>
     </tr>
     {{/foreach}}

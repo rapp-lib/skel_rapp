@@ -90,7 +90,7 @@
     <tr>
         <th>ユーザー製品</th>
         <td>
-            <div class="mi" data-minItems="0" data-maxItems="1000">
+            <div class="mi" data-minItems="1" data-maxItems="1">
                 <input type="hidden" name="products"/>
                 {{input_fieldset name="products" tmpl="${id}" key="key" assign="fieldset"}}
                     <div class="mi-item" data-itemId="{{$key}}">
@@ -111,18 +111,6 @@
                         <tr>
                             <th>購入理由</th>
                             <td class="input-block">{{input name="products[$key][purchase_reason]" type="textarea"}}</td>
-                        </tr>
-                        <tr>
-                            <th>承認フラグ</th>
-                            <td class="input-block">{{input name="products[$key][accept_flg]" type="radioselect" values=$enum["UserProduct.accept_flg"]}}</td>
-                        </tr>
-                        <tr>
-                            <th>承認通過日付</th>
-                            <td class="input-block">{{input name="products[$key][accept_date]" type="date"}}</td>
-                        </tr>
-                        <tr>
-                            <th></th>
-                            <td><a href="javascript:void(0);" class="mi-item-remove">削除</a></td>
                         </tr>
                         </table>
                     </div>

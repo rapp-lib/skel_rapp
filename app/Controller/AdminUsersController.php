@@ -16,7 +16,7 @@ class AdminUsersController extends Controller_Admin
         "fields" => array(
             "mail"=>array("search"=>"word", "target_col"=>"mail"),
             "p" => array("search"=>"page", "volume"=>20),
-            "sort" => array("search"=>"sort", "cols"=>array("id")),
+            "sort" => array("search"=>"sort", "cols"=>array("reg_date DESC")),
         ),
     );
     /**
@@ -30,6 +30,14 @@ class AdminUsersController extends Controller_Admin
             $this->forms["search"]->save();
         }
         $this->vars["ts"] = $this->forms["search"]->search()->findBy("accept_flg","2")->select();
+    }
+    /**
+     * @page
+     */
+    public function act_detail ()
+    {
+        $this->vars["t"] = table("User")->selectById($this->input["id"]);
+        if ( ! $this->vars["t"]) return $this->response("notfound");
     }
     /**
      * 入力フォーム

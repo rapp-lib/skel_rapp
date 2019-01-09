@@ -1,0 +1,22 @@
+{{assign "page_title" "更新情報管理 詳細"}}
+{{inc path="/include/admin_header.html"}}
+
+<h1 class="page-title">{{$page_title}}</h1>
+
+<table class="tbl detail">
+    <tr>
+        <th>日付</th>
+        <td>{{$t.date}}</td>
+    </tr>
+    <tr>
+        <th>内容</th>
+        <td>{{{{$t.contents}}|nl2br nofilter}}</td>
+    </tr>
+</table>
+<div class="btn-area">
+    <a href='{{"admin_news.list"|page_to_url:["back"=>1]}}' class="back-btn">一覧へ戻る</a>
+    <a href='{{"admin_news.form"|page_to_url:["id"=>$t.id]}}' class="list-btn">編集</a>
+    <a href='{{"admin_news.delete"|page_to_url:["id"=>$t.id]}}' class="list-btn" onclick="return confirm('削除します');">削除</a>
+</div>
+
+{{inc path="/include/admin_footer.html"}}

@@ -15,6 +15,7 @@
 
 {{form action='.'|page_to_url enctype="multipart/form-data" method="post" form=$forms.entry class="form-entry"}}
 {{input name="id" type="hidden"}}
+{{input name="mail" type="hidden"}}
 <table class="tbl detail">
     <tr>
         <th>製品ID</th>
@@ -33,8 +34,12 @@
         <td>{{input name="purchase_reason" type="textarea"}}</td>
     </tr>
     <tr>
-        <th>承認フラグ</th>
+        <th>承認ステータス</th>
         <td>{{input name="accept_flg" type="radioselect" values=$enum["UserProduct.accept_flg"]}}</td>
+    </tr>
+    <tr>
+        <th>追加希望ユーザー</th>
+        <td>{{$forms.entry.mail}}</td>
     </tr>
 </table>
 <div class="btn-area">

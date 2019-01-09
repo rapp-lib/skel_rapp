@@ -95,30 +95,4 @@ class ProductTable extends Table_App
             array("name"=>"visible", "cols"=>array("del_flg")),
         ),
     );
-
-    /**
-     * @hook on_read
-     * ユーザ表示項目を関連付ける
-     */
-    protected function on_read_userAcceptStatus ()
-    {
-        if (! app()->user->getCurrentPriv("admin") && $col_name = $this->getColNameByAttr("accept_status")) {
-            $this->query->where($this->getAppTableName().".".$col_name,1);
-        } else {
-            return false;
-        }
-    }
-
-    /**
-     * @hook on_read
-     * ユーザ表示項目を関連付ける
-     */
-    protected function on_read_userReleaseDate ()
-    {
-        if (! app()->user->getCurrentPriv("admin") && $col_name = $this->getColNameByAttr("release_date")) {
-            $this->query->where($this->getAppTableName().".".$col_name." <= CURRENT_DATE");
-        } else {
-            return false;
-        }
-    }
 }

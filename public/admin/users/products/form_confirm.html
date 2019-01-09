@@ -24,11 +24,15 @@
         <th>承認フラグ</th>
         <td>{{$t.accept_flg_label}}</td>
     </tr>
+    <tr>
+        <th>追加希望ユーザー</th>
+        <td>{{$t.mail}}</td>
+    </tr>
 </table>
 <div class="btn-area">
-    <a href='{{".form"|page_to_url|url:["back"=>1]}}' class="back-btn">戻る</a>
+    <a href='{{".form"|page_to_url|url:["back"=>1]}}' class="back-btn">前画面に戻る</a>
     <div class="right clearfix">
-        <a href='{{".form_complete"|page_to_url}}' class="primary-btn">登録</a>
+        <a href='{{".form_complete"|page_to_url}}' class="primary-btn">登録する</a>
     </div>
 </div>
 

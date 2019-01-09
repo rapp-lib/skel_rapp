@@ -1,4 +1,4 @@
-{{assign "page_title" "ユーザー製品管理"}}
+{{assign "page_title" "製品追加依頼一覧"}}
 {{inc path="/include/admin_header.html"}}
 
 <h1 class="page-title">{{$page_title}}</h1>
@@ -23,20 +23,20 @@
 
 <table class="tbl list">
     <tr>
-        <th>ID</th>
-        <th>製品ID</th>
+        <th>登録日</th>
+        <th>製品名</th>
+        <th>型名</th>
         <th>シリアルNo</th>
-        <th>購入元</th>
-        <th>承認フラグ</th>
+        <th>担当者Mail</th>
         <th>&nbsp;</th>
     </tr>
     {{foreach $ts as $i => $t}}
     <tr>
-        <td>{{$t.id}}</td>
+        <td>{{$t.reg_date|date:"Y-m-d"}}</td>
         <td>{{$t.product_id_label}}</td>
+        <td>{{$t.product.model}}</td>
         <td>{{$t.serial_number}}</td>
-        <td>{{$t.purchase_source}}</td>
-        <td>{{$t.accept_flg_label}}</td>
+        <td>{{$t.user.mail}}</td>
         <td>
             <a href='{{"admin_users_products.form"|page_to_url:["id"=>$t.id]}}' class="list-btn">編集</a>
             <a href='{{"admin_users_products.delete"|page_to_url:["id"=>$t.id]}}' class="list-btn" onclick="return confirm('削除します');">削除</a>
