@@ -1,0 +1,26 @@
+{{assign "page_title" "ユーザー一覧CSVダウンロード"}}
+{{inc path="/include/admin_header.html"}}
+
+<h1 class="page-title">{{$page_title}}</h1>
+
+
+<table class="tbl list">
+    <tr>
+        <th>承認期間</th>
+        <th>CSV</th>
+        <th>抹消</th>
+    </tr>
+    {{foreach $ts as $i => $t}}
+    <tr>
+        <td>{{$t.reg_date|date:"Y-m-d H:i"}}</td>
+        <td></td>
+        <td>
+            <a href='{{"admin_users.detail"|page_to_url:["id"=>$t.id]}}' class="list-btn">表示</a>
+        </td>
+    </tr>
+    {{/foreach}}
+</table>
+
+
+
+{{inc path="/include/admin_footer.html"}}

@@ -31,14 +31,6 @@ class AdminUsersAcceptController extends Controller_Admin
         $this->vars["ts"] = $this->forms["search"]->search()->findBy("accept_flg","1")->select();
     }
     /**
-     * @page
-     */
-    public function act_detail ()
-    {
-        $this->vars["t"] = table("User")->selectById($this->input["id"]);
-        if ( ! $this->vars["t"]) return $this->response("notfound");
-    }
-    /**
      * 入力フォーム
      */
     protected static $form_entry = array(
@@ -62,8 +54,6 @@ class AdminUsersAcceptController extends Controller_Admin
             "buildings"=>array("label"=>"建物名"),
             "tel"=>array("label"=>"電話番号"),
             "fax"=>array("label"=>"FAX番号"),
-            "login_pw"=>array("label"=>"パスワード"),
-            "login_pw_confirm"=>array("label"=>"パスワード確認", "col"=>false),
             "memo"=>array("label"=>"備考"),
             "admin_memo"=>array("label"=>"管理者備考"),
             "accept_flg"=>array("label"=>"承認フラグ"),
@@ -81,9 +71,6 @@ class AdminUsersAcceptController extends Controller_Admin
             "pref",
             "city",
             "tel",
-            array("login_pw", "required", "if"=>array("id"=>false)),
-            array("login_pw_confirm", "required", "if"=>array("login_pw"=>true)),
-            array("login_pw_confirm", "confirm", "target_field"=>"login_pw"),
         ),
     );
     /**
@@ -94,7 +81,7 @@ class AdminUsersAcceptController extends Controller_Admin
         if ($this->forms["entry"]->receive($this->input)) {
             if ($this->forms["entry"]->isValid()) {
                 $this->forms["entry"]->save();
-                return $this->redirect("id://.form_complete");
+                return $this->redirect("id://.form_confirm");
             }
         } elseif ($this->input["back"]) {
             $this->forms["entry"]->restore();
@@ -123,6 +110,16 @@ class AdminUsersAcceptController extends Controller_Admin
         $this->forms["entry"]->restore();
         if ( ! $this->forms["entry"]->isEmpty() && $this->forms["entry"]->isValid()) {
             $t = $this->forms["entry"]->getTableWithValues()->save()->getSavedRecord();
+            if ($t["accept_flg"] == "2") {
+                table("User")->save(array(
+                    "id" =>$t["id"],
+                    "accept_date" =>date("Y-m-d H:i:s"),
+                ));
+            }
+            // // 管理者通知メールの送信
+            // app("mailer")->send(array("text"=>"mail://admin_users_accept.admin.html"), array("t"=>$t), function($message){});
+            // 自動返信メールの送信
+            app("mailer")->send("mail://admin_users_accept.reply.html", array("t"=>$t), function($message){});
             $this->forms["entry"]->clear();
         }
         return $this->redirect("id://.list", array("back"=>"1"));

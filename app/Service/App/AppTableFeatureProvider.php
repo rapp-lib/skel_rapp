@@ -56,23 +56,4 @@ class AppTableFeatureProvider extends BaseFeatureProvider
         }
         return $dest_values;
     }
-
-    // public function alias_userProduct ($result, $src_values, $alias)
-    // {
-    //     if (count($src_values) === 0) return array();
-    //     // ユーザに紐づく製品情報を取得
-    //     $entries = table("UserProduct")->findBy(array("user_id"=>$src_values))->select();
-    //     report($entries);
-
-    //     foreach($entries as $k => $v) {
-    //         // $file = app()->file->getStorage("public")->getFileByUri($v["file"]);
-    //         // $stream = $file ? $file->getSource() : null;
-    //         // if($stream){
-    //         //     $size=floor(filesize($stream) / 1024 / 1024 * 10) / 10;
-    //         //     $v["file_size"] =$size;
-    //         // }
-    //         // $dest_values[$v["product_id"]][$v["id"]] = $v;
-    //     }
-    //     return $dest_values;
-    // }
 }

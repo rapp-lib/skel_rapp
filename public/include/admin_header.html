@@ -34,11 +34,14 @@
         {{if "admin_index.index"|is_accessible}}
             <dt><a href='{{"admin_index.index"|page_to_url}}'>管理者マイページ</a></dt>
         {{/if}}
+        {{if "admin_users_accept.list"|is_accessible}}
+            <dt><a href='{{"admin_users_accept.list"|page_to_url}}'>ユーザー登録依頼</a></dt>
+        {{/if}}
         {{if "admin_users.list"|is_accessible}}
             <dt><a href='{{"admin_users.list"|page_to_url}}'>ユーザー管理</a></dt>
         {{/if}}
-        {{if "admin_users_accept.list"|is_accessible}}
-            <dt><a href='{{"admin_users_accept.list"|page_to_url}}'>ユーザー承認管理</a></dt>
+        {{if "admin_users.csvdl"|is_accessible}}
+            <dt><a href='{{"admin_users.csvdl"|page_to_url}}'>ユーザー一覧CSVダウンロード</a></dt>
         {{/if}}
         {{if "admin_users_products.list"|is_accessible}}
             <dt><a href='{{"admin_users_products.list"|page_to_url}}'>製品追加依頼一覧</a></dt>
