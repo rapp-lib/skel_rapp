@@ -31,14 +31,6 @@ class AdminUsersAcceptController extends Controller_Admin
         $this->vars["ts"] = $this->forms["search"]->search()->select();
     }
     /**
-     * @page
-     */
-    public function act_detail ()
-    {
-        $this->vars["t"] = table("User")->selectById($this->input["id"]);
-        if ( ! $this->vars["t"]) return $this->response("notfound");
-    }
-    /**
      * 入力フォーム
      */
     protected static $form_entry = array(
@@ -123,6 +115,10 @@ class AdminUsersAcceptController extends Controller_Admin
         $this->forms["entry"]->restore();
         if ( ! $this->forms["entry"]->isEmpty() && $this->forms["entry"]->isValid()) {
             $t = $this->forms["entry"]->getTableWithValues()->save()->getSavedRecord();
+            // 管理者通知メールの送信
+            app("mailer")->send(array("text"=>"mail://admin_users_accept.admin.html"), array("t"=>$t), function($message){});
+            // 自動返信メールの送信
+            app("mailer")->send("mail://admin_users_accept.reply.html", array("t"=>$t), function($message){});
             $this->forms["entry"]->clear();
         }
         return $this->redirect("id://.list", array("back"=>"1"));

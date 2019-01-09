@@ -39,7 +39,6 @@
         <td>{{$t.last_name}}</td>
         <td>{{$t.first_name}}</td>
         <td>
-            <a href='{{"admin_users_accept.detail"|page_to_url:["id"=>$t.id]}}' class="list-btn">詳細</a>
             <a href='{{"admin_users_accept.form"|page_to_url:["id"=>$t.id]}}' class="list-btn">編集</a>
             <a href='{{"admin_users_accept.delete"|page_to_url:["id"=>$t.id]}}' class="list-btn" onclick="return confirm('削除します');">削除</a>
         </td>

@@ -59,7 +59,6 @@
             array("admin_users.csv", "/admin/users/csv.html"),
             // ユーザー承認管理
             array("admin_users_accept.list", "/admin/users/accept/"),
-            array("admin_users_accept.detail", "/admin/users/accept/detail.html"),
             array("admin_users_accept.form", "/admin/users/accept/form.html"),
             array("admin_users_accept.form_confirm", "/admin/users/accept/form_confirm.html"),
             array("admin_users_accept.form_complete", "/admin/users/accept/form_complete.html"),
