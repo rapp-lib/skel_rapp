@@ -11,8 +11,8 @@ class UserEnum extends Enum_App
         "2" => "青森県",
     );
     protected static $values_deliv_flg = array(
-        "1" => "ON",
-        "2" => "OFF",
+        "0" => "情報メールの配信を希望しない",
+        "1" => "情報メールの配信を希望する",
     );
     protected static $values_accept_flg = array(
         "1" => "承認待ち",

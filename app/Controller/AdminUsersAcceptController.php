@@ -47,6 +47,7 @@ class AdminUsersAcceptController extends Controller_Admin
             "last_name_kana"=>array("label"=>"氏名(セイ)"),
             "first_name_kana"=>array("label"=>"氏名(メイ)"),
             "mail"=>array("label"=>"メール"),
+            "login_pw"=>array("label"=>"パスワード"),
             "zip"=>array("label"=>"郵便番号"),
             "pref"=>array("label"=>"都道府県"),
             "city"=>array("label"=>"市区郡町村"),
@@ -57,6 +58,10 @@ class AdminUsersAcceptController extends Controller_Admin
             "memo"=>array("label"=>"備考"),
             "admin_memo"=>array("label"=>"管理者備考"),
             "accept_flg"=>array("label"=>"承認フラグ"),
+            "product_name" =>array("label"=>"型名（製品名）", "col_values_clause"=>false),
+            "serial_number" =>array("label"=>"シリアルNo.", "col_values_clause"=>false),
+            "purchase_source" =>array("label"=>"購入元", "col_values_clause"=>false),
+            "purchase_reason" =>array("label"=>"購入理由", "col_values_clause"=>false),
         ),
         "rules" => array(
             "company_name",
@@ -67,6 +72,7 @@ class AdminUsersAcceptController extends Controller_Admin
             "last_name_kana",
             "first_name_kana",
             array("mail", "required", "if"=>array("id"=>false)),
+            "login_pw",
             "zip",
             "pref",
             "city",
@@ -91,7 +97,11 @@ class AdminUsersAcceptController extends Controller_Admin
                 $t = $this->forms["entry"]->getTable()->findBy("accept_flg","1")->selectById($id);
                 if ( ! $t) return $this->response("notfound");
                 $this->forms["entry"]->setRecord($t);
-            }
+                $this->forms["entry"]["product_name"] =$t["user_products"][0]["product_id_label"];
+                $this->forms["entry"]["serial_number"] =$t["user_products"][0]["serial_number"];
+                $this->forms["entry"]["purchase_source"] =$t["user_products"][0]["purchase_source"];
+                $this->forms["entry"]["purchase_reason"] =$t["user_products"][0]["purchase_reason"];
+               }
         }
     }
     /**
@@ -101,6 +111,7 @@ class AdminUsersAcceptController extends Controller_Admin
     {
         $this->forms["entry"]->restore();
         $this->vars["t"] = $this->forms["entry"]->getRecord();
+        // $this->forms["entry"]["login_pw"]
     }
     /**
      * @page
@@ -110,16 +121,15 @@ class AdminUsersAcceptController extends Controller_Admin
         $this->forms["entry"]->restore();
         if ( ! $this->forms["entry"]->isEmpty() && $this->forms["entry"]->isValid()) {
             $t = $this->forms["entry"]->getTableWithValues()->save()->getSavedRecord();
+            //$this->forms["entry"]["login_pw"]
             if ($t["accept_flg"] == "2") {
                 table("User")->save(array(
                     "id" =>$t["id"],
                     "accept_date" =>date("Y-m-d H:i:s"),
                 ));
+                // 自動返信メールの送信
+                app("mailer")->send("mail://admin_users_accept.reply.html", array("t"=>$t), function($message){});
             }
-            // // 管理者通知メールの送信
-            // app("mailer")->send(array("text"=>"mail://admin_users_accept.admin.html"), array("t"=>$t), function($message){});
-            // 自動返信メールの送信
-            app("mailer")->send("mail://admin_users_accept.reply.html", array("t"=>$t), function($message){});
             $this->forms["entry"]->clear();
         }
         return $this->redirect("id://.list", array("back"=>"1"));

@@ -21,24 +21,15 @@
 
 <table class="tbl list">
     <tr>
-        <th>ID</th>
-        <th>大分類ID</th>
-        <th>中分類ID</th>
         <th>製品名</th>
         <th>型名</th>
-        <th>公開日</th>
-        <th>&nbsp;</th>
+        <th>画像</th>
     </tr>
     {{foreach $ts as $i => $t}}
     <tr>
-        <td>{{$t.id}}</td>
-        <td>{{$t.parent_category_id_label}}</td>
-        <td>{{$t.child_category_id_label}}</td>
         <td>{{$t.name}}</td>
         <td>{{$t.model}}</td>
-        <td>{{$t.release_date|date:"Y/m/d"}}</td>
-        <td>
-        </td>
+        <td>{{if $t.image}}<img src="{{$t.image}}" />{{/if}}</td>
     </tr>
     {{/foreach}}
 </table>

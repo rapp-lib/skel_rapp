@@ -5,13 +5,13 @@
             "login.options" => array(
                 "persist" => "session",
                 "auth_table" => "User",
-                "login_request_uri" => "id://user_login.login",
+                "login_request_uri" => "id://index.index",
                 "authenticate" => function($params){
                     if ($params["type"]=="idpw") {
                         // if ("user"==$params["login_id"] && "cftyuhbvg"==$params["login_pw"]) {
                         //    return array("id"=>9999999);
                         // }
-                        return table("User")
+                        return table("User")->findBy(array("accept_flg"=>"2"))
                             ->authByLoginIdPw($params["login_id"], $params["login_pw"]);
                     }
                 },

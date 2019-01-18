@@ -1,4 +1,4 @@
-{{assign "page_title" "関連ファイルダウンロード"}}
+{{assign "page_title" "ダウンロード"}}
 {{inc path="/include/user_header.html"}}
 
 <h1 class="page-title">{{$page_title}}</h1>
@@ -10,7 +10,26 @@
     </div>
 </div>
 
-{{if count($ts)==0}}
+{{if $product_t.manual}}
+{{$product_t.name}}　取扱説明書
+<table class="tbl list">
+    <tr>
+        <th>公開日</th>
+        <th>説明</th>
+        <th>ファイル</th>
+        <th>サイズ</th>
+    </tr>
+    <tr>
+        <td>{{$product_t.release_date|date:"Y年m月d日"}}</td>
+        <td>取扱説明書</td>
+        <td>{{$t.manual}}</td>
+        <td>{{$t.file_size}}</td>
+    </tr>
+</table>
+
+{{/if}}
+
+{{if count($product_t.product_files)==0}}
 
 <p>該当する情報がありません</p>
 
@@ -21,48 +40,20 @@
 
 <table class="tbl list">
     <tr>
-        <th>ID</th>
-        <th>ファイル種別</th>
-        <th>共通ファイルID</th>
-        <th>リンク</th>
         <th>公開日</th>
-        <th>公開ステータス</th>
-        <th>&nbsp;</th>
+        <th>説明</th>
+        <th>ファイル</th>
+        <th>サイズ</th>
     </tr>
-    {{foreach $ts as $i => $t}}
+    {{foreach $product_t.product_files as $i => $t}}
     <tr>
-        <td>{{$t.id}}</td>
-        <td>{{$t.file_type_label}}</td>
-        <td>{{$t.common_file_id_label}}</td>
-        <td>{{$t.link}}</td>
-        <td>{{$t.release_date|date:"Y/m/d"}}</td>
-        <td>{{$t.display_status_label}}</td>
-        <td>
-        </td>
+        <td>{{$t.release_date|date:"Y年m月d日"}}</td>
+        <td>{{$t.description}}</td>
+        <td>{{$t.file|basename}}</td>
+        <td>{{$t.file_size}}MB</td>
     </tr>
     {{/foreach}}
 </table>
-
-{{if $p = $ts->getPagerIfHasRecord()}}
-<div class="pager">
-    <p>全{{$p->get("count")}}件中 {{$p->get("current_volume")}}件を表示</p>
-    <ul class="clearfix">
-    {{if $p->getPage('prev')}}
-        <li class="prev"><a href="{{$forms.search->getSearchPageUrl(['p'=>$p->getPage('prev')])}}">&lt;</a></li>
-    {{/if}}
-    {{foreach $p->getPages(5) as $page}}
-        {{if $page == "last"}}<li>...</li>{{/if}}
-        {{if $page == $p->getPage("current")}}<li class="current">{{else}}<li>{{/if}}
-        <a href="{{$forms.search->getSearchPageUrl(['p'=>$p->getPage($page)])}}">{{$p->getPage($page)}}</a>
-        </li>
-        {{if $page == "first"}}<li>...</li>{{/if}}
-    {{/foreach}}
-    {{if $p->getPage("next")}}
-        <li class="next"><a href="{{$forms.search->getSearchPageUrl(['p'=>$p->getPage('next')])}}">&gt;</a></li>
-    {{/if}}
-    </ul>
-</div>
-{{/if}}
 
 {{/if}}{{* /0件ではない場合 *}}
 

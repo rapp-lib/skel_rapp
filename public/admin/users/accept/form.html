@@ -15,6 +15,10 @@
 
 {{form action='.'|page_to_url enctype="multipart/form-data" method="post" form=$forms.entry class="form-entry"}}
 {{input name="id" type="hidden"}}
+{{input name="product_name" type="hidden"}}
+{{input name="serial_number" type="hidden"}}
+{{input name="purchase_source" type="hidden"}}
+{{input name="purchase_reason" type="hidden"}}
 <table class="tbl detail">
     <tr>
         <th>会社名</th>
@@ -77,7 +81,23 @@
         <td>{{input name="fax" type="text" class="w-full" plugins=["split_text"=>["delim"=>"-", "num"=>3]]}}</td>
     </tr>
     <tr>
-        <th>備考</th>
+        <th>型名（製品名）</th>
+        <td>{{$forms.entry.product_name}}</td>
+    </tr>
+    <tr>
+        <th>シリアルNo.</th>
+        <td>{{$forms.entry.serial_number}}</td>
+    </tr>
+    <tr>
+        <th>購入元</th>
+        <td>{{$forms.entry.purchase_source}}</td>
+    </tr>
+    <tr>
+        <th>購入理由</th>
+        <td>{{$forms.entry.purchase_reason}}</td>
+    </tr>
+    <tr>
+        <th>ユーザー備考</th>
         <td>{{input name="memo" type="textarea"}}</td>
     </tr>
     <tr>

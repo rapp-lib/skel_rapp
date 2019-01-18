@@ -51,7 +51,7 @@ class UserLoginController extends Controller_User
         // ログアウト処理
         app()->user->setPriv("user",false);
         // ログアウト後の転送処理
-        return $this->redirect("id://.login");
+        return $this->redirect("id://index.index");
     }
     /**
      * リマインダーフォーム

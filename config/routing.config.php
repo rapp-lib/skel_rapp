@@ -3,43 +3,43 @@
         // guest
         array(array(
             // トップ
-            array("index.index", "/"),
+            array("index.index", "/users/"),
             array("index.index_static", "/{FILE:.+}", array("static_route"=>true)),
             // 対象製品一覧
-            array("products.list", "/products/"),
+            array("products.list", "/users/product.html"),
             // ユーザー登録
-            array("user_register.form", "/user/register/"),
-            array("user_register.form_confirm", "/user/register/form_confirm.html"),
-            array("user_register.form_complete", "/user/register/form_complete.html"),
+            array("user_register.form", "/users/register.html"),
+            array("user_register.form_confirm", "/users/register_confirm.html"),
+            array("user_register.form_complete", "/users/register_complete.html"),
         ), "", array("auth.role"=>"guest")),
         // user
         array(array(
             // ユーザーログイン
-            array("user_login.login", "/user/login/", array("auth.priv_req"=>false)),
-            array("user_login.login_exit", "/user/login/login_exit.html", array("auth.priv_req"=>false)),
-            array("user_login.reminder", "/user/login/reminder.html", array("auth.priv_req"=>false)),
-            array("user_login.reminder_send", "/user/login/reminder_send.html", array("auth.priv_req"=>false)),
-            array("user_login.reminder_reset", "/user/login/reminder_reset.html", array("auth.priv_req"=>false)),
-            array("user_login.reminder_complete", "/user/login/reminder_complete.html", array("auth.priv_req"=>false)),
+            array("user_login.login", "/users/login/", array("auth.priv_req"=>false)),
+            array("user_login.login_exit", "/users/login/login_exit.html", array("auth.priv_req"=>false)),
+            array("user_login.reminder", "/users/reminder.html", array("auth.priv_req"=>false)),
+            array("user_login.reminder_send", "/users/reminder_send.html", array("auth.priv_req"=>false)),
+            array("user_login.reminder_reset", "/users/reminder_reset.html", array("auth.priv_req"=>false)),
+            array("user_login.reminder_complete", "/users/reminder_complete.html", array("auth.priv_req"=>false)),
             // ユーザートップ
-            array("user_index.index", "/user/"),
-            array("user_index.index_static", "/user/{FILE:.+}", array("static_route"=>true)),
+            //array("user_index.index", "/users/mypage.html"),
+            array("user_index.index_static", "/users/{FILE:.+}", array("static_route"=>true)),
             // 更新情報一覧
-            array("user_news.list", "/user/news/"),
+            array("user_news.list", "/users/news/"),
             // ご注意事項一覧
-            array("user_notices.list", "/user/notices/"),
+            array("user_notices.list", "/users/notices/"),
             // マイページ
-            array("user_products.list", "/user/products/"),
-            array("user_products.form", "/user/products/form.html"),
-            array("user_products.form_confirm", "/user/products/form_confirm.html"),
-            array("user_products.form_complete", "/user/products/form_complete.html"),
-            array("user_products.delete", "/user/products/delete.html", array("csrf_check"=>true)),
+            array("user_products.list", "/users/mypage.html"),
+            array("user_products.form", "/users/product_register.html"),
+            array("user_products.form_confirm", "/users/product_register_confirm.html"),
+            array("user_products.form_complete", "/users/product_register_complete.html"),
+            array("user_products.delete", "/users/products/delete.html", array("csrf_check"=>true)),
             // 関連ファイルダウンロード
-            array("user_products_files.list", "/user/products/files/"),
+            array("user_products_files.list", "/users/product_file.html"),
             // 登録情報編集
-            array("user_edit.form", "/user/edit/"),
-            array("user_edit.form_confirm", "/user/edit/form_confirm.html"),
-            array("user_edit.form_complete", "/user/edit/form_complete.html"),
+            array("user_edit.form", "/users/user_edit.html"),
+            array("user_edit.form_confirm", "/users/user_edit_confirm.html"),
+            array("user_edit.form_complete", "/users/user_edit_complete.html"),
         ), "", array("auth.role"=>"user", "auth.priv_req"=>true)),
         // admin
         array(array(

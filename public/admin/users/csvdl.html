@@ -12,7 +12,7 @@
     </tr>
     {{foreach $ts as $i => $t}}
     <tr>
-        <td>{{$t.reg_date|date:"Y-m-d H:i"}}</td>
+        <td>{{$t.accept_date|date:"Y-m-d H:i"}}</td>
         <td></td>
         <td>
             <a href='{{"admin_users.detail"|page_to_url:["id"=>$t.id]}}' class="list-btn">表示</a>

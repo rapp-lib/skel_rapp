@@ -28,7 +28,8 @@ class UserProductsFilesController extends Controller_User
         } elseif ($this->forms["search"]->receive($this->input)) {
             $this->forms["search"]->save();
         }
-        $this->vars["ts"] = $this->forms["search"]->search()->select();
+        //$this->vars["ts"] = $this->forms["search"]->search()->findBy("product_id",$this->forms["search"]["product_id"])->select();
+        $this->vars["product_t"] = table("Product")->findMine()->selectById($this->forms["search"]["product_id"]);
         if ( ! $this->forms["search"]["product_id"]) return $this->response("badrequest");
     }
 }

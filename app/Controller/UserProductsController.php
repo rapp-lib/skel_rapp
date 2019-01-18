@@ -45,7 +45,8 @@ class UserProductsController extends Controller_User
             "purchase_reason"=>array("label"=>"購入理由"),
         ),
         "rules" => array(
-            "serial_number",
+            array("product_id", "required", "message"=>"型名(製品名)を選択してください。"),
+            array("serial_number", "required", "message"=>"シリアルNo.を入力してください。"),
         ),
     );
     /**
@@ -56,7 +57,7 @@ class UserProductsController extends Controller_User
         if ($this->forms["entry"]->receive($this->input)) {
             if ($this->forms["entry"]->isValid()) {
                 $this->forms["entry"]->save();
-                return $this->redirect("id://.form_complete");
+                return $this->redirect("id://.form_confirm");
             }
         } elseif ($this->input["back"]) {
             $this->forms["entry"]->restore();
@@ -87,7 +88,6 @@ class UserProductsController extends Controller_User
             $t = $this->forms["entry"]->getTableWithValues()->saveMine()->getSavedRecord();
             $this->forms["entry"]->clear();
         }
-        return $this->redirect("id://.list", array("back"=>"1"));
     }
     /**
      * @page

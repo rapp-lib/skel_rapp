@@ -158,6 +158,7 @@ class UserTable extends Table_App
             "table"=>"User",
             "col_name"=>"mail",
             "id_field"=>"id",
+            "id_role" =>"user",
         ),
         array("zip", "format", "format"=>"zip"),
         array("pref", "enum", "enum"=>"User.pref"),

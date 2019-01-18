@@ -203,4 +203,23 @@ class AdminUsersController extends Controller_Admin
             'content-disposition' => 'attachment; filename='.'User.csv'
         )));
     }
+    /**
+     * @page
+     */
+    public function act_csvdl ()
+    {
+        if ($this->input["back"]) {
+            $this->forms["search"]->restore();
+        } elseif ($this->forms["search"]->receive($this->input)) {
+            $this->forms["search"]->save();
+        }
+        //$this->vars["ts"] = $this->forms["search"]->search()->findBy("accept_flg","2")->select();
+        table("User")->findBy("accept_flg","2")->select(array(
+                "download_flg",
+                "erase_flg",
+            ));
+        // 週ごとにDLフラグや抹消フラグを集計する必要がある
+        // 参考SQL：
+        // select id, accept_date - interval date_format(accept_date,'%w') day as w from User
+    }
 }

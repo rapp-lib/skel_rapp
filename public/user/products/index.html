@@ -22,22 +22,22 @@
 
 <table class="tbl list">
     <tr>
-        <th>ID</th>
-        <th>製品ID</th>
-        <th>シリアルNo</th>
-        <th>購入元</th>
+        <th>製品名</th>
+        <th>型名</th>
+        <th>シリアルNo.</th>
+        <th>登録年月日</th>
+        <th>ダウンロード</th>
         <th>&nbsp;</th>
     </tr>
     {{foreach $ts as $i => $t}}
     <tr>
-        <td>{{$t.id}}</td>
         <td>{{$t.product_id_label}}</td>
+        <td>{{$t.product.model}}</td>
         <td>{{$t.serial_number}}</td>
-        <td>{{$t.purchase_source}}</td>
+        <td>{{$t.reg_date|date:"y年m月d日"}}</td>
+        <td><a href='{{"user_products_files.list"|page_to_url:["product_id"=>$t.product.id]}}' class="list-btn">表示</a></td>
         <td>
-            <a href='{{"user_products.form"|page_to_url:["id"=>$t.id]}}' class="list-btn">編集</a>
             <a href='{{"user_products.delete"|page_to_url:["id"=>$t.id]}}' class="list-btn" onclick="return confirm('削除します');">削除</a>
-            <a href='{{"user_products_files.list"|page_to_url:["product_id"=>$t.id]}}' class="list-btn">関連ファイルダウンロード</a>
         </td>
     </tr>
     {{/foreach}}

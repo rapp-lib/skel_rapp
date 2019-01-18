@@ -16,7 +16,7 @@
 ,,buildings,建物名,text,text,,,,,,,,user_register,user_edit,admin_users,admin_users_accept,,
 ,,tel,電話番号,text,text,TRUE,,20,,,,"input.plugins.split_text={""delim"":""-"",""num"":3}",user_register,user_edit,admin_users,admin_users_accept,,
 ,,fax,FAX番号,text,text,,,20,,,,"input.plugins.split_text={""delim"":""-"",""num"":3}",user_register,user_edit,admin_users,admin_users_accept,,
-,,login_pw,パスワード,text,password,"{""if_register"":true}",,,,,,def.login_pw=true | def.hash_pw=false,user_register,user_edit,admin_users,admin_users_accept,,
+,,login_pw,パスワード,text,password,"{""if_register"":true}",,,,,,def.login_pw=true | def.hash_pw=true,user_register,user_edit,admin_users,admin_users_accept,,
 ,,login_pw_confirm,パスワード確認,,password,"{""if"":{""login_pw"":true}}",,,,,,"nodef=true | rules.confirm={""target_field"":""login_pw""}",user_register,user_edit,admin_users,admin_users_accept,,
 ,,products,ユーザー製品,,assoc,,,,,,,"def.assoc={""table"":""UserProduct""}",user_register,,,,,
 ,,memo,備考,text,textarea,,,,,,,,user_register,user_edit,admin_users,admin_users_accept,,

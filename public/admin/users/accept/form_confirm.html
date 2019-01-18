@@ -65,7 +65,23 @@
         <td>{{$t.fax}}</td>
     </tr>
     <tr>
-        <th>備考</th>
+        <th>型名（製品名）</th>
+        <td>{{$forms.entry.product_name}}</td>
+    </tr>
+    <tr>
+        <th>シリアルNo.</th>
+        <td>{{$forms.entry.serial_number}}</td>
+    </tr>
+    <tr>
+        <th>購入元</th>
+        <td>{{$forms.entry.purchase_source}}</td>
+    </tr>
+    <tr>
+        <th>購入理由</th>
+        <td>{{$forms.entry.purchase_reason}}</td>
+    </tr>
+    <tr>
+        <th>ユーザー備考</th>
         <td>{{{{$t.memo}}|nl2br nofilter}}</td>
     </tr>
     <tr>

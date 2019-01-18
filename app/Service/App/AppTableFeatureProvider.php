@@ -56,4 +56,12 @@ class AppTableFeatureProvider extends BaseFeatureProvider
         }
         return $dest_values;
     }
+
+    public function getCsvdlList () {
+
+        // $this->findBy("accept_flg","2")->select(array(
+        //     "download_flg",
+        //     "erase_flg",
+        // ));
+    }
 }
