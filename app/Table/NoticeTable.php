@@ -9,7 +9,7 @@ class NoticeTable extends Table_App
     protected static $table_name = "Notice";
     protected static $cols = array(
         "number"=>array(
-            "type"=>"text",
+            "type"=>"integer",
             "comment"=>"項番",
         ),
         "contents"=>array(

@@ -15,7 +15,7 @@ class AdminProductsController extends Controller_Admin
         "search_table" => "Product",
         "fields" => array(
             "p" => array("search"=>"page", "volume"=>20),
-            "sort" => array("search"=>"sort", "cols"=>array("id")),
+            "sort" => array("search"=>"sort", "cols"=>array("id", "model")),
         ),
     );
     /**

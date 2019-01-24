@@ -16,7 +16,7 @@ class AdminUsersController extends Controller_Admin
         "fields" => array(
             "mail"=>array("search"=>"word", "target_col"=>"mail"),
             "p" => array("search"=>"page", "volume"=>20),
-            "sort" => array("search"=>"sort", "cols"=>array("id")),
+            "sort" => array("search"=>"sort", "cols"=>array("id", "reg_date")),
         ),
     );
     /**
