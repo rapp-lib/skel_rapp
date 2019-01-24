@@ -7,6 +7,10 @@
             array("index.index_static", "/{FILE:.+}", array("static_route"=>true)),
             // 対象製品一覧
             array("products.list", "/users/product.html"),
+            // 更新情報一覧
+            array("user_news.list", "/users/news.html"),
+            // ご注意事項一覧
+            array("user_notices.list", "/users/notices/"),
             // ユーザー登録
             array("user_register.form", "/users/register.html"),
             array("user_register.form_confirm", "/users/register_confirm.html"),
@@ -22,12 +26,8 @@
             array("user_login.reminder_reset", "/users/reminder_reset.html", array("auth.priv_req"=>false)),
             array("user_login.reminder_complete", "/users/reminder_complete.html", array("auth.priv_req"=>false)),
             // ユーザートップ
-            //array("user_index.index", "/users/mypage.html"),
+            array("user_index.user_login_header", "/users/include/user_login_header.html", array("include"=>true)),
             array("user_index.index_static", "/users/{FILE:.+}", array("static_route"=>true)),
-            // 更新情報一覧
-            array("user_news.list", "/users/news/"),
-            // ご注意事項一覧
-            array("user_notices.list", "/users/notices/"),
             // マイページ
             array("user_products.list", "/users/mypage.html"),
             array("user_products.form", "/users/product_register.html"),
@@ -48,6 +48,8 @@
             array("admin_login.login_exit", "/admin/login/login_exit.html", array("auth.priv_req"=>false)),
             // 管理者マイページ
             array("admin_index.index", "/admin/"),
+            array("admin_index.left_menu_user", "/admin/include/admin_left_menu_user.html", array("include"=>true)),
+            array("admin_index.left_menu_product", "/admin/include/admin_left_menu_product.html", array("include"=>true)),
             array("admin_index.index_static", "/admin/{FILE:.+}", array("static_route"=>true)),
             // ユーザー管理
             array("admin_users.list", "/admin/users/"),

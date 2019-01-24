@@ -12,7 +12,7 @@
         'cache.connection.default' => array(
             'adapter' => array(
                 'name'    => 'apc',
-                'options' => array('ttl' => 3600),
+                'options' => array('ttl' => 60*60*24*3),
             ),
             'plugins' => array(
                 'Serializer',

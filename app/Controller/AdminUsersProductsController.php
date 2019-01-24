@@ -29,6 +29,7 @@ class AdminUsersProductsController extends Controller_Admin
             $this->forms["search"]->save();
         }
         $this->vars["ts"] = $this->forms["search"]->search()->findBy("accept_flg", "1")->select();
+        $this->vars["complete_flg"] = $this->input["complete_flg"];
     }
     /**
      * 入力フォーム
@@ -92,10 +93,10 @@ class AdminUsersProductsController extends Controller_Admin
         if ( ! $this->forms["entry"]->isEmpty() && $this->forms["entry"]->isValid()) {
             $t = $this->forms["entry"]->getTableWithValues()->save()->getSavedRecord();
             // 管理者通知メールの送信
-            app("mailer")->send(array("text"=>"mail://admin_users_products.admin.html"), array("t"=>$t), function($message){});
+            app("mailer")->send(array("text"=>"mail://admin_users_products.reply.html"), array("t"=>$t), function($message){});
             $this->forms["entry"]->clear();
         }
-        return $this->redirect("id://.list", array("back"=>"1"));
+        return $this->redirect("id://.list", array("back"=>"1","complete_flg"=>"update"));
     }
     /**
      * @page
@@ -113,12 +114,12 @@ class AdminUsersProductsController extends Controller_Admin
     protected static $form_csv = array(
         "table" => "UserProduct",
         "fields" => array(
-            "id"=>array("label"=>"#ID"),
-            "product_id"=>array("label"=>"製品ID"),
+            "user.mail"=>array("label"=>"メールアドレス"),
+            "product.model"=>array("label"=>"型名"),
             "serial_number"=>array("label"=>"シリアルNo"),
             "purchase_source"=>array("label"=>"購入元"),
             "purchase_reason"=>array("label"=>"購入理由"),
-            "accept_flg"=>array("label"=>"承認フラグ"),
+            "reg_date"=>array("label"=>"登録日付"),
         ),
         "rules" => array(
             "serial_number",
@@ -128,7 +129,6 @@ class AdminUsersProductsController extends Controller_Admin
             "rows" => array(),
             "filters" => array(
                 array("product_id", "enum_value", "enum"=>"UserProduct.product"),
-                array("accept_flg", "enum_value", "enum"=>"UserProduct.accept_flg"),
             ),
         ),
     );
@@ -139,7 +139,7 @@ class AdminUsersProductsController extends Controller_Admin
     {
         // 検索結果の取得
         $this->forms["search"]->restore();
-        $ts = $this->forms["search"]->search()->removePagenation()->select();
+        $ts = $this->forms["search"]->search()->findBy("accept_flg", "2")->removePagenation()->select();
         // CSVファイルの書き込み
         $csv = $this->forms["csv"]->openCsvFile("php://temp", "w");
         foreach ($ts as $t) $csv->writeRecord($t);

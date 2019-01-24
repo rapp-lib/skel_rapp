@@ -88,6 +88,9 @@ class ProductTable extends Table_App
             "user_products"=>array("type"=>"has_many", "table"=>"UserProduct"),
             "product_files"=>array("type"=>"product_files"),
         ),
+        "*"=>array(
+            "bracket_name"=>array("type"=>"add_bracket", "first_col"=>"model", "second_col"=>"name"),
+        ),
     );
     protected static $def = array(
         "comment" => "製品",

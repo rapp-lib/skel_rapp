@@ -56,6 +56,17 @@ class AppTableFeatureProvider extends BaseFeatureProvider
         }
         return $dest_values;
     }
+    
+    public function alias_addBracket($result, $src_values, $alias)
+    {
+        $hashed_list = $result->getHashedBy($alias["first_col"],$alias["second_col"]);
+        foreach ($hashed_list as $k=>$v) {
+            if ($v) $v="（".$v."）";
+            $str =$k.$v;
+            $result_list[] =$str;
+        }
+        return $result_list;
+    }
 
     public function getCsvdlList () {
 

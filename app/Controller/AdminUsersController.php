@@ -30,6 +30,7 @@ class AdminUsersController extends Controller_Admin
             $this->forms["search"]->save();
         }
         $this->vars["ts"] = $this->forms["search"]->search()->findBy("accept_flg","2")->select();
+        $this->vars["complete_flg"] = $this->input["complete_flg"];
     }
     /**
      * @page
@@ -38,6 +39,7 @@ class AdminUsersController extends Controller_Admin
     {
         $this->vars["t"] = table("User")->selectById($this->input["id"]);
         if ( ! $this->vars["t"]) return $this->response("notfound");
+        $this->vars["complete_flg"] = $this->input["complete_flg"];
     }
     /**
      * 入力フォーム
@@ -67,6 +69,7 @@ class AdminUsersController extends Controller_Admin
             "login_pw_confirm"=>array("label"=>"パスワード確認", "col"=>false),
             "memo"=>array("label"=>"備考"),
             "admin_memo"=>array("label"=>"管理者備考"),
+            "last_login_date"=>array("label"=>"最終ログイン日時", "col_values_clause"=>false),
         ),
         "rules" => array(
             "company_name",
@@ -94,7 +97,7 @@ class AdminUsersController extends Controller_Admin
         if ($this->forms["entry"]->receive($this->input)) {
             if ($this->forms["entry"]->isValid()) {
                 $this->forms["entry"]->save();
-                return $this->redirect("id://.form_complete");
+                return $this->redirect("id://.form_confirm");
             }
         } elseif ($this->input["back"]) {
             $this->forms["entry"]->restore();
@@ -125,7 +128,7 @@ class AdminUsersController extends Controller_Admin
             $t = $this->forms["entry"]->getTableWithValues()->save()->getSavedRecord();
             $this->forms["entry"]->clear();
         }
-        return $this->redirect("id://.list", array("back"=>"1"));
+        return $this->redirect("id://.detail", array("id"=>$t["id"],"complete_flg"=>"update"));
     }
     /**
      * @page
@@ -135,7 +138,7 @@ class AdminUsersController extends Controller_Admin
         if ($id = $this->input["id"]) {
             table("User")->deleteById($id);
         }
-        return $this->redirect("id://admin_users.list", array("back"=>"1"));
+        return $this->redirect("id://admin_users.list", array("back"=>"1","complete_flg"=>"delete"));
     }
     /**
      * CSV設定
@@ -193,7 +196,7 @@ class AdminUsersController extends Controller_Admin
     {
         // 検索結果の取得
         $this->forms["search"]->restore();
-        $ts = $this->forms["search"]->search()->removePagenation()->select();
+        $ts = $this->forms["search"]->search()->findBy("accept_flg","2")->removePagenation()->select();
         // CSVファイルの書き込み
         $csv = $this->forms["csv"]->openCsvFile("php://temp", "w");
         foreach ($ts as $t) $csv->writeRecord($t);

@@ -49,6 +49,7 @@ class AdminProductsController extends Controller_Admin
     {
         $this->vars["t"] = table("Product")->selectById($this->input["id"]);
         if ( ! $this->vars["t"]) return $this->response("notfound");
+        $this->vars["complete_flg"] = $this->input["complete_flg"];
     }
     /**
      * 入力フォーム
@@ -68,6 +69,7 @@ class AdminProductsController extends Controller_Admin
             "release_date"=>array("label"=>"公開日"),
             "description"=>array("label"=>"説明"),
             "display_status"=>array("label"=>"公開ステータス"),
+            "register_flg"=>array("label"=>"新規登録フラグ", "col"=>false),
         ),
         "rules" => array(
             "name",
@@ -82,7 +84,7 @@ class AdminProductsController extends Controller_Admin
         if ($this->forms["entry"]->receive($this->input)) {
             if ($this->forms["entry"]->isValid()) {
                 $this->forms["entry"]->save();
-                return $this->redirect("id://.form_complete");
+                return $this->redirect("id://.form_confirm");
             }
         } elseif ($this->input["back"]) {
             $this->forms["entry"]->restore();
@@ -92,6 +94,11 @@ class AdminProductsController extends Controller_Admin
                 $t = $this->forms["entry"]->getTable()->selectById($id);
                 if ( ! $t) return $this->response("notfound");
                 $this->forms["entry"]->setRecord($t);
+            }
+            // 新規登録画面切り替えフラグの設定
+            // 新規登録時と、下書きの編集時にフラグON
+            if (! $this->input["id"] || $t["display_status"] == "2"){
+                $this->forms["entry"]["register_flg"] ="1";
             }
         }
     }
@@ -110,10 +117,17 @@ class AdminProductsController extends Controller_Admin
     {
         $this->forms["entry"]->restore();
         if ( ! $this->forms["entry"]->isEmpty() && $this->forms["entry"]->isValid()) {
+            if ($this->forms["entry"]["register_flg"] && $this->forms["entry"]["display_status"] == "2") {
+                $complete_flg = "draft";
+            } else if ($this->forms["entry"]["register_flg"]) {
+                $complete_flg = "register";
+            } else {
+                $complete_flg = "update";
+            }
             $t = $this->forms["entry"]->getTableWithValues()->save()->getSavedRecord();
             $this->forms["entry"]->clear();
         }
-        return $this->redirect("id://.list", array("back"=>"1"));
+        return $this->redirect("id://.detail", array("back"=>"1","id"=>$t["id"],"complete_flg"=>$complete_flg));
     }
     /**
      * @page
@@ -123,6 +137,6 @@ class AdminProductsController extends Controller_Admin
         if ($id = $this->input["id"]) {
             table("Product")->deleteById($id);
         }
-        return $this->redirect("id://admin_products.list", array("back"=>"1"));
+        return $this->redirect("id://admin_products.list", array("back"=>"1","complete_flg"=>"delete"));
     }
 }

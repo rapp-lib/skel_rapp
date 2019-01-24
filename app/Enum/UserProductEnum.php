@@ -23,4 +23,10 @@ class UserProductEnum extends Enum_App
         "2" => "承認",
         "3" => "削除",
     );
+    protected static function values_product_bracket_name ($keys)
+    {
+        $query = table("Product");
+        if ($keys) $query->findById($keys);
+        return $query->select()->getHashedBy("id", "bracket_name");
+    }
 }

@@ -94,10 +94,15 @@ class AdminProductsFilesController extends Controller_Admin
     {
         $this->forms["entry"]->restore();
         if ( ! $this->forms["entry"]->isEmpty() && $this->forms["entry"]->isValid()) {
+            if ($this->forms["entry"]["id"]) {
+                $complete_flg = "files_update";
+            } else {
+                $complete_flg = "files_register";
+            }
             $t = $this->forms["entry"]->getTableWithValues()->save()->getSavedRecord();
             $this->forms["entry"]->clear();
         }
-        return $this->redirect("id://.list", array("back"=>"1"));
+        return $this->redirect("id://admin_products.detail", array("id"=>$t["product_id"],"complete_flg"=>$complete_flg));
     }
     /**
      * @page
@@ -105,8 +110,9 @@ class AdminProductsFilesController extends Controller_Admin
     public function act_delete ()
     {
         if ($id = $this->input["id"]) {
+            $t = table("ProductFile")->selectById($id);
             table("ProductFile")->deleteById($id);
         }
-        return $this->redirect("id://admin_products_files.list", array("back"=>"1"));
+        return $this->redirect("id://admin_products.detail", array("id"=>$t["product_id"],"complete_flg"=>"files_delete"));
     }
 }

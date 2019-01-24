@@ -29,6 +29,7 @@ class AdminNewsController extends Controller_Admin
             $this->forms["search"]->save();
         }
         $this->vars["ts"] = $this->forms["search"]->search()->select();
+        $this->vars["complete_flg"] = $this->input["complete_flg"];
     }
     /**
      * @page
@@ -37,6 +38,7 @@ class AdminNewsController extends Controller_Admin
     {
         $this->vars["t"] = table("News")->selectById($this->input["id"]);
         if ( ! $this->vars["t"]) return $this->response("notfound");
+        $this->vars["complete_flg"] = $this->input["complete_flg"];
     }
     /**
      * 入力フォーム
@@ -61,7 +63,7 @@ class AdminNewsController extends Controller_Admin
         if ($this->forms["entry"]->receive($this->input)) {
             if ($this->forms["entry"]->isValid()) {
                 $this->forms["entry"]->save();
-                return $this->redirect("id://.form_complete");
+                return $this->redirect("id://.form_confirm");
             }
         } elseif ($this->input["back"]) {
             $this->forms["entry"]->restore();
@@ -89,10 +91,19 @@ class AdminNewsController extends Controller_Admin
     {
         $this->forms["entry"]->restore();
         if ( ! $this->forms["entry"]->isEmpty() && $this->forms["entry"]->isValid()) {
+            if ($this->forms["entry"]["id"]) {
+                $complete_flg = "update";
+            } else {
+                $complete_flg = "register";
+            }
             $t = $this->forms["entry"]->getTableWithValues()->save()->getSavedRecord();
             $this->forms["entry"]->clear();
         }
-        return $this->redirect("id://.list", array("back"=>"1"));
+        if ($complete_flg == "update") {
+            return $this->redirect("id://.detail", array("back"=>"1","id"=>$t["id"],"complete_flg"=>$complete_flg));
+        } else {
+            return $this->redirect("id://.list", array("back"=>"1","complete_flg"=>$complete_flg));
+        }
     }
     /**
      * @page
@@ -102,6 +113,6 @@ class AdminNewsController extends Controller_Admin
         if ($id = $this->input["id"]) {
             table("News")->deleteById($id);
         }
-        return $this->redirect("id://admin_news.list", array("back"=>"1"));
+        return $this->redirect("id://admin_news.list", array("back"=>"1","complete_flg"=>"delete"));
     }
 }

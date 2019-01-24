@@ -73,7 +73,7 @@ class UserTable extends Table_App
         "login_pw"=>array(
             "type"=>"text",
             "login_pw"=>true,
-            "hash_pw"=>false,
+            "hash_pw"=>true,
             "comment"=>"パスワード",
         ),
         "products"=>array(

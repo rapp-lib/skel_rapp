@@ -29,6 +29,7 @@ class AdminUsersAcceptController extends Controller_Admin
             $this->forms["search"]->save();
         }
         $this->vars["ts"] = $this->forms["search"]->search()->findBy("accept_flg","1")->select();
+        $this->vars["complete_flg"] = $this->input["complete_flg"];
     }
     /**
      * 入力フォーム
@@ -111,7 +112,7 @@ class AdminUsersAcceptController extends Controller_Admin
     {
         $this->forms["entry"]->restore();
         $this->vars["t"] = $this->forms["entry"]->getRecord();
-        // $this->forms["entry"]["login_pw"]
+        report($this->forms["entry"]["login_pw"]);
     }
     /**
      * @page
@@ -120,19 +121,19 @@ class AdminUsersAcceptController extends Controller_Admin
     {
         $this->forms["entry"]->restore();
         if ( ! $this->forms["entry"]->isEmpty() && $this->forms["entry"]->isValid()) {
+            $login_pw =$this->forms["entry"]["login_pw"];
             $t = $this->forms["entry"]->getTableWithValues()->save()->getSavedRecord();
-            //$this->forms["entry"]["login_pw"]
             if ($t["accept_flg"] == "2") {
                 table("User")->save(array(
                     "id" =>$t["id"],
                     "accept_date" =>date("Y-m-d H:i:s"),
                 ));
                 // 自動返信メールの送信
-                app("mailer")->send("mail://admin_users_accept.reply.html", array("t"=>$t), function($message){});
+                app("mailer")->send("mail://admin_users_accept.reply.html", array("t"=>$t, "login_pw"=>$login_pw), function($message){});
             }
             $this->forms["entry"]->clear();
         }
-        return $this->redirect("id://.list", array("back"=>"1"));
+        return $this->redirect("id://.list", array("back"=>"1","complete_flg"=>"update"));
     }
     /**
      * @page

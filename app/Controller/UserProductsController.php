@@ -28,7 +28,7 @@ class UserProductsController extends Controller_User
         } elseif ($this->forms["search"]->receive($this->input)) {
             $this->forms["search"]->save();
         }
-        $this->vars["ts"] = $this->forms["search"]->search()->findMine()->select();
+        $this->vars["ts"] = $this->forms["search"]->search()->findBy("accept_flg","2")->findMine()->select();
     }
     /**
      * 入力フォーム

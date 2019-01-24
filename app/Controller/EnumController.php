@@ -12,6 +12,7 @@ class EnumController extends Controller_App
     public function act_json ()
     {
         $allow = array(
+            "Product.child_category_id",
         );
         $enum = $this->input["enum"];
         $key = $this->input["key"];
