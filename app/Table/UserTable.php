@@ -10,15 +10,15 @@ class UserTable extends Table_App
     protected static $cols = array(
         "company_name"=>array(
             "type"=>"text",
-            "comment"=>"会社名",
+            "comment"=>"所属企業/団体名",
         ),
         "department"=>array(
             "type"=>"text",
-            "comment"=>"部署",
+            "comment"=>"部署名",
         ),
         "position"=>array(
             "type"=>"text",
-            "comment"=>"役職",
+            "comment"=>"役職名",
         ),
         "last_name"=>array(
             "type"=>"text",
@@ -40,7 +40,7 @@ class UserTable extends Table_App
             "type"=>"text",
             "login_id"=>true,
             "mail"=>true,
-            "comment"=>"メール",
+            "comment"=>"E-Mail",
         ),
         "zip"=>array(
             "type"=>"text",

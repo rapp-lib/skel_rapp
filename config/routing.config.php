@@ -2,9 +2,6 @@
     return array("http.webroots.www.routes"=>array(
         // guest
         array(array(
-            // トップ
-            array("index.index", "/"),
-            array("index.index_static", "/{FILE:.+}", array("static_route"=>true)),
             // 対象製品一覧
             array("products.list", "/users/product.html"),
             // 更新情報一覧

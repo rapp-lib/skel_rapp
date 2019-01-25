@@ -11,12 +11,12 @@ class ProductTable extends Table_App
         "parent_category_id"=>array(
             "type"=>"integer",
             "fkey_for"=>"Category",
-            "comment"=>"大分類ID",
+            "comment"=>"大分類",
         ),
         "child_category_id"=>array(
             "type"=>"integer",
             "fkey_for"=>"Category",
-            "comment"=>"中分類ID",
+            "comment"=>"中分類",
         ),
         "name"=>array(
             "type"=>"text",

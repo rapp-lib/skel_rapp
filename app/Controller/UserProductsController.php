@@ -41,8 +41,8 @@ class UserProductsController extends Controller_User
         "table" => "UserProduct",
         "fields" => array(
             "id"=>array("label"=>"ID"),
-            "product_id"=>array("label"=>"製品ID"),
-            "serial_number"=>array("label"=>"シリアルNo"),
+            "product_id"=>array("label"=>"型名（製品名）"),
+            "serial_number"=>array("label"=>"シリアルNo."),
             "purchase_source"=>array("label"=>"購入元"),
             "purchase_reason"=>array("label"=>"購入理由"),
         ),

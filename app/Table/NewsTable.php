@@ -10,7 +10,7 @@ class NewsTable extends Table_App
     protected static $cols = array(
         "date"=>array(
             "type"=>"datetime",
-            "comment"=>"日付",
+            "comment"=>"年月日",
         ),
         "contents"=>array(
             "type"=>"text",

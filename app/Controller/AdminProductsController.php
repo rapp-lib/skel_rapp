@@ -60,8 +60,8 @@ class AdminProductsController extends Controller_Admin
         "table" => "Product",
         "fields" => array(
             "id"=>array("label"=>"ID"),
-            "parent_category_id"=>array("label"=>"大分類ID"),
-            "child_category_id"=>array("label"=>"中分類ID"),
+            "parent_category_id"=>array("label"=>"大分類"),
+            "child_category_id"=>array("label"=>"中分類"),
             "name"=>array("label"=>"製品名"),
             "model"=>array("label"=>"型名"),
             "image"=>array("label"=>"画像", "storage"=>"public"),

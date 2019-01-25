@@ -22,7 +22,7 @@
         <td>{{input name="file_type" type="select" values=$enum["ProductFile.file_type"]}}</td>
     </tr>
     <tr>
-        <th>共通ファイルID</th>
+        <th>ファイル属性</th>
         <td>{{input name="common_file_id" type="select" values=$enum["ProductFile.common_file"]}}</td>
     </tr>
     <tr>
@@ -30,7 +30,7 @@
         <td>{{input name="file" type="file"}}{{if $forms.entry.file}}<span> <a href="{{$forms.entry.file}}" target="_blank" class="uploaded">ファイル</a> <a href="javascript:void(0);" onclick="$(this).parent().parent().find('input.uploaded').val('').change();$(this).parent().hide();">削除</a></span>{{/if}}</td>
     </tr>
     <tr>
-        <th>リンク</th>
+        <th>リンクURL</th>
         <td>{{input name="link" type="text" class="w-full"}}</td>
     </tr>
     <tr>
@@ -42,7 +42,7 @@
         <td>{{input name="description" type="textarea"}}</td>
     </tr>
     <tr>
-        <th>公開ステータス</th>
+        <th>公開状態</th>
         <td>{{input name="display_status" type="select" values=$enum["ProductFile.display_status"]}}</td>
     </tr>
 </table>
