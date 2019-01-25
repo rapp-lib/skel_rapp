@@ -15,7 +15,10 @@ class AdminUsersAcceptController extends Controller_Admin
         "search_table" => "User",
         "fields" => array(
             "p" => array("search"=>"page", "volume"=>20),
-            "sort" => array("search"=>"sort", "cols"=>array("reg_date DESC")),
+            "sort" => array("search"=>"sort", "cols"=>array("id", "reg_date", "company_name", "name_kana"=>array(
+                "last_name_kana ASC, first_name_kana ASC",
+                "last_name_kana DESC, first_name_kana DESC",
+            ))),
         ),
     );
     /**
@@ -67,13 +70,12 @@ class AdminUsersAcceptController extends Controller_Admin
         "rules" => array(
             "company_name",
             "department",
-            "position",
             "last_name",
             "first_name",
             "last_name_kana",
             "first_name_kana",
             array("mail", "required", "if"=>array("id"=>false)),
-            "login_pw",
+            array("login_pw", "required", "if"=>array("or"=>array(array("accept_flg"=>"1"),array("accept_flg"=>"2")))),
             "zip",
             "pref",
             "city",
@@ -122,18 +124,26 @@ class AdminUsersAcceptController extends Controller_Admin
         $this->forms["entry"]->restore();
         if ( ! $this->forms["entry"]->isEmpty() && $this->forms["entry"]->isValid()) {
             $login_pw =$this->forms["entry"]["login_pw"];
-            $t = $this->forms["entry"]->getTableWithValues()->save()->getSavedRecord();
-            if ($t["accept_flg"] == "2") {
-                table("User")->save(array(
-                    "id" =>$t["id"],
-                    "accept_date" =>date("Y-m-d H:i:s"),
-                ));
-                // 自動返信メールの送信
-                app("mailer")->send("mail://admin_users_accept.reply.html", array("t"=>$t, "login_pw"=>$login_pw), function($message){});
+            if ($this->forms["entry"]["accept_flg"] == "3") {
+                // 削除処理
+                table("User")->deleteById($this->forms["entry"]["id"]);
+                $complete_flg = "delete";
+            } else {
+                // 更新処理
+                $t = $this->forms["entry"]->getTableWithValues()->save()->getSavedRecord();
+                if ($t["accept_flg"] == "2") {
+                    table("User")->save(array(
+                        "id" =>$t["id"],
+                        "accept_date" =>date("Y-m-d H:i:s"),
+                    ));
+                    // ユーザ向け通知メールの送信
+                    app("mailer")->send("mail://admin_users_accept.reply.html", array("t"=>$t, "login_pw"=>$login_pw), function($message){});
+                }
+                $complete_flg = "update";
             }
             $this->forms["entry"]->clear();
         }
-        return $this->redirect("id://.list", array("back"=>"1","complete_flg"=>"update"));
+        return $this->redirect("id://.list", array("back"=>"1","complete_flg"=>$complete_flg));
     }
     /**
      * @page

@@ -15,7 +15,7 @@ class AdminUsersProductsController extends Controller_Admin
         "search_table" => "UserProduct",
         "fields" => array(
             "p" => array("search"=>"page", "volume"=>20),
-            "sort" => array("search"=>"sort", "cols"=>array("id")),
+            "sort" => array("search"=>"sort", "cols"=>array("id", "model")),
         ),
     );
     /**
@@ -91,12 +91,22 @@ class AdminUsersProductsController extends Controller_Admin
     {
         $this->forms["entry"]->restore();
         if ( ! $this->forms["entry"]->isEmpty() && $this->forms["entry"]->isValid()) {
-            $t = $this->forms["entry"]->getTableWithValues()->save()->getSavedRecord();
-            // 管理者通知メールの送信
-            app("mailer")->send(array("text"=>"mail://admin_users_products.reply.html"), array("t"=>$t), function($message){});
+            if ($this->forms["entry"]["accept_flg"] == "3") {
+                // 削除処理
+                table("UserProduct")->deleteById($this->forms["entry"]["id"]);
+                $complete_flg = "delete";
+            } else {
+                // 更新処理
+                $t = $this->forms["entry"]->getTableWithValues()->save()->getSavedRecord();
+                if ($this->forms["entry"]["accept_flg"] == "2") {
+                    // ユーザ向け通知メールの送信
+                    app("mailer")->send(array("text"=>"mail://admin_users_products.reply.html"), array("t"=>$t), function($message){});
+                }
+                $complete_flg = "update";
+            }
             $this->forms["entry"]->clear();
         }
-        return $this->redirect("id://.list", array("back"=>"1","complete_flg"=>"update"));
+        return $this->redirect("id://.list", array("back"=>"1","complete_flg"=>$complete_flg));
     }
     /**
      * @page

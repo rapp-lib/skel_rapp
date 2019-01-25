@@ -3,7 +3,7 @@
         // guest
         array(array(
             // トップ
-            array("index.index", "/users/"),
+            array("index.index", "/"),
             array("index.index_static", "/{FILE:.+}", array("static_route"=>true)),
             // 対象製品一覧
             array("products.list", "/users/product.html"),
@@ -19,7 +19,7 @@
         // user
         array(array(
             // ユーザーログイン
-            array("user_login.login", "/users/login/", array("auth.priv_req"=>false)),
+            array("user_login.login", "/users/", array("auth.priv_req"=>false)),
             array("user_login.login_exit", "/users/login/login_exit.html", array("auth.priv_req"=>false)),
             array("user_login.reminder", "/users/reminder.html", array("auth.priv_req"=>false)),
             array("user_login.reminder_send", "/users/reminder_send.html", array("auth.priv_req"=>false)),

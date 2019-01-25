@@ -15,7 +15,7 @@ class AdminProductsController extends Controller_Admin
         "search_table" => "Product",
         "fields" => array(
             "p" => array("search"=>"page", "volume"=>20),
-            "sort" => array("search"=>"sort", "cols"=>array("id")),
+            "sort" => array("search"=>"sort", "cols"=>array("id", "model")),
         ),
     );
     /**
@@ -72,6 +72,8 @@ class AdminProductsController extends Controller_Admin
             "register_flg"=>array("label"=>"新規登録フラグ", "col"=>false),
         ),
         "rules" => array(
+            "parent_category_id",
+            "child_category_id",
             "name",
             "display_status",
         ),

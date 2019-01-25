@@ -11,10 +11,8 @@
                         // if ("user"==$params["login_id"] && "cftyuhbvg"==$params["login_pw"]) {
                         //    return array("id"=>9999999);
                         // }
-                        $t = table("User")->findBy(array("accept_flg"=>"2"))
+                        return table("User")->findBy(array("accept_flg"=>"2"))
                             ->authByLoginIdPw($params["login_id"], $params["login_pw"]);
-                        table("User")->save(array("id"=>$t["id"],"last_login_date"=>date("Y-m-d H:i:s")));
-                        return $t;
                     }
                 },
                 "on_logout" => function($old_priv){

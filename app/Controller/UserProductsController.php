@@ -13,9 +13,11 @@ class UserProductsController extends Controller_User
         "receive_all" => true,
         "search_page" => "user_products.list",
         "search_table" => "UserProduct",
+        "search_joins" => array(
+            array("Product", array("Product.id=UserProduct.product_id")),
+        ),
         "fields" => array(
-            "p" => array("search"=>"page", "volume"=>20),
-            "sort" => array("search"=>"sort", "cols"=>array("id")),
+            "sort" => array("search"=>"sort", "cols"=>array("Product.model ASC")),
         ),
     );
     /**

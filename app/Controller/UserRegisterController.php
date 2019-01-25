@@ -46,6 +46,7 @@ class UserRegisterController extends Controller_Guest
         ),
         "rules" => array(
             array("agree_flg", "required", "message"=>"ユーザー規約に同意が必要です。"),
+            array("agree_flg", "range", "min"=>"1", "max"=>"1", "message"=>"ユーザー規約に同意が必要です。"),
             array("company_name", "required", "message"=>"所属企業/団体名を入力してください。"),
             array("department", "required", "message"=>"部署名を入力してください。"),
             array("last_name", "required", "message"=>"氏名（氏）を入力してください。"),

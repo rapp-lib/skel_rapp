@@ -20,10 +20,35 @@ class UserLoginController extends Controller_User
         ),
     );
     /**
+     * 更新情報検索フォーム
+     */
+    protected static $form_news_search = array(
+        "receive_all" => true,
+        "search_page" => "user_news.list",
+        "search_table" => "News",
+        "fields" => array(
+            "p" => array("search"=>"page", "volume"=>10),
+            "sort" => array("search"=>"sort", "cols"=>array("reg_date DESC")),
+        ),
+    );
+    /**
+     * 注意事項検索フォーム
+     */
+    protected static $form_notice_search = array(
+        "receive_all" => true,
+        "search_page" => "user_notices.list",
+        "search_table" => "Notice",
+        "fields" => array(
+            "sort" => array("search"=>"sort", "cols"=>array("number ASC")),
+        ),
+    );
+    /**
      * @page
      */
     public function act_login ()
     {
+        report("login");
+        // ログインフォーム
         if ($this->forms["login"]->receive($this->input)) {
             if ($this->forms["login"]->isValid()) {
                 // ログイン処理
@@ -33,7 +58,8 @@ class UserLoginController extends Controller_User
                     "login_pw" => $this->forms["login"]["login_pw"],
                 ));
                 if ($result) {
-                    return $this->redirect($this->forms["login"]["redirect"] ?: "id://user_index.index");
+                    table("User")->values(array("last_login_date"=>date("Y-m-d H:i:s")))->saveMine();
+                    return $this->redirect($this->forms["login"]["redirect"] ?: "id://user_products.list");
                 } else {
                     $this->vars["login_error"] = true;
                 }
@@ -42,6 +68,12 @@ class UserLoginController extends Controller_User
         } elseif ($redirect = $this->input["redirect"]) {
             $this->forms["login"]["redirect"] = $redirect;
         }
+
+        // 更新情報
+        $this->vars["news_ts"] = $this->forms["news_search"]->search()->select();
+
+        // 注意事項
+        $this->vars["notice_ts"] = $this->forms["notice_search"]->search()->select();
     }
     /**
      * @page
@@ -51,7 +83,7 @@ class UserLoginController extends Controller_User
         // ログアウト処理
         app()->user->setPriv("user",false);
         // ログアウト後の転送処理
-        return $this->redirect("id://index.index");
+        return $this->redirect("id://.login");
     }
     /**
      * リマインダーフォーム
