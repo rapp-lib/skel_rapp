@@ -17,11 +17,11 @@
 {{input name="id" type="hidden"}}
 <table class="tbl detail">
     <tr>
-        <th>大分類ID</th>
+        <th>大分類</th>
         <td>{{input name="parent_category_id" type="select" values=$enum["Product.category"]}}</td>
     </tr>
     <tr>
-        <th>中分類ID</th>
+        <th>中分類</th>
         <td>{{input name="child_category_id" type="select" values=$enum["Product.category"]}}</td>
     </tr>
     <tr>

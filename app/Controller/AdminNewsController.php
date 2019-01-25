@@ -47,7 +47,7 @@ class AdminNewsController extends Controller_Admin
         "table" => "News",
         "fields" => array(
             "id"=>array("label"=>"ID"),
-            "date"=>array("label"=>"日付"),
+            "date"=>array("label"=>"年月日"),
             "contents"=>array("label"=>"内容"),
         ),
         "rules" => array(

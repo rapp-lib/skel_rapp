@@ -5,15 +5,15 @@
 
 <table class="tbl detail">
     <tr>
-        <th>会社名</th>
+        <th>所属企業/団体名</th>
         <td>{{$t.company_name}}</td>
     </tr>
     <tr>
-        <th>部署</th>
+        <th>部署名</th>
         <td>{{$t.department}}</td>
     </tr>
     <tr>
-        <th>役職</th>
+        <th>役職名</th>
         <td>{{$t.position}}</td>
     </tr>
     <tr>
@@ -33,11 +33,11 @@
         <td>{{$t.first_name_kana}}</td>
     </tr>
     <tr>
-        <th>メール</th>
+        <th>E-Mail</th>
         <td>{{$t.mail}}</td>
     </tr>
     <tr>
-        <th>メール確認入力</th>
+        <th>E-mail(確認用)</th>
         <td>{{$t.mail_confirm}}</td>
     </tr>
     <tr>
@@ -82,11 +82,11 @@
             {{foreach $t.products as $key=>$item}}
                 <table class="tbl detail">
                 <tr>
-                    <th>製品ID</th>
+                    <th>型名（製品名）</th>
                     <td>{{$t.products[$key].product_id_label}}</td>
                 </tr>
                 <tr>
-                    <th>シリアルNo</th>
+                    <th>シリアルNo.</th>
                     <td>{{$t.products[$key].serial_number}}</td>
                 </tr>
                 <tr>
@@ -98,7 +98,7 @@
                     <td>{{{{$t.products[$key].purchase_reason}}|nl2br nofilter}}</td>
                 </tr>
                 <tr>
-                    <th>承認フラグ</th>
+                    <th>承認ステータス</th>
                     <td>{{$t.products[$key].accept_flg_label}}</td>
                 </tr>
                 <tr>

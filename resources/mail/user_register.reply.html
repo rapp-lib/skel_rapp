@@ -2,15 +2,15 @@
 {{$message->subject("ユーザー登録 完了通知メール")}}
 下記の通り受け付けました<br/>
 <br/>
-会社名 : {{$t.company_name}}<br/>
-部署 : {{$t.department}}<br/>
-役職 : {{$t.position}}<br/>
+所属企業/団体名 : {{$t.company_name}}<br/>
+部署名 : {{$t.department}}<br/>
+役職名 : {{$t.position}}<br/>
 氏名(姓) : {{$t.last_name}}<br/>
 氏名(名) : {{$t.first_name}}<br/>
 氏名(セイ) : {{$t.last_name_kana}}<br/>
 氏名(メイ) : {{$t.first_name_kana}}<br/>
-メール : {{$t.mail}}<br/>
-メール確認入力 : {{$t.mail_confirm}}<br/>
+E-Mail : {{$t.mail}}<br/>
+E-mail(確認用) : {{$t.mail_confirm}}<br/>
 郵便番号 : {{$t.zip}}<br/>
 都道府県 : {{$t.pref_label}}<br/>
 市区郡町村 : {{$t.city}}<br/>
@@ -22,11 +22,11 @@ FAX番号 : {{$t.fax}}<br/>
             {{foreach $t.products as $key=>$item}}
                 <table class="tbl detail">
                 <tr>
-                    <th>製品ID</th>
+                    <th>型名（製品名）</th>
                     <td>{{$t.products[$key].product_id_label}}</td>
                 </tr>
                 <tr>
-                    <th>シリアルNo</th>
+                    <th>シリアルNo.</th>
                     <td>{{$t.products[$key].serial_number}}</td>
                 </tr>
                 <tr>
@@ -38,7 +38,7 @@ FAX番号 : {{$t.fax}}<br/>
                     <td>{{{{$t.products[$key].purchase_reason}}|nl2br nofilter}}</td>
                 </tr>
                 <tr>
-                    <th>承認フラグ</th>
+                    <th>承認ステータス</th>
                     <td>{{$t.products[$key].accept_flg_label}}</td>
                 </tr>
                 <tr>

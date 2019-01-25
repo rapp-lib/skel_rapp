@@ -2,8 +2,8 @@
 {{$message->subject("ユーザー製品管理 完了通知メール")}}
 下記の通り受け付けました<br/>
 <br/>
-製品ID : {{$t.product_id_label}}<br/>
-シリアルNo : {{$t.serial_number}}<br/>
+型名（製品名） : {{$t.product_id_label}}<br/>
+シリアルNo. : {{$t.serial_number}}<br/>
 購入元 : {{$t.purchase_source}}<br/>
 購入理由 : {{{{$t.purchase_reason}}|nl2br nofilter}}<br/>
-承認フラグ : {{$t.accept_flg_label}}<br/>
+承認ステータス : {{$t.accept_flg_label}}<br/>

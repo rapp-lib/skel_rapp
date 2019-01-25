@@ -16,15 +16,15 @@
 {{form action='.'|page_to_url enctype="multipart/form-data" method="post" form=$forms.entry class="form-entry"}}
 <table class="tbl detail">
     <tr>
-        <th>会社名</th>
+        <th>所属企業/団体名</th>
         <td>{{input name="company_name" type="text" class="w-full"}}</td>
     </tr>
     <tr>
-        <th>部署</th>
+        <th>部署名</th>
         <td>{{input name="department" type="text" class="w-full"}}</td>
     </tr>
     <tr>
-        <th>役職</th>
+        <th>役職名</th>
         <td>{{input name="position" type="text" class="w-full"}}</td>
     </tr>
     <tr>
@@ -44,11 +44,11 @@
         <td>{{input name="first_name_kana" type="text" class="w-full"}}</td>
     </tr>
     <tr>
-        <th>メール</th>
+        <th>E-Mail</th>
         <td>{{input name="mail" type="text" class="w-full"}}</td>
     </tr>
     <tr>
-        <th>メール確認入力</th>
+        <th>E-mail(確認用)</th>
         <td>{{input name="mail_confirm" type="text" class="w-full"}}</td>
     </tr>
     <tr>
@@ -97,11 +97,11 @@
                         {{input type="hidden" name="products[$key][ord_seq]" class="mi-item-seq"}}
                         <table class="tbl detail">
                         <tr>
-                            <th>製品ID</th>
+                            <th>型名（製品名）</th>
                             <td class="input-block">{{input name="products[$key][product_id]" type="select" values=$enum["UserProduct.product"]}}</td>
                         </tr>
                         <tr>
-                            <th>シリアルNo</th>
+                            <th>シリアルNo.</th>
                             <td class="input-block">{{input name="products[$key][serial_number]" type="text" class="w-full"}}</td>
                         </tr>
                         <tr>
@@ -113,7 +113,7 @@
                             <td class="input-block">{{input name="products[$key][purchase_reason]" type="textarea"}}</td>
                         </tr>
                         <tr>
-                            <th>承認フラグ</th>
+                            <th>承認ステータス</th>
                             <td class="input-block">{{input name="products[$key][accept_flg]" type="radioselect" values=$enum["UserProduct.accept_flg"]}}</td>
                         </tr>
                         <tr>
@@ -144,7 +144,7 @@
     </tr>
 </table>
 <div class="btn-area">
-    <a href='{{"index.index"|page_to_url:["back"=>1]}}' class="back-btn">戻る</a>
+    <a href='{{"products.list"|page_to_url:["back"=>1]}}' class="back-btn">戻る</a>
     <div class="right clearfix">
         <button type="submit" class="primary-btn">確認</button>
     </div>

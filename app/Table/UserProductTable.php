@@ -16,12 +16,12 @@ class UserProductTable extends Table_App
         "product_id"=>array(
             "type"=>"integer",
             "fkey_for"=>"Product",
-            "comment"=>"製品ID",
+            "comment"=>"型名（製品名）",
         ),
         "serial_number"=>array(
             "type"=>"text",
             "serial_number"=>true,
-            "comment"=>"シリアルNo",
+            "comment"=>"シリアルNo.",
         ),
         "purchase_source"=>array(
             "type"=>"text",
@@ -35,7 +35,7 @@ class UserProductTable extends Table_App
             "type"=>"integer",
             "default"=>1,
             "accept_flg"=>true,
-            "comment"=>"承認フラグ",
+            "comment"=>"承認ステータス",
         ),
         "accept_date"=>array(
             "type"=>"datetime",

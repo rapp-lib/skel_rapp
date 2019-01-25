@@ -20,7 +20,7 @@ class ProductFileTable extends Table_App
         "common_file_id"=>array(
             "type"=>"integer",
             "fkey_for"=>"CommonFile",
-            "comment"=>"共通ファイルID",
+            "comment"=>"ファイル属性",
         ),
         "file"=>array(
             "type"=>"text",
@@ -28,7 +28,7 @@ class ProductFileTable extends Table_App
         ),
         "link"=>array(
             "type"=>"text",
-            "comment"=>"リンク",
+            "comment"=>"リンクURL",
         ),
         "release_date"=>array(
             "type"=>"datetime",
@@ -43,7 +43,7 @@ class ProductFileTable extends Table_App
             "type"=>"integer",
             "default"=>1,
             "display_status"=>true,
-            "comment"=>"公開ステータス",
+            "comment"=>"公開状態",
         ),
         "id"=>array(
             "type"=>"integer",

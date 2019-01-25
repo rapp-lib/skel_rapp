@@ -17,11 +17,11 @@
 {{input name="id" type="hidden"}}
 <table class="tbl detail">
     <tr>
-        <th>製品ID</th>
+        <th>型名（製品名）</th>
         <td>{{input name="product_id" type="select" values=$enum["UserProduct.product"]}}</td>
     </tr>
     <tr>
-        <th>シリアルNo</th>
+        <th>シリアルNo.</th>
         <td>{{input name="serial_number" type="text" class="w-full"}}</td>
     </tr>
     <tr>
@@ -33,7 +33,7 @@
         <td>{{input name="purchase_reason" type="textarea"}}</td>
     </tr>
     <tr>
-        <th>承認フラグ</th>
+        <th>承認ステータス</th>
         <td>{{input name="accept_flg" type="radioselect" values=$enum["UserProduct.accept_flg"]}}</td>
     </tr>
 </table>
