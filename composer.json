@@ -2,8 +2,6 @@
     "name": "rapp-lib/skel_rapp",
     "type": "project",
     "require": {
-        "rapp-lib/rlib": "dev-master-5.1",
-        "rapp-lib/rlib-devel": "dev-master-5.1"
     },
     "autoload": {
         "psr-4": {
