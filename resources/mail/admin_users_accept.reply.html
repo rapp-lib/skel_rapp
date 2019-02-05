@@ -1,6 +1,6 @@
-{{$message->to($t["mail"])}}
-{{$message->bcc($app->config["mail.admin_to"])}}
-{{$message->subject("【東亜ディーケーケー製品サービスサイト】 ユーザー登録完了")}}
+{{$message->to($t["mail"])|ignore}}
+{{$message->bcc($app->config["mail.admin_to"])|ignore}}
+{{$message->subject("【東亜ディーケーケー製品サービスサイト】 ユーザー登録完了")|ignore}}
 この度はユーザ登録いただきありがとうございました。<br/>
 <br/>
 下記URLをクリックしてください。<br/>

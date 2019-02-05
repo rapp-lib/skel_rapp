@@ -85,7 +85,7 @@ class UserEditController extends Controller_User
             $t = $this->forms["entry"]->getRecord();
             $this->forms["entry"]->getTableWithValues()->saveMine()->getSavedRecord();
             // 管理者通知メールの送信
-            app("mailer")->send(array("text"=>"mail://user_edit.admin.html"), array("t"=>$t), function($message){});
+            app("mailer")->send("mail://user_edit.admin.html", array("t"=>$t), function($message){});            
             // // 自動返信メールの送信
             // app("mailer")->send("mail://user_edit.reply.html", array("t"=>$t), function($message){});
             $this->forms["entry"]->clear();

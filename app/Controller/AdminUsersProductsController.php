@@ -102,7 +102,7 @@ class AdminUsersProductsController extends Controller_Admin
                 $t = $this->forms["entry"]->getTableWithValues()->save()->getSavedRecord();
                 if ($this->forms["entry"]["accept_flg"] == "2") {
                     // ユーザ向け通知メールの送信
-                    app("mailer")->send(array("text"=>"mail://admin_users_products.reply.html"), array("t"=>$t), function($message){});
+                    app("mailer")->send("mail://admin_users_products.reply.html", array("t"=>$t), function($message){});
                 }
                 $complete_flg = "update";
             }

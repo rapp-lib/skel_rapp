@@ -1,5 +1,5 @@
-{{$message->to($app->config["mail.admin_to"])}}
-{{$message->subject("【東亜ディーケーケー製品サービスサイト】ユーザ情報変更依頼通知")}}
+{{$message->to($app->config["mail.admin_to"])|ignore}}
+{{$message->subject("【東亜ディーケーケー製品サービスサイト】ユーザ情報変更依頼通知")|ignore}}
 {{$t.mail}}より、個人情報の変更の依頼がありました。<br/>
 <br/>
 登録情報変更内容<br/>
