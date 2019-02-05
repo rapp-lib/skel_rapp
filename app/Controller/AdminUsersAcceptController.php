@@ -116,7 +116,7 @@ class AdminUsersAcceptController extends Controller_Admin
         if ( ! $this->forms["entry"]->isEmpty() && $this->forms["entry"]->isValid()) {
             $t = $this->forms["entry"]->getTableWithValues()->save()->getSavedRecord();
             // 管理者通知メールの送信
-            app("mailer")->send(array("text"=>"mail://admin_users_accept.admin.html"), array("t"=>$t), function($message){});
+            app("mailer")->send("mail://admin_users_accept.admin.html", array("t"=>$t), function($message){});
             // 自動返信メールの送信
             app("mailer")->send("mail://admin_users_accept.reply.html", array("t"=>$t), function($message){});
             $this->forms["entry"]->clear();

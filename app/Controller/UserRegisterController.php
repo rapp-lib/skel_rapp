@@ -97,7 +97,7 @@ class UserRegisterController extends Controller_Guest
         if ( ! $this->forms["entry"]->isEmpty() && $this->forms["entry"]->isValid()) {
             $t = $this->forms["entry"]->getTableWithValues()->save()->getSavedRecord();
             // 管理者通知メールの送信
-            app("mailer")->send(array("text"=>"mail://user_register.admin.html"), array("t"=>$t), function($message){});
+            app("mailer")->send("mail://user_register.admin.html", array("t"=>$t), function($message){});
             // 自動返信メールの送信
             app("mailer")->send("mail://user_register.reply.html", array("t"=>$t), function($message){});
             $this->forms["entry"]->clear();

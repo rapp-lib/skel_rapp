@@ -1,5 +1,5 @@
-{{$message->to($app->config["mail.admin_to"])}}
-{{$message->subject("ユーザー承認管理 完了通知メール")}}
+{{$message->to($app->config["mail.admin_to"])|ignore}}
+{{$message->subject("ユーザー承認管理 完了通知メール")|ignore}}
 下記の通り受け付けました<br/>
 <br/>
 所属企業/団体名 : {{$t.company_name}}<br/>
