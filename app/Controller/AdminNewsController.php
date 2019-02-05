@@ -53,6 +53,8 @@ class AdminNewsController extends Controller_Admin
             "contents"=>array("label"=>"内容"),
         ),
         "rules" => array(
+            "date",
+            "contents",
         ),
     );
     /**

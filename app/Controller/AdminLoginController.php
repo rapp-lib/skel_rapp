@@ -50,7 +50,7 @@ class AdminLoginController extends Controller_Admin
     {
         // ログアウト処理
         app()->user->setPriv("admin",false);
-        // ログアウト後の転送処理
-        return $this->redirect("id://.login");
+        // // ログアウト後の転送処理
+        // return $this->redirect("id://.login");
     }
 }

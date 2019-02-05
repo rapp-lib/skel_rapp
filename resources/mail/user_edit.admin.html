@@ -1,6 +1,8 @@
 {{$message->to($app->config["mail.admin_to"])}}
-{{$message->subject("登録情報編集 完了通知メール")}}
-下記の通り受け付けました<br/>
+{{$message->subject("【東亜ディーケーケー製品サービスサイト】ユーザ情報変更依頼通知")}}
+{{$t.mail}}より、個人情報の変更の依頼がありました。<br/>
+<br/>
+登録情報変更内容<br/>
 <br/>
 所属企業/団体名 : {{$t.company_name}}<br/>
 部署名 : {{$t.department}}<br/>

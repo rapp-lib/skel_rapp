@@ -48,6 +48,7 @@ class AdminCommonFilesController extends Controller_Admin
         "rules" => array(
             "file",
             "title",
+            "release_date",
         ),
     );
     /**

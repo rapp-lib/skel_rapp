@@ -17,7 +17,7 @@
         array(array(
             // ユーザーログイン
             array("user_login.login", "/users/", array("auth.priv_req"=>false)),
-            array("user_login.login_exit", "/users/login/login_exit.html", array("auth.priv_req"=>false)),
+            array("user_login.login_exit", "/users/logout.html", array("auth.priv_req"=>false)),
             array("user_login.reminder", "/users/reminder.html", array("auth.priv_req"=>false)),
             array("user_login.reminder_send", "/users/reminder_send.html", array("auth.priv_req"=>false)),
             array("user_login.reminder_reset", "/users/reminder_reset.html", array("auth.priv_req"=>false)),
@@ -57,6 +57,8 @@
             array("admin_users.delete", "/admin/users/delete.html", array("csrf_check"=>true)),
             array("admin_users.csv", "/admin/users/csv.html"),
             array("admin_users.csvdl", "/admin/users/csvdl.html"),
+            array("admin_users.csvdl_csv", "/admin/users/csvdl_csv.html"),
+            array("admin_users.csvdl_delete", "/admin/users/csvdl_delete.html"),
             // ユーザー承認管理
             array("admin_users_accept.list", "/admin/users/accept/"),
             array("admin_users_accept.form", "/admin/users/accept/form.html"),

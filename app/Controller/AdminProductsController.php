@@ -29,6 +29,7 @@ class AdminProductsController extends Controller_Admin
             $this->forms["search"]->save();
         }
         $this->vars["ts"] = $this->forms["search"]->search()->findBy("display_status","1")->select();
+        $this->vars["complete_flg"] = $this->input["complete_flg"];
     }
     /**
      * @page
@@ -41,6 +42,7 @@ class AdminProductsController extends Controller_Admin
             $this->forms["search"]->save();
         }
         $this->vars["ts"] = $this->forms["search"]->search()->findBy("display_status","2")->select();
+        $this->vars["complete_flg"] = $this->input["complete_flg"];
     }
     /**
      * @page
@@ -48,6 +50,7 @@ class AdminProductsController extends Controller_Admin
     public function act_detail ()
     {
         $this->vars["t"] = table("Product")->selectById($this->input["id"]);
+        report($this->vars["t"]["product_files"]);
         if ( ! $this->vars["t"]) return $this->response("notfound");
         $this->vars["complete_flg"] = $this->input["complete_flg"];
     }
@@ -75,6 +78,7 @@ class AdminProductsController extends Controller_Admin
             "parent_category_id",
             "child_category_id",
             "name",
+            "model",
             "display_status",
         ),
     );

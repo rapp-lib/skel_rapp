@@ -27,6 +27,28 @@ class UserProductEnum extends Enum_App
     {
         $query = table("Product");
         if ($keys) $query->findById($keys);
-        return $query->select()->getHashedBy("id", "bracket_name");
+        $t = $query->select()->getHashedBy("id", "bracket_name");
+        return $t;
+    }
+    protected static function values_product_image ($keys)
+    {
+        $query = table("Product");
+        if ($keys) $query->findById($keys);
+        $t = $query->select()->getHashedBy("bracket_name", "image");
+        return $t;
+    }
+    protected static function values_product_id_image ($keys)
+    {
+        $query = table("Product");
+        if ($keys) $query->findById($keys);
+        $t = $query->select()->getHashedBy("id", "image");
+        return $t;
+    }
+    protected static function values_product_name_id ($keys)
+    {
+        $query = table("Product");
+        if ($keys) $query->findById($keys);
+        $t = $query->select()->getHashedBy("bracket_name", "id");
+        return $t;
     }
 }

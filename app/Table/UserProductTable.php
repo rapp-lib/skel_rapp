@@ -70,6 +70,7 @@ class UserProductTable extends Table_App
             "col_name"=>"serial_number",
             "id_field"=>"id",
         ),
+        array("serial_number", "length", "max"=>10),
         array("accept_flg", "enum", "enum"=>"UserProduct.accept_flg"),
     );
     protected static $aliases = array(

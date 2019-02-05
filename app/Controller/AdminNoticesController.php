@@ -53,6 +53,8 @@ class AdminNoticesController extends Controller_Admin
             "contents"=>array("label"=>"内容"),
         ),
         "rules" => array(
+            "number",
+            "contents",
         ),
     );
     /**

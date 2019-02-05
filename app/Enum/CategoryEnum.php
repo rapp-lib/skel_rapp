@@ -16,4 +16,10 @@ class CategoryEnum extends Enum_App
         if ($keys) $query->findById($keys);
         return $query->select()->getHashedBy("id", "name");
     }
+    protected static function values_parent_category_id ($keys)
+    {
+        $query = table("Category");
+        if ($keys) $query->findById($keys);
+        return $query->findBy("parent_category_id IS NULL")->select()->getHashedBy("id", "name");
+    }
 }

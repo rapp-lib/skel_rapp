@@ -14,7 +14,6 @@ class AdminUsersAcceptController extends Controller_Admin
         "search_page" => "admin_users_accept.list",
         "search_table" => "User",
         "fields" => array(
-            "p" => array("search"=>"page", "volume"=>20),
             "sort" => array("search"=>"sort", "cols"=>array("id", "reg_date", "company_name", "name_kana"=>array(
                 "last_name_kana ASC, first_name_kana ASC",
                 "last_name_kana DESC, first_name_kana DESC",
@@ -74,11 +73,12 @@ class AdminUsersAcceptController extends Controller_Admin
             "first_name",
             "last_name_kana",
             "first_name_kana",
-            array("mail", "required", "if"=>array("id"=>false)),
-            array("login_pw", "required", "if"=>array("or"=>array(array("accept_flg"=>"1"),array("accept_flg"=>"2")))),
+            array("mail", "required"),
+            array("login_pw", "required"),
             "zip",
             "pref",
             "city",
+            "address",
             "tel",
         ),
     );
@@ -100,11 +100,16 @@ class AdminUsersAcceptController extends Controller_Admin
                 $t = $this->forms["entry"]->getTable()->findBy("accept_flg","1")->selectById($id);
                 if ( ! $t) return $this->response("notfound");
                 $this->forms["entry"]->setRecord($t);
-                $this->forms["entry"]["product_name"] =$t["user_products"][0]["product_id_label"];
-                $this->forms["entry"]["serial_number"] =$t["user_products"][0]["serial_number"];
-                $this->forms["entry"]["purchase_source"] =$t["user_products"][0]["purchase_source"];
-                $this->forms["entry"]["purchase_reason"] =$t["user_products"][0]["purchase_reason"];
-               }
+                $this->forms["entry"]["product_name"] = $t["user_products"][0]["product"]["bracket_name"];
+                $this->forms["entry"]["serial_number"] = $t["user_products"][0]["serial_number"];
+                $this->forms["entry"]["purchase_source"] = $t["user_products"][0]["purchase_source"];
+                $this->forms["entry"]["purchase_reason"] = $t["user_products"][0]["purchase_reason"];
+
+                // 初期パスワードの生成
+                if (! $this->forms["entry"]["login_pw"]) {
+                    $this->forms["entry"]["login_pw"] =substr(md5(mt_rand()), 0, 10);
+                }
+            }
         }
     }
     /**
@@ -126,6 +131,8 @@ class AdminUsersAcceptController extends Controller_Admin
             $login_pw =$this->forms["entry"]["login_pw"];
             if ($this->forms["entry"]["accept_flg"] == "3") {
                 // 削除処理
+                // 個人情報に当たるカラムを空欄にしてから削除
+                table("User")->setPersonalDelete($this->forms["entry"]["id"])->save();
                 table("User")->deleteById($this->forms["entry"]["id"]);
                 $complete_flg = "delete";
             } else {

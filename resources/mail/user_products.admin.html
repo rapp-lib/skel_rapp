@@ -1,0 +1,10 @@
+{{$message->to($app->config["mail.admin_to"])}}
+{{$message->subject("【東亜ディーケーケー製品サービスサイト】ユーザ製品追加依頼通知")}}
+{{$t.user.mail}}より、製品追加の依頼がありました。<br/>
+<br/>
+製品追加内容<br/>
+<br/>
+型名 (製品名)：{{$t.product.bracket_name}}<br/>
+シリアルNo.{{$t.serial_number}}<br/>
+購入元：{{$t.purchase_source}}<br/>
+購入理由：{{$t.purchase_reason|nl2br}}<br/>

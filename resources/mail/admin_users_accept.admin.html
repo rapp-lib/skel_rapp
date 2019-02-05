@@ -1,6 +1,6 @@
 {{$message->to($app->config["mail.admin_to"])}}
-{{$message->subject("ユーザー承認管理 完了通知メール")}}
-下記の通り受け付けました<br/>
+{{$message->subject("【東亜ディーケーケー製品サービスサイト】ユーザ情報変更依頼通知")}}
+新規ユーザ登録がありました。<br/>
 <br/>
 所属企業/団体名 : {{$t.company_name}}<br/>
 部署名 : {{$t.department}}<br/>
@@ -18,5 +18,3 @@ E-Mail : {{$t.mail}}<br/>
 電話番号 : {{$t.tel}}<br/>
 FAX番号 : {{$t.fax}}<br/>
 備考 : {{{{$t.memo}}|nl2br nofilter}}<br/>
-管理者備考 : {{{{$t.admin_memo}}|nl2br nofilter}}<br/>
-承認フラグ : {{$t.accept_flg_label}}<br/>

@@ -48,9 +48,12 @@ class AdminProductsFilesController extends Controller_Admin
             "release_date"=>array("label"=>"公開日"),
             "description"=>array("label"=>"説明"),
             "display_status"=>array("label"=>"公開状態"),
+            "product_name"=> array("label"=>"製品名", "col"=>false),
         ),
         "rules" => array(
             "file_type",
+             array("file", "required", "if"=>array("link"=>false,"or"=>array("common_file_id"=>false)), "message"=>"ファイルまたはリンクURLを入力してください。"),
+             array("link", "required", "if"=>array("file"=>false,"or"=>array("common_file_id"=>false)), "message"=>"ファイルまたはリンクURLを入力してください。"),
             "display_status",
         ),
     );
@@ -75,9 +78,11 @@ class AdminProductsFilesController extends Controller_Admin
             }
             if ( ! $this->forms["entry"]["product_id"]) {
                 $this->forms["entry"]["product_id"] = $this->input["product_id"];
+                $product_t = table("Product")->selectById($this->forms["entry"]["product_id"]);
+                $this->forms["entry"]["product_name"] = $product_t["name"];
             }
         }
-        if ( ! $this->forms["entry"]["product_id"]) return $this->response("badrequest");
+        if ( ! $this->forms["entry"]["product_id"]) return $this->redirect("id://admin_products.list");
     }
     /**
      * @page

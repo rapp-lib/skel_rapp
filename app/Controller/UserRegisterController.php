@@ -33,6 +33,8 @@ class UserRegisterController extends Controller_Guest
             "login_pw"=>array("label"=>"パスワード"),
             "login_pw_confirm"=>array("label"=>"パスワード確認", "col"=>false),
             "products"=>array("label"=>"ユーザー製品"),
+            "product_bracket_name"=>array("label"=>"型名（製品名）", "col"=>false),
+            "product_name_id"=>array("label"=>"型名（製品名）プルダウン", "col"=>false),
             "products.*.ord_seq"=>array("col"=>false),
             "products.*.product_id"=>array("label"=>"型名（製品名）"),
             "products.*.serial_number"=>array("label"=>"シリアルNo."),
@@ -50,23 +52,42 @@ class UserRegisterController extends Controller_Guest
             array("company_name", "required", "message"=>"所属企業/団体名を入力してください。"),
             array("department", "required", "message"=>"部署名を入力してください。"),
             array("last_name", "required", "message"=>"氏名（氏）を入力してください。"),
+            array("last_name", '\R\App\Table\UserTable::multibyteCheck', "message"=>"氏名（氏）は全角で入力して下さい。"),
             array("first_name", "required", "message"=>"氏名（名）を入力してください。"),
+            array("first_name", '\R\App\Table\UserTable::multibyteCheck', "message"=>"氏名（名）は全角で入力して下さい。"),
             array("last_name_kana", "required", "message"=>"カナ（シ）を入力してください。"),
             array("first_name_kana", "required", "message"=>"カナ（メイ）を入力してください。"),
+            array("last_name_kana", "format", "format"=>"kana", "message"=>"カナ（シ）は全角カナのみで入力してください。"),
+            array("first_name_kana", "format", "format"=>"kana", "message"=>"カナ（メイ）は全角カナのみで入力してください。"),
             array("mail", "required", "message"=>"E-mailを入力してください。"),
-            array("mail_confirm", "required", "if"=>array("mail"=>true), "message"=>"確認用E-mailメールアドレスを入力してください。"),
-            array("mail_confirm", "confirm", "target_field"=>"mail"),
+            array("mail", "format", "format"=>"mail", "message"=>"E-mailを正しい形式で入力してください。"),
+            array(
+                "mail",
+                "duplicate",
+                "table"=>"User",
+                "col_name"=>"mail",
+                "id_field"=>"id",
+                "id_role" =>"user",
+                "message"=>"E-mailは既に登録されています。",
+            ),
+            array("mail_confirm", "required", "if"=>array("mail"=>true), "message"=>"確認用E-mailを入力してください。"),
+            array("mail_confirm", "confirm", "target_field"=>"mail", "message"=>"確認用E-mailに入力された値が異なっています"),
             array("zip", "required", "message"=>"郵便番号を入力してください。"),
+            array("zip", "format", "format"=>"zip", "message"=>"郵便番号を正しい形式で入力してください。"),
             array("pref", "required", "message"=>"都道府県を選択してください。"),
+            array("pref", "enum", "enum"=>"User.pref", "message"=>"都道府県の値が不正です"),
             array("city", "required", "message"=>"市区郡町村を入力してください。"),
             array("address", "required", "message"=>"番地を入力してください。"),
             array("tel", "required", "message"=>"電話番号を入力してください。"),
+            array("tel", "format", "format"=>"tel", "message"=>"電話番号は半角で入力して下さい。"),
+            array("tel", "length", "max"=>20, "message"=>"電話番号は20文字以下で入力して下さい。"),
+            array("fax", "format", "format"=>"tel", "message"=>"FAX番号は半角で入力して下さい。"),
+            array("fax", "length", "max"=>20, "message"=>"FAX番号は20文字以下で入力して下さい。"),
             array("products.*.product_id", "required", "message"=>"型名(製品名)を選択してください。"),
             array("products.*.serial_number", "required", "message"=>"シリアルNo.を入力してください。"),
-            // array("login_pw", "required"),
-            // array("login_pw_confirm", "required", "if"=>array("login_pw"=>true)),
-            // array("login_pw_confirm", "confirm", "target_field"=>"login_pw"),
-            // "products.*.serial_number",
+            array("products.*.serial_number", "length", "max"=>10, "message"=>"シリアルNo.は10文字以下で入力して下さい。"),
+            array("products.*.purchase_source", "length", "max"=>100, "message"=>"購入元は100文字以下で入力して下さい。"),
+            array("deliv_flg", "enum", "enum"=>"User.deliv_flg", "message"=>"配信の値が不正です"),
         ),
     );
     /**
@@ -84,6 +105,13 @@ class UserRegisterController extends Controller_Guest
         } else {
             $this->forms["entry"]->clear();
         }
+        // 製品名のリストをアサイン
+        foreach (app()->enum["UserProduct.product_bracket_name"] as $v) $product_bracket_name[] =$v;
+        $this->vars["product_bracket_name_ts"] =json_encode($product_bracket_name,JSON_UNESCAPED_UNICODE);
+        foreach (app()->enum["UserProduct.product_image"] as $k =>$v) $product_image[$k] =$v;
+        $this->vars["product_image_ts"] =json_encode($product_image,JSON_UNESCAPED_UNICODE);
+        foreach (app()->enum["UserProduct.product_name_id"] as $k =>$v) $product_name_id[$k] =$v;
+        $this->vars["product_name_id_ts"] =json_encode($product_name_id,JSON_UNESCAPED_UNICODE);
     }
     /**
      * @page
@@ -100,12 +128,10 @@ class UserRegisterController extends Controller_Guest
     {
         $this->forms["entry"]->restore();
         if ( ! $this->forms["entry"]->isEmpty() && $this->forms["entry"]->isValid()) {
-            $t = $this->forms["entry"]->getTableWithValues()->save()->getSavedRecord();
+            $t = $this->forms["entry"]->getTableWithValues()->setIgnoreAcceptFlg(true)->save()->getSavedRecord();
             // 管理者通知メールの送信
             app("mailer")->send(array("text"=>"mail://user_register.admin.html"), array("t"=>$t), function($message){});
-            // 自動返信メールの送信
-            app("mailer")->send("mail://user_register.reply.html", array("t"=>$t), function($message){});
-            $this->forms["entry"]->clear();
+            // $this->forms["entry"]->clear();
         }
     }
 }

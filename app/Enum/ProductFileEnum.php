@@ -15,7 +15,7 @@ class ProductFileEnum extends Enum_App
     {
         $query = table("CommonFile");
         if ($keys) $query->findById($keys);
-        return $query->select()->getHashedBy("id", "title");
+        return $query->findBy("release_date <= '".date("Y-m-d")."'")->select()->getHashedBy("id", "title");
     }
     protected static $values_display_status = array(
         "1" => "公開",

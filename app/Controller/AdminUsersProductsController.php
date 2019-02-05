@@ -14,7 +14,6 @@ class AdminUsersProductsController extends Controller_Admin
         "search_page" => "admin_users_products.list",
         "search_table" => "UserProduct",
         "fields" => array(
-            "p" => array("search"=>"page", "volume"=>20),
             "sort" => array("search"=>"sort", "cols"=>array("id", "model")),
         ),
     );
@@ -48,7 +47,10 @@ class AdminUsersProductsController extends Controller_Admin
             "mail" =>array("label"=>"追加希望ユーザー", "col_values_clause"=>false),
         ),
         "rules" => array(
+            "product_id",
             "serial_number",
+            array("serial_number", "length", "max"=>10),
+            array("purchase_source", "length", "max"=>100),
         ),
     );
     /**

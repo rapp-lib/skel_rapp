@@ -47,7 +47,6 @@ class UserLoginController extends Controller_User
      */
     public function act_login ()
     {
-        report("login");
         // ログインフォーム
         if ($this->forms["login"]->receive($this->input)) {
             if ($this->forms["login"]->isValid()) {
@@ -83,7 +82,7 @@ class UserLoginController extends Controller_User
         // ログアウト処理
         app()->user->setPriv("user",false);
         // ログアウト後の転送処理
-        return $this->redirect("id://.login");
+        // return $this->redirect("id://.login");
     }
     /**
      * リマインダーフォーム
@@ -96,7 +95,7 @@ class UserLoginController extends Controller_User
         "rules" => array(
             "mail",
             array("mail", "format", "format"=>"mail"),
-            array("mail", "registered", "table"=>"User", "col_name"=>"mail"),
+            array("mail", "\R\App\Controller\UserLoginController::acceptedRegistered", "table"=>"User", "col_name"=>"mail"),
         ),
     );
     /**
@@ -152,6 +151,7 @@ class UserLoginController extends Controller_User
      */
     public function act_reminder_reset ()
     {
+        // credの承認ステータスチェック
         if ($this->forms["reset"]->receive($this->input)) {
             if ($this->forms["reset"]->isValid()) {
                 $this->forms["reset"]->save();
@@ -161,7 +161,11 @@ class UserLoginController extends Controller_User
             $this->forms["reset"]->clear();
             $this->forms["reset"]["cred"] = $this->input["cred"];
         }
-        $this->vars["cred_data"] = app()->cache("cred")->readCred($this->forms["reset"]["cred"]);
+        $cred_data = app()->cache("cred")->readCred($this->forms["reset"]["cred"]);
+        if (table("User")->findBy("mail", $cred_data["mail"])->findBy("accept_flg", "2")->selectCount() == 0) {
+            return $this->response("badrequest");
+        }
+        $this->vars["cred_data"] = $cred_data;
     }
     /**
      * @page
@@ -174,12 +178,27 @@ class UserLoginController extends Controller_User
             $cred = $this->forms["reset"]["cred"];
             $cred_data = app()->cache("cred")->readCred($cred);
             // パスワードの更新
-            $t = table("User")->findBy("mail", $cred_data["mail"])->selectOne();
+            $t = table("User")->findBy("mail", $cred_data["mail"])->findBy("accept_flg", "2")->selectOne();
+            $this->vars["t"] = $t;
             table("User")->updateById($t["id"], array(
                 "login_pw" => $this->forms["reset"]["login_pw"]
             ));
             app()->cache("cred")->dropCred($cred);
             $this->forms["reset"]->clear();
         }
+    }
+    /**
+     * 認証済み登録チェック
+     *  table : （必須）テーブル名
+     *  col_name : （必須）カラム名
+     */
+    public function acceptedRegistered ($validator, $value, $rule)
+    {
+        if (! $value) return false;
+        $q = table($rule["table"]);
+        $q = $q->findBy("accept_flg", "2");
+        $q = $q->findBy($rule["col_name"], $value);
+        if (count($q->select())==1) return false;
+        return array("message"=>___("登録されていません"));
     }
 }

@@ -5,7 +5,7 @@
                 'address' => 'system@example.com',
                 'name' => 'System',
             ),
-            'admin_to' => array("system@example.com"),
+            'admin_to' => array("nonaka+toadkk_admin@sharingseed.co.jp"),
             // Supported: "smtp", "sendmail", "mailgun", "mandrill", "ses",
             //            "sparkpost", "log", "array"
             'driver' => 'sendmail',
