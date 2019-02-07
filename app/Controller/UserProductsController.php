@@ -103,7 +103,7 @@ class UserProductsController extends Controller_User
             $t = $this->forms["entry"]->getTableWithValues()->setIgnoreAcceptFlg(true)->saveMine()->getSavedRecord();
             $t["bracket_name"]; // メール内で使用するために一度アクセスする。
             // 管理者通知メールの送信
-            app("mailer")->send(array("text"=>"mail://user_products.admin.html"), array("t"=>$t), function($message){});
+            app("mailer")->send("mail://user_products.admin.html", array("t"=>$t), function($message){});
                 $this->forms["entry"]->clear();
         }
     }

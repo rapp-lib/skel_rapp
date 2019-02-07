@@ -36,14 +36,6 @@ FAX番号 : {{$t.fax}}<br/>
                     <th>購入理由</th>
                     <td>{{{{$t.products[$key].purchase_reason}}|nl2br nofilter}}</td>
                 </tr>
-                <tr>
-                    <th>承認ステータス</th>
-                    <td>{{$t.products[$key].accept_flg_label}}</td>
-                </tr>
-                <tr>
-                    <th>承認通過日付</th>
-                    <td>{{$t.products[$key].accept_date|date:"Y/m/d"}}</td>
-                </tr>
                 </table>
             {{/foreach}}
         <br/>
