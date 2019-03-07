@@ -5,9 +5,10 @@
             'charset' => 'utf8',
             'persistent' => false,
             'host' => "127.0.0.1",
-            'dbname' => "toadkk_members",
-            'user' => "dev",
-            'password' => "pass",
+            // 'dbname' => "ah113vaphr_toadkk",
+            'dbname' => "ah113vaphr_toatest",
+            'user' => "ah113vaphr",
+            'password' => "mEiDFWFV",
         ),
         'cache.connection.default' => array(
             'adapter' => array(

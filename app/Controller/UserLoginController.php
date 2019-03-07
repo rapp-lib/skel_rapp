@@ -28,7 +28,7 @@ class UserLoginController extends Controller_User
         "search_table" => "News",
         "fields" => array(
             "p" => array("search"=>"page", "volume"=>10),
-            "sort" => array("search"=>"sort", "cols"=>array("reg_date DESC")),
+            "sort" => array("search"=>"sort", "cols"=>array("date DESC")),
         ),
     );
     /**
@@ -69,7 +69,7 @@ class UserLoginController extends Controller_User
         }
 
         // 更新情報
-        $this->vars["news_ts"] = $this->forms["news_search"]->search()->select();
+        $this->vars["news_ts"] = $this->forms["news_search"]->search()->findBy("date <= CURRENT_DATE")->select();
 
         // 注意事項
         $this->vars["notice_ts"] = $this->forms["notice_search"]->search()->select();
@@ -142,6 +142,8 @@ class UserLoginController extends Controller_User
         "rules" => array(
             "cred",
             "login_pw",
+            array("login_pw", "format",  "format"=>"alphanum", "message"=>"パスワードは半角で入力して下さい。"),
+            array("login_pw", "length", "min"=>8, "message"=>"パスワードは8文字以上で入力して下さい。"),
             array("login_pw_confirm", "required", "if"=>array("login_pw"=>true)),
             array("login_pw_confirm", "confirm", "target_field"=>"login_pw"),
         ),

@@ -63,13 +63,6 @@ class UserProductTable extends Table_App
     protected static $rules = array(
         array("user_id", "enum", "enum"=>"UserProduct.user"),
         array("product_id", "enum", "enum"=>"UserProduct.product"),
-        array(
-            "serial_number",
-            "duplicate",
-            "table"=>"UserProduct",
-            "col_name"=>"serial_number",
-            "id_field"=>"id",
-        ),
         array("serial_number", "length", "max"=>10),
         array("accept_flg", "enum", "enum"=>"UserProduct.accept_flg"),
     );

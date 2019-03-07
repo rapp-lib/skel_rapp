@@ -12,6 +12,9 @@
             array("user_register.form", "/users/register.html"),
             array("user_register.form_confirm", "/users/register_confirm.html"),
             array("user_register.form_complete", "/users/register_complete.html"),
+            // ユーザートップ
+            array("user_index.user_login_header", "/users/include/user_login_header.html", array("include"=>true)),
+            array("user_index.index_static", "/users/{FILE:.+}", array("static_route"=>true)),
         ), "", array("auth.role"=>"guest")),
         // user
         array(array(
@@ -22,9 +25,6 @@
             array("user_login.reminder_send", "/users/reminder_send.html", array("auth.priv_req"=>false)),
             array("user_login.reminder_reset", "/users/reminder_reset.html", array("auth.priv_req"=>false)),
             array("user_login.reminder_complete", "/users/reminder_complete.html", array("auth.priv_req"=>false)),
-            // ユーザートップ
-            array("user_index.user_login_header", "/users/include/user_login_header.html", array("include"=>true)),
-            array("user_index.index_static", "/users/{FILE:.+}", array("static_route"=>true)),
             // マイページ
             array("user_products.list", "/users/mypage.html"),
             array("user_products.form", "/users/product_register.html"),
@@ -48,6 +48,7 @@
             array("admin_index.left_menu_user", "/admin/include/admin_left_menu_user.html", array("include"=>true)),
             array("admin_index.left_menu_product", "/admin/include/admin_left_menu_product.html", array("include"=>true)),
             array("admin_index.index_static", "/admin/{FILE:.+}", array("static_route"=>true)),
+            array("admin_index.test", "/admin/test.html"),
             // ユーザー管理
             array("admin_users.list", "/admin/users/"),
             array("admin_users.detail", "/admin/users/detail.html"),

@@ -14,7 +14,7 @@ class UserNewsController extends Controller_User
         "search_page" => "user_news.list",
         "search_table" => "News",
         "fields" => array(
-            "sort" => array("search"=>"sort", "cols"=>array("id")),
+            "sort" => array("search"=>"sort", "cols"=>array("date DESC")),
         ),
     );
     /**

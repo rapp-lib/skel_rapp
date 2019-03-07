@@ -22,7 +22,7 @@ class UserRegisterController extends Controller_Guest
             "last_name_kana"=>array("label"=>"氏名(セイ)"),
             "first_name_kana"=>array("label"=>"氏名(メイ)"),
             "mail"=>array("label"=>"E-Mail"),
-            "mail_confirm"=>array("label"=>"E-mail(確認用)", "col"=>false),
+            "mail_confirm"=>array("label"=>"E-Mail(確認用)", "col"=>false),
             "zip"=>array("label"=>"郵便番号"),
             "pref"=>array("label"=>"都道府県"),
             "city"=>array("label"=>"市区郡町村"),
@@ -59,19 +59,16 @@ class UserRegisterController extends Controller_Guest
             array("first_name_kana", "required", "message"=>"カナ（メイ）を入力してください。"),
             array("last_name_kana", "format", "format"=>"kana", "message"=>"カナ（シ）は全角カナのみで入力してください。"),
             array("first_name_kana", "format", "format"=>"kana", "message"=>"カナ（メイ）は全角カナのみで入力してください。"),
-            array("mail", "required", "message"=>"E-mailを入力してください。"),
-            array("mail", "format", "format"=>"mail", "message"=>"E-mailを正しい形式で入力してください。"),
+            array("mail", "required", "message"=>"E-Mailを入力してください。"),
+            array("mail", "format", "format"=>"mail", "message"=>"E-Mailを正しい形式で入力してください。"),
             array(
                 "mail",
-                "duplicate",
-                "table"=>"User",
-                "col_name"=>"mail",
-                "id_field"=>"id",
+                "\R\App\Table\UserTable::duplicateAcceptFlgCheck",
                 "id_role" =>"user",
-                "message"=>"E-mailは既に登録されています。",
+                "message"=>"E-Mailは既に登録されています。",
             ),
-            array("mail_confirm", "required", "if"=>array("mail"=>true), "message"=>"確認用E-mailを入力してください。"),
-            array("mail_confirm", "confirm", "target_field"=>"mail", "message"=>"確認用E-mailに入力された値が異なっています"),
+            array("mail_confirm", "required", "if"=>array("mail"=>true), "message"=>"確認用E-Mailを入力してください。"),
+            array("mail_confirm", "confirm", "target_field"=>"mail", "message"=>"確認用E-Mailに入力された値が異なっています"),
             array("zip", "required", "message"=>"郵便番号を入力してください。"),
             array("zip", "format", "format"=>"zip", "message"=>"郵便番号を正しい形式で入力してください。"),
             array("pref", "required", "message"=>"都道府県を選択してください。"),
@@ -86,6 +83,7 @@ class UserRegisterController extends Controller_Guest
             array("products.*.product_id", "required", "message"=>"型名(製品名)を選択してください。"),
             array("products.*.serial_number", "required", "message"=>"シリアルNo.を入力してください。"),
             array("products.*.serial_number", "length", "max"=>10, "message"=>"シリアルNo.は10文字以下で入力して下さい。"),
+            array("products.*.serial_number", "format", "format"=>"alphanum", "message"=>"シリアルNo.は半角で入力して下さい。"),
             array("products.*.purchase_source", "length", "max"=>100, "message"=>"購入元は100文字以下で入力して下さい。"),
             array("deliv_flg", "enum", "enum"=>"User.deliv_flg", "message"=>"配信の値が不正です"),
         ),
@@ -131,7 +129,7 @@ class UserRegisterController extends Controller_Guest
             $t = $this->forms["entry"]->getTableWithValues()->setIgnoreAcceptFlg(true)->save()->getSavedRecord();
             // 管理者通知メールの送信
             app("mailer")->send("mail://user_register.admin.html", array("t"=>$t), function($message){});
-            // $this->forms["entry"]->clear();
+            $this->forms["entry"]->clear();
         }
     }
 }

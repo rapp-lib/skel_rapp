@@ -38,6 +38,8 @@ class UserEditController extends Controller_User
             array("first_name", '\R\App\Table\UserTable::multibyteCheck', "message"=>"氏名（名）は全角で入力して下さい。"),
             array("last_name_kana", "format", "format"=>"kana", "message"=>"カナ（シ）は全角カナのみで入力してください。"),
             array("first_name_kana", "format", "format"=>"kana", "message"=>"カナ（メイ）は全角カナのみで入力してください。"),
+            array("login_pw", "format",  "format"=>"alphanum", "message"=>"パスワードは半角で入力して下さい。"),
+            array("login_pw", "length", "min"=>8, "message"=>"パスワードは8文字以上で入力して下さい。"),
             array("login_pw_confirm", "required", "if"=>array("login_pw"=>true), "message"=>"パスワード確認を入力してください。"),
             array("login_pw_confirm", "confirm", "target_field"=>"login_pw", "message"=>"パスワード確認に入力された値が異なっています"),
             array("zip", "format", "format"=>"zip", "message"=>"郵便番号を正しい形式で入力してください。"),

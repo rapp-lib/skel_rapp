@@ -79,6 +79,7 @@ class AdminProductsController extends Controller_Admin
             "child_category_id",
             "name",
             "model",
+            array("release_date", "required", "if"=>array("display_status"=>"1")),
             "display_status",
         ),
     );
