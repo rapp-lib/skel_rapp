@@ -50,9 +50,12 @@ class AdminCategoriesController extends Controller_Admin
             "category_type"=>array("label"=>"種類"),
             "parent_category_id"=>array("label"=>"大分類ID"),
             "name"=>array("label"=>"分類名"),
+            "middle_category_flg"=>array("label"=>"中分類フラグ", "col"=>false),
         ),
         "rules" => array(
             "name",
+            "category_type",
+            array("parent_category_id", "required", "if"=>array("middle_category_flg"=>"1")),
         ),
     );
     /**

@@ -15,7 +15,7 @@ class AdminNewsController extends Controller_Admin
         "search_table" => "News",
         "fields" => array(
             "p" => array("search"=>"page", "volume"=>20),
-            "sort" => array("search"=>"sort", "cols"=>array("id")),
+            "sort" => array("search"=>"sort", "cols"=>array("date DESC")),
         ),
     );
     /**

@@ -6,6 +6,7 @@ class AppTableFeatureProvider extends BaseFeatureProvider
 {
     protected function chain_setIgnoreAcceptFlg ($query, $flg)
     {
+        report("set");
         $query->setAttr("ignore_accept_flg", $flg);
     }
     
@@ -16,9 +17,7 @@ class AppTableFeatureProvider extends BaseFeatureProvider
     protected function on_read_colAcceptFlg ($query, $col_name)
     {
         if ( ! app()->user->getCurrentPriv("admin") && ! $query->getAttr("ignore_accept_flg")) {
-            // if (! $controller == "user_register" && ($query->getDef()->getDefTableName() == "User" || $query->getDef()->getDefTableName() == "UserProduct")) {
-                $query->where($query->getTableName().".".$col_name, "2");
-            // }
+            $query->where($query->getTableName().".".$col_name, "2");
         }
     }
 
@@ -101,10 +100,12 @@ class AppTableFeatureProvider extends BaseFeatureProvider
                     "end_date" =>date('Y/m/d', strtotime("+{$daysLeft} day", strtotime($v["accept_date"]))),
                     "download_flg" =>"2",
                     "erase_flg" =>"2",
+                    "erasede_user_flg" =>"1",
                 );
             }
             if ($v["download_flg"] == "1") $week_list[$cur]["download_flg"] = "1";
-            if ($v["erase_flg"] == "1") $week_list[$cur]["erase_flg"] = "1";
+            if ($v["erase_flg"] == "1" && $v["download_flg"] == "2") $week_list[$cur]["erase_flg"] = "1";
+            if ($v["erase_flg"] == "2") $week_list[$cur]["erasede_user_flg"] = "2";
         }
         krsort($week_list);
         return $week_list;

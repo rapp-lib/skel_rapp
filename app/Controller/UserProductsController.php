@@ -17,7 +17,7 @@ class UserProductsController extends Controller_User
             array("Product", array("Product.id=UserProduct.product_id"), "RIGHT"),
         ),
         "fields" => array(
-            "sort" => array("search"=>"sort", "cols"=>array("Product.model ASC")),
+            "sort" => array("search"=>"sort", "cols"=>array("model")),
         ),
     );
     /**
@@ -54,6 +54,7 @@ class UserProductsController extends Controller_User
             array("product_id", "enum", "enum"=>"UserProduct.product", "message"=>"型名(製品名)の値が不正です"),
             array("serial_number", "required", "message"=>"シリアルNo.を入力してください。"),
             array("serial_number", "length", "max"=>10, "message"=>"シリアルNo.は10文字以下で入力して下さい。"),
+            array("serial_number", "format", "format"=>"alphanum", "message"=>"シリアルNo.は半角で入力して下さい。"),
             array("purchase_source", "length", "max"=>100, "message"=>"購入元は100文字以下で入力して下さい。"),
         ),
     );

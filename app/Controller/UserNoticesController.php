@@ -14,7 +14,6 @@ class UserNoticesController extends Controller_User
         "search_page" => "user_notices.list",
         "search_table" => "Notice",
         "fields" => array(
-            "p" => array("search"=>"page", "volume"=>20),
             "sort" => array("search"=>"sort", "cols"=>array("id")),
         ),
     );

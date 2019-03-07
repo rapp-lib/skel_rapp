@@ -172,10 +172,7 @@ class UserTable extends Table_App
         array("mail", "format", "format"=>"mail"),
         array(
             "mail",
-            "duplicate",
-            "table"=>"User",
-            "col_name"=>"mail",
-            "id_field"=>"id",
+            "\R\App\Table\UserTable::duplicateAcceptFlgCheck",
             "id_role" =>"user",
         ),
         array("zip", "format", "format"=>"zip"),
@@ -223,5 +220,23 @@ class UserTable extends Table_App
     {
         if ( ! preg_match('/(?:\xEF\xBD[\xA1-\xBF]|\xEF\xBE[\x80-\x9F])|[\x20-\x7E]|[\x00-\x1f\x7f]/u', $value)) return false;
         return array("message"=>___("全角で入力して下さい"));
+    }
+
+    /**
+     * 重複チェック
+     *  table : （必須）テーブル名
+     *  col_name : （必須）カラム名
+     *  id_field_name : IDフィールド名
+     */
+    public static function duplicateAcceptFlgCheck ($validator, $value, $rule)
+    {
+        if ( ! ($value)) return false;
+        $q = table("User");
+        $q = $q->findBy("mail", $value);
+        if ($rule["id_role"]) $id = app()->user->id($rule["id_role"]);
+        if ( ! $id) $id = $validator->getValue("id");
+        if (isset($id)) $q = $q->findBy($q->getQuery()->getDef()->getIdColName()." <>", $id);
+        if (count($q->setIgnoreAcceptFlg(true)->select())==0) return false;
+        return array("message"=>___("既に登録されています"));
     }
 }

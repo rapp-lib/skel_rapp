@@ -39,4 +39,11 @@ class AdminIndexController extends Controller_Admin
     public function act_index_static ()
     {
     }
+    /**
+     * @page
+     */
+    public function act_test ()
+    {
+        phpinfo();
+    }
 }

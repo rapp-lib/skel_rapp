@@ -100,6 +100,8 @@ class AdminUsersController extends Controller_Admin
         "rules" => array(
             array("mail", "required", "if"=>array("id"=>false)),
             array("login_pw", "required", "if"=>array("id"=>false)),
+            array("login_pw", "format",  "format"=>"alphanum"),
+            array("login_pw", "length", "min"=>8),
             array("login_pw_confirm", "required", "if"=>array("login_pw"=>true)),
             array("login_pw_confirm", "confirm", "target_field"=>"login_pw"),
         ),

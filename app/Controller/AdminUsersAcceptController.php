@@ -61,6 +61,7 @@ class AdminUsersAcceptController extends Controller_Admin
             "memo"=>array("label"=>"備考"),
             "admin_memo"=>array("label"=>"管理者備考"),
             "accept_flg"=>array("label"=>"承認フラグ"),
+            "user_product_id" =>array("label"=>"ユーザ製品ID", "col_values_clause"=>false),
             "product_name" =>array("label"=>"型名（製品名）", "col_values_clause"=>false),
             "serial_number" =>array("label"=>"シリアルNo.", "col_values_clause"=>false),
             "purchase_source" =>array("label"=>"購入元", "col_values_clause"=>false),
@@ -75,6 +76,8 @@ class AdminUsersAcceptController extends Controller_Admin
             "first_name_kana",
             array("mail", "required"),
             array("login_pw", "required"),
+            array("login_pw", "format",  "format"=>"alphanum"),
+            array("login_pw", "length", "min"=>8),
             "zip",
             "pref",
             "city",
@@ -100,6 +103,8 @@ class AdminUsersAcceptController extends Controller_Admin
                 $t = $this->forms["entry"]->getTable()->findBy("accept_flg","1")->selectById($id);
                 if ( ! $t) return $this->response("notfound");
                 $this->forms["entry"]->setRecord($t);
+                $this->forms["entry"]["user_product_id"] = $t["user_products"][0]["id"];
+                $this->forms["entry"]["product_name"] = $t["user_products"][0]["product"]["bracket_name"];
                 $this->forms["entry"]["product_name"] = $t["user_products"][0]["product"]["bracket_name"];
                 $this->forms["entry"]["serial_number"] = $t["user_products"][0]["serial_number"];
                 $this->forms["entry"]["purchase_source"] = $t["user_products"][0]["purchase_source"];
@@ -134,6 +139,7 @@ class AdminUsersAcceptController extends Controller_Admin
                 // 個人情報に当たるカラムを空欄にしてから削除
                 table("User")->setPersonalDelete($this->forms["entry"]["id"])->save();
                 table("User")->deleteById($this->forms["entry"]["id"]);
+                table("UserProduct")->deleteById($this->forms["entry"]["user_product_id"]);
                 $complete_flg = "delete";
             } else {
                 // 更新処理
@@ -141,6 +147,11 @@ class AdminUsersAcceptController extends Controller_Admin
                 if ($t["accept_flg"] == "2") {
                     table("User")->save(array(
                         "id" =>$t["id"],
+                        "accept_date" =>date("Y-m-d H:i:s"),
+                    ));
+                    table("UserProduct")->save(array(
+                        "id" =>$this->forms["entry"]["user_product_id"],
+                        "accept_flg" =>"2",
                         "accept_date" =>date("Y-m-d H:i:s"),
                     ));
                     // ユーザ向け通知メールの送信
