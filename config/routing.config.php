@@ -46,7 +46,7 @@
             // 管理者マイページ
             array("admin_index.index", "/admin/"),
             array("admin_index.left_menu_user", "/admin/include/admin_left_menu_user.html", array("include"=>true)),
-            array("admin_index.left_menu_product", "/admin/include/admin_left_menu_product.html", array("include"=>true)),
+            array("admin_index.left_menu_user_product", "/admin/include/admin_left_menu_user_product.html", array("include"=>true)),
             array("admin_index.index_static", "/admin/{FILE:.+}", array("static_route"=>true)),
             array("admin_index.test", "/admin/test.html"),
             // ユーザー管理

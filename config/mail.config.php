@@ -5,8 +5,9 @@
                 'address' => 'support_sp@toadkk.co.jp',
                 'name' => 'support_sp@toadkk.co.jp',
             ),
+            // 'admin_to'はenvのconfigで設定するためこちらは削除（削除しなければマージされてしまう）。
             // 'admin_to' => array("nonaka+toadkk_admin@sharingseed.co.jp"),
-            'admin_to' => array("yamamoto@highqualityandliteracy.com","support_sp@toadkk.co.jp"),
+            // 'admin_to' => array("yamamoto@highqualityandliteracy.com","support_sp@toadkk.co.jp"),
             // Supported: "smtp", "sendmail", "mailgun", "mandrill", "ses",
             //            "sparkpost", "log", "array"
             'driver' => 'smtp',

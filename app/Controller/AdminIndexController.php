@@ -28,7 +28,7 @@ class AdminIndexController extends Controller_Admin
     /**
      * @page
      */
-    public function act_left_menu_product ()
+    public function act_left_menu_user_product ()
     {
         // 製品登録承認待ち件数取得
         $this->vars["accept_product_count"] = table("UserProduct")->findBy("accept_flg","1")->selectCount();
