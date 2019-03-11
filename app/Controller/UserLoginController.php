@@ -27,8 +27,8 @@ class UserLoginController extends Controller_User
         "search_page" => "user_news.list",
         "search_table" => "News",
         "fields" => array(
-            "p" => array("search"=>"page", "volume"=>10),
-            "sort" => array("search"=>"sort", "cols"=>array("date DESC")),
+            "p" => array("search"=>"page", "volume"=>5),
+            "sort" => array("search"=>"sort", "cols"=>array("date DESC, reg_date DESC")),
         ),
     );
     /**

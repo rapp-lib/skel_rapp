@@ -14,7 +14,7 @@ class ProductsController extends Controller_Guest
         "search_page" => "products.list",
         "search_table" => "Product",
         "fields" => array(
-            "sort" => array("search"=>"sort", "cols"=>array("id")),
+            "sort" => array("search"=>"sort", "cols"=>array("model ASC")),
         ),
     );
     /**

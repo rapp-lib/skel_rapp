@@ -28,6 +28,7 @@ class UserProductEnum extends Enum_App
         $query = table("Product");
         if ($keys) $query->findById($keys);
         $t = $query->select()->getHashedBy("id", "bracket_name");
+        asort($t);
         return $t;
     }
     protected static function values_product_image ($keys)
