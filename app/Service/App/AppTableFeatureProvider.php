@@ -6,7 +6,6 @@ class AppTableFeatureProvider extends BaseFeatureProvider
 {
     protected function chain_setIgnoreAcceptFlg ($query, $flg)
     {
-        report("set");
         $query->setAttr("ignore_accept_flg", $flg);
     }
     

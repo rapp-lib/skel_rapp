@@ -8,8 +8,8 @@ class ProductFileEnum extends Enum_App
 {
     protected static $values_file_type = array(
         "1" => "ソフトウェア",
-        "2" => "技術情報",
-        "3" => "分析情報",
+        "2" => "関連情報",
+        "3" => "技術情報",
     );
     protected static function values_common_file ($keys)
     {

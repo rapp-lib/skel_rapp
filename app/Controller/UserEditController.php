@@ -14,24 +14,24 @@ class UserEditController extends Controller_User
         "csrf_check" => true,
         "table" => "User",
         "fields" => array(
-            "company_name"=>array("label"=>"所属企業/団体名", "col"=>false),
-            "department"=>array("label"=>"部署名", "col"=>false),
-            "position"=>array("label"=>"役職名", "col"=>false),
-            "last_name"=>array("label"=>"氏名(姓)", "col"=>false),
-            "first_name"=>array("label"=>"氏名(名)", "col"=>false),
-            "last_name_kana"=>array("label"=>"氏名(セイ)", "col"=>false),
-            "first_name_kana"=>array("label"=>"氏名(メイ)", "col"=>false),
-            "mail"=>array("label"=>"E-Mail", "col"=>false),
-            "zip"=>array("label"=>"郵便番号", "col"=>false),
-            "pref"=>array("label"=>"都道府県", "col"=>false),
-            "city"=>array("label"=>"市区郡町村", "col"=>false),
-            "address"=>array("label"=>"番地", "col"=>false),
-            "buildings"=>array("label"=>"建物名", "col"=>false),
-            "tel"=>array("label"=>"電話番号", "col"=>false),
-            "fax"=>array("label"=>"FAX番号", "col"=>false),
+            "company_name"=>array("label"=>"所属企業/団体名", "col_values_clause"=>false),
+            "department"=>array("label"=>"部署名", "col_values_clause"=>false),
+            "position"=>array("label"=>"役職名", "col_values_clause"=>false),
+            "last_name"=>array("label"=>"氏名(姓)", "col_values_clause"=>false),
+            "first_name"=>array("label"=>"氏名(名)", "col_values_clause"=>false),
+            "last_name_kana"=>array("label"=>"氏名(セイ)", "col_values_clause"=>false),
+            "first_name_kana"=>array("label"=>"氏名(メイ)", "col_values_clause"=>false),
+            "mail"=>array("label"=>"E-Mail", "col_values_clause"=>false),
+            "zip"=>array("label"=>"郵便番号", "col_values_clause"=>false),
+            "pref"=>array("label"=>"都道府県", "col_values_clause"=>false),
+            "city"=>array("label"=>"市区郡町村", "col_values_clause"=>false),
+            "address"=>array("label"=>"番地", "col_values_clause"=>false),
+            "buildings"=>array("label"=>"建物名", "col_values_clause"=>false),
+            "tel"=>array("label"=>"電話番号", "col_values_clause"=>false),
+            "fax"=>array("label"=>"FAX番号", "col_values_clause"=>false),
             "login_pw"=>array("label"=>"パスワード"),
             "login_pw_confirm"=>array("label"=>"パスワード確認", "col"=>false),
-            "memo"=>array("label"=>"備考"),
+            "memo"=>array("label"=>"備考", "col_values_clause"=>false),
         ),
         "rules" => array(
             array("last_name", '\R\App\Table\UserTable::multibyteCheck', "message"=>"氏名（氏）は全角で入力して下さい。"),
@@ -64,8 +64,9 @@ class UserEditController extends Controller_User
             $this->forms["entry"]->restore();
         } else {
             $this->forms["entry"]->clear();
-            $t = $this->forms["entry"]->getTable()->findMine()->selectOne();
-            $this->forms["entry"]->setRecord($t);
+            $t = table("User")->fields(array("mail"))->findMine()->selectOne();
+            $this->forms["entry"]["mail"] = $t["mail"];
+
             if ( ! $t) return $this->response("badrequest");
         }
     }
