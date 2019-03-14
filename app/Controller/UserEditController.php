@@ -31,7 +31,7 @@ class UserEditController extends Controller_User
             "fax"=>array("label"=>"FAX番号", "col_values_clause"=>false),
             "login_pw"=>array("label"=>"パスワード"),
             "login_pw_confirm"=>array("label"=>"パスワード確認", "col"=>false),
-            "memo"=>array("label"=>"備考", "col_values_clause"=>false),
+            "memo"=>array("label"=>"備考"),
         ),
         "rules" => array(
             array("last_name", '\R\App\Table\UserTable::multibyteCheck', "message"=>"氏名（氏）は全角で入力して下さい。"),
@@ -64,8 +64,9 @@ class UserEditController extends Controller_User
             $this->forms["entry"]->restore();
         } else {
             $this->forms["entry"]->clear();
-            $t = table("User")->fields(array("mail"))->findMine()->selectOne();
+            $t = table("User")->fields(array("mail","memo"))->findMine()->selectOne();
             $this->forms["entry"]["mail"] = $t["mail"];
+            $this->forms["entry"]["memo"] = $t["memo"];
 
             if ( ! $t) return $this->response("badrequest");
         }
