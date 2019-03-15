@@ -13,8 +13,11 @@ class AdminUsersProductsController extends Controller_Admin
         "receive_all" => true,
         "search_page" => "admin_users_products.list",
         "search_table" => "UserProduct",
+        "search_joins" => array(
+            array("User", array("User.id=UserProduct.user_id")),
+        ),
         "fields" => array(
-            "sort" => array("search"=>"sort", "cols"=>array("id", "model")),
+            "sort" => array("search"=>"sort", "cols"=>array("UserProduct.id", "model", "csv_sort"=>"User.reg_date ASC, UserProduct.reg_date ASC")),
         ),
     );
     /**
@@ -27,7 +30,7 @@ class AdminUsersProductsController extends Controller_Admin
         } elseif ($this->forms["search"]->receive($this->input)) {
             $this->forms["search"]->save();
         }
-        $this->vars["ts"] = $this->forms["search"]->search()->findBy("accept_flg", "1")->select();
+        $this->vars["ts"] = $this->forms["search"]->search()->findBy("UserProduct.accept_flg", "1")->select();
         $this->vars["complete_flg"] = $this->input["complete_flg"];
     }
     /**
@@ -152,7 +155,9 @@ class AdminUsersProductsController extends Controller_Admin
     {
         // 検索結果の取得
         $this->forms["search"]->restore();
-        $ts = $this->forms["search"]->search()->findBy("accept_flg", "2")->removePagenation()->select();
+        // CSVダウンロード時は固定のソートを用いる
+        $this->forms["search"]["sort"] = "csv_sort";
+        $ts = $this->forms["search"]->search()->findBy(array("UserProduct.accept_flg" => "2", "User.accept_flg" => "2"))->removePagenation()->select();
         // CSVファイルの書き込み
         $csv = $this->forms["csv"]->openCsvFile("php://temp", "w");
         foreach ($ts as $t) $csv->writeRecord($t);
