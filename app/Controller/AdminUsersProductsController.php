@@ -132,6 +132,7 @@ class AdminUsersProductsController extends Controller_Admin
             "purchase_source"=>array("label"=>"購入元"),
             "purchase_reason"=>array("label"=>"購入理由"),
             "reg_date"=>array("label"=>"登録日付"),
+            "user.reg_date"=>array("label"=>"ユーザ登録日付"),
         ),
         "rules" => array(
             "serial_number",
