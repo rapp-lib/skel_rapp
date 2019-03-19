@@ -129,12 +129,14 @@ class AdminUsersProductsController extends Controller_Admin
     protected static $form_csv = array(
         "table" => "UserProduct",
         "fields" => array(
+            "id"=>array("label"=>"#ID"),
             "user.mail"=>array("label"=>"メールアドレス"),
             "product.model"=>array("label"=>"型名"),
             "serial_number"=>array("label"=>"シリアルNo"),
             "purchase_source"=>array("label"=>"購入元"),
             "purchase_reason"=>array("label"=>"購入理由"),
             "reg_date"=>array("label"=>"登録日付"),
+            "user.id"=>array("label"=>"ユーザID"),
             "user.reg_date"=>array("label"=>"ユーザ登録日付"),
         ),
         "rules" => array(
