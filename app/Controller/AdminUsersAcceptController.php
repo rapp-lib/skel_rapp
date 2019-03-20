@@ -14,7 +14,7 @@ class AdminUsersAcceptController extends Controller_Admin
         "search_page" => "admin_users_accept.list",
         "search_table" => "User",
         "fields" => array(
-            "sort" => array("search"=>"sort", "cols"=>array("id", "reg_date", "company_name", "name_kana"=>array(
+            "sort" => array("search"=>"sort", "cols"=>array("id DESC", "reg_date", "company_name", "name_kana"=>array(
                 "last_name_kana ASC, first_name_kana ASC",
                 "last_name_kana DESC, first_name_kana DESC",
             ))),

@@ -17,7 +17,7 @@ class AdminUsersProductsController extends Controller_Admin
             array("User", array("User.id=UserProduct.user_id")),
         ),
         "fields" => array(
-            "sort" => array("search"=>"sort", "cols"=>array("UserProduct.id", "model", "csv_sort"=>"User.reg_date ASC, UserProduct.reg_date ASC")),
+            "sort" => array("search"=>"sort", "cols"=>array("UserProduct.id DESC", "model", "csv_sort"=>"User.reg_date ASC, UserProduct.reg_date ASC")),
         ),
     );
     /**
