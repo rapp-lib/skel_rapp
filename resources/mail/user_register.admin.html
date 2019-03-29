@@ -1,5 +1,5 @@
 {{$message->to($app->config["mail.admin_to"])|ignore}}
-{{$message->subject("【東亜ディーケーケー製品サービスサイト】ユーザ情報変更依頼通知")|ignore}}
+{{$message->subject("【東亜ディーケーケー製品サービスサイト】新規ユーザ登録通知")|ignore}}
 新規ユーザ登録がありました。<br/>
 <br/>
 所属企業/団体名 : {{$t.company_name}}<br/>
@@ -21,19 +21,19 @@ FAX番号 : {{$t.fax}}<br/>
             {{foreach $t.products as $key=>$item}}
                 <table class="tbl detail">
                 <tr>
-                    <th>型名（製品名）</th>
+                    <td>型名（製品名）</td>
                     <td>{{$t.products[$key].product_id_label}}</td>
                 </tr>
                 <tr>
-                    <th>シリアルNo.</th>
+                    <td>シリアルNo.</td>
                     <td>{{$t.products[$key].serial_number}}</td>
                 </tr>
                 <tr>
-                    <th>購入元</th>
+                    <td>購入元</td>
                     <td>{{$t.products[$key].purchase_source}}</td>
                 </tr>
                 <tr>
-                    <th>購入理由</th>
+                    <td>購入理由</td>
                     <td>{{{{$t.products[$key].purchase_reason}}|nl2br nofilter}}</td>
                 </tr>
                 </table>
