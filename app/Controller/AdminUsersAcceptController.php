@@ -61,11 +61,12 @@ class AdminUsersAcceptController extends Controller_Admin
             "memo"=>array("label"=>"備考"),
             "admin_memo"=>array("label"=>"管理者備考"),
             "accept_flg"=>array("label"=>"承認フラグ"),
-            "user_product_id" =>array("label"=>"ユーザ製品ID", "col_values_clause"=>false),
-            "product_name" =>array("label"=>"型名（製品名）", "col_values_clause"=>false),
-            "serial_number" =>array("label"=>"シリアルNo.", "col_values_clause"=>false),
-            "purchase_source" =>array("label"=>"購入元", "col_values_clause"=>false),
-            "purchase_reason" =>array("label"=>"購入理由", "col_values_clause"=>false),
+            "products"=>array("label"=>"ユーザー製品"),
+            "products.*.id"=>array("label"=>"ユーザ製品ID"),
+            "products.*.product_id"=>array("label"=>"型名（製品名）"),
+            "products.*.serial_number"=>array("label"=>"シリアルNo."),
+            "products.*.purchase_source"=>array("label"=>"購入元"),
+            "products.*.purchase_reason"=>array("label"=>"購入理由"),
         ),
         "rules" => array(
             "company_name",
@@ -103,12 +104,6 @@ class AdminUsersAcceptController extends Controller_Admin
                 $t = $this->forms["entry"]->getTable()->findBy("accept_flg","1")->selectById($id);
                 if ( ! $t) return $this->response("notfound");
                 $this->forms["entry"]->setRecord($t);
-                $this->forms["entry"]["user_product_id"] = $t["user_products"][0]["id"];
-                $this->forms["entry"]["product_name"] = $t["user_products"][0]["product"]["bracket_name"];
-                $this->forms["entry"]["product_name"] = $t["user_products"][0]["product"]["bracket_name"];
-                $this->forms["entry"]["serial_number"] = $t["user_products"][0]["serial_number"];
-                $this->forms["entry"]["purchase_source"] = $t["user_products"][0]["purchase_source"];
-                $this->forms["entry"]["purchase_reason"] = $t["user_products"][0]["purchase_reason"];
 
                 // 初期パスワードの生成
                 if (! $this->forms["entry"]["login_pw"]) {
@@ -150,7 +145,7 @@ class AdminUsersAcceptController extends Controller_Admin
                         "accept_date" =>date("Y-m-d H:i:s"),
                     ));
                     table("UserProduct")->save(array(
-                        "id" =>$this->forms["entry"]["user_product_id"],
+                        "id" =>$this->forms["entry"]["products"][0]["id"],
                         "accept_flg" =>"2",
                         "accept_date" =>date("Y-m-d H:i:s"),
                     ));
