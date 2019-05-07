@@ -321,12 +321,13 @@ class AdminUsersController extends Controller_Admin
             ->findBy("DATE_FORMAT(accept_date, '%Y-%m-%d') <= '".$end_date."'")
             ->removePagenation()->select();
         $id_list = $ts->getHashedBy("id");
-        table("User")->save(array(
-            "download_flg" =>"2",
-            "download_date" =>date("Y-m-d H:i:s"),
-            table("User")->getIdColName() => $id_list,
-        ));
-        
+        if (count((array)$id_list) > 0) {
+            table("User")->save(array(
+                "download_flg" =>"2",
+                "download_date" =>date("Y-m-d H:i:s"),
+                table("User")->getIdColName() => $id_list,
+            ));
+        }
         // CSVファイルの書き込み
         $csv = $this->forms["csvdl_csv"]->openCsvFile("php://temp", "w");
         foreach ($ts as $t) $csv->writeRecord($t);
