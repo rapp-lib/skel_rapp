@@ -1,7 +1,7 @@
 <?php
 namespace R\App\Controller;
 
-use R\Lib\Http\HttpController;
+use R\Lib\Laravel\Http\Controller;
 
 /**
  * 親Controller
