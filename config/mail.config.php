@@ -12,7 +12,7 @@
             //            "sparkpost", "log", "array"
             'driver' => 'smtp',
             'sendmail' => '/usr/sbin/sendmail -bs',
-            'host' => 'mail.spcloud.jp',
+            'host' => 'mail.toadkk.co.jp',
             'port' => 465,
             'encryption' => 'SSL',
             'username' => "support_sp@toadkk.co.jp",
